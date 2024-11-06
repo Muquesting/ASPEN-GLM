@@ -6,9 +6,11 @@ Authors@R:
            comment = c(ORCID = "YOUR-ORCID-ID")),
       person("Emily", "Wong", , "e.wong@victorchang.edu.au", role = c("aut"),
            comment = c(ORCID = "YOUR-ORCID-ID")))
-Description: ASPEN represents a comprehensive statistical framework that is designed to evaluate patterns 
-            in allele-specific expression (ASE). ASPEN uses beta-binomial distribution to model allelic ratio, 
-            a fraction of reads from a reference allele to the total number of reads mapped to a gene. 
+Description: A statistical method to analyse allele-specific expression (ASE) data. ASPEN estimates beta-binomial paramaters, mean and dispersion, from the allelic counts.
+            Then, it models allelic dispersion as a function of total gene expresion and uses Bayesian haerarchial model to shrink the estimated dispersion towards the expected one,
+            thereby stabilizing estimates and reducing the impact of spurious variability. ASPEN can be used to (i) identify genes with allelic imabalance 
+            (those with mean allelic ratio deviating from the theoretical value of 0.5); (ii) identify genes with allelic disperion different from the expected one for the genes with similar expression levels;
+            (iii) identify genes with changes in their allelic distribution over time; (iv) identify genes with changes in their allelic variation over time. 
 License: `use_mit_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

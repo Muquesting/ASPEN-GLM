@@ -28,7 +28,8 @@ estim_bbparams_bygroup <- function(a1_counts, tot_counts, metadata, split.var = 
   assert_that(are_equal(rownames(a1_counts), rownames(tot_counts)),
               msg = paste("allele 1 and total counts matrices must be in the same order"))
 
-  assert_that(are_equal(dim(metadata)[2], dim(tot_counts)[1]),
+  #checking that the number of rows in metadata object equals the number of columns in the count matrices
+  assert_that(are_equal(dim(metadata)[1], dim(tot_counts)[2]),
                         msg = paste("Number of cells in metadata and the count matrices must be the same"))
 
   res <- list()
@@ -304,6 +305,10 @@ allelicSwitch <- function(a1_counts, tot_counts, metadata, split.var = "group", 
 
   assert_that(are_equal(rownames(a1_counts), rownames(estimates)),
             msg = paste("gene order in the count matrices and the parameter estimates must be the same"))
+
+  #checking that the number of rows in metadata object equals the number of columns in the count matrices
+  assert_that(are_equal(dim(metadata)[1], dim(tot_counts)[2]),
+              msg = paste("Number of cells in metadata and the count matrices must be the same"))
 
   assert_that(are_equal(rownames(estimates), names(estimates_group)),
             msg = paste("gene order in the global and group parameter estimates must be the same"))

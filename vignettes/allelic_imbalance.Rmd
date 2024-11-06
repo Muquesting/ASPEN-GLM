@@ -37,6 +37,7 @@ ASPEN input are the reference allele counts and the total counts (a sum of count
 #loading required libraries
 library(ASPEN)
 library(gridExtra)
+library(openxlsx)
 ```
 
 ### Loading allele-specifc count data
@@ -67,8 +68,8 @@ cell_list <- split(cell_annot, f = cell_annot$cell_idents)
 
 
 ```{r}
-a1_mat <- lapply(cell_list, function(q) Cast_B6_a1[,gsub(".*_", "", colnames(Cast_B6_a1)) %in% q$cell_barcode_clean])
-tot_mat <- lapply(cell_list, function(q) Cast_B6_tot[,gsub(".*_", "", colnames(Cast_B6_tot)) %in% q$cell_barcode_clean])
+a1_mat <- lapply(cell_list, function(q) Cast_B6_a1[,gsub(".*_", "", colnames(Cast_B6_a1)) %in% q$cell_barcode])
+tot_mat <- lapply(cell_list, function(q) Cast_B6_tot[,gsub(".*_", "", colnames(Cast_B6_tot)) %in% q$cell_barcode])
 
 ```
 
@@ -121,13 +122,14 @@ shrink_pars
 ```
 ### Performing Bayesian shrinkage
 ```{r}
-bb_init_params <- lapply(bb_init_params, function(q) q[!is.na(q$theta_reestim),])
-shrunk_estims_vardelta <- mapply(function(p, q) correct_theta_mod(p, N_set = q[1], delta_set = q[2], thetaFilter = 0.001),
+bb_init_params <- lapply(bb_init_params, function(q) q[!is.na(q$bb_theta),])
+shrunk_estims_vardelta <- mapply(function(p, q) correct_theta(p, N_set = q[1], delta_set = q[2], thetaFilter = 0.001),
                                  bb_init_params, shrink_pars, SIMPLIFY = F)
 head(shrunk_estims_vardelta[[1]])
 ```
 Visualizing model fit. The population of genes with extremely low dispersion levels forms a separate cluster. We estimate that those genes have $\theta < 0.001$ and those genes are excluded from the shrinkage procedure by setting parameter thetaFilter = 0.001 in the correct_theta command.
 ```{r, fig.width=10, fig.height=6.5}
+celltypes <- list("Cortical neurons", "Gliogenic RGCs", "IPCs", "OPCs", "RGCs")
 p_disp <- mapply(function(p,q) plot_disp_fit_theta(p, midpoint = 100) +
                                           labs(subtitle = paste0(q, " Cast_B6")) + geom_hline(yintercept = log(1e-03), linetype = "dashed", linewidth = 1),
                  shrunk_estims_vardelta, celltypes, SIMPLIFY = F)
@@ -138,16 +140,16 @@ do.call(grid.arrange, c(p_disp, ncol = 3))
 Visualizing original and shrunk $\theta$.
 
 ```{r, fig.width=10, fig.height=7.5}
-celltypes <- list("Cortical neurons", "Gliogenic RGCs", "IPCs", "OPCs", "RGCs")
+
 p_disp <- mapply(function(p,q) plot_disp(p) +
                                labs(subtitle = paste0(q, " Cast_B6")) + 
                                geom_hline(yintercept = log(1e-03), linetype = "dashed", linewidth = 1),
                  shrunk_estims_vardelta, celltypes, SIMPLIFY = F)
 do.call(grid.arrange, c(p_disp, ncol = 3))
 ```
-
+Alternatively, we can set $\delta$ and $N$ parameters manually.
 ```{r}
-shrunk_estims <- lapply(bb_init_params, function(q) correct_theta(q, delta_set = 20, N_set = 10, thetaFilter = 0.001))
+shrunk_estims <- lapply(bb_init_params, function(q) correct_theta(q, delta_set = 50, N_set = 30, thetaFilter = 0.001))
 
 ```
 
@@ -164,9 +166,10 @@ do.call(grid.arrange, c(p_disp, ncol = 3))
 
 Evaluating global beta-binomial parameters helps to assess a degree of bias towards the reference allele. This is done by estimating beta-binomial distribution parameters on all genes, excluding those on sex chromosomes and the imprinted genes. For the GRCm38 (mm10) mouse genome, the list of genes on X and Y chromosomes and some validated imprinted genes are included with the package. These genes are specified through genes.excl parameter in glob_disp function.  
 ```{r}
-#genesXY <- system.file("inst/extdata", "mm10_genesXY.txt", package = "ASPEN")
-genesXY <- read.table("inst/extdata/mm10_genesXY.txt")
-genesIMPR <- read.xlsx("inst/extdata/mm10_imprinted_genes.xlsx", colNames = T)
+load_file <- system.file("extdata", "mm10_genesXY.txt", package = "ASPEN")
+genesXY <- read.table(load_file)
+load_file <- system.file("extdata", "mm10_imprinted_genes.xlsx", package = "ASPEN")
+genesIMPR <- read.xlsx(load_file, colNames = T)
 genes2remove <- c(genesXY$V1, genesIMPR$imprinted.genes)
 
 global_estims <- mapply(function(p, q)  glob_disp(p, q, genes.excl = genes2remove, min_counts = 5),
@@ -190,7 +193,7 @@ bb_test_res <- mapply(function(p, q, r, s) beta_binom_test(p, q, r, min_cells = 
 ```
 
 
-beta_binom_test function performs two tests: on the allelic imbalance and on the allelic variance (deviation from the expected variation for the genes with similar expression). The output of this function is a table that combines the output of the estim_bbparams and correct_theta_mod functions and adds the following columns:\\
+beta_binom_test function performs two tests: on the allelic imbalance and on the allelic variance (deviation from the expected variation for the genes with similar expression). The output of this function is a table that combines the output of the estim_bbparams and correct_theta functions and adds the following columns:\\
 \begin{itemize}
   \item \textbf{log2FC} - log2 fold change between the allelic counts;
   \item \textbf{loglik0_mean} - log likelihood value under the $H_0$ for the allelic imbalance test;

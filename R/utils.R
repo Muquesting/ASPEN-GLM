@@ -280,7 +280,7 @@ plot_distr <- function(plot_data, gene, add.density = TRUE, min_counts = 0){
 #' plot_exp_disp()
 plot_exp_disp <- function(param_estim, gene = gene){
 
-  ggplot(param_estim, aes(log(tot_gene_mean), log(bb_theta))) +
+  p <- ggplot(param_estim, aes(log(tot_gene_mean), log(bb_theta))) +
     #geom_pointdensity(size = 0.7) +
     geom_point(color = "darkgrey", size = 1) +
     #geom_smooth(method = "locfit", color = "#01a2d9", se = T, linewidth = 0.7) +
@@ -292,11 +292,15 @@ plot_exp_disp <- function(param_estim, gene = gene){
     geom_point(data = param_estim[gene,], aes(log(tot_gene_mean), log(bb_theta)), color =  "#A73030FF", size = 2) +
     geom_point(data = param_estim[param_estim$gene == gene,], aes(log(tot_gene_mean), log(bb_theta)), color =  "#A73030FF", size = 2) +
     theme(legend.position = "none", legend.title = element_blank()) +
-    geom_text_repel(data = param_estim[gene,], aes(label = gene),
-                    size = 3, show.legend = FALSE) +
-    geom_text_repel(data = param_estim[param_estim$gene == gene,], aes(label = group),
-                    size = 3, show.legend = FALSE) +
     labs(caption = gene)
+
+    if ("group" %in% colnames(param_estim)){
+      p + geom_text_repel(data = param_estim[param_estim$gene == gene,], aes(label = group),
+                         size = 3, show.legend = FALSE)
+    } else {
+      p  + geom_text_repel(data = param_estim[gene,], aes(label = gene),
+                           size = 3, show.legend = FALSE)
+    }
   #scale_color_gradient2(low = "#003C67FF", mid = "#EFC000FF", high = "#A73030FF", midpoint = midpoint) +
   #annotate("text", x=2, y=1, label= paste("N genes:", nrow(param_reestim)))
 }

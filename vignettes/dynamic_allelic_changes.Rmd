@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Allelic dynamic changes
+# Dynamic allelic changes
 
 ### Introduction
 To identify genes that change their allelic usage over developmental time, ASPEN requires cell to be assigned a descrete time value. If sequencing experiments were done across a number of time points, this is simply identities of the respective experiment batch. Please note, that the batch correction might be required to remove any technical batch effects. Alternatively, cells can be ordered by the developmental trajectory through pseudotime analysis (with tools like Monocle, Slingshot, palantir, etc.). Pseudotime is a probability of a cell to be in a terminal state, which is restricted to $[0,1]$ interval. This vector can be divided into equal-sized bins and the cells are grouped together. \\
@@ -108,7 +108,7 @@ table(rownames(Cast_B6_a1) == rownames(global_shrunk))
 
 
 Visualizing the local model fit and the shrunk dispersion estimates
-```{r, fig.width=6.5, fig.height=3}
+```{r, fig.width=6.5, fig.height=3.5}
 fit_plot <- plot_disp_fit_theta(global_shrunk, midpoint = 200)
 shrunk_plot <- plot_disp(global_shrunk) + 
   geom_hline(yintercept = log(1e-03), linetype = "dashed", linewidth = 1)
@@ -131,7 +131,7 @@ shrunk_group_params <- correct_theta_bygroup(group_params, delta_set = 50, N_set
 
 Visualizing the local model fit when each group-level observations are treated as independent variables.
 
-```{r, fig.width=6.5, fig.height=3}
+```{r, fig.width=6.5, fig.height=3.5}
 fit_plot_group <- plot_disp_fit_theta(shrunk_group_params, midpoint = 800) +
     ylim(-10, 4)
 shrunk_plot_group <- plot_disp(shrunk_group_params) + 
@@ -195,7 +195,7 @@ head(pseudot_change[pseudot_change$fdr_var > 0.05, c("mu_global", colnames(pseud
 
 Visualizing changes along pseudotime
 
-```{r, fig.width=4, fig.height=4.5}
+```{r, fig.width=4, fig.height=5}
 gene <- "Cst3"
 #generating data frame for plotting
 #plot_data <- makedf(Cast_B6_a1, Cast_B6_tot, gene = gene, metadata = pseudotime, order.by = "time", split.var = "group")
@@ -214,7 +214,7 @@ geBoxplot(simul_data, allele1 = "Bl6", allele2 = "Cast")
 ```
 
 Plotting allelic ratio density using original data and the original estimated theta and common theta and allelic ratio distribution from data simulated from the common theta.
-```{r,  fig.width=4, fig.height=4.5}
+```{r,  fig.width=4, fig.height=5.5}
 plot_theta_density(simul_data)
 ```
 
@@ -224,7 +224,7 @@ pseudot_change[gene, colnames(pseudot_change)[grep("fdr_bin", colnames(pseudot_c
 ```
 
 Visualizing the distance from the common dispersion trend for all pseudotime group.
-```{r, fig.width=4, fig.height=4.5}
+```{r, fig.width=4, fig.height=4}
 plot_exp_disp(as.data.frame(shrunk_group_params), gene = gene) +
   ylim(-10, 4)
 ```
@@ -235,7 +235,7 @@ pseudot_change <- pseudot_change[order(pseudot_change$fdr_var),]
 head(pseudot_change[pseudot_change$fdr_mean > 0.05, c("mu_global", colnames(pseudot_change)[grep("mu_group", colnames(pseudot_change))], "fdr_mean", "fdr_var")], n = 10)
 ```
 
-```{r, fig.width=4, fig.height=4.5}
+```{r, fig.width=4, fig.height=5}
 gene <- "Eno1"
 #generating data frame for plotting
 #plot_data <- makedf(Cast_B6_a1, Cast_B6_tot, gene = gene, metadata = pseudotime, order.by = "time", split.var = "group")
@@ -254,7 +254,7 @@ geBoxplot(simul_data, allele1 = "Bl6", allele2 = "Cast")
 ```
 
 Plotting allelic ratio density using original data and the original estimated theta and common theta and allelic ratio distribution from data simulated from the common theta.
-```{r,  fig.width=4, fig.height=4.5}
+```{r,  fig.width=4, fig.height=5.5}
 plot_theta_density(simul_data)
 ```
 
@@ -263,7 +263,7 @@ pseudot_change[gene, colnames(pseudot_change)[grep("fdr_bin", colnames(pseudot_c
 ```
 
 
-```{r, fig.width=4, fig.height=4.5}
+```{r, fig.width=4, fig.height=4}
 plot_exp_disp(as.data.frame(shrunk_group_params), gene = gene) +
   ylim(-10, 4)
 ```

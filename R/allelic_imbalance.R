@@ -31,8 +31,7 @@ estim_bbparams <- function(a1_counts, tot_counts, min_counts = 0, min_cells = 5,
       len <- nrow(a1_counts)
 
       #creating vectors for storage
-      N <- AR <- mu <- theta <- alpha <- beta <- tot_gene_mean <- tot_gene_variance <- mean_allele1 <- mean_allele2 <- numeric(len)
-      bb_mu <- bb_theta <- numeric(len)
+      N <- AR <- alpha <- beta <- bb_mu <- bb_theta <- tot_gene_mean <- tot_gene_variance <- numeric(len)
 
       #Beta-binomial log-likelihood function
       lbetabin <- function(df, inits){
@@ -71,9 +70,9 @@ estim_bbparams <- function(a1_counts, tot_counts, min_counts = 0, min_cells = 5,
             df <- na.omit(df)
             #df <- df[df$n >= min_counts,] #modelling dispersion only for the cells that meet read depth cut-off
 
-            if (dim(df)[1] >= min_cells){
+            if (nrow(df) >= min_cells){
 
-              N[k] = dim(df[df$n >= min_cells,])[1]
+              N[k] = nrow(df[df$n >= min_cells,])
               AR[k] <- mean(y / n, na.rm = TRUE)
               tot_gene_mean[k] = mean(df$n)
               tot_gene_variance[k] = var(df$n)
@@ -83,7 +82,7 @@ estim_bbparams <- function(a1_counts, tot_counts, min_counts = 0, min_cells = 5,
 
             } else {
 
-              tmp <- NA
+              tmp <- rep(NA, 4)
 
             }
 
@@ -97,12 +96,10 @@ estim_bbparams <- function(a1_counts, tot_counts, min_counts = 0, min_cells = 5,
 
             df <- as.data.frame(cbind(y, n))
             df <- na.omit(df)
-            df_subset <- df
-            #df_subset <- df[df$n >= min_counts,]
 
-            if (dim(df_subset)[1] >= min_cells){
+            if (nrow(df) >= min_cells){
 
-            binom.model <- tryCatch(glm(y/n ~ 1, family = "binomial", weights = n, data = df_subset),
+            binom.model <- tryCatch(glm(y/n ~ 1, family = "binomial", weights = n, data = df),
                                     error=function(e) e)
 
             inits=tryCatch(c(binom.model$fitted.values[1],
@@ -110,19 +107,13 @@ estim_bbparams <- function(a1_counts, tot_counts, min_counts = 0, min_cells = 5,
                            error=function(e) e)
 
             optim_betabin = tryCatch(optim(inits, lbetabin,
-                                     hessian=T, df = df_subset, method = "L-BFGS-B",
+                                     hessian=T, df = df, method = "L-BFGS-B",
                                      lower = c(1e-2, 1e-2), upper=c(1e6, 1e6),
                                      control = list( fnscale=-1 )), error=function(e) e)
 
             #N[k] = dim(df)[1]
-            alpha[k] = if (is.null(optim_betabin$par)){
-              NA } else {
-                optim_betabin$par[1]
-              }
-            beta[k] = if (is.null(optim_betabin$par)){
-              NA } else {
-                optim_betabin$par[2]
-              }
+            alpha[k] = if (is.null(optim_betabin$par)) NA else optim_betabin$par[1]
+            beta[k] = if (is.null(optim_betabin$par)) NA else optim_betabin$par[2]
 
             bb_mu[k] = round(alpha[k]/(alpha[k] + beta[k]), 4)
             bb_theta[k] = round(1/(alpha[k] + beta[k]), 4)
@@ -131,7 +122,7 @@ estim_bbparams <- function(a1_counts, tot_counts, min_counts = 0, min_cells = 5,
 
           } else {
 
-            tmp2 <- rep(NA, each = 6)
+            tmp2 <- rep(NA, 4)
 
           }
 
@@ -142,9 +133,11 @@ estim_bbparams <- function(a1_counts, tot_counts, min_counts = 0, min_cells = 5,
         res$id <- 1:nrow(res)
         colnames(res) <- c("N", "AR", "tot_gene_mean", "tot_gene_variance",
                            "alpha", "beta", "bb_mu", "bb_theta", "id")
-        return(res)
 
         stopCluster(cl)
+        return(res)
+
+
       }
 
 }
@@ -161,6 +154,8 @@ estim_bbparams <- function(a1_counts, tot_counts, min_counts = 0, min_cells = 5,
 #' estim_delta()
 estim_delta <- function(estimates){
 
+  assert_that("bb_theta" %in% colnames(estimates), "tot_gene_mean" %in% colnames(estimates),
+              msg = "estimates must contain 'bb_theta' and 'tot_gene_mean' columns")
 
   lgamma_delta <- function(df, inits_par){
 
@@ -217,6 +212,11 @@ estim_delta <- function(estimates){
 #' correct_theta()
 correct_theta <- function(estimates, delta_set = 50, N_set = 30, thetaFilter = NULL){
 
+  assert_that("bb_theta" %in% colnames(estimates), "tot_gene_mean" %in% colnames(estimates),
+              "bb_mu" %in% colnames(estimates), "alpha" %in% colnames(estimates), "beta" %in% colnames(estimates),
+              msg = "estimates must contain 'bb_theta', 'tot_gene_mean', 'bb_mu', 'alpha', and 'beta' columns")
+
+
   min_theta=1e-06
   max_theta=1e+06
 
@@ -232,7 +232,7 @@ correct_theta <- function(estimates, delta_set = 50, N_set = 30, thetaFilter = N
     #Fitting locfit model
     locfit_model <- locfit(log(bb_theta) ~ log(tot_gene_mean), data = estimates_filt)
     locfit_predict <- predict(locfit_model, log(estimates_filt$tot_gene_mean), se.fit = T)
-    #Estimating values that fit into the loess curve
+    #Estimating values that fit into the locfit curve
     theta_smoothed <- exp(locfit_predict$fit)
     t.val <- qt(0.975, length(theta_smoothed) - 2)
     #ci_upper <- theta_smoothed + t.val * locfit_predict$se.fit
@@ -548,8 +548,9 @@ beta_binom_test <- function(a1_counts, tot_counts, estimates, glob_params, min_c
     assert_that(are_equal(rownames(a1_counts), rownames(tot_counts)),
                 msg = paste("allele 1 and total counts matrices must be in the same order"))
 
-    assert_that(are_equal(rownames(a1_counts), names(estimates)),
-                msg = paste("Number of cells in metadata and the count matrices must be the same"))
+    assert_that(are_equal(rownames(a1_counts), rownames(estimates)),
+                msg = paste("Genes in the model estimates and the count matrices must be in the same order"))
+
 
 
     len <- nrow(estimates)
@@ -646,7 +647,8 @@ beta_binom_test <- function(a1_counts, tot_counts, estimates, glob_params, min_c
           assert_that(!is.null(metadata),
                       msg = paste("cell metadata is required"))
 
-          assert_that(are_equal(dim(metadata)[2], dim(tot_counts)[1]),
+          #checking that the number of rows in metadata object equals the number of columns in the count matrices
+          assert_that(are_equal(dim(metadata)[1], dim(tot_counts)[2]),
                       msg = paste("Number of cells in metadata and the count matrices must be the same"))
 
           groups <- split(metadata, f = metadata[,colnames(metadata) == batch])

@@ -31,6 +31,7 @@ We will be using the same CastB6 dataset to demonstrate ASPEN's ability to ident
 ```{r setup}
 library(ASPEN)
 library(gridExtra)
+library(openxlsx)
 ```
 
 
@@ -54,8 +55,8 @@ cell_list <- split(cell_annot, f = cell_annot$cell_idents)
 
 
 ```{r}
-a1_mat <- lapply(cell_list, function(q) Cast_B6_a1[,gsub(".*_", "", colnames(Cast_B6_a1)) %in% q$cell_barcode_clean])
-tot_mat <- lapply(cell_list, function(q) Cast_B6_tot[,gsub(".*_", "", colnames(Cast_B6_tot)) %in% q$cell_barcode_clean])
+a1_mat <- lapply(cell_list, function(q) Cast_B6_a1[,gsub(".*_", "", colnames(Cast_B6_a1)) %in% q$cell_barcode])
+tot_mat <- lapply(cell_list, function(q) Cast_B6_tot[,gsub(".*_", "", colnames(Cast_B6_tot)) %in% q$cell_barcode])
 
 ```
 
@@ -77,7 +78,7 @@ bb_init_params <- mapply(function(p, q) estim_bbparams(p, q, min_cells = 5, core
 
 ### Performing Bayesian shrinkage
 ```{r}
-shrunk_estims <- lapply(bb_init_params, function(q) correct_theta_mod(q, delta_set = 20, N_set = 10, thetaFilter = 0.001))
+shrunk_estims <- lapply(bb_init_params, function(q) correct_theta(q, delta_set = 50, N_set = 30, thetaFilter = 0.001))
 
 ```
 
@@ -85,9 +86,10 @@ shrunk_estims <- lapply(bb_init_params, function(q) correct_theta_mod(q, delta_s
 ### Estimating global beta-binomial parameters
 
 ```{r}
-#genesXY <- system.file("inst/extdata", "mm10_genesXY.txt", package = "ASPEN")
-genesXY <- read.table("inst/extdata/mm10_genesXY.txt")
-genesIMPR <- read.xlsx("inst/extdata/mm10_imprinted_genes.xlsx", colNames = T)
+load_file <- system.file("extdata", "mm10_genesXY.txt", package = "ASPEN")
+genesXY <- read.table(load_file)
+load_file <- system.file("extdata", "mm10_imprinted_genes.xlsx", package = "ASPEN")
+genesIMPR <- read.xlsx(load_file, colNames = T)
 genes2remove <- c(genesXY$V1, genesIMPR$imprinted.genes)
 
 global_estims <- mapply(function(p, q)  glob_disp(p, q, genes.excl = genes2remove, min_counts = 5),
@@ -101,6 +103,18 @@ Running beta_binom_test function to identify genes with allelic ratio deviating 
 ```{r, warning=F, message=F}
 bb_test_res <- mapply(function(p, q, r, s) beta_binom_test(p, q, r, min_cells = 5, glob_params = s), 
                         a1_mat, tot_mat, shrunk_estims, global_estims, SIMPLIFY = F)
+```
+
+For genes in which the quality cut-off threshold (here we used a minimum of five cells with at least of five mapped reads) was not met, the inference is not performed, Those genes have NA values in the fields specified above. We remove those genes and calculate fdr's. 
+```{r}
+bb_test_res <- lapply(bb_test_res, function(q) q <- q[!is.na(q$pval_mean),])
+
+#calculating fdr
+bb_test_res <- lapply(bb_test_res, function(q) {q$fdr_mean <- p.adjust(q$pval_mean, method = "fdr");
+                                                q$fdr_disp <- p.adjust(q$pval_disp, method = "fdr");
+                                                q <- q[order(q$fdr_mean),];
+                                                return(q)})
+
 ```
 
 
