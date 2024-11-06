@@ -6,11 +6,11 @@ Authors@R:
            comment = c(ORCID = "YOUR-ORCID-ID")),
       person("Emily", "Wong", , "e.wong@victorchang.edu.au", role = c("aut"),
            comment = c(ORCID = "YOUR-ORCID-ID")))
-Description: A statistical method to analyse allele-specific expression (ASE) data. ASPEN estimates beta-binomial paramaters, mean and dispersion, from the allelic counts.
-            Then, it models allelic dispersion as a function of total gene expresion and uses Bayesian haerarchial model to shrink the estimated dispersion towards the expected one,
-            thereby stabilizing estimates and reducing the impact of spurious variability. ASPEN can be used to (i) identify genes with allelic imabalance 
-            (those with mean allelic ratio deviating from the theoretical value of 0.5); (ii) identify genes with allelic disperion different from the expected one for the genes with similar expression levels;
-            (iii) identify genes with changes in their allelic distribution over time; (iv) identify genes with changes in their allelic variation over time. 
+Description: A statistical method to analyze allele-specific expression (ASE) data. ASPEN estimates beta-binomial parameters, mean and dispersion, from the allelic counts.
+            Then, it models allelic dispersion as a function of total gene expression and uses the Bayesian hierarchical model to shrink the estimated dispersion towards the expected one,
+            thereby stabilizing estimates and reducing the impact of spurious variability. ASPEN can be used to (i) identify genes with allelic imbalance 
+            (those with mean allelic ratio deviating from the theoretical value of 0.5); (ii) identify genes with allelic dispersion different from the expected one for the genes with similar expression levels;
+            (iii) identify genes with changes in their allelic distribution over time; (iv) identify genes with changes in their allelic variation over time.
 License: `use_mit_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -55,3 +55,4 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://ewonglab.github.io/ASPEN/

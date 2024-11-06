@@ -57,7 +57,8 @@ estim_bbparams <- function(a1_counts, tot_counts, min_counts = 0, min_cells = 5,
           cl <- makePSOCKcluster(cores)
           registerDoParallel(cl)
         } else {
-          cl <- makeForkCluster(cores)
+          #cl <- makeForkCluster(cores)
+          cl <- makePSOCKcluster(cores)
           registerDoParallel(cl)
         }
 
