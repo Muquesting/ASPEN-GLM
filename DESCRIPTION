@@ -36,12 +36,7 @@ Imports: doParallel,
          dplyr, 
          data.table, 
          VGAM,
-         tidyverse,
-         SingleCellExperiment,
-         scran,
-         huxtable,
-         openxlsx,
-         knitr
+         tidyverse
 Depends: doParallel, 
          locfit, 
          ggplot2, 
