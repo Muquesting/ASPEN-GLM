@@ -503,7 +503,7 @@ plot_glob_params <- function(a1_counts, tot_counts, glob_params, min_counts = 5)
   plot_data <- as.data.frame(a1_filt/tot_filt)
   plot_data$Index <- 1:nrow(plot_data)
   plot_data$gene <- rownames(plot_data)
-  plot_data <- melt(plot_data, id=c("Index","gene"))
+  plot_data <- reshape2::melt(plot_data, id=c("Index","gene"))
 
   ggplot(plot_data) +
     geom_histogram(aes(x = value, y = after_stat(density)), color = "darkgrey", fill = "grey", bins = 19) +
