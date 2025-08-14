@@ -1,0 +1,374 @@
+---
+title: "differential_ASE"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{differential_ASE}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# Identifying Changes in Allelic Ratio Distribution (Mean or Variance) Across Groups
+
+### Introduction
+ASPEN can identify genes with differential allelic patterns across groups. Groups can represent cell types, time points, or other experimental factors. If sequencing was performed across multiple time points, group identities correspond directly to the respective time points. Please note, that the batch correction might be required to remove any technical batch effects. Alternatively, cells can be ordered along a developmental trajectory (using tools like Monocle, Slingshot, palantir, etc.), the trajectory is often represented as pseudotime - a probability of a cell to be in a terminal state, bounded within the $[0,1]$ interval. Since ASPEN detects changes across discrete groups, pseudotime should be binned (eg. based on tertiles or quintiles) before analyses. \\
+To test for changes in the mean allelic ratio between the groups, ASPEN evaluates whether a gene's allelic distribution parameters are the same across the groups ($H_0$) or they are group-specific ($H_1$). ASPEN goes through the following steps:\\
+\begin{enumerate}
+\item 1) For each gene, estimate beta-binomial $\alpha$ and $\beta$ parameters by maximum likelihood estimation (MLE). Using $\alpha$ and $\beta$, we can calculate allelic ratio mean, $\mu$, and dispersion, $\theta$ as
+\\ $\mu=\frac{\alpha}{\alpha + \beta}$, and
+\\ $\theta = \frac{1}{\alpha + \beta}$;\\
+Repeat the estimation for each group separately;
+\item 2) fit a local regression for $\theta$ as a function of total gene expression. Perform this step separately for each group and for all cells combined;
+\item 3) estimate shrinkage parameters, $\delta$ and $N$. Again, do this per group and for all cells combined.;
+\item 4) shrink the original $\theta$ towards the common trend. Again, do this per group and for all cells combined.;
+\item 5) perform differential testing: for changes in mean ([`group_mean()`]) and variance [`group_var()`] across groups. 
+\end{enumerate}
+
+
+###Setup
+```{r setup}
+#loading libraries
+suppressPackageStartupMessages({
+    library(ASPEN)
+    library(gridExtra)
+    library(openxlsx)
+    library(SingleCellExperiment)
+    library(scran)
+    library(huxtable)
+})  
+```
+
+
+### Loading allele-specifc count data
+As in other vignettes, we use mouse brain organoids data from CastB6 hybrids (Medina-Cano, 2025). Pseudotime for this data was estimated using palantir (Setty, 2019). For this example, we focus on three cell types representing early neurodevelopment:: radial glial cells (RGCs), intermediate progenitors cells (IPCs), deep layer neurons (cortical neurons). 
+```{r}
+data("Bl6_Cast_a1")
+data("Bl6_Cast_tot")
+#load_file <- system.file("extdata", "Bl6Cast_cell_annot.xlsx", package = "ASPEN")
+#cell_annot <- read.xlsx(load_file, rowNames = T)
+#loading pseudotime assignment
+load_time <- system.file("extdata", "pseudotime_Bl6Cast.xlsx", package = "ASPEN")
+pseudotime <- read.xlsx(load_time, rowNames = T)
+print_md(as_huxtable(head(pseudotime)))
+```
+
+
+We first select the cell barcodes for which a pseudotime value has been assigned.
+```{r}
+
+Cast_B6_a1 <- Cast_B6_a1[,colnames(Cast_B6_a1) %in% pseudotime$cell_id]
+Cast_B6_tot <- Cast_B6_tot[,colnames(Cast_B6_tot) %in% pseudotime$cell_id]
+
+```
+
+
+Since ASPEN accepts only discrete groups, we divide the pseudotime vector into five equal-sized bins.
+```{r}
+pseudotime <- pseudotime[match(colnames(Cast_B6_tot), 
+                               pseudotime$cell_id),]
+pseudotime$group <- cut(pseudotime$time, 
+                        breaks=c(quantile(pseudotime$time, 
+                                          probs = seq(0, 1, by = 0.2))))
+#by default the [`cut()`] function skips the first observation - imputing the value manually
+pseudotime$group[is.na(pseudotime$group)] <- levels(pseudotime$group)[1]
+#adding cell ids to pseudotime obejct row names
+rownames(pseudotime) <- pseudotime$cell_id
+print_md(as_huxtable(head(pseudotime)))
+
+```
+
+
+Checking the number of cells per pseudotime bin
+```{r}
+print_md(as_huxtable(table(pseudotime$group)))
+```
+
+
+
+
+## Counts normalisation
+We first normalize the raw single-cell counts using the [`computeSumFactors()`] function from `scran` package (Lun, et al. 2016). We then create a `SingleCellExperiment` object using the total and reference allele count matrices.
+```{r}
+
+ase_sce <- SingleCellExperiment(assays = list(a1 = as.matrix(Cast_B6_a1),
+                                              tot = as.matrix(Cast_B6_tot)))
+```
+
+Lowly expressed genes (expressed in less than 10 cells) are removed.
+```{r}
+#removing lowly expressed genes
+ase_sce <- ase_sce[rowSums(assays(ase_sce)[['tot']] > 1) >= 10, ]
+dim(ase_sce)
+
+```
+
+
+
+```{r}
+
+#adding sample id to the metadata
+colData(ase_sce)$replicate <- gsub("_.*", "", rownames(colData(ase_sce)))
+
+#calculate size factors
+ase_sce <- computeSumFactors(ase_sce, 
+                             clusters=colData(ase_sce)$replicate, assay.type = "tot")
+```
+
+
+
+The reference allele and total counts are normalized in parallel using the same size factor estimates.
+```{r}
+#normalizing counts
+ase_sce  <- logNormCounts(ase_sce, 
+                          size.factors = colData(ase_sce)$sizeFactor,
+                          log = NULL, transform = "none", assay.type = "tot", name = "tot_norm")
+
+#normalizing reference counts by the same size factors
+ase_sce  <- logNormCounts(ase_sce, 
+                          size.factors = colData(ase_sce)$sizeFactor,
+                          log = NULL, transform = "none", assay.type = "a1", name = "a1_norm")
+
+#checking that normalised counts assays are added to the SingleCellExperiment object
+ase_sce@assays
+```
+
+
+
+## Estimating beta-binomial parameters
+We start by estimating beta-binomial distribution parameters for each gene across all cells. These estimates will be used to calculate the likelihood under the null hypothesis $H_0$, which assumes no differences in allelic ratio across time points.
+
+```{r}
+#extracting raw counts which will be used to estimate the model parameters
+tot_mat <- as.matrix(assays(ase_sce)[['tot']])
+a1_mat <- as.matrix(assays(ase_sce)[['a1']])
+
+global_params <- estim_bbparams(a1_mat, tot_mat, min_cells = 5, cores = 6)
+```
+
+
+## Defining lowly expressed genes
+ASPEN applies shrinkage selectively - genes with very low dispersion are not moderated and their allelic imbalance is evaluated on the unadjusted values. Genes with stable dispersion are determined based on the residuals from the dispersion modelling step. ASPEN calculates the meadian absolute deviation-squared (${MAD}^2$), which is used as a cut-off.
+```{r}
+min_cutoff <- calc_mad(global_params)
+min_cutoff
+```
+
+
+
+## Estimate appropriate shrinkage parameters
+We estimate shrinkage parameters, $N$ and $\delta$, on each cell type separately. As an option, genes with very low dispersion can be excluded from the estimation by setting a minimum cut-off value with `thetaFilter` parameter
+```{r, warning=FALSE, message=F}
+set.seed(1001011)
+shrink_pars <- estim_delta(global_params, thetaFilter = round(min_cutoff,3))
+shrink_pars
+```
+
+
+## Performing Bayesian shrinkage
+```{r}
+global_shrunk <- correct_theta(global_params, 
+                               delta_set = shrink_pars[1], 
+                               N_set = shrink_pars[2], 
+                               thetaFilter = min_cutoff)
+
+```
+
+
+Visualizing the local model fit and the shrunk dispersion estimates
+```{r, fig.width=6.5, fig.height=3.5}
+fit_plot <- plot_disp_fit_theta(global_shrunk, midpoint = 200)
+shrunk_plot <- plot_disp(global_shrunk) + 
+  geom_hline(yintercept = log(1e-03), linetype = "dashed", linewidth = 1)
+  
+grid.arrange(fit_plot, shrunk_plot, ncol = 2)
+```
+
+
+
+
+Under the alternative hypothesis, we assume that the ASE distributions differ between the time points. To obtain the group-level estimates, we split the count matrices by the time point assignment and repeat the beta-binomial parameter estimation for each group.
+
+```{r}
+#splitting pseudotime assignment by group
+psedotime_bins <- split(pseudotime, f = pseudotime$group)
+
+
+ase_sce_bybin <- list()
+for (i in 1:length(psedotime_bins)){
+    ase_sce_bybin[[i]] <- ase_sce[,rownames(psedotime_bins[[i]])]
+}
+
+#only using genes that are expressed in at least 10 cells 
+ase_sce_bybin <- lapply(ase_sce_bybin, function(q) q[rowSums(assays(q)[['tot']] > 1) >= 10, ]) 
+
+#extracting total counts for each pseudotime bin
+tot_mat_bybin <- lapply(ase_sce_bybin, function(q) as.matrix(assays(q)[['tot']]))
+
+#extracting reference allele counts
+a1_mat_bybin <- lapply(ase_sce_bybin, function(q) as.matrix(assays(q)[['a1']]))
+#selecting genes that matched filtering criteria
+a1_mat_bybin <- mapply(function(p,q) p[rownames(q), ], a1_mat_bybin, tot_mat_bybin, SIMPLIFY = F)
+```
+
+
+
+
+```{r}
+
+#Estimating distribution parameters
+group_params <- mapply(function(p, q) estim_bbparams(p, q, min_cells = 5, cores = 6),
+                       a1_mat_bybin, tot_mat_bybin, SIMPLIFY = F)
+
+#removing groups where optim did not converge
+#group_params <- group_params[!is.na(group_params$bb_theta),]
+#group_params <- as.data.frame(group_params)
+
+```
+
+
+
+
+We then apply Bayesian shrinkage to the group-level beta-binomial parameter estimates.
+```{r}
+
+shrunk_group_params <- lapply(group_params, function(q) 
+                                            correct_theta(q, 
+                                                          delta_set = shrink_pars[1], 
+                                                          N_set = shrink_pars[2], 
+                                                          thetaFilter = min_cutoff))
+
+```
+
+
+
+Visualizing the local model fit when each group-level observations are treated as independent variables.
+
+```{r, fig.width=10, fig.height=6.5}
+
+samples <- list(levels(pseudotime$group)[1],
+                levels(pseudotime$group)[2],
+                levels(pseudotime$group)[3],
+                levels(pseudotime$group)[4],
+                levels(pseudotime$group)[5])
+
+p_disp <- mapply(function(p,q) plot_disp_fit_theta(p, midpoint = 300) +
+                               labs(subtitle = q) +
+                               geom_hline(yintercept = log(min_cutoff), linetype = "dashed"),
+                 shrunk_group_params, samples, SIMPLIFY = F)
+do.call(grid.arrange, c(p_disp, ncol = 3))
+```
+
+
+ASPEN expects the group level estimates for each gene. To prepare these, we add the gene name and group identifier to each estimates object, combine the results into a single data frame and split the data frame by gene. The `shrunk_params_gene` object is a list where each element contains the group-level estimates for a single gene.
+
+
+```{r}
+shrunk_group_params <- mapply(function(p,q) {p$group <- q;
+                                             p$gene <- rownames(p);
+                                             return(p)}, shrunk_group_params, samples, SIMPLIFY = F)
+
+shrunk_params_comb <- do.call(rbind, shrunk_group_params)
+shrunk_params_gene <- split(shrunk_params_comb, f = shrunk_params_comb$gene)
+```
+
+
+## Test for changes in ASE mean across time points
+
+ASPEN performs this test only on genes with valid beta-binomial estimates. Genes for which beta-binomial parameters could not be obtained are excluded from the output. Normalized counts are used to detect changes in the allelic ratio mean across pseudotime bins. The input matrices contain all cells.
+
+To run the test, you must provide:
+\begin{itemize}
+\item A metadata object containing the grouping variable;
+\item The name of the column to use for grouping, via the `split.var` parameter.
+\end{itemize}
+
+The group identifiers in the metadata must match exactly the group identifiers in the beta-binomial estimates list (`shrunk_params_gene`).
+
+By default, ASPEN ensures that the number of informative cells — those meeting the minimum coverage threshold — is the same across groups.
+
+
+```{r}
+#extracting normalised counts which will be used for testing
+a1_norm <- as.matrix(round(assays(ase_sce)[['a1_norm']]))
+tot_norm <- as.matrix(round(assays(ase_sce)[['tot_norm']]))
+
+change_mean <- group_mean(a1_norm, tot_norm, 
+                         metadata = pseudotime, split.var = "group",
+                         min_counts = 5, min_cells = 5, 
+                         estimates = global_shrunk,
+                         estimates_group = shrunk_params_gene,
+                         equalGroups = TRUE)
+
+
+```
+
+
+For genes that do not meet the quality cut-off threshold (here: a minimum of 5 cells with at least 5 mapped reads per cell), the inference is not performed.
+These genes will have `NA` values in the relevant output columns.
+
+We remove such genes before calculating the false discovery rate (FDR):
+```{r}
+change_mean <- change_mean[!is.na(change_mean$pval),]
+change_mean$fdr_mean <- p.adjust(change_mean$pval, method = "fdr")
+head(change_mean[order(change_mean$fdr_mean),], n  = 10)
+```
+
+```{r, fig.width=4, fig.height=5}
+gene <- "Dbi"
+#generating data frame for plotting
+
+simul_data <- make_plotdf_simul(Cast_B6_a1, Cast_B6_tot, gene = gene, estimates_group = shrunk_params_gene,
+                                metadata = pseudotime, order.by = "time", split.var = "group")
+
+plot_distr(simul_data, gene = gene, add.density = FALSE, min_counts = 0) + 
+  geom_hline(yintercept = c(simul_data$Index[match(unique(simul_data$group), simul_data$group)][-1])) +
+  labs(y = "Ordered pseudotime")
+```
+
+
+## Test for changes in ASE variance over time
+
+The changes in allelic variation between the groups can be identifying with [`group_var()`]. This function requires specifying the global mean allelic ratio (passed through `mean_null` parameter), which is used when evaluating both the null and alternative hypotheses.
+```{r}
+change_var <- group_var(a1_mat, tot_mat, 
+                         metadata = pseudotime, split.var = "group",
+                         min_counts = 5, min_cells = 5, 
+                         mean_null = 0.5,
+                         estimates = global_shrunk,
+                         estimates_group = shrunk_params_gene,
+                         equalGroups = TRUE)
+```
+
+
+
+```{r}
+#variance changes overtime, whilst keeping the mean AR constant
+
+change_var <- change_var[!is.na(change_var$pval),]
+change_var$fdr_var <- p.adjust(change_var$pval_var, method = "fdr")
+change_var[order(change_var$fdr_var)[11:20],]
+```
+
+
+
+```{r, fig.width=4, fig.height=5}
+gene <- "Tubb3"
+#generating data frame for plotting
+
+simul_data <- make_plotdf_simul(Cast_B6_a1, Cast_B6_tot, gene = gene, estimates_group = shrunk_params_gene,
+                                metadata = pseudotime, order.by = "time", split.var = "group")
+
+plot_distr(simul_data, gene = gene, add.density = FALSE, min_counts = 0) + 
+  geom_hline(yintercept = c(simul_data$Index[match(unique(simul_data$group), simul_data$group)][-1])) +
+  labs(y = "Ordered pseudotime")
+```
+
+
+
