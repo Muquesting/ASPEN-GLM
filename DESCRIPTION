@@ -39,7 +39,9 @@ Imports: doParallel,
          tidyverse,
          SingleCellExperiment,
          scran,
-         huxtable
+         huxtable,
+         openxlsx,
+         knitr
 Depends: doParallel, 
          locfit, 
          ggplot2, 
