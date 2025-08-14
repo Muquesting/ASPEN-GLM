@@ -13,87 +13,153 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-# Allelic imbalance test
+# Identifying genes with allelic imbalance
 
-### Introduction
+## Introduction
 
-ASPEN represents a comprehensive statistical framework that is designed to evaluate patterns in allele-specific expression (ASE). ASPEN uses beta-binomial distribution to model allelic ratio, a fraction of reads from a reference allele to the total number of reads mapped to a gene. Allelic ratio is restricted to $[0,1]$ interval and their distribution can be described with beta-binomial mean, $\mu$, and dispersion, $\theta$.\\
+ASPEN is a suite of statistical tests for evaluating allele-specific expression (ASE). It models the allelic ratio — defined as the fraction of reads from the reference allele relative to the total number of reads mapped to a gene — using the beta-binomial distribution. The allelic ratio is restricted to $[0,1]$ interval and its distribution can be described with beta-binomial mean, $\mu$, and dispersion, $\theta$.
 
-scRNA counts, like any sequencing counts, suffer from the mean-variance bias - we observe greater variability in low-expressed genes than in high-expressed genes. ASPEN mitigates that bias by modeling allelic dispersion, $\theta$, as a function of gene expression and uses hierarchial Bayes model to shrink the original dispersion estimates towards the common trend, which represents the level of dispersion expected for genes with similar expression.\\
+As with other sequencing-based measurements, single-cell RNA-seq counts exhibit mean–variance bias: lowly expressed genes tend to display higher relative variability than highly expressed genes. ASPEN mitigates this bias by modelling allelic dispersion, $\theta$, as a function of gene expression. Useing the hierarchical Bayes approach, it shrinks the original dispersion estimates toward the common trend, which represents the level of dispersion expected for genes with similar expression.
 
-ASPEN input are the reference allele counts and the total counts (a sum of counts from both alleles) matrices. The main steps in the workflow as follows:
+ASPEN requires two input matrices: the reference allele counts and the total counts (a sum of counts from both alleles). 
+
+The main steps in the workflow are as follows:
 \begin{enumerate}
-\item 1) estimate beta-binomial distribution parameters. For each gene, beta-binomial $\alpha$ and $\beta$ parameters are estimated by maximum likelihood estimation (MLE). Using $\alpha$ and $\beta$, we can calculate allelic ratio mean, $\mu$, and dispersion, $\theta$ as
+\item 1) estimate beta-binomial distribution parameters. For each gene, the beta-binomial parameters  $\alpha$ and $\beta$ are estimated by maximum likelihood estimation (MLE). Using $\alpha$ and $\beta$, we can calculate allelic ratio mean, $\mu$, and dispersion, $\theta$ as
 \\ $\mu=\frac{\alpha}{\alpha + \beta}$, and
 \\ $\theta = \frac{1}{\alpha + \beta}$;
 \item 2) fit a local regression for $\theta$ as a function of total gene expression;
 \item 3) estimate shrinkage parameters, $\delta$ and $N$, appropriate for your data;
 \item 4) shrink the original $\theta$ towards the common trend;
-\item 5) perform test for allelic imbalance.
+\item 5) perform the LRT test to detect genes with allelic imbalance.
 \end{enumerate}
 
-### Setup
+## Setup
 ```{r setup}
 #loading required libraries
-library(ASPEN)
-library(gridExtra)
-library(openxlsx)
+suppressPackageStartupMessages({
+  library(ASPEN)
+  library(gridExtra)
+  library(openxlsx)
+  library(knitr)
+  library(SingleCellExperiment)
+  library(scran)
+  library(huxtable)
+})
 ```
 
-### Loading allele-specifc count data
-Here we use mouse brain organoids data from CastB6 hybrids. We load the reference allele counts (B6 counts) and the total counts (a sum of counts from both alleles). The cells were previously annotated based on the marker genes expression. There are five cell types: neurogenic progenitor cells (also, radial glial cells (RGCs)), intermediate progenitors cells (IPCs), deep layer neurons (cortical neurons), gliogenic progenitor cells (gliogenic RGCs) and olygodendrocyte precursor cells (OPCs).
+## Loading allele-specifc count data
+In this example, we use mouse brain organoid data from Bl6Cast F1 hybrids (Medina-Cano et al., 2025). We load the reference allele counts (Bl6 counts) and the total counts (sum of counts from both alleles). Cell identities were previously annotated based on marker gene expression, resulting in five major cell types: neurogenic progenitor cells (adial glial cells, RGCs), intermediate progenitors cells (IPCs), deep layer neurons (cortical neurons), gliogenic progenitor cells (gliogenic RGCs) and olygodendrocyte precursor cells (OPCs).
 ```{r}
-data("Cast_B6_a1")
-data("Cast_B6_tot")
-load_file <- system.file("extdata", "Cast_B6_cell_annot.xlsx", package = "ASPEN")
+data("Bl6_Cast_a1")
+data("Bl6_Cast_tot")
+load_file <- system.file("extdata", "Bl6_Cast_cell_annot.xlsx", package = "ASPEN")
 cell_annot <- read.xlsx(load_file, rowNames = T)
+#adding barcode id
+cell_annot$cell_id <- paste(cell_annot$clone, cell_annot$cell_barcode, sep = "_")
+print_md(as_huxtable(head(cell_annot)))
+```
+
+
+The cell abundance for each neuronal subtype
+```{r}
+print_md(as_huxtable(table(cell_annot$cell_idents)))
+```
+
+## Counts normalisation
+We first normalize the raw single-cell counts using the [`computeSumFactors()`] function from `scran` package (Lun, et al. 2016). We then create a `SingleCellExperiment` object using the total and reference allele count matrices.
+
+```{r}
+#keeping annotated cells in the count matrices
+Cast_B6_a1 <- Cast_B6_a1[,gsub(".*_", "", colnames(Cast_B6_a1)) %in% cell_annot$cell_barcode]
+Cast_B6_tot <- Cast_B6_tot[,gsub(".*_", "", colnames(Cast_B6_tot)) %in% cell_annot$cell_barcode]
+
+#creating SingleCellExperiment object
+ase_sce <- SingleCellExperiment(assays = list(a1 = as.matrix(Cast_B6_a1),
+                                              tot = as.matrix(Cast_B6_tot)))
+
+```
+
+
+Lowly expressed genes (expressed in less than 10 cells) are removed.
+```{r}
+#removing lowly expressed genes
+ase_sce <- ase_sce[rowSums(assays(ase_sce)[['tot']] > 1) >= 10, ]
+print_md(as_huxtable(dim(ase_sce)))
+
 ```
 
 
 ```{r}
-head(cell_annot)
+#adding sample id to the metadata
+colData(ase_sce)$replicate <- gsub("_.*", "", rownames(colData(ase_sce)))
+
+#calculate size factors
+ase_sce <- computeSumFactors(ase_sce, 
+                             clusters=colData(ase_sce)$replicate, assay.type = "tot")
 ```
 
-
+The reference allele and total counts are normalized in parallel using the same size factor estimates.
 ```{r}
-table(cell_annot$cell_idents)
+#normalizing counts
+ase_sce  <- logNormCounts(ase_sce, 
+                          size.factors = colData(ase_sce)$sizeFactor,
+                          log = NULL, transform = "none", assay.type = "tot", name = "tot_norm")
+
+#normalizing reference counts by the same size factors
+ase_sce  <- logNormCounts(ase_sce, 
+                          size.factors = colData(ase_sce)$sizeFactor,
+                          log = NULL, transform = "none", assay.type = "a1", name = "a1_norm")
+
+#checking that normalised counts assays are added to the SingleCellExperiment object
+ase_sce@assays
 ```
-### Data pre-processing
-Analysis of allelic imblanace will be done in each cell type separately. First, we split the metadata object by cell types. 
+
+
+
+## Splitting count matrices by cell type
+Allelic imbalance test is run separately for each cell type. First, we split the metadata object by cell types. 
 ```{r}
 #splitting the metadata by cell type
 cell_list <- split(cell_annot, f = cell_annot$cell_idents)
 ```
 
 
-
+Since beta-binomial parameters are estimated from raw counts, we first split the raw total and reference allele count matrices by cell type.
 ```{r}
-a1_mat <- lapply(cell_list, function(q) Cast_B6_a1[,gsub(".*_", "", colnames(Cast_B6_a1)) %in% q$cell_barcode])
-tot_mat <- lapply(cell_list, function(q) Cast_B6_tot[,gsub(".*_", "", colnames(Cast_B6_tot)) %in% q$cell_barcode])
+#splitting SingleCellExperiemnt object by cell types
+ase_sce_byct <- list()
+for (i in 1:length(cell_list)){
+    ase_sce_byct[[i]] <- ase_sce[,colnames(ase_sce) %in% cell_list[[i]]$cell_id]
+}
+
+#removing genes with low expression
+ase_sce_byct_filt <- lapply(ase_sce_byct, function(q) 
+                                          q[rowSums(assays(q)[['tot']] > 1) >= 10, ]) 
+
+#extracting raw total counts
+tot_mat <- lapply(ase_sce_byct_filt, function(q) as.matrix(assays(q)[['tot']]))
+#extracting raw reference allele counts
+a1_mat <- lapply(ase_sce_byct_filt, function(q) as.matrix(assays(q)[['a1']]))
+#selecting genes that matched filtering criteria
+a1_mat <- mapply(function(p,q) p[rownames(q), ], a1_mat, tot_mat, SIMPLIFY = F)
 
 ```
 
 
-Checking that reference and total count matrices are the same size.
+Before proceeding, we check that the reference and total count matrices have the same dimensions. This is for demonstration purposes only. If this condition is not met, ASPEN will issue a warning.
 ```{r}
 mapply(function(p, q) dim(p) == dim(q), a1_mat, tot_mat, SIMPLIFY = F)
 ```
 
-Checking that the gene order is the same between the reference and total count matrices.
+Next, we check that the gene order is identical between the reference and total count matrices. Again, this is for demonstration purposes only. If this condition is not met, ASPEN will issue a warning.
 ```{r}
 mapply(function(p, q) table(rownames(p) == rownames(q)), a1_mat, tot_mat, SIMPLIFY = F)
 ```
-Remove low-expressed genes that have counts in less than 10 cells
-```{r}
-#Remove low-expressed genes which have less than 10 cells 
-tot_mat  <- lapply(tot_mat, function(q) q[rowSums(q > 1) >= 10,])
-a1_mat  <- mapply(function(p, q) p[rownames(q),], 
-                  a1_mat, tot_mat, SIMPLIFY = F)
-
-```
 
 
-### Estimating beta-binomial parameters
+## Estimating beta-binomial parameters
+We estimate beta-binomial parameters separately for each cell type. 
 ```{r}
 bb_init_params <- mapply(function(p, q) estim_bbparams(p, q, min_cells = 5, cores = 6), a1_mat, tot_mat, SIMPLIFY = F)
 ```
@@ -111,23 +177,41 @@ The output is a table with the following columns:
   \item \textbf{bb_theta} - beta-binomial theta, calculated as  $\theta = \frac{1}{\alpha + \beta}$.
 \end{itemize}
 ```{r}
-head(bb_init_params[[1]])
+print_md(as_huxtable(head(bb_init_params[[1]])))
 ```
-### Estimate appropriate shrinkage parameters
-We estimate shrinkage parameters on each cell type separately
+
+
+## Defining lowly expressed genes
+ASPEN applies shrinkage selectively - genes with very low dispersion are not moderated and their allelic imbalance is evaluated using the unadjusted values. Genes with stable dispersion are determined based on the residuals from the dispersion modeling step. ASPEN calculates the meadian absolute deviation-squared (${MAD}^2$), which is used as a cut-off.
+```{r}
+min_cutoff <- lapply(bb_init_params, calc_mad)
+min_cutoff
+```
+
+
+## Estimate appropriate shrinkage parameters
+We estimate shrinkage parameters, $N$ and $\delta$, separately for each cell type. Optionally, genes with very low dispersion can be excluded from the estimation by setting a minimum cut-off value with `thetaFilter` parameter
 ```{r, warning=FALSE, message=F}
 set.seed(1001011)
-shrink_pars <- lapply(bb_init_params, estim_delta)
+shrink_pars <- mapply(function(p, q) estim_delta(p, thetaFilter = q),
+                      bb_init_params, min_cutoff, SIMPLIFY = F)
 shrink_pars
 ```
-### Performing Bayesian shrinkage
+
+
+## Performing Bayesian shrinkage
+We use [`correct_theta()`] from `ASPEN` to obtain posterior dispersion estimates.  The minimum dispersion value is set with `thetaFilter` parameter.  and genes with residuals below that value are excluded shrinkage. 
 ```{r}
 bb_init_params <- lapply(bb_init_params, function(q) q[!is.na(q$bb_theta),])
 shrunk_estims_vardelta <- mapply(function(p, q) correct_theta(p, N_set = q[1], delta_set = q[2], thetaFilter = 0.001),
                                  bb_init_params, shrink_pars, SIMPLIFY = F)
-head(shrunk_estims_vardelta[[1]])
+print_md(as_huxtable(head(shrunk_estims_vardelta[[1]])))
+
 ```
-Visualizing model fit. The population of genes with extremely low dispersion levels forms a separate cluster. We estimate that those genes have $\theta < 0.001$ and those genes are excluded from the shrinkage procedure by setting parameter thetaFilter = 0.001 in the correct_theta command.
+
+
+## Visualizing model fit. 
+Genes with extremely low dispersion levels form a distinct cluster in the dispersion–expression plot. We estimate that those genes have $\theta < 0.001$. To exclude them from the shrinkage procedure, we set `thetaFilter = 0.001` in the [`correct_theta()`] function.
 ```{r, fig.width=10, fig.height=6.5}
 celltypes <- list("Cortical neurons", "Gliogenic RGCs", "IPCs", "OPCs", "RGCs")
 p_disp <- mapply(function(p,q) plot_disp_fit_theta(p, midpoint = 100) +
@@ -137,7 +221,7 @@ do.call(grid.arrange, c(p_disp, ncol = 3))
 ```
 
 
-Visualizing original and shrunk $\theta$.
+Visualizing original and shrunk $\theta$'s.
 
 ```{r, fig.width=10, fig.height=7.5}
 
@@ -147,6 +231,8 @@ p_disp <- mapply(function(p,q) plot_disp(p) +
                  shrunk_estims_vardelta, celltypes, SIMPLIFY = F)
 do.call(grid.arrange, c(p_disp, ncol = 3))
 ```
+
+
 Alternatively, we can set $\delta$ and $N$ parameters manually.
 ```{r}
 shrunk_estims <- lapply(bb_init_params, function(q) correct_theta(q, delta_set = 50, N_set = 30, thetaFilter = 0.001))
@@ -164,7 +250,7 @@ do.call(grid.arrange, c(p_disp, ncol = 3))
 ```
 ### Estimating global beta-binomial parameters
 
-Evaluating global beta-binomial parameters helps to assess a degree of bias towards the reference allele. This is done by estimating beta-binomial distribution parameters on all genes, excluding those on sex chromosomes and the imprinted genes. For the GRCm38 (mm10) mouse genome, the list of genes on X and Y chromosomes and some validated imprinted genes are included with the package. These genes are specified through genes.excl parameter in glob_disp function.  
+Evaluating global beta-binomial parameters provides an overall measure of bias toward the reference allele. This is done by estimating beta-binomial distribution parameters across all genes, excluding those located on sex chromosomes and known imprinted genes. For the GRCm38 (mm10) mouse genome, the package includes predefined lists of X- and Y-linked genes as well as a set of validated imprinted genes. These can be excluded by passing them to the `genes.excl` parameter in the [`glob_disp()`] function.  
 ```{r}
 load_file <- system.file("extdata", "mm10_genesXY.txt", package = "ASPEN")
 genesXY <- read.table(load_file)
@@ -176,7 +262,9 @@ global_estims <- mapply(function(p, q)  glob_disp(p, q, genes.excl = genes2remov
                         a1_mat, tot_mat, SIMPLIFY = F)
 global_estims
 ```
-Visualizing global allelic ratio distribution across all genes. Deviation from the balanced allelic expression ($AR = 0.5$) indicates a presence of a skew towards the reference allele. If reference allele bias is identified, the null hypothesis for the allelic imbalance testing will be adjusted accordingly. For analysis of CastB6 hybrids, instead of using $H_0: \mu = 0.5$, the null hypotheses will be adjusted to $H_0: \mu = 0.54$ for Cortical neurons and IPCs datasets and to $H_0: \mu = 0.53$ for Gliogenic RGCs, OPCs and RGCs.
+
+## Visualizing global allelic ratio distribution across all genes. 
+Deviation from the balanced allelic expression ($AR = 0.5$) indicates a presence of a skew towards the reference allele. If reference allele bias is detected, the null hypothesis for the allelic imbalance testing should be adjusted accordingly. For analysis of the Bl6Cast hybrids, instead of using $H_0: \mu = 0.5$, the null hypotheses will be adjusted to $H_0: \mu = 0.54$ for Cortical neurons and IPCs datasets and to $H_0: \mu = 0.53$ for Gliogenic RGCs, OPCs and RGCs.
 
 ```{r, fig.width=8, fig.height=5.5}
 p_glob <- mapply(function(p,q,r,s) plot_glob_params(p, q, r, min_counts = 5) +
@@ -185,46 +273,57 @@ p_glob <- mapply(function(p,q,r,s) plot_glob_params(p, q, r, min_counts = 5) +
 do.call(grid.arrange, c(p_glob, ncol = 3))
 ```
 
-### Allelic imbalance test 
-Running beta_binom_test function to identify genes with allelic ratio deviating from the null hypothesis.
-```{r, warning=F, message=F}
-bb_test_res <- mapply(function(p, q, r, s) beta_binom_test(p, q, r, min_cells = 5, glob_params = s), 
-                        a1_mat, tot_mat, shrunk_estims, global_estims, SIMPLIFY = F)
+## Allelic imbalance test 
+The allelic imbalance test is performed on the normalized counts.
+```{r}
+#extracting normalised reference allele and total counts
+tot_norm <- lapply(ase_sce_byct_filt, function(q) as.matrix(assays(q)[['tot_norm']]))
+
+#extracting raw reference allele counts
+a1_norm <- lapply(ase_sce_byct_filt, function(q) as.matrix(assays(q)[['a1_norm']]))
+#ensure that the genes order is the same
+a1_norm <- mapply(function(p,q) p[rownames(q), ], a1_norm, tot_norm, SIMPLIFY = F)
+
 ```
 
 
-beta_binom_test function performs two tests: on the allelic imbalance and on the allelic variance (deviation from the expected variation for the genes with similar expression). The output of this function is a table that combines the output of the estim_bbparams and correct_theta functions and adds the following columns:\\
+We run [`bb_mean()`] to identify genes with allelic ratio deviating from the null hypothesis. By default, ASPEN requires each gene to be expressed in at least 5 cells with a minimum of 5 counts per cell. These thresholds can be adjusted with `min_cells` and `min_counts` parameters.
+```{r, warning=F, message=F}
+bb_mean_res <- mapply(function(p, q, r, s) bb_mean(p, q, r, 
+                                                   min_cells = 5, min_counts = 5, 
+                                                   glob_params = s), 
+                      a1_norm, tot_norm, shrunk_estims, global_estims, SIMPLIFY = F)
+```
+
+
+The output of [`beta_binom_test()`] function is a table that combines the output of the [`estim_bbparams()`] and [`correct_theta()`] functions and adds the following columns:\\
 \begin{itemize}
   \item \textbf{log2FC} - log2 fold change between the allelic counts;
   \item \textbf{loglik0_mean} - log likelihood value under the $H_0$ for the allelic imbalance test;
   \item \textbf{loglik1_mean} - log likelihood value under the $H_1$ for the allelic imbalance test;
   \item \textbf{llr_mean} - log likelihood ratio test statistic for the allelic imbalance test;
-  \item \textbf{pval_mean} - p-value obtained from the $\chi^2$ test;
-  \item \textbf{loglik0_disp} -  log likelihood value under the $H_0$ for the allelic variance test;
-  \item \textbf{loglik1_disp} - log likelihood value under the $H_1$ for the allelic variance test;
-  \item \textbf{llr_disp} - log likelihood ratio test statistic for the allelic variance test;
-  \item \textbf{pval_disp} - p-value obtained from the $\chi^2$ test.
+  \item \textbf{pval_mean} - p-value obtained from the $\chi^2$ test.
 \end{itemize}
 \\
 
-For genes in which the quality cut-off threshold (here we used a minimum of five cells with at least of five mapped reads) was not met, the inference is not performed, Those genes have NA values in the fields specified above. We remove those genes and calculate fdr's. 
+If a gene does not meet the quality filter (here, a minimum of 5 cells with at least 5 mapped reads), the allelic imbalance test is not performed for that gene. These genes will have `NA` in the above fields. We remove such genes before calculating the false discovery rate (FDR).
 ```{r}
-bb_test_res <- lapply(bb_test_res, function(q) q <- q[!is.na(q$pval_mean),])
+bb_mean_res <- lapply(bb_mean_res, function(q) q <- q[!is.na(q$pval_mean),])
 
 #calculating fdr
-bb_test_res <- lapply(bb_test_res, function(q) {q$fdr_mean <- p.adjust(q$pval_mean, method = "fdr");
-                                                q$fdr_disp <- p.adjust(q$pval_disp, method = "fdr");
-                                                q <- q[order(q$fdr_mean),];
+bb_mean_res <- lapply(bb_mean_res, function(q) {q$fdr_mean <- p.adjust(q$pval_mean, 
+                                                                       method = "fdr");                                                          q <- q[order(q$fdr_mean),];
                                                 return(q)})
 
 ```
 
-Top genes with significant allelic imbalance based on fdr 
+Top 10 genes with significant allelic imbalance after FDR-adjustment 
 ```{r}
-lapply(bb_test_res, function(q) q[1:10, c("AR", "fdr_mean")])
+lapply(bb_mean_res, function(q) q[1:10, c("AR", "fdr_mean")])
 ```
 
-Visualizing allelic distribution of some of the top genes. We're using all cells for the plots below and they're coloured by log(mean expression).
+We can visualize the allelic distribution for some of the top-ranked genes.
+In the plots below, each point represents a single cell, and points are colored by the log(mean expression).
 
 ```{r, fig.width=7.5, fig.height=4}
 #specifiying genes for plotting
@@ -236,13 +335,6 @@ plot_data <- lapply(genes_select, function(q) makedf(a1_mat[[1]], tot_mat[[1]], 
 p_ar_dist <- mapply(function(p,q,r) plot_distr(p, gene = q),
                  plot_data, genes_select, SIMPLIFY = F)
 do.call(grid.arrange, c(p_ar_dist, ncol = 3))
-```
-
-To assess the overall test results, we can plot allelic ratio over the log (mean expression). This plot has a similar concept to an MA plot - instead of the log2 fold changes, we plot allelic ratio on the y-axis. The plot is centered around the global allelic mean, which was used as $H_0$ in the test, and as we previously identified, for all cell types in CastB6 hybrids dataset it deviates from $AR = 0.5$. Genes with significant deviation from the balanced expression (by default defined as $log_2FC \geqslant 1$ and $fdr < 0.05$) are indicated in red. Number of such genes biased to either of the alleles is also shown.   
-```{r, fig.width=10, fig.height=7.5}
-MA_plot <- mapply(function(p,q) plot_MA(p, fdr_var = FALSE,  fdr_cutoff = 0.05, min_logFC = 1, q), 
-                 bb_test_res, global_estims, SIMPLIFY = F)
-do.call(grid.arrange, c(MA_plot, ncol = 3))
 ```
 
 

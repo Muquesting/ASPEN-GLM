@@ -4,8 +4,8 @@ pkgdown_sha: ~
 articles:
   allelic_imbalance: allelic_imbalance.html
   allelic_variance: allelic_variance.html
-  dynamic_allelic_changes: dynamic_allelic_changes.html
-last_built: 2024-11-06T12:48Z
+  differential_ASE: differential_ASE.html
+last_built: 2025-08-14T06:28Z
 urls:
   reference: https://ewonglab.github.io/ASPEN/reference
   article: https://ewonglab.github.io/ASPEN/articles

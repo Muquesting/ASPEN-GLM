@@ -256,7 +256,8 @@ plot_distr <- function(plot_data, gene, add.density = TRUE, min_counts = 0){
     #scale_y_log10() +
     #stat_density_2d(aes(color = ..level..), color = "black") +
     theme(legend.position = "bottom", legend.box.spacing = unit(0, "pt"),
-          axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+          axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+          axis.title.y = element_blank()) +
     labs(x = "Allelic ratio", caption = gene) +
     xlim(0,1)
 

@@ -4,81 +4,63 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>allelic_variance • ASPEN</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="allelic_variance">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="allelic_variance">
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">ASPEN</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
-      </span>
-    </div>
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
+    <a class="navbar-brand me-2" href="../index.html">ASPEN</a>
 
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/allelic_imbalance.html">allelic_imbalance</a>
-    </li>
-    <li>
-      <a href="../articles/allelic_variance.html">allelic_variance</a>
-    </li>
-    <li>
-      <a href="../articles/dynamic_allelic_changes.html">dynamic_allelic_changes</a>
-    </li>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.4</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/allelic_imbalance.html">allelic_imbalance</a></li>
+    <li><a class="dropdown-item" href="../articles/allelic_variance.html">allelic_variance</a></li>
+    <li><a class="dropdown-item" href="../articles/differential_ASE.html">differential_ASE</a></li>
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+      </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
 
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>allelic_variance</h1>
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>allelic_variance</h1>
             
       
 
-      <div class="hidden name"><code>allelic_variance.Rmd</code></div>
-
+      <div class="d-none name"><code>allelic_variance.Rmd</code></div>
     </div>
 
     
@@ -86,299 +68,363 @@
 <div class="section level2">
 <h2 id="allelic-variance-test">Allelic variance test<a class="anchor" aria-label="anchor" href="#allelic-variance-test"></a>
 </h2>
-<div class="section level4">
-<h4 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h4>
-<p>Evaluating allele-specific expression (ASE) at single-cell level
-allows identify genes that are going through a transient activation
-state. Sometimes gene activation occurs gradually. In scRNA data, this
-gradual activation may appear as increased variation in the allelic
-ratio distribution. Genes with monoallelic expression (only one of the
-alleles is active) are one of the examples of stochastic gene
-activation. Within ASPEN, we can define monoallelic genes using
-parameters
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>.
-When
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\alpha &lt; 1</annotation></semantics></math>
-or
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\beta &lt; 1</annotation></semantics></math>,
-beta-binomial distribution is skewed towards one of the alleles. When
-both
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\alpha &lt; 1</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\beta &lt; 1</annotation></semantics></math>,
-beta-binomila distribution assumes a U-shape, whoch is associated with
-random monoallelic expression.</p>
-<p>\insert figure Supp1 E</p>
-<p>No all genes defined as monoallelic are activated in a stochastic
-manner. So, to select the genes with allelic variation different from
-the expected for genes with similar expression levels, ASPEN uses the
-allelic dispersion test. It compares the likelihood of a gene’s allelic
-variation to follow the variation expected for genes with similar
-expression
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_0</annotation></semantics></math>)
-vs. the likelihood of a gene’s variation to follows the observed
-variation
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>1</mn></msub><annotation encoding="application/x-tex">H_1</annotation></semantics></math>).
-The expected variation is the common dispersion, obtained by fitting a
-local linear regression model, and the observed variation is the
-estimated dispersion.\</p>
-<p>We will be using the same CastB6 dataset to demonstrate ASPEN’s
-ability to identify random monoallelic genes. The steps are the same as
-in the “Allelic imbalance test” vignette. If the users already have the
-object from beta_binom_test command, there’s no need to re-run the steps
-shown here - all information required is there. \</p>
+<div class="section level3">
+<h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h3>
+Evaluating allele-specific expression (ASE) at the single-cell level can
+reveal genes undergoing transient activation states. In scRNA data, such
+gradual activation often appears as increased variation in the allelic
+ratio distribution. To detect genes whose allelic variation differs from
+the expected levels for genes with similar expression, ASPEN applies the
+allelic variance test. In this test:
+<p>We will use the same Bl6Cast dataset to demonstrate ASPEN-var test.
+The initial processing steps are the same as described in the “Allelic
+imbalance test” vignette. If you already have the output from
+[<code><a href="../reference/estim_bbparams.html">estim_bbparams()</a></code>] function, you can skip directly to the .
+ </p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ASPEN</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: doParallel</span></span>
-<span><span class="co">#&gt; Loading required package: foreach</span></span>
-<span><span class="co">#&gt; Loading required package: iterators</span></span>
-<span><span class="co">#&gt; Loading required package: parallel</span></span>
-<span><span class="co">#&gt; Loading required package: locfit</span></span>
-<span><span class="co">#&gt; locfit 1.5-9.9    2024-03-01</span></span>
-<span><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span><span class="co">#&gt; Loading required package: ggthemes</span></span>
-<span><span class="co">#&gt; Loading required package: ggsci</span></span>
-<span><span class="co">#&gt; Loading required package: ggpointdensity</span></span>
-<span><span class="co">#&gt; Loading required package: ggExtra</span></span>
-<span><span class="co">#&gt; Loading required package: ggrepel</span></span>
-<span><span class="co">#&gt; Loading required package: ggpubr</span></span>
-<span><span class="co">#&gt; Loading required package: assertthat</span></span>
-<span><span class="co">#&gt; Loading required package: zoo</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'zoo'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     as.Date, as.Date.numeric</span></span>
-<span><span class="co">#&gt; Loading required package: dplyr</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span><span class="co">#&gt; Loading required package: data.table</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'data.table'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:dplyr':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     between, first, last</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:zoo':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     yearmon, yearqtr</span></span>
-<span><span class="co">#&gt; Loading required package: VGAM</span></span>
-<span><span class="co">#&gt; Loading required package: stats4</span></span>
-<span><span class="co">#&gt; Loading required package: splines</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'gridExtra'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:dplyr':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     combine</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ycphs.github.io/openxlsx/index.html" class="external-link">openxlsx</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#loading required libraries</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ewonglab.github.io/ASPEN/">ASPEN</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ycphs.github.io/openxlsx/index.html" class="external-link">openxlsx</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SingleCellExperiment</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">scran</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hughjonesd.github.io/huxtable/" class="external-link">huxtable</a></span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4">
-<h4 id="loading-allele-specifc-count-data">Loading allele-specifc count data<a class="anchor" aria-label="anchor" href="#loading-allele-specifc-count-data"></a>
-</h4>
+<div class="section level3">
+<h3 id="loading-allele-specifc-count-data">Loading allele-specifc count data<a class="anchor" aria-label="anchor" href="#loading-allele-specifc-count-data"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Cast_B6_a1"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Cast_B6_tot"</span><span class="op">)</span></span>
-<span><span class="va">load_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Cast_B6_cell_annot.xlsx"</span>, package <span class="op">=</span> <span class="st">"ASPEN"</span><span class="op">)</span></span>
-<span><span class="va">cell_annot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/read.xlsx.html" class="external-link">read.xlsx</a></span><span class="op">(</span><span class="va">load_file</span>, rowNames <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Bl6_Cast_a1"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Bl6_Cast_tot"</span><span class="op">)</span></span>
+<span><span class="va">load_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Bl6_Cast_cell_annot.xlsx"</span>, package <span class="op">=</span> <span class="st">"ASPEN"</span><span class="op">)</span></span>
+<span><span class="va">cell_annot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/read.xlsx.html" class="external-link">read.xlsx</a></span><span class="op">(</span><span class="va">load_file</span>, rowNames <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="co">#adding barcode id</span></span>
+<span><span class="va">cell_annot</span><span class="op">$</span><span class="va">cell_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">cell_annot</span><span class="op">$</span><span class="va">clone</span>, <span class="va">cell_annot</span><span class="op">$</span><span class="va">cell_barcode</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/to_md.html" class="external-link">print_md</a></span><span class="op">(</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/as_huxtable.html" class="external-link">as_huxtable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cell_annot</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; -----------------------------------------------------------------------</span></span>
+<span><span class="co">#&gt;  cell_barcode background cell_type    cell_idents  clone  cell_id      </span></span>
+<span><span class="co">#&gt; ------------- ---------- ------------ ------------ ------ -------------</span></span>
+<span><span class="co">#&gt;  AAACCCACAGCA cast_b6    Gliogenic    Gliogenic    clone3 clone3_AAACC </span></span>
+<span><span class="co">#&gt;  GATG                    progenitor   RGCs                CACAGCAGATG  </span></span>
+<span><span class="co">#&gt;                          cells                                         </span></span>
+<span><span class="co">#&gt;                                                                        </span></span>
+<span><span class="co">#&gt;  AAACCCATCAGA cast_b6    Gliogenic    Gliogenic    clone3 clone3_AAACC </span></span>
+<span><span class="co">#&gt;  GCGA                    progenitor   RGCs                CATCAGAGCGA  </span></span>
+<span><span class="co">#&gt;                          cells                                         </span></span>
+<span><span class="co">#&gt;                                                                        </span></span>
+<span><span class="co">#&gt;  AAACGAAGTAGT cast_b6    Neurogenic   RGCs         clone3 clone3_AAACG </span></span>
+<span><span class="co">#&gt;  TAGA                    progenitor                       AAGTAGTTAGA  </span></span>
+<span><span class="co">#&gt;                          cells                                         </span></span>
+<span><span class="co">#&gt;                                                                        </span></span>
+<span><span class="co">#&gt;  AAACGAAGTGTT cast_b6    Intermediate IPCs         clone3 clone3_AAACG </span></span>
+<span><span class="co">#&gt;  ATCG                    neuronal                         AAGTGTTATCG  </span></span>
+<span><span class="co">#&gt;                          progenitors                                   </span></span>
+<span><span class="co">#&gt;                                                                        </span></span>
+<span><span class="co">#&gt;  AAACGAATCTCG cast_b6    Deep layer   Cortical     clone3 clone3_AAACG </span></span>
+<span><span class="co">#&gt;  TCAC                    neurons      neurons             AATCTCGTCAC  </span></span>
+<span><span class="co">#&gt;                                                                        </span></span>
+<span><span class="co">#&gt;  AAAGGATGTATG cast_b6    Intermediate IPCs         clone3 clone3_AAAGG </span></span>
+<span><span class="co">#&gt;  CTTG                    neuronal                         ATGTATGCTTG  </span></span>
+<span><span class="co">#&gt;                          progenitors                                   </span></span>
+<span><span class="co">#&gt; -----------------------------------------------------------------------</span></span></code></pre></div>
 </div>
-<div class="section level4">
-<h4 id="data-pre-processing">Data pre-processing<a class="anchor" aria-label="anchor" href="#data-pre-processing"></a>
-</h4>
-<p>Analysis of allelic imblanace will be done in each cell type
-separately. First, we split the metadata object by cell types.</p>
+<div class="section level3">
+<h3 id="data-pre-processing">Data pre-processing<a class="anchor" aria-label="anchor" href="#data-pre-processing"></a>
+</h3>
+<p>We load the reference allele and total counts and create a
+<code>SingleCellExperiment</code> object.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#keeping annotated cells in the count matrices</span></span>
+<span><span class="va">Cast_B6_a1</span> <span class="op">&lt;-</span> <span class="va">Cast_B6_a1</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">".*_"</span>, <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Cast_B6_a1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">cell_annot</span><span class="op">$</span><span class="va">cell_barcode</span><span class="op">]</span></span>
+<span><span class="va">Cast_B6_tot</span> <span class="op">&lt;-</span> <span class="va">Cast_B6_tot</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">".*_"</span>, <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Cast_B6_tot</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">cell_annot</span><span class="op">$</span><span class="va">cell_barcode</span><span class="op">]</span></span>
+<span><span class="co">#creating SingleCellExperiment object</span></span>
+<span><span class="va">ase_sce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment</a></span><span class="op">(</span>assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>a1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">Cast_B6_a1</span><span class="op">)</span>,</span>
+<span>                                              tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">Cast_B6_tot</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Lowly expressed genes (expressed in less than 10 cells) are
+removed.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#removing lowly expressed genes</span></span>
+<span><span class="va">ase_sce</span> <span class="op">&lt;-</span> <span class="va">ase_sce</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">ase_sce</span><span class="op">)</span><span class="op">[[</span><span class="st">'tot'</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">10</span>, <span class="op">]</span></span>
+<span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/to_md.html" class="external-link">print_md</a></span><span class="op">(</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/as_huxtable.html" class="external-link">as_huxtable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">ase_sce</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ----------------------</span></span>
+<span><span class="co">#&gt;                    V1 </span></span>
+<span><span class="co">#&gt;                       </span></span>
+<span><span class="co">#&gt;                  1551 </span></span>
+<span><span class="co">#&gt;                       </span></span>
+<span><span class="co">#&gt;                  6312 </span></span>
+<span><span class="co">#&gt; ----------------------</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="splitting-count-matrices-by-cell-type">Splitting count matrices by cell type<a class="anchor" aria-label="anchor" href="#splitting-count-matrices-by-cell-type"></a>
+</h3>
+<p>The test is run separately for each cell type. First, we split the
+metadata object by cell types.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#splitting the metadata by cell type</span></span>
 <span><span class="va">cell_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">cell_annot</span>, f <span class="op">=</span> <span class="va">cell_annot</span><span class="op">$</span><span class="va">cell_idents</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">a1_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">cell_list</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="va">Cast_B6_a1</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">".*_"</span>, <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Cast_B6_a1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">q</span><span class="op">$</span><span class="va">cell_barcode</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="va">tot_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">cell_list</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="va">Cast_B6_tot</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">".*_"</span>, <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Cast_B6_tot</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">q</span><span class="op">$</span><span class="va">cell_barcode</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<p>Remove low-expressed genes that have counts in less than 10 cells</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Remove low-expressed genes which have less than 10 cells </span></span>
-<span><span class="va">tot_mat</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">tot_mat</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="va">q</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">q</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">10</span>,<span class="op">]</span><span class="op">)</span></span>
-<span><span class="va">a1_mat</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span><span class="op">)</span> <span class="va">p</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span>,<span class="op">]</span>, </span>
-<span>                  <span class="va">a1_mat</span>, <span class="va">tot_mat</span>, SIMPLIFY <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level4">
-<h4 id="estimating-beta-binomial-parameters">Estimating beta-binomial parameters<a class="anchor" aria-label="anchor" href="#estimating-beta-binomial-parameters"></a>
-</h4>
+<p>Since beta-binomial parameters are estimated from raw counts, we
+first split the raw total and reference allele count matrices by cell
+type.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#splitting SingleCellExperiemnt object by cell types</span></span>
+<span><span class="va">ase_sce_byct</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">cell_list</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ase_sce_byct</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">ase_sce</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">ase_sce</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">cell_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">cell_id</span><span class="op">]</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co">#removing genes with low expression</span></span>
+<span><span class="va">ase_sce_byct_filt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">ase_sce_byct</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> </span>
+<span>                                          <span class="va">q</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">[[</span><span class="st">'tot'</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">10</span>, <span class="op">]</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co">#extracting raw total counts</span></span>
+<span><span class="va">tot_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">ase_sce_byct_filt</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">[[</span><span class="st">'tot'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#extracting raw reference allele counts</span></span>
+<span><span class="va">a1_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">ase_sce_byct_filt</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">[[</span><span class="st">'a1'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#selecting genes that matched filtering criteria</span></span>
+<span><span class="va">a1_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">p</span>,<span class="va">q</span><span class="op">)</span> <span class="va">p</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span>, <span class="op">]</span>, <span class="va">a1_mat</span>, <span class="va">tot_mat</span>, SIMPLIFY <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="estimating-beta-binomial-parameters">Estimating beta-binomial parameters<a class="anchor" aria-label="anchor" href="#estimating-beta-binomial-parameters"></a>
+</h3>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bb_init_params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span><span class="op">)</span> <span class="fu"><a href="../reference/estim_bbparams.html">estim_bbparams</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span>, min_cells <span class="op">=</span> <span class="fl">5</span>, cores <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>, <span class="va">a1_mat</span>, <span class="va">tot_mat</span>, SIMPLIFY <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4">
-<h4 id="performing-bayesian-shrinkage">Performing Bayesian shrinkage<a class="anchor" aria-label="anchor" href="#performing-bayesian-shrinkage"></a>
-</h4>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">shrunk_estims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_init_params</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="fu"><a href="../reference/correct_theta.html">correct_theta</a></span><span class="op">(</span><span class="va">q</span>, delta_set <span class="op">=</span> <span class="fl">50</span>, N_set <span class="op">=</span> <span class="fl">30</span>, thetaFilter <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level4">
-<h4 id="estimating-global-beta-binomial-parameters">Estimating global beta-binomial parameters<a class="anchor" aria-label="anchor" href="#estimating-global-beta-binomial-parameters"></a>
-</h4>
+<div class="section level3">
+<h3 id="defining-lowly-expressed-genes">Defining lowly expressed genes<a class="anchor" aria-label="anchor" href="#defining-lowly-expressed-genes"></a>
+</h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">load_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"mm10_genesXY.txt"</span>, package <span class="op">=</span> <span class="st">"ASPEN"</span><span class="op">)</span></span>
-<span><span class="va">genesXY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">load_file</span><span class="op">)</span></span>
-<span><span class="va">load_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"mm10_imprinted_genes.xlsx"</span>, package <span class="op">=</span> <span class="st">"ASPEN"</span><span class="op">)</span></span>
-<span><span class="va">genesIMPR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/read.xlsx.html" class="external-link">read.xlsx</a></span><span class="op">(</span><span class="va">load_file</span>, colNames <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
-<span><span class="va">genes2remove</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">genesXY</span><span class="op">$</span><span class="va">V1</span>, <span class="va">genesIMPR</span><span class="op">$</span><span class="va">imprinted.genes</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">global_estims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span><span class="op">)</span>  <span class="fu"><a href="../reference/glob_disp.html">glob_disp</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span>, genes.excl <span class="op">=</span> <span class="va">genes2remove</span>, min_counts <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
-<span>                        <span class="va">a1_mat</span>, <span class="va">tot_mat</span>, SIMPLIFY <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
-<span><span class="va">global_estims</span></span>
-<span><span class="co">#&gt; $`Cortical neurons`</span></span>
-<span><span class="co">#&gt;         mu      theta      alpha       beta </span></span>
-<span><span class="co">#&gt;  0.5445001 15.0586614  8.1994433  6.8592218 </span></span>
+<code class="sourceCode R"><span><span class="va">min_cutoff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_init_params</span>, <span class="va">calc_mad</span><span class="op">)</span></span>
+<span><span class="va">min_cutoff</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] 0.002254469</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $`Gliogenic RGCs`</span></span>
-<span><span class="co">#&gt;         mu      theta      alpha       beta </span></span>
-<span><span class="co">#&gt;  0.5307348 19.8779514 10.5499393  9.3280478 </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] 0.001084665</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $IPCs</span></span>
-<span><span class="co">#&gt;        mu     theta     alpha      beta </span></span>
-<span><span class="co">#&gt;  0.541977 18.096688  9.808002  8.288720 </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; [1] 0.002810162</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $OPCs</span></span>
-<span><span class="co">#&gt;        mu     theta     alpha      beta </span></span>
-<span><span class="co">#&gt;  0.528725 20.121835 10.638866  9.482886 </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; [1] 0.00113423</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $RGCs</span></span>
-<span><span class="co">#&gt;         mu      theta      alpha       beta </span></span>
-<span><span class="co">#&gt;  0.5298265 19.8136680 10.4979006  9.3159135</span></span></code></pre></div>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt; [1] 0.001276519</span></span></code></pre></div>
 </div>
-<div class="section level4">
-<h4 id="allelic-imbalance-test">Allelic imbalance test<a class="anchor" aria-label="anchor" href="#allelic-imbalance-test"></a>
-</h4>
-<p>Running beta_binom_test function to identify genes with allelic ratio
-deviating from the null hypothesis.</p>
+<div class="section level3">
+<h3 id="estimate-appropriate-shrinkage-parameters">Estimate appropriate shrinkage parameters<a class="anchor" aria-label="anchor" href="#estimate-appropriate-shrinkage-parameters"></a>
+</h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bb_test_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span>, <span class="va">r</span>, <span class="va">s</span><span class="op">)</span> <span class="fu"><a href="../reference/beta_binom_test.html">beta_binom_test</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span>, <span class="va">r</span>, min_cells <span class="op">=</span> <span class="fl">5</span>, glob_params <span class="op">=</span> <span class="va">s</span><span class="op">)</span>, </span>
-<span>                        <span class="va">a1_mat</span>, <span class="va">tot_mat</span>, <span class="va">shrunk_estims</span>, <span class="va">global_estims</span>, SIMPLIFY <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
-<p>For genes in which the quality cut-off threshold (here we used a
-minimum of five cells with at least of five mapped reads) was not met,
-the inference is not performed, Those genes have NA values in the fields
-specified above. We remove those genes and calculate fdr’s.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1001011</span><span class="op">)</span></span>
+<span><span class="va">shrink_pars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span><span class="op">)</span> <span class="fu"><a href="../reference/estim_delta.html">estim_delta</a></span><span class="op">(</span><span class="va">p</span>, thetaFilter <span class="op">=</span> <span class="va">q</span><span class="op">)</span>,</span>
+<span>                      <span class="va">bb_init_params</span>, <span class="va">min_cutoff</span>, SIMPLIFY <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="va">shrink_pars</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt;     N delta </span></span>
+<span><span class="co">#&gt;    17    18 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt;     N delta </span></span>
+<span><span class="co">#&gt;    13    15 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt;     N delta </span></span>
+<span><span class="co">#&gt;    17    17 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt;     N delta </span></span>
+<span><span class="co">#&gt;    14    17 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt;     N delta </span></span>
+<span><span class="co">#&gt;    20    19</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="performing-bayesian-shrinkage">Performing Bayesian shrinkage<a class="anchor" aria-label="anchor" href="#performing-bayesian-shrinkage"></a>
+</h3>
+<p>As explained in the “Allelic imbalance test” vignette, low-dispersion
+genes are excluded from local regression trend modelling. However, these
+genes are still evaluated for their depature from the expected levels of
+allelic variation. To calculate stabilized dispersion for this gene
+category, <code>shrinkAll</code> parameter in the
+[<code><a href="../reference/correct_theta.html">correct_theta()</a></code>] function is set to <code>TRUE</code> (the
+default option is <code>FALSE</code> - which is how it is used for the
+[<code><a href="../reference/bb_mean.html">bb_mean()</a></code>] test).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bb_test_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_test_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="va">q</span> <span class="op">&lt;-</span> <span class="va">q</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">pval_mean</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span>
+<code class="sourceCode R"><span></span>
+<span><span class="va">bb_init_params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_init_params</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="va">q</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">bb_theta</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">shrunk_estims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span><span class="op">)</span> <span class="fu"><a href="../reference/correct_theta.html">correct_theta</a></span><span class="op">(</span><span class="va">p</span>, N_set <span class="op">=</span> <span class="va">q</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, delta_set <span class="op">=</span> <span class="va">q</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, thetaFilter <span class="op">=</span> <span class="fl">0.001</span>, shrinkAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>                                 <span class="va">bb_init_params</span>, <span class="va">shrink_pars</span>, SIMPLIFY <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/to_md.html" class="external-link">print_md</a></span><span class="op">(</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/as_huxtable.html" class="external-link">as_huxtable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">shrunk_estims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in to_md.huxtable(ht, ...): Couldn't print whole table in max_width = 80 characters.</span></span>
+<span><span class="co">#&gt; Printing 8/13 columns.</span></span>
+<span><span class="co">#&gt; ---------------------------------------------------------------------</span></span>
+<span><span class="co">#&gt;         N     AR tot_gene tot_gene    alpha     beta  bb_mu bb_theta </span></span>
+<span><span class="co">#&gt;                     _mean _varianc                                   </span></span>
+<span><span class="co">#&gt;                                  e                                   </span></span>
+<span><span class="co">#&gt; --------- ------ -------- -------- -------- -------- ------ -------- </span></span>
+<span><span class="co">#&gt;       850  0.984     5.94     29.3      175     2.41  0.986   0.0056 </span></span>
+<span><span class="co">#&gt;                                                                      </span></span>
+<span><span class="co">#&gt;  1.06e+03  0.999     8.21     45.4 4.41e+03     3.42  0.999   0.0002 </span></span>
+<span><span class="co">#&gt;                                                                      </span></span>
+<span><span class="co">#&gt;        37  0.976     1.09     1.78     14.6    0.343  0.977    0.067 </span></span>
+<span><span class="co">#&gt;                                                                      </span></span>
+<span><span class="co">#&gt;        25 0.0113    0.953     1.54    0.807     64.2 0.0124   0.0154 </span></span>
+<span><span class="co">#&gt;                                                                      </span></span>
+<span><span class="co">#&gt;  1.43e+03  0.695     21.3      322      184     84.5  0.685   0.0037 </span></span>
+<span><span class="co">#&gt;                                                                      </span></span>
+<span><span class="co">#&gt;        93 0.0039      1.4     3.57     25.2 6.94e+03 0.0036   0.0001 </span></span>
+<span><span class="co">#&gt; ---------------------------------------------------------------------</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="test-for-the-depature-from-the-expected-levels-of-allelic-variation">Test for the depature from the expected levels of allelic
+variation<a class="anchor" aria-label="anchor" href="#test-for-the-depature-from-the-expected-levels-of-allelic-variation"></a>
+</h3>
+<p>Unlike the test for alelic imbalance, [<code><a href="../reference/bb_var.html">bb_var()</a></code>] is
+performed on the raw counts as normalization can distort the variation
+between the counts. As with [<code><a href="../reference/bb_mean.html">bb_mean()</a></code>], we apply filtering
+threshold requiring each gene to be expressed in at least five cells
+with a minimum of 5 reads. Significance is assessed using a permutation
+test. By default, the number of permutations is set to 500, but this can
+be adjusted with <code>n_pmt</code> and <code>n_sim</code>
+parameters.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">bb_var_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span>, <span class="va">r</span><span class="op">)</span> <span class="fu"><a href="../reference/bb_var.html">bb_var</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span>, estimates <span class="op">=</span> <span class="va">r</span>, </span>
+<span>                                              min_cells <span class="op">=</span> <span class="fl">5</span>, min_counts <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>                                              n_pmt <span class="op">=</span> <span class="fl">500</span>, n_sim <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>, </span>
+<span>                        <span class="va">a1_mat</span>, <span class="va">tot_mat</span>, <span class="va">shrunk_estims</span>, SIMPLIFY <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<p>For genes that do not meet the quality cut-off threshold (here: a
+minimum of 5 cells with at least 5 mapped reads per cell), the variance
+test is not performed. These genes will have <code>NA</code> values in
+the output columns. We remove such genes before calculating the false
+discovery rate (FDR).</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bb_var_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_var_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="va">q</span> <span class="op">&lt;-</span> <span class="va">q</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">pval_disp</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#calculating fdr</span></span>
-<span><span class="va">bb_test_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_test_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="op">{</span><span class="va">q</span><span class="op">$</span><span class="va">fdr_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html" class="external-link">p.adjust</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">pval_mean</span>, method <span class="op">=</span> <span class="st">"fdr"</span><span class="op">)</span>;</span>
-<span>                                                <span class="va">q</span><span class="op">$</span><span class="va">fdr_disp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html" class="external-link">p.adjust</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">pval_disp</span>, method <span class="op">=</span> <span class="st">"fdr"</span><span class="op">)</span>;</span>
-<span>                                                <span class="va">q</span> <span class="op">&lt;-</span> <span class="va">q</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">fdr_mean</span><span class="op">)</span>,<span class="op">]</span>;</span>
-<span>                                                <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">bb_var_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_var_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> </span>
+<span>                                <span class="op">{</span><span class="va">q</span><span class="op">$</span><span class="va">fdr_disp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html" class="external-link">p.adjust</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">pval_disp</span>, method <span class="op">=</span> <span class="st">"fdr"</span><span class="op">)</span>;</span>
+<span>                                 <span class="va">q</span> <span class="op">&lt;-</span> <span class="va">q</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">fdr_disp</span><span class="op">)</span>,<span class="op">]</span>;</span>
+<span>                                 <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+The output of [<code><a href="../reference/bb_var.html">bb_var()</a></code>] function is a table that combines
+the output of the [<code><a href="../reference/estim_bbparams.html">estim_bbparams()</a></code>] and
+[<code><a href="../reference/correct_theta.html">correct_theta()</a></code>] functions and adds the following
+columns:\
+<p>\</p>
 </div>
-<div class="section level4">
-<h4 id="defining-genes-with-monoallelic-expression">Defining genes with monoallelic expression<a class="anchor" aria-label="anchor" href="#defining-genes-with-monoallelic-expression"></a>
-</h4>
-<p>Genes with monoallelic expression are defined based on
+<div class="section level3">
+<h3 id="defining-genes-with-monoallelic-expression">Defining genes with monoallelic expression<a class="anchor" aria-label="anchor" href="#defining-genes-with-monoallelic-expression"></a>
+</h3>
+<p>Beta-binomial parameters can also be used to identify genes with
+monoallelic expression and random monoallelic expression (RME). Genes
+are classified as monoallelically expressed if their parameter estimates
+meet either of the following criteria:
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\alpha &lt; 1</annotation></semantics></math>
 or
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\beta &lt; 1</annotation></semantics></math>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bb_test_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_test_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="op">{</span><span class="va">q</span><span class="op">$</span><span class="va">monoal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">alpha</span> <span class="op">&lt;</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">q</span><span class="op">$</span><span class="va">beta</span> <span class="op">&lt;</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>;</span>
-<span>                                                <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">}</span><span class="op">)</span> </span></code></pre></div>
-<p>Counting the number of genes with monoallelic expression</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_test_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">monoal</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $`Cortical neurons`</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bb_var_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_var_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="op">{</span><span class="va">q</span><span class="op">$</span><span class="va">monoal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">alpha</span> <span class="op">&lt;</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">q</span><span class="op">$</span><span class="va">beta</span> <span class="op">&lt;</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>;</span>
+<span>                                              <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">}</span><span class="op">)</span> </span></code></pre></div>
+<p>The number of genes classified as monoallelically expressed per cell
+type:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_var_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">monoal</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   0   1 </span></span>
 <span><span class="co">#&gt; 933  41 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $`Gliogenic RGCs`</span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   0   1 </span></span>
 <span><span class="co">#&gt; 751  38 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $IPCs</span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   0   1 </span></span>
-<span><span class="co">#&gt; 821  35 </span></span>
+<span><span class="co">#&gt; 820  35 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $OPCs</span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    0    1 </span></span>
 <span><span class="co">#&gt; 1233   45 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $RGCs</span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   0   1 </span></span>
 <span><span class="co">#&gt; 999  41</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_test_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="va">q</span><span class="op">[</span><span class="va">q</span><span class="op">$</span><span class="va">monoal</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AR"</span>, <span class="st">"fdr_mean"</span>, <span class="st">"fdr_disp"</span><span class="op">)</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $`Cortical neurons`</span></span>
-<span><span class="co">#&gt;                  AR      fdr_mean      fdr_disp</span></span>
-<span><span class="co">#&gt; Hmgb1    0.97643613  0.000000e+00  7.905540e-01</span></span>
-<span><span class="co">#&gt; Gm9794   0.01123967  0.000000e+00  9.300338e-01</span></span>
-<span><span class="co">#&gt; Eif4a1   0.99820847  0.000000e+00  9.246473e-01</span></span>
-<span><span class="co">#&gt; Meg3     0.97227619  0.000000e+00 1.140593e-190</span></span>
-<span><span class="co">#&gt; Rps15a   0.98462626 1.284571e-321  1.000000e+00</span></span>
-<span><span class="co">#&gt; Mrps33   0.02022556 3.362626e-284  1.000000e+00</span></span>
-<span><span class="co">#&gt; Mrpl23   0.09347181 3.922187e-202  6.518745e-01</span></span>
-<span><span class="co">#&gt; Kcnq1ot1 0.19675165 1.077090e-163  1.033068e-97</span></span>
-<span><span class="co">#&gt; Hspe1    0.94639853 1.302133e-156  8.378980e-01</span></span>
-<span><span class="co">#&gt; Rian     0.96518265 1.415229e-114  1.139575e-04</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_var_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="va">q</span><span class="op">[</span><span class="va">q</span><span class="op">$</span><span class="va">monoal</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AR"</span>, <span class="st">"fdr_disp"</span><span class="op">)</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt;                      AR fdr_disp</span></span>
+<span><span class="co">#&gt; Meg3          0.9722762        0</span></span>
+<span><span class="co">#&gt; Kcnq1ot1      0.1969765        0</span></span>
+<span><span class="co">#&gt; Rian          0.9651826        0</span></span>
+<span><span class="co">#&gt; Snrpn         0.2622304        0</span></span>
+<span><span class="co">#&gt; Bex2          0.7055834        0</span></span>
+<span><span class="co">#&gt; 9330162G02Rik 0.3506396        0</span></span>
+<span><span class="co">#&gt; Gpm6b         0.7670272        0</span></span>
+<span><span class="co">#&gt; Pgrmc1        0.7442399        0</span></span>
+<span><span class="co">#&gt; Ndufb11       0.7112723        0</span></span>
+<span><span class="co">#&gt; Pcsk1n        0.6716533        0</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $`Gliogenic RGCs`</span></span>
-<span><span class="co">#&gt;                   AR      fdr_mean      fdr_disp</span></span>
-<span><span class="co">#&gt; Uchl1   0.9994658120  0.000000e+00  1.000000e+00</span></span>
-<span><span class="co">#&gt; Rpl23a  0.0007106599  0.000000e+00  1.000000e+00</span></span>
-<span><span class="co">#&gt; Mt1     0.8669580287  0.000000e+00 8.001087e-173</span></span>
-<span><span class="co">#&gt; Hnrnpa1 0.0186573636 2.240324e-316  9.975426e-01</span></span>
-<span><span class="co">#&gt; Sap18   0.0324713976 5.073718e-252  7.807383e-01</span></span>
-<span><span class="co">#&gt; Hnrnpf  0.9858156028 4.906044e-202  9.968176e-01</span></span>
-<span><span class="co">#&gt; Tuba1b  0.9579753270 2.839606e-199  9.017063e-01</span></span>
-<span><span class="co">#&gt; Ndufs5  0.9468367889 5.306905e-185  8.901369e-01</span></span>
-<span><span class="co">#&gt; Hmgb1   0.9027080745 1.057506e-140  2.853119e-02</span></span>
-<span><span class="co">#&gt; Meg3    0.9792807018 1.006124e-128  7.691392e-03</span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt;                 AR fdr_disp</span></span>
+<span><span class="co">#&gt; Meg3     0.9792260        0</span></span>
+<span><span class="co">#&gt; Kcnq1ot1 0.1870162        0</span></span>
+<span><span class="co">#&gt; Bex2     0.6371548        0</span></span>
+<span><span class="co">#&gt; Gpm6b    0.5593086        0</span></span>
+<span><span class="co">#&gt; Ndufb11  0.5618963        0</span></span>
+<span><span class="co">#&gt; Pcsk1n   0.6507759        0</span></span>
+<span><span class="co">#&gt; Tspan7   0.5777158        0</span></span>
+<span><span class="co">#&gt; Sh3bgrl  0.6225959        0</span></span>
+<span><span class="co">#&gt; Maged1   0.6058882        0</span></span>
+<span><span class="co">#&gt; Mt3      0.6400374        0</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $IPCs</span></span>
-<span><span class="co">#&gt;                  AR      fdr_mean      fdr_disp</span></span>
-<span><span class="co">#&gt; Hnrnpa1  0.02615440  0.000000e+00  4.650587e-01</span></span>
-<span><span class="co">#&gt; Mrps33   0.01634093 7.777812e-292  1.000000e+00</span></span>
-<span><span class="co">#&gt; Tuba1b   0.92882479 6.019397e-271  3.927004e-11</span></span>
-<span><span class="co">#&gt; Hmgb1    0.93243643 8.080508e-246  7.147427e-02</span></span>
-<span><span class="co">#&gt; Meg3     0.96715708 1.345857e-163  1.611868e-07</span></span>
-<span><span class="co">#&gt; Kcnq1ot1 0.21973159  1.750355e-90  3.063787e-51</span></span>
-<span><span class="co">#&gt; Mt1      0.92787599  1.060083e-55  2.618539e-01</span></span>
-<span><span class="co">#&gt; Ecrg4    0.87234352  6.472296e-49  5.932390e-01</span></span>
-<span><span class="co">#&gt; Bex2     0.70521626  1.297152e-34 2.475917e-145</span></span>
-<span><span class="co">#&gt; Pcsk1n   0.72386345  5.042572e-33  2.156400e-93</span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt;                 AR fdr_disp</span></span>
+<span><span class="co">#&gt; Meg3     0.9669701        0</span></span>
+<span><span class="co">#&gt; Tuba1b   0.9287204        0</span></span>
+<span><span class="co">#&gt; Kcnq1ot1 0.2204702        0</span></span>
+<span><span class="co">#&gt; Bex2     0.7045911        0</span></span>
+<span><span class="co">#&gt; Gpm6b    0.7531993        0</span></span>
+<span><span class="co">#&gt; Ndufb11  0.7084227        0</span></span>
+<span><span class="co">#&gt; Pcsk1n   0.7234285        0</span></span>
+<span><span class="co">#&gt; Tspan7   0.7403820        0</span></span>
+<span><span class="co">#&gt; Dcx      0.7080914        0</span></span>
+<span><span class="co">#&gt; Uba1     0.7219881        0</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $OPCs</span></span>
-<span><span class="co">#&gt;                    AR      fdr_mean      fdr_disp</span></span>
-<span><span class="co">#&gt; Hmgb1    0.9478554476  0.000000e+00  8.972794e-07</span></span>
-<span><span class="co">#&gt; Rpl23a   0.0009441385  0.000000e+00  9.814474e-01</span></span>
-<span><span class="co">#&gt; Olig2    0.0428730357  0.000000e+00  6.002232e-13</span></span>
-<span><span class="co">#&gt; Mt1      0.9220495174 5.292296e-262  3.369804e-37</span></span>
-<span><span class="co">#&gt; Kcnq1ot1 0.1750146036 8.799962e-193 4.120615e-135</span></span>
-<span><span class="co">#&gt; Meg3     0.9668509663 4.225299e-138  4.026685e-03</span></span>
-<span><span class="co">#&gt; Igfbpl1  0.8478968608  1.009265e-58  6.262431e-02</span></span>
-<span><span class="co">#&gt; Peg3     0.3223986569  1.651828e-36  2.775568e-10</span></span>
-<span><span class="co">#&gt; Pttg1    0.3708738138  4.422377e-36  9.351631e-06</span></span>
-<span><span class="co">#&gt; Pcsk1n   0.6914441478  1.920317e-27  3.032197e-50</span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt;                 AR fdr_disp</span></span>
+<span><span class="co">#&gt; Hmgb1    0.9478554        0</span></span>
+<span><span class="co">#&gt; Meg3     0.9668510        0</span></span>
+<span><span class="co">#&gt; Kcnq1ot1 0.1750146        0</span></span>
+<span><span class="co">#&gt; Bex2     0.6366406        0</span></span>
+<span><span class="co">#&gt; Gpm6b    0.6032395        0</span></span>
+<span><span class="co">#&gt; Ndufb11  0.5979667        0</span></span>
+<span><span class="co">#&gt; Pcsk1n   0.6910833        0</span></span>
+<span><span class="co">#&gt; Peg3     0.3223987        0</span></span>
+<span><span class="co">#&gt; Tspan7   0.6856153        0</span></span>
+<span><span class="co">#&gt; Uba1     0.6154512        0</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $RGCs</span></span>
-<span><span class="co">#&gt;                   AR      fdr_mean     fdr_disp</span></span>
-<span><span class="co">#&gt; Stmn1    0.991590207  0.000000e+00 9.006507e-01</span></span>
-<span><span class="co">#&gt; Uchl1    0.998704663  0.000000e+00 8.844007e-01</span></span>
-<span><span class="co">#&gt; Eif4a1   0.998527246  0.000000e+00 8.955503e-01</span></span>
-<span><span class="co">#&gt; Ubb      0.999825571  0.000000e+00 9.449799e-01</span></span>
-<span><span class="co">#&gt; Tuba1b   0.964594618  0.000000e+00 1.352107e-01</span></span>
-<span><span class="co">#&gt; Rpl23a   0.002132592  0.000000e+00 1.000000e+00</span></span>
-<span><span class="co">#&gt; Hnrnpf   0.967724359 3.499048e-198 7.014207e-01</span></span>
-<span><span class="co">#&gt; Meg3     0.970766103 5.935190e-198 1.247922e-13</span></span>
-<span><span class="co">#&gt; Mt1      0.891378145 6.055808e-192 8.057095e-32</span></span>
-<span><span class="co">#&gt; Kcnq1ot1 0.167193029 1.470896e-105 5.169765e-48</span></span></code></pre></div>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt;                 AR fdr_disp</span></span>
+<span><span class="co">#&gt; Meg3     0.9707027        0</span></span>
+<span><span class="co">#&gt; Kcnq1ot1 0.1671930        0</span></span>
+<span><span class="co">#&gt; Bex2     0.6559426        0</span></span>
+<span><span class="co">#&gt; Gpm6b    0.6250239        0</span></span>
+<span><span class="co">#&gt; Ndufb11  0.6090887        0</span></span>
+<span><span class="co">#&gt; Pcsk1n   0.6901007        0</span></span>
+<span><span class="co">#&gt; Peg3     0.3161015        0</span></span>
+<span><span class="co">#&gt; Tspan7   0.6268899        0</span></span>
+<span><span class="co">#&gt; Dcx      0.8404762        0</span></span>
+<span><span class="co">#&gt; Uba1     0.6338756        0</span></span></code></pre></div>
 <p>Visualizing allelic ratio distribution for selected genes</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#specifiying genes for plotting</span></span>
 <span><span class="va">genes_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"Olig2"</span>, <span class="st">"Meg3"</span>, <span class="st">"Kcnq1ot1"</span><span class="op">)</span></span>
 <span></span>
@@ -388,170 +434,187 @@ or
 <span><span class="va">p_ar_dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">p</span>,<span class="va">q</span>,<span class="va">r</span><span class="op">)</span> <span class="fu"><a href="../reference/plot_distr.html">plot_distr</a></span><span class="op">(</span><span class="va">p</span>, gene <span class="op">=</span> <span class="va">q</span><span class="op">)</span>,</span>
 <span>                 <span class="va">plot_data</span>, <span class="va">genes_select</span>, SIMPLIFY <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">grid.arrange</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">p_ar_dist</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="allelic_variance_files/figure-html/unnamed-chunk-14-1.png" width="720"></p>
+<p><img src="allelic_variance_files/figure-html/unnamed-chunk-16-1.png" width="720"></p>
 </div>
-<div class="section level4">
-<h4 id="defining-genes-with-monoallelic-expression-1">Defining genes with monoallelic expression<a class="anchor" aria-label="anchor" href="#defining-genes-with-monoallelic-expression-1"></a>
-</h4>
-<p>We define genes with stocastic monoalellic expression as those with
+<div class="section level3">
+<h3 id="defining-genes-with-rme">Defining genes with RME<a class="anchor" aria-label="anchor" href="#defining-genes-with-rme"></a>
+</h3>
+<p>We define genes with RME as those with
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\alpha &lt; 1</annotation></semantics></math>
 and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\beta &lt; 1</annotation></semantics></math>
-and dispersion test
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>d</mi><mi>r</mi><mo>&lt;</mo><mn>0.05</mn></mrow><annotation encoding="application/x-tex">fdr &lt; 0.05</annotation></semantics></math>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bb_test_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_test_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="op">{</span><span class="va">q</span><span class="op">$</span><span class="va">stochmon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">alpha</span> <span class="op">&lt;</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">q</span><span class="op">$</span><span class="va">beta</span> <span class="op">&lt;</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">q</span><span class="op">$</span><span class="va">fdr_disp</span> <span class="op">&lt;</span> <span class="fl">0.05</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>;</span>
+and approximately equal (the absolute difference between
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+is set to be less than 0.5).</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bb_var_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_var_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="op">{</span><span class="va">q</span><span class="op">$</span><span class="va">abdiff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">alpha</span> <span class="op">-</span> <span class="va">q</span><span class="op">$</span><span class="va">beta</span><span class="op">)</span>;</span>
+<span>                                                   <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">bb_var_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_var_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="op">{</span><span class="va">q</span><span class="op">$</span><span class="va">rme</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">alpha</span> <span class="op">&lt;</span> <span class="fl">1</span> <span class="op">&amp;</span> </span>
+<span>                                                               <span class="va">q</span><span class="op">$</span><span class="va">beta</span> <span class="op">&lt;</span> <span class="fl">1</span> <span class="op">&amp;</span> </span>
+<span>                                                               <span class="va">q</span><span class="op">$</span><span class="va">abdiff</span> <span class="op">&lt;</span> <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>;</span>
 <span>                                                <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">}</span><span class="op">)</span> </span></code></pre></div>
-<p>Counting the number of genes with stochastic monoallelic
-expression</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_test_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">stochmon</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $`Cortical neurons`</span></span>
+<p>The number of RME genes</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_var_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">q</span><span class="op">$</span><span class="va">rme</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   0   1 </span></span>
-<span><span class="co">#&gt; 949  25 </span></span>
+<span><span class="co">#&gt; 950  24 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $`Gliogenic RGCs`</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   0   1 </span></span>
-<span><span class="co">#&gt; 766  23 </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $IPCs</span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   0   1 </span></span>
-<span><span class="co">#&gt; 829  27 </span></span>
+<span><span class="co">#&gt; 767  22 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $OPCs</span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   0   1 </span></span>
+<span><span class="co">#&gt; 830  25 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    0    1 </span></span>
 <span><span class="co">#&gt; 1248   30 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $RGCs</span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    0    1 </span></span>
-<span><span class="co">#&gt; 1013   27</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_test_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="va">q</span><span class="op">[</span><span class="va">q</span><span class="op">$</span><span class="va">stochmon</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AR"</span>, <span class="st">"fdr_mean"</span>, <span class="st">"fdr_disp"</span><span class="op">)</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $`Cortical neurons`</span></span>
-<span><span class="co">#&gt;                 AR      fdr_mean      fdr_disp</span></span>
-<span><span class="co">#&gt; Meg3     0.9722762  0.000000e+00 1.140593e-190</span></span>
-<span><span class="co">#&gt; Kcnq1ot1 0.1967517 1.077090e-163  1.033068e-97</span></span>
-<span><span class="co">#&gt; Rian     0.9651826 1.415229e-114  1.139575e-04</span></span>
-<span><span class="co">#&gt; Bex2     0.7055751  2.520953e-59  0.000000e+00</span></span>
-<span><span class="co">#&gt; Gpm6b    0.7661415  1.191885e-34  9.087901e-23</span></span>
-<span><span class="co">#&gt; Pgrmc1   0.7435183  1.448332e-31  5.252864e-39</span></span>
-<span><span class="co">#&gt; Ndufb11  0.7108018  2.111889e-30  1.292985e-84</span></span>
-<span><span class="co">#&gt; Pcsk1n   0.6719172  2.213920e-29  0.000000e+00</span></span>
-<span><span class="co">#&gt; Tspan7   0.7173211  4.110823e-28  1.662563e-54</span></span>
-<span><span class="co">#&gt; Dcx      0.6763636  4.309070e-27 1.623979e-250</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $`Gliogenic RGCs`</span></span>
-<span><span class="co">#&gt;                AR     fdr_mean     fdr_disp</span></span>
-<span><span class="co">#&gt; Mt3     0.6394238 1.923467e-21 0.000000e+00</span></span>
-<span><span class="co">#&gt; Bex2    0.6356850 6.559192e-18 7.309592e-99</span></span>
-<span><span class="co">#&gt; Car8    0.7876656 4.615206e-16 5.038297e-05</span></span>
-<span><span class="co">#&gt; Pcsk1n  0.6499329 9.821004e-16 1.277224e-66</span></span>
-<span><span class="co">#&gt; Pttg1   0.7169136 6.344400e-11 6.476914e-11</span></span>
-<span><span class="co">#&gt; Acot1   0.6716416 2.266034e-09 7.255403e-42</span></span>
-<span><span class="co">#&gt; Sh3bgrl 0.6225959 5.321953e-07 2.767787e-34</span></span>
-<span><span class="co">#&gt; Maged1  0.6040796 1.307228e-05 1.562212e-65</span></span>
-<span><span class="co">#&gt; Hmgn3   0.4132843 2.317343e-05 1.308832e-17</span></span>
-<span><span class="co">#&gt; Rps4x   0.5013161 1.157080e-04 0.000000e+00</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $IPCs</span></span>
-<span><span class="co">#&gt;                 AR      fdr_mean      fdr_disp</span></span>
-<span><span class="co">#&gt; Meg3     0.9671571 1.345857e-163  1.611868e-07</span></span>
-<span><span class="co">#&gt; Kcnq1ot1 0.2197316  1.750355e-90  3.063787e-51</span></span>
-<span><span class="co">#&gt; Bex2     0.7052163  1.297152e-34 2.475917e-145</span></span>
-<span><span class="co">#&gt; Pcsk1n   0.7238634  5.042572e-33  2.156400e-93</span></span>
-<span><span class="co">#&gt; Ndufb11  0.7091161  4.608995e-29 7.574625e-101</span></span>
-<span><span class="co">#&gt; Gpm6b    0.7540984  1.044522e-28  3.542380e-50</span></span>
-<span><span class="co">#&gt; Uba1     0.7228864  4.659623e-24  2.033596e-31</span></span>
-<span><span class="co">#&gt; Dcx      0.7080914  4.878448e-24  1.574144e-93</span></span>
-<span><span class="co">#&gt; Sh3bgrl  0.7044415  1.785874e-22  5.442870e-94</span></span>
-<span><span class="co">#&gt; Tspan7   0.7410091  2.479621e-18  1.133209e-27</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $OPCs</span></span>
-<span><span class="co">#&gt;                AR     fdr_mean      fdr_disp</span></span>
-<span><span class="co">#&gt; Pcsk1n  0.6914441 1.920317e-27  3.032197e-50</span></span>
-<span><span class="co">#&gt; Tspan7  0.6856153 1.149593e-25 2.482703e-125</span></span>
-<span><span class="co">#&gt; Bex2    0.6369462 2.148938e-25  0.000000e+00</span></span>
-<span><span class="co">#&gt; Sh3bgrl 0.6504544 6.543171e-15  4.375254e-77</span></span>
-<span><span class="co">#&gt; Gpm6b   0.6032395 1.712115e-13  0.000000e+00</span></span>
-<span><span class="co">#&gt; Mt3     0.4722671 4.715362e-13 8.325656e-180</span></span>
-<span><span class="co">#&gt; Hmgn3   0.3744833 1.299766e-11  1.403906e-17</span></span>
-<span><span class="co">#&gt; Actc1   0.8105676 8.610171e-11  8.445416e-03</span></span>
-<span><span class="co">#&gt; Ndufb11 0.5983074 4.104903e-10  0.000000e+00</span></span>
-<span><span class="co">#&gt; Maged1  0.6099266 1.476361e-08 2.349771e-139</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $RGCs</span></span>
-<span><span class="co">#&gt;                AR     fdr_mean      fdr_disp</span></span>
-<span><span class="co">#&gt; Dcx     0.8404762 9.278528e-24  3.427824e-08</span></span>
-<span><span class="co">#&gt; Pcsk1n  0.6906062 1.215600e-20  2.506764e-86</span></span>
-<span><span class="co">#&gt; Bex2    0.6564178 4.384985e-19 1.165068e-124</span></span>
-<span><span class="co">#&gt; Gpm6b   0.6250239 4.147241e-12  0.000000e+00</span></span>
-<span><span class="co">#&gt; Sh3bgrl 0.6500220 3.172338e-09  2.137462e-49</span></span>
-<span><span class="co">#&gt; Ndufb11 0.6096191 1.325749e-08 2.226269e-159</span></span>
-<span><span class="co">#&gt; Tspan7  0.6268899 4.309350e-08 2.337568e-164</span></span>
-<span><span class="co">#&gt; Zrsr2   0.6393346 5.497509e-08  9.269872e-47</span></span>
-<span><span class="co">#&gt; H2ac6   0.6950820 8.766437e-08  3.950980e-02</span></span>
-<span><span class="co">#&gt; Maged1  0.6356134 1.817995e-07  3.024839e-63</span></span></code></pre></div>
-<p>We can visualise how far dispersion for the genes with stochastic
-monoallelic expression deviates from the expected dispersion for genes
-with similar expression</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gene</span> <span class="op">=</span> <span class="st">"Bex2"</span></span>
-<span><span class="va">exp_theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_exp_disp.html">plot_exp_disp</a></span><span class="op">(</span><span class="va">bb_test_res</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, gene <span class="op">=</span> <span class="va">gene</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">#generating data frame for plotting</span></span>
-<span><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makedf.html">makedf</a></span><span class="op">(</span><span class="va">a1_mat</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">tot_mat</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, gene <span class="op">=</span> <span class="va">gene</span><span class="op">)</span></span>
-<span><span class="va">ar_dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_distr.html">plot_distr</a></span><span class="op">(</span><span class="va">plot_data</span>,  gene <span class="op">=</span> <span class="va">gene</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">exp_theta</span>, <span class="va">ar_dist</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="allelic_variance_files/figure-html/unnamed-chunk-18-1.png" width="624"></p>
-<p>Bex2 (brain expressed X-linked 2) gene shows strong bias towards the
-maternal (Bl6) allele. Its allelic variation greatly deviates from the
-expected dispersion for genes with similar expression. We can compare
-the allelic distribution with a gene that does not show deviation from a
-common trend. For example, Npm1 gene.</p>
+<span><span class="co">#&gt; 1015   25</span></span></code></pre></div>
+<p>Top 10 RME genes</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bb_test_res</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bex2"</span>, <span class="st">"Npm1"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AR"</span>, <span class="st">"tot_gene_mean"</span>, <span class="st">"fdr_mean"</span>, <span class="st">"fdr_disp"</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">#&gt;             AR tot_gene_mean     fdr_mean fdr_disp</span></span>
-<span><span class="co">#&gt; Bex2 0.7055751      3.010133 2.520953e-59        0</span></span>
-<span><span class="co">#&gt; Npm1 0.5635717      3.448385 1.517658e-02        1</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">bb_var_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="va">q</span><span class="op">[</span><span class="va">q</span><span class="op">$</span><span class="va">rme</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AR"</span>, <span class="st">"fdr_disp"</span><span class="op">)</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt;                AR fdr_disp</span></span>
+<span><span class="co">#&gt; Bex2    0.7055834        0</span></span>
+<span><span class="co">#&gt; Gpm6b   0.7670272        0</span></span>
+<span><span class="co">#&gt; Pgrmc1  0.7442399        0</span></span>
+<span><span class="co">#&gt; Ndufb11 0.7112723        0</span></span>
+<span><span class="co">#&gt; Pcsk1n  0.6716533        0</span></span>
+<span><span class="co">#&gt; Tspan7  0.7179053        0</span></span>
+<span><span class="co">#&gt; Dcx     0.6763636        0</span></span>
+<span><span class="co">#&gt; Uba1    0.6967240        0</span></span>
+<span><span class="co">#&gt; Sh3bgrl 0.6997536        0</span></span>
+<span><span class="co">#&gt; Maged1  0.6769483        0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt;                AR fdr_disp</span></span>
+<span><span class="co">#&gt; Bex2    0.6371548        0</span></span>
+<span><span class="co">#&gt; Gpm6b   0.5593086        0</span></span>
+<span><span class="co">#&gt; Ndufb11 0.5618963        0</span></span>
+<span><span class="co">#&gt; Pcsk1n  0.6507759        0</span></span>
+<span><span class="co">#&gt; Tspan7  0.5777158        0</span></span>
+<span><span class="co">#&gt; Sh3bgrl 0.6225959        0</span></span>
+<span><span class="co">#&gt; Maged1  0.6058882        0</span></span>
+<span><span class="co">#&gt; Mt3     0.6400374        0</span></span>
+<span><span class="co">#&gt; Atrx    0.5412517        0</span></span>
+<span><span class="co">#&gt; Nsdhl   0.5239680        0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt;                AR fdr_disp</span></span>
+<span><span class="co">#&gt; Bex2    0.7045911        0</span></span>
+<span><span class="co">#&gt; Gpm6b   0.7531993        0</span></span>
+<span><span class="co">#&gt; Ndufb11 0.7084227        0</span></span>
+<span><span class="co">#&gt; Pcsk1n  0.7234285        0</span></span>
+<span><span class="co">#&gt; Tspan7  0.7403820        0</span></span>
+<span><span class="co">#&gt; Dcx     0.7080914        0</span></span>
+<span><span class="co">#&gt; Uba1    0.7219881        0</span></span>
+<span><span class="co">#&gt; Sh3bgrl 0.7040431        0</span></span>
+<span><span class="co">#&gt; Maged1  0.6903720        0</span></span>
+<span><span class="co">#&gt; Mt3     0.4570011        0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt;                AR fdr_disp</span></span>
+<span><span class="co">#&gt; Bex2    0.6366406        0</span></span>
+<span><span class="co">#&gt; Gpm6b   0.6032395        0</span></span>
+<span><span class="co">#&gt; Ndufb11 0.5979667        0</span></span>
+<span><span class="co">#&gt; Pcsk1n  0.6910833        0</span></span>
+<span><span class="co">#&gt; Tspan7  0.6856153        0</span></span>
+<span><span class="co">#&gt; Uba1    0.6154512        0</span></span>
+<span><span class="co">#&gt; Sh3bgrl 0.6500207        0</span></span>
+<span><span class="co">#&gt; Maged1  0.6095045        0</span></span>
+<span><span class="co">#&gt; Mt3     0.4722671        0</span></span>
+<span><span class="co">#&gt; Zrsr2   0.5845943        0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt;                AR fdr_disp</span></span>
+<span><span class="co">#&gt; Bex2    0.6559426        0</span></span>
+<span><span class="co">#&gt; Gpm6b   0.6250239        0</span></span>
+<span><span class="co">#&gt; Ndufb11 0.6090887        0</span></span>
+<span><span class="co">#&gt; Pcsk1n  0.6901007        0</span></span>
+<span><span class="co">#&gt; Tspan7  0.6268899        0</span></span>
+<span><span class="co">#&gt; Uba1    0.6338756        0</span></span>
+<span><span class="co">#&gt; Sh3bgrl 0.6493541        0</span></span>
+<span><span class="co">#&gt; Maged1  0.6356134        0</span></span>
+<span><span class="co">#&gt; Mt3     0.5320794        0</span></span>
+<span><span class="co">#&gt; Zrsr2   0.6386275        0</span></span></code></pre></div>
+<p>We can visualize how far dispersion for the genes with RME deviates
+from the expected dispersion for genes with similar expression</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gene</span> <span class="op">=</span> <span class="st">"Npm1"</span></span>
-<span><span class="va">exp_theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_exp_disp.html">plot_exp_disp</a></span><span class="op">(</span><span class="va">bb_test_res</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, gene <span class="op">=</span> <span class="va">gene</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">gene</span> <span class="op">=</span> <span class="st">"Bex2"</span></span>
+<span><span class="va">exp_theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_exp_disp.html">plot_exp_disp</a></span><span class="op">(</span><span class="va">bb_var_res</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, gene <span class="op">=</span> <span class="va">gene</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#generating data frame for plotting</span></span>
 <span><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makedf.html">makedf</a></span><span class="op">(</span><span class="va">a1_mat</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">tot_mat</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, gene <span class="op">=</span> <span class="va">gene</span><span class="op">)</span></span>
 <span><span class="va">ar_dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_distr.html">plot_distr</a></span><span class="op">(</span><span class="va">plot_data</span>,  gene <span class="op">=</span> <span class="va">gene</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">exp_theta</span>, <span class="va">ar_dist</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="allelic_variance_files/figure-html/unnamed-chunk-20-1.png" width="624"></p>
+<p>Bex2 (brain expressed X-linked 2) gene shows a strong bias toward the
+maternal (Bl6) allele. Its allelic variation greatly deviates from the
+expected dispersion for genes with similar expression. We can compare
+the allelic distribution with a gene that does not show deviation from a
+common trend - for example, Npm1.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bb_var_res</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bex2"</span>, <span class="st">"Npm1"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AR"</span>, <span class="st">"tot_gene_mean"</span>, <span class="st">"fdr_disp"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">AR</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">tot_gene_mean</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">fdr_disp</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.706</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.01</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0    </td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.564</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.45</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.506</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gene</span> <span class="op">=</span> <span class="st">"Npm1"</span></span>
+<span><span class="va">exp_theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_exp_disp.html">plot_exp_disp</a></span><span class="op">(</span><span class="va">bb_var_res</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, gene <span class="op">=</span> <span class="va">gene</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#generating data frame for plotting</span></span>
+<span><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makedf.html">makedf</a></span><span class="op">(</span><span class="va">a1_mat</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">tot_mat</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, gene <span class="op">=</span> <span class="va">gene</span><span class="op">)</span></span>
+<span><span class="va">ar_dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_distr.html">plot_distr</a></span><span class="op">(</span><span class="va">plot_data</span>,  gene <span class="op">=</span> <span class="va">gene</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">exp_theta</span>, <span class="va">ar_dist</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p><img src="allelic_variance_files/figure-html/unnamed-chunk-22-1.png" width="624"></p>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Veronika Petrova, Emily Wong.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Veronika Petrova, Muqing Niu, Thomas Vierbuchen, Emily Wong.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
-
 
 
 

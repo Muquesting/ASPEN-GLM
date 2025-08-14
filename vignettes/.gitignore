@@ -1,2 +1,4 @@
 *.html
 *.R
+allelic_imbalance_control_bor_batch.Rmd
+dynamic_allelic_changes.Rmd

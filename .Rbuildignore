@@ -1,4 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.github$
-^\.Rhistory
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

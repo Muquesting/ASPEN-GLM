@@ -5,24 +5,24 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Allele-specific expression and imbalance modelling of F1 hybrids in single-cell data • ASPEN</title>
+<title>Quantifying allele-specific expression (ASE) in single-cell RNA-seq • ASPEN</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Allele-specific expression and imbalance modelling of F1 hybrids in single-cell data">
-<meta name="description" content="A statistical method to analyze allele-specific expression (ASE) data. ASPEN estimates beta-binomial parameters, mean and dispersion, from the allelic counts. Then, it models allelic dispersion as a function of total gene expression and uses the Bayesian hierarchical model to shrink the estimated dispersion towards the expected one, thereby stabilizing estimates and reducing the impact of spurious variability. ASPEN can be used to (i) identify genes with allelic imbalance (those with mean allelic ratio deviating from the theoretical value of 0.5); (ii) identify genes with allelic dispersion different from the expected one for the genes with similar expression levels; (iii) identify genes with changes in their allelic distribution over time; (iv) identify genes with changes in their allelic variation over time.">
-<meta property="og:description" content="A statistical method to analyze allele-specific expression (ASE) data. ASPEN estimates beta-binomial parameters, mean and dispersion, from the allelic counts. Then, it models allelic dispersion as a function of total gene expression and uses the Bayesian hierarchical model to shrink the estimated dispersion towards the expected one, thereby stabilizing estimates and reducing the impact of spurious variability. ASPEN can be used to (i) identify genes with allelic imbalance (those with mean allelic ratio deviating from the theoretical value of 0.5); (ii) identify genes with allelic dispersion different from the expected one for the genes with similar expression levels; (iii) identify genes with changes in their allelic distribution over time; (iv) identify genes with changes in their allelic variation over time.">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Quantifying allele-specific expression (ASE) in single-cell RNA-seq">
+<meta name="description" content="A statistical method to analyze allele-specific expression (ASE) data. ASPEN estimates the mean and dispersion parameters of the beta-binomial distribution from allelic counts. Then, it models allelic dispersion as a function of total gene expression and shrinks the estimated dispersion toward the expected values using the Bayesian hierarchical framework. ASPEN can be used to (i) identify genes with allelic imbalance (those with mean allelic ratio deviating from the theoretical value of 0.5); (ii) identify genes with allelic dispersion deviating from the expected for the genes with similar expression levels; (iii) identify genes with changes in their allelic distribution across the groups; (iv) identify genes with changes in their allelic variation across the group.">
+<meta property="og:description" content="A statistical method to analyze allele-specific expression (ASE) data. ASPEN estimates the mean and dispersion parameters of the beta-binomial distribution from allelic counts. Then, it models allelic dispersion as a function of total gene expression and shrinks the estimated dispersion toward the expected values using the Bayesian hierarchical framework. ASPEN can be used to (i) identify genes with allelic imbalance (those with mean allelic ratio deviating from the theoretical value of 0.5); (ii) identify genes with allelic dispersion deviating from the expected for the genes with similar expression levels; (iii) identify genes with changes in their allelic distribution across the groups; (iv) identify genes with changes in their allelic variation across the group.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="index.html">ASPEN</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="articles/allelic_imbalance.html">allelic_imbalance</a></li>
     <li><a class="dropdown-item" href="articles/allelic_variance.html">allelic_variance</a></li>
-    <li><a class="dropdown-item" href="articles/dynamic_allelic_changes.html">dynamic_allelic_changes</a></li>
+    <li><a class="dropdown-item" href="articles/differential_ASE.html">differential_ASE</a></li>
   </ul>
 </li>
       </ul>
@@ -52,8 +52,19 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
-A statistical method to analyze allele-specific expression (ASE) data. ASPEN estimates beta-binomial parameters, mean and dispersion, from the allelic counts. Then, it models allelic dispersion as a function of total gene expression and uses the Bayesian hierarchical model to shrink the estimated dispersion towards the expected one, thereby stabilizing estimates and reducing the impact of spurious variability. ASPEN can be used to (i) identify genes with allelic imbalance (those with mean allelic ratio deviating from the theoretical value of 0.5); (ii) identify genes with allelic dispersion different from the expected one for the genes with similar expression levels; (iii) identify genes with changes in their allelic distribution over time; (iv) identify genes with changes in their allelic variation over time.
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="aspen">ASPEN<a class="anchor" aria-label="anchor" href="#aspen"></a>
+</h1></div>
+<p>A statistical method to analyze allele-specific expression (ASE) data. ASPEN estimates beta-binomial parameters, mean and dispersion, from the allelic counts. ASPEN models allelic dispersion as a function of total gene expression and uses the Bayesian hierarchical model to shrink the estimated dispersion towards the expected one, thereby stabilizing estimates and reducing the impact of spurious variability. ASPEN can be used to - identify genes with allelic imbalance (those with mean allelic ratio deviating from the theoretical value of 0.5); - identify genes with allelic dispersion different from the expected one for the genes with similar expression levels; - identify genes with changes in their allelic distribution over time; - identify genes with changes in their allelic variation over time.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<pre><code><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ewonglab/ASPEN"</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
@@ -73,6 +84,8 @@ A statistical method to analyze allele-specific expression (ASE) data. ASPEN est
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Veronika Petrova <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/YOUR-ORCID-ID" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Muqing Niu <br><small class="roles"> Author </small> <a href="https://orcid.org/YOUR-ORCID-ID" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Thomas Vierbuchen <br><small class="roles"> Author </small> <a href="https://orcid.org/YOUR-ORCID-ID" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Emily Wong <br><small class="roles"> Author </small> <a href="https://orcid.org/YOUR-ORCID-ID" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
@@ -84,7 +97,7 @@ A statistical method to analyze allele-specific expression (ASE) data. ASPEN est
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Veronika Petrova, Emily Wong.</p>
+  <p>Developed by Veronika Petrova, Muqing Niu, Thomas Vierbuchen, Emily Wong.</p>
 </div>
 
 <div class="pkgdown-footer-right">
