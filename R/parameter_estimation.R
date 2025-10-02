@@ -270,47 +270,69 @@ correct_theta <- function(estimates,
   if (!is.null(thetaFilter)) {
 
     keep <- which(estimates$bb_theta >= thetaFilter)
-    estimates_filt <- estimates[keep,]
-    theta <- estimates_filt$bb_theta
-    #Fitting locfit model
-    locfit_model <- locfit(log(bb_theta) ~ log(tot_gene_mean), data = estimates_filt)
-    locfit_predict <- predict(locfit_model, log(estimates_filt$tot_gene_mean), se.fit = T)
-    #Estimating values that fit into the locfit curve
-    theta_smoothed <- exp(locfit_predict$fit)
-    theta_smoothed[theta_smoothed < 0] <- 1e-06
+    estimates_filt <- estimates[keep, , drop = FALSE]
 
-    #Estimating the shrunk values of theta
-    thetaCorrected <- N/(N-K) * (theta + theta_smoothed*(delta/(N-K)))/(1 + (delta/(N-K)))
+    if (nrow(estimates_filt) > 0) {
+      theta <- estimates_filt$bb_theta
+      # Fitting locfit model
+      locfit_model <- locfit(log(bb_theta) ~ log(tot_gene_mean), data = estimates_filt)
+      locfit_predict <- predict(locfit_model, log(estimates_filt$tot_gene_mean), se.fit = TRUE)
+      # Estimated values on the locfit curve
+      theta_smoothed <- exp(locfit_predict$fit)
+      theta_smoothed[theta_smoothed < 0] <- min_theta
 
-    estimates_filt$theta_smoothed <- theta_smoothed
-    estimates_filt$thetaCorrected <- thetaCorrected
+      # Shrunk theta
+      thetaCorrected <- N/(N-K) * (theta + theta_smoothed*(delta/(N-K)))/(1 + (delta/(N-K)))
 
-    estimates_nofilt <- estimates[-keep,]
-    estimates_nofilt$theta_smoothed <- NA
-    estimates_nofilt$thetaCorrected <- estimates_nofilt$bb_theta
+      estimates_filt$theta_smoothed <- theta_smoothed
+      estimates_filt$thetaCorrected <- thetaCorrected
+    }
+
+    estimates_nofilt <- estimates[-keep, , drop = FALSE]
+    if (nrow(estimates_nofilt) > 0) {
+      estimates_nofilt$theta_smoothed <- NA
+      estimates_nofilt$thetaCorrected <- estimates_nofilt$bb_theta
+    }
 
     final <- rbind(estimates_filt, estimates_nofilt)
-    #ordering values by mean GE to fill in missing locfit values
-    final <- final[order(final$tot_gene_mean),]
-    final$theta_common <- na.approx(final$theta_smoothed, na.rm = FALSE)
-    final$resid <-  final$bb_theta - final$theta_common
+    # Order by mean expression to fill missing values
+    if (nrow(final) > 0) {
+      final <- final[order(final$tot_gene_mean), ]
+      final$theta_common <- na.approx(final$theta_smoothed, na.rm = FALSE)
+      final$resid <- final$bb_theta - final$theta_common
+      final <- final[rownames(estimates), ]
 
-    final <- final[rownames(estimates),]
-
-    if (shrinkAll == TRUE){
-      final$thetaCorrected[is.na(final$theta_smoothed)] <- N/(N-K) * (final$bb_theta[is.na(final$theta_smoothed)] +
-                                                                      final$theta_common[is.na(final$theta_smoothed)]*(delta/(N-K)))/(1 + (delta/(N-K)))
+      if (isTRUE(shrinkAll)){
+        idx_na <- is.na(final$theta_smoothed)
+        if (any(idx_na)) {
+          final$thetaCorrected[idx_na] <- N/(N-K) * (final$bb_theta[idx_na] +
+                                                     final$theta_common[idx_na]*(delta/(N-K)))/(1 + (delta/(N-K)))
+        }
+      }
+    } else {
+      final <- estimates
+      final$theta_smoothed <- NA
+      final$thetaCorrected <- final$bb_theta
+      final$theta_common <- NA
+      final$resid <- NA
     }
     return(final)
 
   } else {
+    # No filter: fit trend and shrink for all genes
+    theta <- estimates$bb_theta
+    locfit_model <- locfit(log(bb_theta) ~ log(tot_gene_mean), data = estimates)
+    locfit_predict <- predict(locfit_model, log(estimates$tot_gene_mean), se.fit = TRUE)
+    theta_smoothed <- exp(locfit_predict$fit)
+    theta_smoothed[theta_smoothed < 0] <- min_theta
+    thetaCorrected <- N/(N-K) * (theta + theta_smoothed*(delta/(N-K)))/(1 + (delta/(N-K)))
 
     estimates$theta_smoothed <- theta_smoothed
     estimates$thetaCorrected <- thetaCorrected
-    estimates <- estimates[order(estimates$tot_gene_mean),]
+    estimates <- estimates[order(estimates$tot_gene_mean), ]
     estimates$theta_common <- na.approx(estimates$theta_smoothed, na.rm = FALSE)
     estimates$resid <- estimates$bb_theta - estimates$theta_common
-
+    estimates <- estimates[order(match(rownames(estimates), rownames(estimates))), ]
     return(estimates)
   }
 
