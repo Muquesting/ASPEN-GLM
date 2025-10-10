@@ -1,0 +1,5 @@
+celltype,condition,n_condition_specific_filtered
+Cardiomyocyte,F1_Aged,480
+Cardiomyocyte,F1_Young,382
+Fibroblast,F1_Aged,148
+Fibroblast,F1_Young,85

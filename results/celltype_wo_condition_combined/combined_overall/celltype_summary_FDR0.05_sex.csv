@@ -1,0 +1,11 @@
+"celltype","mode","n_rows_bb_mean","n_rows_group_mean","n_rows_group_var","sig_FDR_bb_mean","sig_FDR_group_mean","sig_FDR_group_var"
+"Cardiomyocyte","sex",7940,7940,7940,3117,5367,1447
+"Coronary_EC","sex",3009,3009,3009,212,1786,1212
+"Endocardial_EC","sex",3730,3730,3730,215,2240,1426
+"Fibroblast","sex",5344,5344,5344,655,3586,1804
+"M2","sex",2079,2079,2079,137,1318,960
+"MacFib","sex",3452,3452,3452,153,2241,1538
+"Mesothelial","sex",2340,2340,2340,126,1476,1049
+"Myeloid","sex",1229,1229,1229,23,925,700
+"Pericytes","sex",3279,3279,3279,323,2218,1193
+"Unknown_1","sex",2132,2132,2132,52,1624,1275

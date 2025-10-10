@@ -1,0 +1,8 @@
+Cell type: MacFib
+Condition: F1_Aged
+Cells kept (F/M): 118
+Genes kept (after coverage filter): 2730
+Thresholds: min_counts=2, min_cells=10
+Design columns:
+ - (Intercept)
+ - sexM

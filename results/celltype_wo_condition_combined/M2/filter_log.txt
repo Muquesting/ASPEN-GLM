@@ -1,0 +1,7 @@
+Cell type: M2
+Cells kept (F/M): 124
+Genes kept (after coverage filter): 2079
+Thresholds: min_counts=2, min_cells=10
+Design columns:
+ - (Intercept)
+ - sexM

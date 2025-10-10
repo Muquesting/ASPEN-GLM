@@ -122,7 +122,8 @@ aspen_glm_pipeline <- function(a1_counts,
                               delta_set = delta_set,
                               N_set = N_set,
                               thetaFilter = thetaFilter,
-                              shrinkAll = shrinkAll)
+                              shrinkAll = shrinkAll,
+                              split_var_name = split.var)
     )
     out$estimates_group <- out_group$estimates_group
   }

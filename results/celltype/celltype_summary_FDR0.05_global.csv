@@ -1,0 +1,6 @@
+"celltype","mode","n_rows_bb_mean","n_rows_group_mean","n_rows_group_var","sig_FDR_bb_mean","sig_FDR_group_mean","sig_FDR_group_var"
+"Cardiomyocyte","global",7940,NA,NA,3121,NA,NA
+"Coronary_EC","global",3009,NA,NA,204,NA,NA
+"Endocardial_EC","global",3730,NA,NA,215,NA,NA
+"Fibroblast","global",5344,NA,NA,656,NA,NA
+"Pericytes","global",3279,NA,NA,320,NA,NA

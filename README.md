@@ -53,3 +53,19 @@ For the step-by-step guide on how to use ASPEN, please see [ASPEN tutorial](http
 
 A repository with the code to reproduce analyses from the ASPEN [manuscript](https://www.biorxiv.org/content/10.1101/2025.04.16.649227v1) can be found [here](https://github.com/ewonglab/ASPEN_manuscript/)
 
+
+
+
+
+
+
+## Update
+# scripts/validation.ipynb
+
+# results: 
+- results/celltype/bb_mean_results_norm.csv
+- results/celltype/bb_mean_results_raw.csv
+- results/all_celltypes/bb_mean_results_norm.csv
+- results/all_celltypes/bb_mean_results_raw.csv
+
+# changes:

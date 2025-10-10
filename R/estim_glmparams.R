@@ -74,10 +74,10 @@ estim_glmparams <- function(a1_counts,
       # GLM: model allelic ratio with covariates
       df_glm <- des_sub
       df_glm$resp <- y_sub / n_sub
-      df_glm$w <- n_sub
 
       fit <- tryCatch(
-        stats::glm(resp ~ ., family = stats::quasibinomial(), weights = w, data = df_glm),
+        stats::glm(resp ~ ., family = stats::quasibinomial(), weights = n_sub, data = df_glm,
+                   control = stats::glm.control(maxit = 100)),
         error = function(e) NULL
       )
 
@@ -189,7 +189,8 @@ estim_glmparams_bygroup <- function(a1_counts,
                                     delta_set = 50,
                                     N_set = 30,
                                     thetaFilter = 0,
-                                    shrinkAll = FALSE) {
+                                    shrinkAll = FALSE,
+                                    split_var_name = NULL) {
 
   assert_that(are_equal(dim(a1_counts), dim(tot_counts)),
               msg = "allele 1 and total counts matrices must be equal")
@@ -242,10 +243,10 @@ estim_glmparams_bygroup <- function(a1_counts,
       # fit global GLM for this gene
       df_glm <- des_sub
       df_glm$resp <- y_sub / n_sub
-      df_glm$w <- n_sub
 
       fit <- tryCatch(
-        stats::glm(resp ~ ., family = stats::quasibinomial(), weights = w, data = df_glm),
+        stats::glm(resp ~ ., family = stats::quasibinomial(), weights = n_sub, data = df_glm,
+                   control = stats::glm.control(maxit = 100)),
         error = function(e) NULL
       )
 
@@ -332,9 +333,9 @@ estim_glmparams_bygroup <- function(a1_counts,
           if (length(idx) >= min_cells) {
             df_glm_g <- des_sub[idx, , drop = FALSE]
             df_glm_g$resp <- y_sub[idx] / n_sub[idx]
-            df_glm_g$w <- n_sub[idx]
             fit_g <- tryCatch(
-              stats::glm(resp ~ ., family = stats::quasibinomial(), weights = w, data = df_glm_g),
+              stats::glm(resp ~ ., family = stats::quasibinomial(), weights = n_sub[idx], data = df_glm_g,
+                         control = stats::glm.control(maxit = 100)),
               error = function(e) NULL
             )
             if (!is.null(fit_g) && is.finite(fit_g$deviance)) {
@@ -407,6 +408,15 @@ estim_glmparams_bygroup <- function(a1_counts,
           phi = row$phi,
           stringsAsFactors = FALSE
         )
+        # Add a duplicate grouping column that matches split.var if requested
+        if (!is.null(split_var_name) && nzchar(split_var_name)) {
+          # store as character labels to match checks in group_* functions
+          out[[split_var_name]] <- as.character(g)
+          # place the split var column first if it differs from 'group'
+          if (split_var_name != "group") {
+            out <- out[, c(split_var_name, setdiff(colnames(out), split_var_name)), drop = FALSE]
+          }
+        }
         if (isTRUE(shrink)) {
           out$thetaCorrected <- row$thetaCorrected
           out$theta_common <- row$theta_common

@@ -1,0 +1,6 @@
+"celltype","mode","n_rows_bb_mean","n_rows_group_mean","n_rows_group_var","sig_FDR_bb_mean","sig_FDR_group_mean","sig_FDR_group_var"
+"Cardiomyocyte","sex",7940,7940,7940,3121,4915,1354
+"Coronary_EC","sex",3009,3009,3009,204,1522,1074
+"Endocardial_EC","sex",3730,3730,3730,215,1913,1214
+"Fibroblast","sex",5344,5344,5344,656,2698,1537
+"Pericytes","sex",3279,3279,3279,320,1857,1069

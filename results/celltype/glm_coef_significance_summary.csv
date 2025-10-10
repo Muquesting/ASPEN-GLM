@@ -1,0 +1,6 @@
+"celltype","n_genes_fit","median_r2_mcfadden","sex_terms","pct_sig_sex","cond_terms","pct_sig_condition"
+"Cardiomyocyte",870,0.00648104122124804,"sexM",0.143843498273878,"conditionF1_Young",0.120967741935484
+"Coronary_EC",123,0.0191204834924507,"sexM",0.0975609756097561,"conditionF1_Young",0.130081300813008
+"Endocardial_EC",157,0.014659812421706,"sexM",0.0700636942675159,"conditionF1_Young",0.0636942675159236
+"Fibroblast",340,0.0108370074597613,"sexM",0.114705882352941,"conditionF1_Young",0.0647058823529412
+"Pericytes",173,0.015880414083883,"sexM",0.0751445086705202,"conditionF1_Young",0.0404624277456647
