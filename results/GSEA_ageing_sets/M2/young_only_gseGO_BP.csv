@@ -1,0 +1,5 @@
+ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment
+GO:0009987,cellular process,13,0.3969604789749822,0.9730821791787729,0.5169902912621359,0.7309644670050761,0.7309644670050761,11,"tags=77%, list=65%, signal=115%",Aox1/Sptan1/Ugp2/Kcnd2/Tbc1d4/Mhrt/Tead1/Kmt2e/Rbfox1/Kdm4c
+GO:0008150,biological_process,15,-0.5,-0.8666566095182218,0.6898839137645107,0.7309644670050761,0.7309644670050761,17,"tags=100%, list=100%, signal=0%",Sptan1/Ugp2/Kcnd2/Tbc1d4/Mhrt/Tead1/Kmt2e/Rbfox1/Kdm4c/Lhfpl6/Celf1/Tanc2/Jph1/Usp25
+GO:0050789,regulation of biological process,10,-0.33072593226579056,-0.7749419696661215,0.7309644670050761,0.7309644670050761,0.7309644670050761,11,"tags=70%, list=65%, signal=60%",Tead1/Kmt2e/Rbfox1/Kdm4c/Celf1/Tanc2/Usp25
+GO:0065007,biological regulation,10,-0.33072593226579056,-0.7749419696661215,0.7309644670050761,0.7309644670050761,0.7309644670050761,11,"tags=70%, list=65%, signal=60%",Tead1/Kmt2e/Rbfox1/Kdm4c/Celf1/Tanc2/Usp25

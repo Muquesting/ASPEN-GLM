@@ -58,7 +58,7 @@ estim_glmparams <- function(a1_counts,
   for (k in seq_len(nrow(a1_counts))) {
     y <- as.numeric(a1_counts[k, ])
     n <- as.numeric(tot_counts[k, ])
-    keep <- is.finite(y) & is.finite(n) & (n >= min_counts)
+    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0)
 
     if (sum(keep) >= min_cells) {
       y_sub <- y[keep]
@@ -232,7 +232,7 @@ estim_glmparams_bygroup <- function(a1_counts,
   for (k in seq_len(nrow(a1_counts))) {
     y <- as.numeric(a1_counts[k, ])
     n <- as.numeric(tot_counts[k, ])
-    keep_base <- is.finite(y) & is.finite(n) & (n >= min_counts)
+    keep_base <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0)
 
     if (sum(keep_base) >= min_cells) {
       y_sub <- y[keep_base]

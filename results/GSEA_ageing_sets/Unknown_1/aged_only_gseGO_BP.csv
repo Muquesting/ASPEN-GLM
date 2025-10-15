@@ -1,0 +1,5 @@
+ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment
+GO:0050794,regulation of cellular process,10,-0.619360130619159,-1.5096863198600827,0.05452712348860099,0.1911949685534591,0.1911949685534591,7,"tags=60%, list=44%, signal=90%",Kcnq1ot1/Myrip/Medag/Frmd4a/Fmn1/Clec3b
+GO:0050789,regulation of biological process,11,-0.5689445049778795,-1.3665516258120312,0.14339622641509434,0.1911949685534591,0.1911949685534591,7,"tags=55%, list=44%, signal=98%",Kcnq1ot1/Myrip/Medag/Frmd4a/Fmn1/Clec3b
+GO:0065007,biological regulation,11,-0.5689445049778795,-1.3665516258120312,0.14339622641509434,0.1911949685534591,0.1911949685534591,7,"tags=55%, list=44%, signal=98%",Kcnq1ot1/Myrip/Medag/Frmd4a/Fmn1/Clec3b
+GO:0009987,cellular process,14,-0.5,-0.9799351252831895,0.4982078853046595,0.4982078853046595,0.4982078853046595,16,"tags=43%, list=100%, signal=0%",Kcnq1ot1/Myrip/Medag/Frmd4a/Fmn1/Clec3b

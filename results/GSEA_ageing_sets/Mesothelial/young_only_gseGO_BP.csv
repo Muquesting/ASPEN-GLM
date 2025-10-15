@@ -1,0 +1,3 @@
+ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment
+GO:0009987,cellular process,11,-0.3333961715626058,-0.6329267953926084,0.9393305439330544,0.972457627118644,0.972457627118644,3,"tags=64%, list=21%, signal=233%",Homer1/Stxbp6/Zfp609/Cpne8/Elp4/Clic4/Mctp1
+GO:0008150,biological_process,12,-0.32610202335393745,-0.5904108661994106,0.972457627118644,0.972457627118644,0.972457627118644,3,"tags=17%, list=21%, signal=92%",Clic4/Mctp1

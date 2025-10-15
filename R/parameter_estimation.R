@@ -440,7 +440,7 @@ glob_disp <- function(a1_counts, tot_counts, genes.excl, min_counts = 5) {
   tot_counts <- as.matrix(tot_counts)
   mode(tot_counts) <- "integer"
 
-  idx <- which(tot_counts > min_counts)
+  idx <- which(tot_counts > 0 & tot_counts >= min_counts)
   a1_filt <- as.vector(a1_counts[idx])
   tot_filt <- as.vector(tot_counts[idx])
   gene_names <- rep(rownames(a1_counts), dim(a1_counts)[2])[idx]
@@ -450,7 +450,7 @@ glob_disp <- function(a1_counts, tot_counts, genes.excl, min_counts = 5) {
   tot_filt <- tot_filt[!(gene_names %in% genes.excl)]
 
   df <- data.frame(y = a1_filt, n = tot_filt)
-  df <- df[df$n > min_counts,]
+  df <- df[df$n > 0 & df$n >= min_counts,]
 
   #Beta-binomial log-likelihood function
   lbetabin <- function(df, inits){
