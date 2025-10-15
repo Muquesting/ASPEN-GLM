@@ -44,8 +44,14 @@ tot_sparse <- tot_sparse[, keep_cells, drop = FALSE]
 meta <- meta[keep_cells, , drop = FALSE]
 rownames(meta) <- colnames(tot_sparse)
 
-# Gene filter: sufficient coverage across cells
-keep_genes <- Matrix::rowSums(tot_sparse >= min_counts) >= min_cells
+# Gene filters: low-expression drop plus optional coverage threshold
+keep_expr <- Matrix::rowSums(tot_sparse > 1) >= 10
+if (min_counts > 0) {
+  keep_cov <- Matrix::rowSums(tot_sparse >= min_counts) >= min_cells
+} else {
+  keep_cov <- rep(TRUE, nrow(tot_sparse))
+}
+keep_genes <- keep_expr & keep_cov
 a1_sparse  <- a1_sparse[keep_genes, , drop = FALSE]
 tot_sparse <- tot_sparse[keep_genes, , drop = FALSE]
 

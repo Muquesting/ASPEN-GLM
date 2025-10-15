@@ -16,12 +16,15 @@ suppressPackageStartupMessages({
 })
 
 args <- commandArgs(trailingOnly = TRUE)
-input_rds <- if (length(args) >= 1) args[[1]] else "data/aspensce_sexupdated.rds"
-root_out  <- if (length(args) >= 2) args[[2]] else file.path("results", "celltype")
-max_genes <- if (length(args) >= 3) as.integer(args[[3]]) else 2000L
-min_counts <- if (length(args) >= 4) as.integer(args[[4]]) else 5L
-min_cells  <- if (length(args) >= 5) as.integer(args[[5]]) else 50L
-top_k      <- if (length(args) >= 6) as.integer(args[[6]]) else 5L
+input_rds       <- if (length(args) >= 1) args[[1]] else "data/aspensce_sexupdated.rds"
+root_out        <- if (length(args) >= 2) args[[2]] else file.path("results", "celltype")
+max_genes       <- if (length(args) >= 3) as.integer(args[[3]]) else 2000L
+min_counts_est  <- if (length(args) >= 4) as.integer(args[[4]]) else 0L
+min_cells_est   <- if (length(args) >= 5) as.integer(args[[5]]) else 5L
+min_counts_test <- if (length(args) >= 6) as.integer(args[[6]]) else 0L
+min_cells_test  <- if (length(args) >= 7) as.integer(args[[7]]) else 5L
+min_counts_glob <- if (length(args) >= 8) as.integer(args[[8]]) else 5L
+top_k           <- if (length(args) >= 9) as.integer(args[[9]]) else 5L
 
 message("Loading ", input_rds)
 sce <- readRDS(input_rds)
@@ -77,7 +80,7 @@ for (ct in ct_keep) {
 
   # subset SCE to this cell type and clear-sex cells
   cells_ct <- which(cts == ct & sex_all %in% c("F","M"))
-  if (length(cells_ct) < (2*min_cells)) {
+  if (length(cells_ct) < (2*min_cells_est)) {
     warning("Skipping ", ct, ": not enough cells after filtering")
     next
   }
@@ -88,8 +91,14 @@ for (ct in ct_keep) {
   tots <- tots[, cells_ct, drop = FALSE]
   meta <- meta_full[cells_ct, , drop = FALSE]
 
-  # gene coverage filter on this subset
-  keep_genes <- Matrix::rowSums(tots >= min_counts) >= min_cells
+  # gene filters: low-expression drop plus optional coverage threshold
+  keep_expr <- Matrix::rowSums(tots > 1) >= 10
+  if (min_counts_est > 0) {
+    keep_cov <- Matrix::rowSums(tots >= min_counts_est) >= min_cells_est
+  } else {
+    keep_cov <- rep(TRUE, nrow(tots))
+  }
+  keep_genes <- keep_expr & keep_cov
   a1s  <- a1s[keep_genes, , drop = FALSE]
   tots <- tots[keep_genes, , drop = FALSE]
   if (!is.null(max_genes) && is.finite(max_genes) && nrow(tots) > max_genes) {
@@ -121,8 +130,11 @@ for (ct in ct_keep) {
     design = design,
     metadata = within(meta, { sex_group <- sex_present }),
     split.var = "sex_group",
-    min_counts = min_counts,
-    min_cells = min_cells,
+    min_counts = min_counts_est,
+    min_cells = min_cells_est,
+    min_counts_test = min_counts_test,
+    min_cells_test = min_cells_test,
+    min_counts_glob = min_counts_glob,
     dispersion_method = "deviance",
     use_effective_trials = TRUE,
     per_group_refit = FALSE,
@@ -295,7 +307,8 @@ for (ct in ct_keep) {
   lines <- c(
     sprintf("Cell type: %s", ct),
     sprintf("Cells kept (F/M): %d", ncol(tot)),
-    sprintf("Genes kept (after coverage filter): %d", nrow(tot)),
+    sprintf("Genes kept (after expression & coverage filters): %d", nrow(tot)),
+    "Expression filter: rowSums(tot > 1) >= 10",
     sprintf("Thresholds: min_counts=%d, min_cells=%d", min_counts, min_cells),
     "Design columns:",
     paste0(" - ", colnames(design))

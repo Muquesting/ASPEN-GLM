@@ -33,7 +33,13 @@ a1s <- a1s[, keep_cells, drop = FALSE]
 tots <- tots[, keep_cells, drop = FALSE]
 meta <- meta[keep_cells, , drop = FALSE]
 
-keep_genes <- Matrix::rowSums(tots >= min_counts) >= min_cells
+keep_expr <- Matrix::rowSums(tots > 1) >= 10
+if (min_counts > 0) {
+  keep_cov <- Matrix::rowSums(tots >= min_counts) >= min_cells
+} else {
+  keep_cov <- rep(TRUE, nrow(tots))
+}
+keep_genes <- keep_expr & keep_cov
 a1s <- a1s[keep_genes, , drop = FALSE]
 tots <- tots[keep_genes, , drop = FALSE]
 if (!is.null(max_genes) && is.finite(max_genes) && nrow(tots) > max_genes) {
@@ -61,4 +67,3 @@ dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 outfile <- file.path(out_dir, "glm_diagnostics.csv")
 utils::write.csv(diag, outfile, row.names = TRUE)
 cat("Wrote:", outfile, "\n")
-

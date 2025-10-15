@@ -1,8 +1,9 @@
 Cell type: Unknown_1
 Condition: F1_Aged
 Cells kept (F/M): 67
-Genes kept (after coverage filter): 1405
-Thresholds: min_counts=2, min_cells=10
+Genes kept (after expression & coverage filters): 1405
+Expression filter: rowSums(tot > 1) >= 10
+Thresholds (est/test/glob): min_counts_est=0, min_cells_est=5, min_counts_test=0, min_cells_test=5, min_counts_glob=5
 Design columns:
  - (Intercept)
  - sexM

@@ -1,0 +1,72 @@
+ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment
+GO:0006793,phosphorus metabolic process,10,0.6055101694038327,1.366154528827659,0.12414965986394558,1,1,10,"tags=40%, list=20%, signal=40%",Gck/Nt5e/Ubash3b/Slc27a1
+GO:0006796,phosphate-containing compound metabolic process,10,0.6055101694038327,1.366154528827659,0.12414965986394558,1,1,10,"tags=40%, list=20%, signal=40%",Gck/Nt5e/Ubash3b/Slc27a1
+GO:0008150,biological_process,48,-0.5948210667951044,-1.3144708307438313,0.03308304223047324,1,1,38,"tags=77%, list=75%, signal=334%",Trip11/Ano6/Usp13/Sptan1/Trpc3/Stk39/Limd1/Hand2os1/Cacnb2/Pygb/9530026P05Rik/Rbm20/Rora/Slc12a2/Pde4b/Trim54/Hibadh/Dtna/Mapk10/Plxna4/Smc6/Usp25/Snhg14/Atp1b1/Kank1/Znrf3/Mpped2/Slc22a5/Tmem116/Gm12092/Gulp1/Serinc3/Tbx3/Kcnip4/Itpr2/Cradd/Cdcp3
+GO:0042221,response to chemical,17,0.4882786808502799,1.2400035949817385,0.20967741935483872,1,1,10,"tags=29%, list=20%, signal=35%",Cfap69/Gck/Nt5e/Scn3a/Slc27a1
+GO:0032501,multicellular organismal process,25,0.4484493298833806,1.1985497431334897,0.20415879017013233,1,1,10,"tags=24%, list=20%, signal=38%",Cfap69/Lsamp/Nt5e/Ubash3b/Scn3a/Slc27a1
+GO:0044238,primary metabolic process,22,0.4392981268233467,1.1718941569023356,0.25636363636363635,1,1,12,"tags=32%, list=24%, signal=43%",Gck/Nt5e/Asb18/Ubash3b/Zfp697/Slc27a1/Rbm28
+GO:0048878,chemical homeostasis,10,0.5108790573848538,1.1526474255860877,0.3010204081632653,1,1,7,"tags=30%, list=14%, signal=32%",Gck/Nt5e/Ubash3b
+GO:0080090,regulation of primary metabolic process,11,0.4942323411259014,1.1452311838701599,0.30574324324324326,1,1,10,"tags=36%, list=20%, signal=37%",Gck/Ubash3b/Zfp697/Slc27a1
+GO:0003008,system process,10,0.46830432879692807,1.056590148247097,0.4098639455782313,1,1,10,"tags=30%, list=20%, signal=30%",Cfap69/Scn3a/Slc27a1
+GO:0008152,metabolic process,24,0.39730458403321917,1.0495590070571632,0.40076335877862596,1,1,12,"tags=29%, list=24%, signal=42%",Gck/Nt5e/Asb18/Ubash3b/Zfp697/Slc27a1/Rbm28
+GO:0019222,regulation of metabolic process,14,0.4152758453390901,1.0166262915326214,0.4497354497354497,1,1,10,"tags=29%, list=20%, signal=32%",Gck/Ubash3b/Zfp697/Slc27a1
+GO:0042592,homeostatic process,14,0.41439510698831983,1.0144701782565817,0.4532627865961199,1,1,10,"tags=29%, list=20%, signal=32%",Gck/Nt5e/Ubash3b/Slc27a1
+GO:0009058,biosynthetic process,16,0.39511714864344755,0.9836270237177582,0.4891304347826087,1,1,12,"tags=31%, list=24%, signal=35%",Gck/Nt5e/Zfp697/Slc27a1/Rbm28
+GO:0050896,response to stimulus,30,0.34869367685108077,0.9500830998960141,0.5441176470588235,1,1,8,"tags=20%, list=16%, signal=41%",Cfap69/Gck/Nt5e/Asb18/Ubash3b/Scn3a
+GO:0023052,signaling,24,-0.3355417318467216,-0.9486703809805178,0.5899581589958159,1,1,7,"tags=54%, list=14%, signal=88%",Dtna/Mapk10/Plxna4/Usp25/Atp1b1/Kank1/Znrf3/Tmem116/Serinc3/Tbx3/Kcnip4/Itpr2/Cradd
+GO:1901700,response to oxygen-containing compound,10,0.4190561495890571,0.9454762042358981,0.5476190476190477,1,1,10,"tags=30%, list=20%, signal=30%",Gck/Nt5e/Slc27a1
+GO:0065007,biological regulation,36,0.34223059507288467,0.9386946757301842,0.583180987202925,1,1,10,"tags=22%, list=20%, signal=61%",Cfap69/Gck/Nt5e/Asb18/Ubash3b/Scn3a/Zfp697/Slc27a1
+GO:0009987,cellular process,42,0.36501628241119355,0.937164672549236,0.6028880866425993,1,1,10,"tags=21%, list=20%, signal=98%",Cfap69/Lsamp/Gck/Nt5e/Asb18/Ubash3b/Scn3a/Zfp697/Slc27a1
+GO:0016043,cellular component organization,14,0.3766699222562547,0.9221161078669926,0.5784832451499118,1,1,7,"tags=14%, list=14%, signal=17%",Cfap69/Ubash3b
+GO:0071840,cellular component organization or biogenesis,14,0.3766699222562547,0.9221161078669926,0.5784832451499118,1,1,7,"tags=14%, list=14%, signal=17%",Cfap69/Ubash3b
+GO:0007154,cell communication,25,-0.31508962834460436,-0.8907636882940738,0.693446088794926,1,1,7,"tags=20%, list=14%, signal=34%",Serinc3/Tbx3/Kcnip4/Itpr2/Cradd
+GO:0048856,anatomical structure development,15,0.3558894873604402,0.88573780728144,0.6212389380530974,1,1,1,"tags=7%, list=2%, signal=9%",Cfap69
+GO:0051716,cellular response to stimulus,25,-0.3131687422477091,-0.8853333109330268,0.6976744186046512,1,1,20,"tags=52%, list=39%, signal=62%",Mapk10/Plxna4/Smc6/Usp25/Atp1b1/Kank1/Znrf3/Tmem116/Serinc3/Tbx3/Kcnip4/Itpr2/Cradd
+GO:0060255,regulation of macromolecule metabolic process,13,0.36821145157086416,0.8848800354209653,0.6114982578397212,1,1,9,"tags=23%, list=18%, signal=26%",Gck/Ubash3b/Zfp697
+GO:0032502,developmental process,16,0.34746884764544733,0.8650086426710665,0.6394927536231884,1,1,1,"tags=6%, list=2%, signal=9%",Cfap69
+GO:0048522,positive regulation of cellular process,19,0.32961385676572114,0.8616361306948964,0.6487455197132617,1,1,4,"tags=11%, list=8%, signal=15%",Cfap69/Gck
+GO:0006139,nucleobase-containing compound metabolic process,14,0.3514060542151345,0.8602682716283077,0.6701940035273368,1,1,12,"tags=29%, list=24%, signal=30%",Gck/Nt5e/Zfp697/Rbm28
+GO:0043170,macromolecule metabolic process,20,0.32024534429475215,0.841241172818578,0.7017857142857142,1,1,9,"tags=20%, list=18%, signal=27%",Gck/Asb18/Ubash3b/Zfp697
+GO:0009889,regulation of biosynthetic process,12,0.35202723386521406,0.8273429054116667,0.6843910806174958,1,1,10,"tags=25%, list=20%, signal=26%",Gck/Zfp697/Slc27a1
+GO:0048518,positive regulation of biological process,20,0.31256660098025046,0.8210701534837309,0.7232142857142857,1,1,4,"tags=10%, list=8%, signal=15%",Cfap69/Gck
+GO:0080134,regulation of response to stress,11,0.3479998643486776,0.8063824713024321,0.714527027027027,1,1,7,"tags=18%, list=14%, signal=20%",Nt5e/Ubash3b
+GO:0034220,monoatomic ion transmembrane transport,10,-0.35674620987893346,-0.8057330251193942,0.6771084337349398,1,1,5,"tags=20%, list=10%, signal=22%",Kcnip4/Itpr2
+GO:0098655,monoatomic cation transmembrane transport,10,-0.35674620987893346,-0.8057330251193942,0.6771084337349398,1,1,5,"tags=20%, list=10%, signal=22%",Kcnip4/Itpr2
+GO:0098660,inorganic ion transmembrane transport,10,-0.35674620987893346,-0.8057330251193942,0.6771084337349398,1,1,5,"tags=20%, list=10%, signal=22%",Kcnip4/Itpr2
+GO:0098662,inorganic cation transmembrane transport,10,-0.35674620987893346,-0.8057330251193942,0.6771084337349398,1,1,5,"tags=20%, list=10%, signal=22%",Kcnip4/Itpr2
+GO:0009966,regulation of signal transduction,11,-0.3490195719515715,-0.8008481359590784,0.7007299270072993,1,1,7,"tags=55%, list=14%, signal=60%",Usp25/Kank1/Znrf3/Serinc3/Kcnip4/Cradd
+GO:0048519,negative regulation of biological process,17,0.313962379298926,0.7973202482273914,0.7401433691756273,1,1,10,"tags=24%, list=20%, signal=28%",Gck/Nt5e/Ubash3b/Slc27a1
+GO:0010646,regulation of cell communication,12,-0.33998997108462653,-0.7921407243716191,0.7326968973747017,1,1,7,"tags=50%, list=14%, signal=56%",Usp25/Kank1/Znrf3/Serinc3/Kcnip4/Cradd
+GO:0023051,regulation of signaling,12,-0.33998997108462653,-0.7921407243716191,0.7326968973747017,1,1,7,"tags=50%, list=14%, signal=56%",Usp25/Kank1/Znrf3/Serinc3/Kcnip4/Cradd
+GO:0007165,signal transduction,20,-0.29357230270512674,-0.7870442998609398,0.8280542986425339,1,1,20,"tags=55%, list=39%, signal=55%",Mapk10/Plxna4/Usp25/Atp1b1/Kank1/Znrf3/Tmem116/Serinc3/Kcnip4/Itpr2/Cradd
+GO:0070887,cellular response to chemical stimulus,11,0.3342856174008268,0.7746039291855901,0.75,1,1,10,"tags=27%, list=20%, signal=28%",Gck/Scn3a/Slc27a1
+GO:0048731,system development,10,-0.34146341463414637,-0.7712159020109483,0.708433734939759,1,1,38,"tags=100%, list=75%, signal=32%",Ano6/Hand2os1/Rbm20/Rora/Slc12a2/Plxna4/Kank1/Slc22a5/Tbx3
+GO:0034654,nucleobase-containing compound biosynthetic process,10,0.33863548520940767,0.7640307712685886,0.7568027210884354,1,1,12,"tags=30%, list=24%, signal=29%",Nt5e/Zfp697/Rbm28
+GO:0050789,regulation of biological process,35,0.26942718468940724,0.7353096957483106,0.8682745825602969,1,1,10,"tags=20%, list=20%, signal=51%",Cfap69/Gck/Nt5e/Asb18/Ubash3b/Zfp697/Slc27a1
+GO:0006811,monoatomic ion transport,12,0.30746451631601074,0.7226105305741171,0.8147512864493996,1,1,8,"tags=25%, list=16%, signal=28%",Gck/Ubash3b/Scn3a
+GO:0006812,monoatomic cation transport,12,0.30746451631601074,0.7226105305741171,0.8147512864493996,1,1,8,"tags=25%, list=16%, signal=28%",Gck/Ubash3b/Scn3a
+GO:0030001,metal ion transport,12,0.30746451631601074,0.7226105305741171,0.8147512864493996,1,1,8,"tags=25%, list=16%, signal=28%",Gck/Ubash3b/Scn3a
+GO:0032879,regulation of localization,10,-0.3120252230122622,-0.7047279547455951,0.7590361445783133,1,1,5,"tags=20%, list=10%, signal=22%",Kcnip4/Itpr2
+GO:0065008,regulation of biological quality,17,0.2754021476891995,0.6993949697038125,0.8548387096774194,1,1,21,"tags=53%, list=41%, signal=47%",Gck/Ubash3b/Scn3a/Ano6/Usp13/Sptan1/Trpc3/Stk39/Limd1
+GO:0006810,transport,17,-0.2737947918045398,-0.6943211103924508,0.8738738738738738,1,1,8,"tags=29%, list=16%, signal=37%",Slc22a5/Gulp1/Tbx3/Kcnip4/Itpr2
+GO:0051179,localization,17,-0.2737947918045398,-0.6943211103924508,0.8738738738738738,1,1,8,"tags=29%, list=16%, signal=37%",Slc22a5/Gulp1/Tbx3/Kcnip4/Itpr2
+GO:0051234,establishment of localization,17,-0.2737947918045398,-0.6943211103924508,0.8738738738738738,1,1,8,"tags=29%, list=16%, signal=37%",Slc22a5/Gulp1/Tbx3/Kcnip4/Itpr2
+GO:0006950,response to stress,22,-0.24756510890418026,-0.6800489550948441,0.9070796460176991,1,1,7,"tags=18%, list=14%, signal=28%",Serinc3/Tbx3/Itpr2/Cradd
+GO:0048583,regulation of response to stimulus,18,0.26165226099390365,0.6769999816885749,0.8940754039497307,1,1,7,"tags=17%, list=14%, signal=22%",Gck/Nt5e/Ubash3b
+GO:0035556,intracellular signal transduction,11,-0.291790472103533,-0.6695322396050566,0.8175182481751825,1,1,20,"tags=55%, list=39%, signal=42%",Mapk10/Usp25/Atp1b1/Kank1/Serinc3/Itpr2
+GO:0010556,regulation of macromolecule biosynthetic process,11,0.28308396416932274,0.6559598723987694,0.8665540540540541,1,1,9,"tags=18%, list=18%, signal=19%",Gck/Zfp697
+GO:0007166,cell surface receptor signaling pathway,11,0.275,0.6372277760027567,0.8783783783783784,1,1,40,"tags=100%, list=78%, signal=28%",Ubash3b/Slc27a1/Ano6/Stk39/Limd1/Rora/Pde4b/Plxna4/Usp25/Kank1/Znrf3
+GO:0055085,transmembrane transport,13,-0.26491130297053256,-0.6233795304512536,0.8927738927738927,1,1,5,"tags=23%, list=10%, signal=28%",Slc22a5/Kcnip4/Itpr2
+GO:0051641,cellular localization,12,-0.26721790041697946,-0.6225894855842136,0.8663484486873508,1,1,5,"tags=25%, list=10%, signal=29%",Slc22a5/Kcnip4/Itpr2
+GO:0007275,multicellular organism development,13,-0.2600214817744498,-0.6118729831389114,0.9090909090909091,1,1,15,"tags=38%, list=29%, signal=36%",Atp1b1/Kank1/Znrf3/Slc22a5/Tbx3
+GO:0050794,regulation of cellular process,32,0.22398457089428625,0.6084090766951242,0.9552238805970149,1,1,10,"tags=19%, list=20%, signal=40%",Cfap69/Gck/Asb18/Ubash3b/Zfp697/Slc27a1
+GO:0009605,response to external stimulus,12,0.2559308381219734,0.6014948357016875,0.9365351629502573,1,1,7,"tags=17%, list=14%, signal=19%",Nt5e/Ubash3b
+GO:0009059,macromolecule biosynthetic process,14,0.23326012900681548,0.5710382209227368,0.9470899470899471,1,1,17,"tags=36%, list=33%, signal=33%",Gck/Zfp697/Rbm28/Trip11/Usp13
+GO:0048523,negative regulation of cellular process,15,0.21467825160911577,0.5342912634524982,0.9628318584070796,1,1,10,"tags=20%, list=20%, signal=23%",Gck/Ubash3b/Slc27a1
+GO:0033036,macromolecule localization,10,0.22969868565495705,0.5182471171082764,0.9608843537414966,1,1,16,"tags=40%, list=31%, signal=34%",Gck/Slc27a1/Trip11/Ano6
+GO:0010467,gene expression,12,-0.20512820512820512,-0.47792705320375806,0.9761336515513126,1,1,44,"tags=100%, list=86%, signal=18%",Rbm28/Usp13/Limd1/Hand2os1/Rbm20/Rora/Pde4b/Mapk10/Usp25/Atp1b1/Tbx3
+GO:0090304,nucleic acid metabolic process,11,-0.2,-0.45891302397803685,0.9854014598540146,1,1,44,"tags=100%, list=86%, signal=17%",Rbm28/Usp13/Limd1/Hand2os1/Rbm20/Rora/Mapk10/Smc6/Usp25/Tbx3
+GO:0010468,regulation of gene expression,10,-0.1951219512195122,-0.4406948011491133,0.9951807228915662,1,1,44,"tags=80%, list=86%, signal=14%",Limd1/Hand2os1/Rbm20/Rora/Pde4b/Mapk10/Atp1b1/Tbx3
+GO:0016070,RNA metabolic process,10,-0.1951219512195122,-0.4406948011491133,0.9951807228915662,1,1,44,"tags=100%, list=86%, signal=17%",Rbm28/Usp13/Limd1/Hand2os1/Rbm20/Rora/Mapk10/Usp25/Tbx3
+GO:0051239,regulation of multicellular organismal process,12,0.16753906433378207,0.3937543545535342,1,1,1,10,"tags=17%, list=20%, signal=18%",Ubash3b/Slc27a1
+GO:0002376,immune system process,10,0.14645976893225868,0.3304431316403109,0.9982993197278912,1,1,7,"tags=10%, list=14%, signal=11%",Ubash3b

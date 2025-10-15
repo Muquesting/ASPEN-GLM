@@ -17,8 +17,15 @@
 #' @param metadata Optional data.frame with cell metadata (rows = cells) if running
 #'   group tests.
 #' @param split.var Optional column name in `metadata` defining groups.
-#' @param min_counts Minimum reads per cell to include (default 0).
-#' @param min_cells Minimum cells per gene to fit (default 5).
+#' @param min_counts Minimum reads per cell for parameter estimation (default 0).
+#' @param min_cells Minimum cells per gene for parameter estimation (default 5).
+#' @param min_counts_test Optional minimum reads per cell for hypothesis tests
+#'   (defaults to `min_counts`).
+#' @param min_cells_test Optional minimum cells per gene for hypothesis tests
+#'   (defaults to `min_cells`).
+#' @param min_counts_glob Optional minimum reads per cell when estimating the
+#'   global null via `glob_disp()` (defaults to `5` when `min_counts = 0`,
+#'   otherwise matches `min_counts`).
 #' @param dispersion_method "deviance" or "pearson" for raw dispersion.
 #' @param use_effective_trials Logical; if TRUE, uses effective trials when mapping
 #'   quasi dispersion to beta–binomial.
@@ -49,6 +56,9 @@ aspen_glm_pipeline <- function(a1_counts,
                                split.var = NULL,
                                min_counts = 0,
                                min_cells = 5,
+                               min_counts_test = NULL,
+                               min_cells_test = NULL,
+                               min_counts_glob = NULL,
                                dispersion_method = c("deviance", "pearson"),
                                use_effective_trials = TRUE,
                                per_group_refit = FALSE,
@@ -73,6 +83,12 @@ aspen_glm_pipeline <- function(a1_counts,
   assert_that(!is.null(rownames(design)), msg = "design must have rownames matching cell barcodes")
   assert_that(are_equal(rownames(design), colnames(tot_counts)),
               msg = "rownames(design) must match colnames(count matrices)")
+
+  if (is.null(min_counts_test)) min_counts_test <- min_counts
+  if (is.null(min_cells_test)) min_cells_test <- min_cells
+  if (is.null(min_counts_glob)) {
+    min_counts_glob <- if (min_counts == 0) 5 else min_counts
+  }
 
   # 1) Global GLM estimates
   estimates <- estim_glmparams(a1_counts, tot_counts, design,
@@ -133,7 +149,7 @@ aspen_glm_pipeline <- function(a1_counts,
   glob_params <- NULL
   if (isTRUE(run_bb_mean) || isTRUE(run_group_var)) {
     if (is.character(glob_mean) && glob_mean == "estimate") {
-      glob_params <- glob_disp(a1_counts, tot_counts, genes.excl = genes.excl, min_counts = max(1, min_counts))
+      glob_params <- glob_disp(a1_counts, tot_counts, genes.excl = genes.excl, min_counts = min_counts_glob)
     } else if (is.numeric(glob_mean) && length(glob_mean) == 1) {
       glob_params <- c(mu = as.numeric(glob_mean), theta = NA_real_, alpha = NA_real_, beta = NA_real_)
     } else {
@@ -145,14 +161,14 @@ aspen_glm_pipeline <- function(a1_counts,
     out$res_bb_mean <- bb_mean(a1_counts, tot_counts,
                                estimates = estimates_shrunk,
                                glob_params = glob_params,
-                               min_cells = min_cells,
-                               min_counts = min_counts)
+                               min_cells = min_cells_test,
+                               min_counts = min_counts_test)
   }
 
   if (isTRUE(run_group_mean)) {
     out$res_group_mean <- group_mean(a1_counts, tot_counts,
                                     metadata = metadata, split.var = split.var,
-                                    min_counts = min_counts, min_cells = min_cells,
+                                    min_counts = min_counts_test, min_cells = min_cells_test,
                                     estimates = estimates_shrunk,
                                     estimates_group = out$estimates_group,
                                     equalGroups = TRUE)
@@ -161,7 +177,7 @@ aspen_glm_pipeline <- function(a1_counts,
   if (isTRUE(run_group_var)) {
     out$res_group_var <- group_var(a1_counts, tot_counts,
                                    metadata = metadata, split.var = split.var,
-                                   min_counts = min_counts, min_cells = min_cells,
+                                   min_counts = min_counts_test, min_cells = min_cells_test,
                                    mean_null = as.numeric(glob_params[["mu"]]),
                                    estimates = estimates_shrunk,
                                    estimates_group = out$estimates_group,

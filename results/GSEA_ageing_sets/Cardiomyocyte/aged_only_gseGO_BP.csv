@@ -1,0 +1,907 @@
+ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment
+GO:0007281,germ cell development,15,-0.8940631895945094,-1.7369934577523558,9.440241764520458e-4,0.42764295193277674,0.42764295193277674,4,"tags=20%, list=1%, signal=20%",Agfg2/Cfap58/4930447C04Rik
+GO:0022412,cellular process involved in reproduction in multicellular organism,15,-0.8940631895945094,-1.7369934577523558,9.440241764520458e-4,0.42764295193277674,0.42764295193277674,4,"tags=20%, list=1%, signal=20%",Agfg2/Cfap58/4930447C04Rik
+GO:0007283,spermatogenesis,21,-0.8410605707412115,-1.686024512785734,0.0026978171549169707,0.7458406554501898,0.7458406554501898,4,"tags=19%, list=1%, signal=20%",Agfg2/Ift25/Cfap58/4930447C04Rik
+GO:0048609,multicellular organismal reproductive process,36,-0.7929134685487804,-1.6668585473758455,0.003292894726049403,0.7458406554501898,0.7458406554501898,11,"tags=11%, list=2%, signal=12%",Ift25/Enpp2/Cfap58/4930447C04Rik
+GO:0022414,reproductive process,49,-0.7418736599222772,-1.6167555740965078,0.00431848619079279,0.7825096977716536,0.7825096977716536,34,"tags=10%, list=5%, signal=10%",Ift25/Hfe/Enpp2/Cfap58/4930447C04Rik
+GO:0051090,regulation of DNA-binding transcription factor activity,21,-0.8221534885965203,-1.6481226005214251,0.0054222787154232805,0.8187640860289154,0.8187640860289154,2,"tags=14%, list=0%, signal=15%",Enpp1/Ripk2/4930447C04Rik
+GO:0009100,glycoprotein metabolic process,10,0.8911709237718493,1.6964803452007227,0.014338728662290277,0.9464044329270627,0.9464044329270628,10,"tags=20%, list=2%, signal=20%",Gal3st2c/Fut2
+GO:0048232,male gamete generation,22,-0.8275918959864812,-1.6637869317321299,0.012497057090986937,0.9464044329270627,0.9464044329270628,4,"tags=18%, list=1%, signal=19%",Agfg2/Ift25/Cfap58/4930447C04Rik
+GO:0007276,gamete generation,28,-0.7940399590476273,-1.635789833117641,0.012248110611708695,0.9464044329270627,0.9464044329270628,4,"tags=11%, list=1%, signal=11%",Ift25/Cfap58/4930447C04Rik
+GO:0006310,DNA recombination,12,-0.86213820688728,-1.618001886116024,0.01312351118766387,0.9464044329270627,0.9464044329270628,30,"tags=25%, list=5%, signal=24%",Rad52/Bcl11b/4930447C04Rik
+GO:0019953,sexual reproduction,34,-0.7708229566816016,-1.6089957093039768,0.01268636692361541,0.9464044329270627,0.9464044329270628,4,"tags=9%, list=1%, signal=9%",Ift25/Cfap58/4930447C04Rik
+GO:0003006,developmental process involved in reproduction,37,-0.749652220529035,-1.5874427407397922,0.008141495325976652,0.9464044329270627,0.9464044329270628,4,"tags=19%, list=1%, signal=20%",Rps6/Cbl/Fgf7/Agfg2/Ift25/Cfap58/4930447C04Rik
+GO:0022607,cellular component assembly,132,-0.5671607339139169,-1.4591843266678888,0.01462435106068309,0.9464044329270627,0.9464044329270628,111,"tags=23%, list=17%, signal=24%",Smarca4/Gch1/Rnf135/Mphosph9/Bbs2/Slc1a5/Ric3/Nde1/Col3a1/Agt/Med4/Ripk2/Ankrd27/Rps6/Arc/Rad52/Fbxl2/Ninj1/Agfg2/Lcmt1/Twf1/Kctd8/Mdm1/Arl2/Ift25/Dnai4/Tenm2/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0044085,cellular component biogenesis,140,-0.553943172390299,-1.4390997625119732,0.008408314676712714,0.9464044329270627,0.9464044329270628,116,"tags=24%, list=18%, signal=25%",Rps3a1/Ccdc88a/Smarca4/Gch1/Rnf135/Mphosph9/Bbs2/Slc1a5/Ric3/Nde1/Col3a1/Agt/Med4/Ripk2/Ankrd27/Rps6/Arc/Rad52/Fbxl2/Ninj1/Agfg2/Lcmt1/Twf1/Kctd8/Mdm1/Arl2/Ift25/Dnai4/Tenm2/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0000280,nuclear division,14,-0.8338711485597354,-1.618884694782313,0.030180221038626512,1,1,2,"tags=14%, list=0%, signal=15%",Lcmt1/4930447C04Rik
+GO:0048285,organelle fission,17,-0.8195192236858401,-1.6116675521907586,0.023219727639173928,1,1,2,"tags=12%, list=0%, signal=12%",Lcmt1/4930447C04Rik
+GO:0098813,nuclear chromosome segregation,13,-0.8352658970674424,-1.6068662560731246,0.02557978610505875,1,1,2,"tags=15%, list=0%, signal=16%",Lcmt1/4930447C04Rik
+GO:0051276,chromosome organization,21,-0.7805849658362543,-1.5647926350323342,0.01969972111116125,1,1,2,"tags=10%, list=0%, signal=10%",Lcmt1/4930447C04Rik
+GO:0007059,chromosome segregation,17,-0.7926471951026378,-1.5588209864515123,0.05947955390334572,1,1,2,"tags=12%, list=0%, signal=12%",Lcmt1/4930447C04Rik
+GO:1901137,carbohydrate derivative biosynthetic process,23,0.7609592990044378,1.5561599779980393,0.04978135010311209,1,1,10,"tags=9%, list=2%, signal=9%",Gal3st2c/Fut2
+GO:0006302,double-strand break repair,18,-0.7766958813544428,-1.5358371617537627,0.06605504587155964,1,1,2,"tags=11%, list=0%, signal=11%",Rad52/4930447C04Rik
+GO:0007286,spermatid development,10,-0.8186013234090418,-1.5179569386226601,0.11385199240986717,1,1,4,"tags=20%, list=1%, signal=20%",Agfg2/Cfap58
+GO:0048515,spermatid differentiation,10,-0.8186013234090418,-1.5179569386226601,0.11385199240986717,1,1,4,"tags=20%, list=1%, signal=20%",Agfg2/Cfap58
+GO:0007018,microtubule-based movement,16,-0.7732921611666375,-1.5086949041359061,0.08823529411764706,1,1,34,"tags=19%, list=5%, signal=18%",Ift25/Dnai4/Cfap58
+GO:0007009,plasma membrane organization,12,0.7599551479096176,1.4849141455405346,0.14163090128755365,1,1,24,"tags=17%, list=4%, signal=16%",Ano5/Plscr4
+GO:0061351,neural precursor cell proliferation,13,0.7652742735941798,1.482566342757566,0.11062906724511931,1,1,33,"tags=15%, list=5%, signal=15%",Dixdc1/Fgf2
+GO:0120034,positive regulation of plasma membrane bounded cell projection assembly,10,-0.7954203051008719,-1.4749716824558525,0.1366223908918406,1,1,16,"tags=30%, list=2%, signal=30%",Ccdc88a/Tenm2/Myo3b
+GO:0006281,DNA repair,26,-0.7071177892499692,-1.4573894896651787,0.09618874773139746,1,1,2,"tags=8%, list=0%, signal=8%",Hmgn1/4930447C04Rik
+GO:0009617,response to bacterium,24,0.7092322892008653,1.4555693876970546,0.08968609865470852,1,1,24,"tags=8%, list=4%, signal=8%",Inhca/Plscr4
+GO:0015850,organic hydroxy compound transport,14,-0.740089480033018,-1.4368161484711979,0.15285451197053407,1,1,49,"tags=21%, list=8%, signal=20%",Slc2a13/Gdnf/Slc10a6
+GO:0046488,phosphatidylinositol metabolic process,13,0.7396858973702342,1.43299396503047,0.16052060737527116,1,1,25,"tags=15%, list=4%, signal=15%",Ip6k3/Inpp1
+GO:0030031,cell projection assembly,33,-0.681523749051648,-1.4269241264324652,0.08550185873605948,1,1,47,"tags=18%, list=7%, signal=18%",Twf1/Ift25/Dnai4/Tenm2/Myo3b/Cfap58
+GO:0120031,plasma membrane bounded cell projection assembly,33,-0.681523749051648,-1.4269241264324652,0.08550185873605948,1,1,47,"tags=18%, list=7%, signal=18%",Twf1/Ift25/Dnai4/Tenm2/Myo3b/Cfap58
+GO:0060070,canonical Wnt signaling pathway,18,0.7178949712854861,1.4226614692481137,0.12691466083150985,1,1,35,"tags=17%, list=5%, signal=16%",Dixdc1/Fgf2/Nphp3
+GO:0032535,regulation of cellular component size,11,-0.7620239125728188,-1.421334325281872,0.17383177570093458,1,1,47,"tags=27%, list=7%, signal=26%",Twf1/Atp2b2/Myo3b
+GO:0030111,regulation of Wnt signaling pathway,18,0.7147084148438901,1.4163466303784036,0.13129102844638948,1,1,35,"tags=17%, list=5%, signal=16%",Dixdc1/Fgf2/Nphp3
+GO:0009913,epidermal cell differentiation,13,-0.7338118700278371,-1.411691218800522,0.1756007393715342,1,1,32,"tags=31%, list=5%, signal=30%",Cdkn1a/Bcl11b/Atp2b2/Myo3b
+GO:0008544,epidermis development,18,-0.7116477231403227,-1.4072110404015197,0.14678899082568808,1,1,32,"tags=33%, list=5%, signal=33%",Fgf7/Cdkn1a/Bcl11b/Atp2b2/Tmprss13/Myo3b
+GO:0048468,cell development,125,-0.5471937589308006,-1.3937484211741589,0.01801077859846719,1,1,58,"tags=14%, list=9%, signal=15%",Ss18l1/Ninj1/Agfg2/Twf1/Grip1/Nr4a2/Dnai4/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Tenm2/D16Ertd472e/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0140546,defense response to symbiont,32,0.6568751336049792,1.3872473093713413,0.09307359307359307,1,1,66,"tags=22%, list=10%, signal=21%",Inhca/Parp9/Ppt1/Msrb1/Mark4/Ifi35/Rnaset2b
+GO:0015849,organic acid transport,10,-0.7460092987286351,-1.3833473742337326,0.19924098671726756,1,1,8,"tags=40%, list=1%, signal=40%",Slc1a5/Agt/Abcd2/Slc10a6
+GO:0046942,carboxylic acid transport,10,-0.7460092987286351,-1.3833473742337326,0.19924098671726756,1,1,8,"tags=40%, list=1%, signal=40%",Slc1a5/Agt/Abcd2/Slc10a6
+GO:0006066,alcohol metabolic process,12,0.7076167699634957,1.382647586809247,0.20386266094420602,1,1,41,"tags=17%, list=6%, signal=16%",Ip6k3/Pecr
+GO:0021987,cerebral cortex development,11,0.7108667095527135,1.3665703899767365,0.2334047109207709,1,1,7,"tags=9%, list=1%, signal=9%",Dixdc1
+GO:0044089,positive regulation of cellular component biogenesis,28,-0.6623315388926714,-1.3644592883880393,0.14363636363636365,1,1,36,"tags=14%, list=6%, signal=14%",Arl2/Tenm2/Enpp2/Myo3b
+GO:0045664,regulation of neuron differentiation,11,0.7086036368431322,1.3622198582754785,0.2398286937901499,1,1,33,"tags=18%, list=5%, signal=18%",Dixdc1/Fgf2
+GO:0021953,central nervous system neuron differentiation,13,-0.7069772377671655,-1.3600673404341304,0.20517560073937152,1,1,35,"tags=38%, list=5%, signal=37%",Wdr47/Nr4a2/Bcl11b/Atp2b2/D16Ertd472e
+GO:0015711,organic anion transport,11,-0.7267627691872577,-1.3555649017563411,0.2205607476635514,1,1,8,"tags=36%, list=1%, signal=37%",Slc1a5/Agt/Abcd2/Slc10a6
+GO:0099536,synaptic signaling,21,-0.675662424752605,-1.3544606062048499,0.16574585635359115,1,1,103,"tags=43%, list=16%, signal=37%",Ric3/Agt/Enpp1/Arc/Grip1/Gdnf/Atp2b2/Tenm2/Pnkd
+GO:0099537,trans-synaptic signaling,21,-0.675662424752605,-1.3544606062048499,0.16574585635359115,1,1,103,"tags=43%, list=16%, signal=37%",Ric3/Agt/Enpp1/Arc/Grip1/Gdnf/Atp2b2/Tenm2/Pnkd
+GO:0050804,modulation of chemical synaptic transmission,15,-0.6929651778462506,-1.3462985551558682,0.20964749536178107,1,1,98,"tags=40%, list=15%, signal=35%",Agt/Enpp1/Arc/Grip1/Atp2b2/Pnkd
+GO:0099177,regulation of trans-synaptic signaling,15,-0.6929651778462506,-1.3462985551558682,0.20964749536178107,1,1,98,"tags=40%, list=15%, signal=35%",Agt/Enpp1/Arc/Grip1/Atp2b2/Pnkd
+GO:0016055,Wnt signaling pathway,23,0.6568904765038227,1.343339480574964,0.18222222222222223,1,1,35,"tags=13%, list=5%, signal=13%",Dixdc1/Fgf2/Nphp3
+GO:0060491,regulation of cell projection assembly,15,-0.6880693614249671,-1.336786921981503,0.21521335807050093,1,1,47,"tags=20%, list=7%, signal=19%",Twf1/Tenm2/Myo3b
+GO:0120032,regulation of plasma membrane bounded cell projection assembly,15,-0.6880693614249671,-1.336786921981503,0.21521335807050093,1,1,47,"tags=20%, list=7%, signal=19%",Twf1/Tenm2/Myo3b
+GO:0046474,glycerophospholipid biosynthetic process,14,0.690952016778565,1.336031406709029,0.20261437908496732,1,1,76,"tags=36%, list=12%, signal=32%",Ip6k3/Inpp1/Dgkg/Pld1/Efr3b
+GO:0048568,embryonic organ development,20,-0.6670240343164769,-1.3359006203437924,0.18761384335154827,1,1,27,"tags=35%, list=4%, signal=35%",Smarca4/Ttpa/Enpp1/Tbx18/Gdnf/Atp2b2/Myo3b
+GO:0046777,protein autophosphorylation,12,-0.7103371187088776,-1.3331120099627531,0.22388059701492538,1,1,10,"tags=25%, list=2%, signal=25%",Enpp1/Mvp/Myo3b
+GO:0098542,defense response to other organism,40,0.6152277567229654,1.3297690414821486,0.12391304347826088,1,1,75,"tags=22%, list=12%, signal=21%",Inhca/Parp9/Ppt1/Msrb1/Mark4/Ifi35/Rnaset2b/Ddit4/Pld1
+GO:0044782,cilium organization,19,-0.6680765939345052,-1.326938580378833,0.2058287795992714,1,1,34,"tags=16%, list=5%, signal=15%",Ift25/Dnai4/Cfap58
+GO:0060271,cilium assembly,19,-0.6680765939345052,-1.326938580378833,0.2058287795992714,1,1,34,"tags=16%, list=5%, signal=15%",Ift25/Dnai4/Cfap58
+GO:0043410,positive regulation of MAPK cascade,17,0.6675790376191304,1.3103905172716312,0.21982758620689655,1,1,33,"tags=12%, list=5%, signal=11%",Dixdc1/Fgf2
+GO:0009611,response to wounding,25,0.6350352495135811,1.3059001986073444,0.20495495495495494,1,1,118,"tags=52%, list=18%, signal=44%",Ano5/Lcp1/Fgf2/Ndnf/Tec/Phldb2/Ano6/F11r/Stk24/Hps5/Map2k2/Klf4/Tgfb2
+GO:0048839,inner ear development,11,-0.6998562346853502,-1.3053785750138878,0.24485981308411214,1,1,26,"tags=27%, list=4%, signal=27%",Tbx18/Atp2b2/Myo3b
+GO:0043207,response to external biotic stimulus,55,0.5798263910366709,1.3050311667194208,0.12723214285714285,1,1,75,"tags=20%, list=12%, signal=19%",Inhca/Plscr4/Parp9/Ppt1/Msrb1/Mark4/Plscr2/Ifi35/Rnaset2b/Ddit4/Pld1
+GO:0051707,response to other organism,55,0.5798263910366709,1.3050311667194208,0.12723214285714285,1,1,75,"tags=20%, list=12%, signal=19%",Inhca/Plscr4/Parp9/Ppt1/Msrb1/Mark4/Plscr2/Ifi35/Rnaset2b/Ddit4/Pld1
+GO:0007600,sensory perception,14,-0.6719827416820898,-1.3045931347378443,0.23941068139963168,1,1,105,"tags=50%, list=16%, signal=43%",Bbs2/Enpp1/Wdr47/Tbx18/Pomgnt1/Atp2b2/Myo3b
+GO:0006259,DNA metabolic process,40,-0.6080717758639433,-1.3037072549760815,0.14022140221402213,1,1,32,"tags=15%, list=5%, signal=15%",Rad52/Prim2/Hmgn1/Cdkn1a/Bcl11b/4930447C04Rik
+GO:0044282,small molecule catabolic process,18,-0.6587658252728439,-1.3026424623020596,0.21834862385321102,1,1,90,"tags=28%, list=14%, signal=25%",Abcd2/Eci2/Oaz1/Fah/Pnkd
+GO:0048562,embryonic organ morphogenesis,11,-0.6978368856018382,-1.3016120656960484,0.2485981308411215,1,1,26,"tags=45%, list=4%, signal=44%",Smarca4/Enpp1/Tbx18/Atp2b2/Myo3b
+GO:0045017,glycerolipid biosynthetic process,16,0.6696086578130503,1.301026849265224,0.22270742358078602,1,1,76,"tags=31%, list=12%, signal=28%",Ip6k3/Inpp1/Dgkg/Pld1/Efr3b
+GO:0045596,negative regulation of cell differentiation,29,0.623069317379862,1.2992173905045221,0.185589519650655,1,1,35,"tags=10%, list=5%, signal=10%",Dixdc1/Smarcd1/Nphp3
+GO:0042060,wound healing,17,0.6603967702504667,1.296292448695404,0.23060344827586207,1,1,89,"tags=41%, list=14%, signal=36%",Ano5/Fgf2/Ndnf/Tec/Phldb2/Ano6/F11r
+GO:0018105,peptidyl-serine phosphorylation,12,-0.6888317571078758,-1.2927522215273737,0.25,1,1,10,"tags=42%, list=2%, signal=42%",Cav1/Agt/Ripk2/Ip6k2/Myo3b
+GO:0018209,peptidyl-serine modification,12,-0.6888317571078758,-1.2927522215273737,0.25,1,1,10,"tags=42%, list=2%, signal=42%",Cav1/Agt/Ripk2/Ip6k2/Myo3b
+GO:0009607,response to biotic stimulus,59,0.5651664500771034,1.2908667130771578,0.12416851441241686,1,1,75,"tags=19%, list=12%, signal=18%",Inhca/Plscr4/Parp9/Ppt1/Msrb1/Mark4/Plscr2/Ifi35/Rnaset2b/Ddit4/Pld1
+GO:0022402,cell cycle process,57,-0.5717988055695065,-1.284045505042786,0.13562386980108498,1,1,51,"tags=11%, list=8%, signal=11%",Lcmt1/Zbtb17/Mdm1/Arl2/Cdkn1a/4930447C04Rik
+GO:0021543,pallium development,12,0.6560708197146148,1.2819293919520487,0.27896995708154504,1,1,7,"tags=8%, list=1%, signal=8%",Dixdc1
+GO:0006082,organic acid metabolic process,39,-0.5993262696761287,-1.2799782600562957,0.1779816513761468,1,1,100,"tags=33%, list=16%, signal=30%",Cyp2b10/Agt/Ero1a/Enpp1/Abcd2/Eci2/Gart/Gpd1/Oaz1/Arl2/Mtarc2/Fah/Pnkd
+GO:0043436,oxoacid metabolic process,39,-0.5993262696761287,-1.2799782600562957,0.1779816513761468,1,1,100,"tags=33%, list=16%, signal=30%",Cyp2b10/Agt/Ero1a/Enpp1/Abcd2/Eci2/Gart/Gpd1/Oaz1/Arl2/Mtarc2/Fah/Pnkd
+GO:0046434,organophosphate catabolic process,16,-0.6549203732661516,-1.2777512554514403,0.25735294117647056,1,1,52,"tags=25%, list=8%, signal=24%",Enpp1/Gpd1/Arl2/Enpp2
+GO:0044419,biological process involved in interspecies interaction between organisms,61,0.5547512254458045,1.273548121064959,0.13968957871396895,1,1,75,"tags=18%, list=12%, signal=18%",Inhca/Plscr4/Parp9/Ppt1/Msrb1/Mark4/Plscr2/Ifi35/Rnaset2b/Ddit4/Pld1
+GO:0043583,ear development,13,-0.6618839296011539,-1.273317820884645,0.25693160813308685,1,1,26,"tags=31%, list=4%, signal=30%",Enpp1/Tbx18/Atp2b2/Myo3b
+GO:0006974,DNA damage response,42,-0.5919735820091091,-1.2708865147275539,0.1654275092936803,1,1,2,"tags=12%, list=0%, signal=13%",Rad52/Cbl/Hmgn1/Cdkn1a/4930447C04Rik
+GO:0048856,anatomical structure development,219,-0.4645727024969163,-1.2704057468316772,0.05029271006441458,1,1,58,"tags=12%, list=9%, signal=16%",Ss18l1/Ninj1/Agfg2/Hmgn1/Gart/Serinc5/Twf1/Zbtb17/Pomgnt1/Grip1/Mdm1/Nr4a2/Ift25/Dnai4/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Tmprss13/Tenm2/D16Ertd472e/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0030154,cell differentiation,166,-0.47801585378592965,-1.268223078392751,0.061511423550087874,1,1,35,"tags=12%, list=5%, signal=15%",Tbx18/Fgf7/Ss18l1/Ninj1/Agfg2/Twf1/Grip1/Nr4a2/Ift25/Dnai4/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Tenm2/D16Ertd472e/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0048869,cellular developmental process,166,-0.47801585378592965,-1.268223078392751,0.061511423550087874,1,1,35,"tags=12%, list=5%, signal=15%",Tbx18/Fgf7/Ss18l1/Ninj1/Agfg2/Twf1/Grip1/Nr4a2/Ift25/Dnai4/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Tenm2/D16Ertd472e/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0030902,hindbrain development,10,0.6656414564568086,1.2671504620575567,0.28842105263157897,1,1,33,"tags=20%, list=5%, signal=19%",Dixdc1/Fgf2
+GO:0007268,chemical synaptic transmission,20,-0.6311671541111871,-1.2640872732296575,0.24772313296903462,1,1,103,"tags=40%, list=16%, signal=35%",Ric3/Agt/Enpp1/Arc/Grip1/Gdnf/Atp2b2/Pnkd
+GO:0098916,anterograde trans-synaptic signaling,20,-0.6311671541111871,-1.2640872732296575,0.24772313296903462,1,1,103,"tags=40%, list=16%, signal=35%",Ric3/Agt/Enpp1/Arc/Grip1/Gdnf/Atp2b2/Pnkd
+GO:0051301,cell division,21,0.6209009976046548,1.2633365664510552,0.2440087145969499,1,1,50,"tags=14%, list=8%, signal=14%",Dixdc1/Fgf2/Mark4
+GO:0009895,negative regulation of catabolic process,13,-0.6565785767744464,-1.2631114992046517,0.266173752310536,1,1,45,"tags=23%, list=7%, signal=22%",Oaz1/Gdnf/Hfe
+GO:0050905,neuromuscular process,11,-0.675794711640529,-1.2604987909836234,0.2616822429906542,1,1,26,"tags=27%, list=4%, signal=27%",Gch1/Atp2b2/Pnkd
+GO:0043588,skin development,14,-0.6475002789811451,-1.2570626688791866,0.27440147329650094,1,1,111,"tags=50%, list=17%, signal=42%",Smarca4/Col3a1/Enpp1/Fgf7/Cdkn1a/Bcl11b/Tmprss13
+GO:1901135,carbohydrate derivative metabolic process,44,0.5751997328766603,1.2568644795535266,0.18494623655913978,1,1,10,"tags=5%, list=2%, signal=5%",Gal3st2c/Fut2
+GO:0032787,monocarboxylic acid metabolic process,27,-0.6086929584874358,-1.2563119401189518,0.22768670309653916,1,1,100,"tags=33%, list=16%, signal=29%",Cyp2b10/Agt/Enpp1/Abcd2/Eci2/Gpd1/Arl2/Fah/Pnkd
+GO:0050731,positive regulation of peptidyl-tyrosine phosphorylation,11,-0.6735242076796655,-1.2562638251747842,0.2635514018691589,1,1,98,"tags=45%, list=15%, signal=39%",Agt/Ripk2/Fgf7/Gdnf/Enpp2
+GO:0007267,cell-cell signaling,38,-0.5888442653031921,-1.2530873102477962,0.20512820512820512,1,1,103,"tags=32%, list=16%, signal=28%",Ric3/Agt/Enpp1/Arc/Tbx18/Fgf7/Grip1/Gdnf/Atp2b2/Hfe/Tenm2/Pnkd
+GO:0007178,cell surface receptor protein serine/threonine kinase signaling pathway,10,-0.6753360196732524,-1.252295797294456,0.2732447817836812,1,1,125,"tags=60%, list=20%, signal=49%",Tab1/Cav1/Col3a1/Ero1a/Gdnf/Hfe
+GO:0009267,cellular response to starvation,14,-0.6441301356972707,-1.250519843418789,0.281767955801105,1,1,40,"tags=21%, list=6%, signal=21%",Rnf152/Cdkn1a/Hfe
+GO:0006811,monoatomic ion transport,36,0.5884780988972993,1.2497994111875166,0.19696969696969696,1,1,19,"tags=11%, list=3%, signal=11%",Inhca/Ano5/Zfas1/Tmem266
+GO:0048598,embryonic morphogenesis,26,-0.6060462443510786,-1.2490782160991365,0.2395644283121597,1,1,92,"tags=27%, list=14%, signal=24%",Enpp1/Rps6/Tbx18/Zbtb17/Gdnf/Atp2b2/Myo3b
+GO:0050877,nervous system process,33,-0.5961977123263013,-1.2482747681589166,0.22862453531598512,1,1,109,"tags=36%, list=17%, signal=32%",Gch1/Bbs2/Agt/Enpp1/Arc/Wdr47/Tbx18/Pomgnt1/Nr4a2/Atp2b2/Pnkd/Myo3b
+GO:0018108,peptidyl-tyrosine phosphorylation,15,-0.6422204550602478,-1.247711282443388,0.2782931354359926,1,1,98,"tags=40%, list=15%, signal=35%",Agt/Ripk2/Mvp/Fgf7/Gdnf/Enpp2
+GO:0018212,peptidyl-tyrosine modification,15,-0.6422204550602478,-1.247711282443388,0.2782931354359926,1,1,98,"tags=40%, list=15%, signal=35%",Agt/Ripk2/Mvp/Fgf7/Gdnf/Enpp2
+GO:0050730,regulation of peptidyl-tyrosine phosphorylation,15,-0.6422204550602478,-1.247711282443388,0.2782931354359926,1,1,98,"tags=40%, list=15%, signal=35%",Agt/Ripk2/Mvp/Fgf7/Gdnf/Enpp2
+GO:0001667,ameboidal-type cell migration,14,-0.6417884808917005,-1.2459737344285107,0.289134438305709,1,1,87,"tags=29%, list=14%, signal=25%",Ctsh/Fgf7/Gdnf/Enpp2
+GO:0018193,peptidyl-amino acid modification,33,-0.5927329442262335,-1.2410204924255177,0.23605947955390336,1,1,98,"tags=27%, list=15%, signal=24%",Agt/Ero1a/Ripk2/Mvp/Ip6k2/Fgf7/Gdnf/Enpp2/Myo3b
+GO:0032502,developmental process,231,-0.45106604122066063,-1.2409126932917725,0.04847396768402154,1,1,58,"tags=11%, list=9%, signal=16%",Ss18l1/Ninj1/Agfg2/Hmgn1/Gart/Serinc5/Twf1/Zbtb17/Pomgnt1/Grip1/Mdm1/Nr4a2/Ift25/Dnai4/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Tmprss13/Tenm2/D16Ertd472e/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0090066,regulation of anatomical structure size,20,-0.6192690985652461,-1.2402581172068237,0.27140255009107467,1,1,47,"tags=35%, list=7%, signal=33%",Cav1/Gch1/Bbs2/Agt/Twf1/Atp2b2/Myo3b
+GO:0044248,cellular catabolic process,15,-0.6368580028096013,-1.237293065268932,0.287569573283859,1,1,92,"tags=40%, list=14%, signal=35%",Enpp1/Abcd2/Ctsh/Eci2/Oaz1/Fah
+GO:0008654,phospholipid biosynthetic process,18,0.6218567279664102,1.2323412778423006,0.28227571115973743,1,1,76,"tags=28%, list=12%, signal=25%",Ip6k3/Inpp1/Dgkg/Pld1/Efr3b
+GO:0010256,endomembrane system organization,31,0.5905343704807507,1.2321754336423236,0.24669603524229075,1,1,24,"tags=6%, list=4%, signal=7%",Ano5/Plscr4
+GO:0031589,cell-substrate adhesion,13,-0.6398285937438253,-1.2308882483617773,0.27911275415896486,1,1,101,"tags=38%, list=16%, signal=33%",Col3a1/Agt/Ninj1/Arl2/Enpp2
+GO:0030855,epithelial cell differentiation,26,-0.5964071065134642,-1.229211684118837,0.2631578947368421,1,1,32,"tags=19%, list=5%, signal=19%",Cdkn1a/Bcl11b/Gdnf/Atp2b2/Myo3b
+GO:0042063,gliogenesis,13,-0.6307549227391012,-1.2134325186266233,0.28650646950092423,1,1,111,"tags=46%, list=17%, signal=39%",Smarca4/Col3a1/Agt/Enpp1/Wdr47/Enpp2
+GO:0033365,protein localization to organelle,37,-0.5730199059048613,-1.2134110525093007,0.2610294117647059,1,1,36,"tags=11%, list=6%, signal=11%",Cbl/Arl2/Cdkn1a/Cfap58
+GO:0030030,cell projection organization,85,-0.5079458843495231,-1.2125761035133793,0.16308243727598568,1,1,47,"tags=15%, list=7%, signal=16%",Twf1/Grip1/Nr4a2/Ift25/Dnai4/Bcl11b/Gdnf/Atp2b2/Tenm2/D16Ertd472e/Enpp2/Myo3b/Cfap58
+GO:0120036,plasma membrane bounded cell projection organization,85,-0.5079458843495231,-1.2125761035133793,0.16308243727598568,1,1,47,"tags=15%, list=7%, signal=16%",Twf1/Grip1/Nr4a2/Ift25/Dnai4/Bcl11b/Gdnf/Atp2b2/Tenm2/D16Ertd472e/Enpp2/Myo3b/Cfap58
+GO:0022604,regulation of cell morphogenesis,18,-0.6128295407234189,-1.2118081285846307,0.30458715596330277,1,1,81,"tags=28%, list=13%, signal=25%",Ankrd27/Arc/Ss18l1/Grip1/Enpp2
+GO:0019752,carboxylic acid metabolic process,38,-0.5693533442059524,-1.2116097459219952,0.2490842490842491,1,1,100,"tags=32%, list=16%, signal=28%",Cyp2b10/Agt/Ero1a/Enpp1/Abcd2/Eci2/Gart/Gpd1/Oaz1/Arl2/Fah/Pnkd
+GO:0070507,regulation of microtubule cytoskeleton organization,14,0.6258158021367549,1.210083401113312,0.31808278867102396,1,1,7,"tags=7%, list=1%, signal=7%",Dixdc1
+GO:0010001,glial cell differentiation,10,-0.6517146385988312,-1.2084939632680394,0.2903225806451613,1,1,11,"tags=40%, list=2%, signal=40%",Smarca4/Agt/Enpp1/Enpp2
+GO:0033554,cellular response to stress,90,-0.5005919693061055,-1.2055903141779747,0.16029143897996356,1,1,72,"tags=13%, list=11%, signal=14%",Rad52/Cbl/Txndc12/Ninj1/Hmgn1/Rnf152/Nr4a2/Cdkn1a/Hfe/Mtarc2/Arpp21/4930447C04Rik
+GO:0051093,negative regulation of developmental process,40,0.5550057138306113,1.1996035745018885,0.23695652173913043,1,1,35,"tags=10%, list=5%, signal=10%",Dixdc1/Fat3/Smarcd1/Nphp3
+GO:0098660,inorganic ion transmembrane transport,26,0.5828965199749948,1.1944536751330677,0.29711751662971175,1,1,33,"tags=12%, list=5%, signal=11%",Ano5/Zfas1/Fgf2
+GO:0010975,regulation of neuron projection development,29,0.5725990528507677,1.1939773416841015,0.2838427947598253,1,1,61,"tags=21%, list=10%, signal=20%",Dixdc1/Fat3/Dgkg/Ndnf/Rtn4ip1/Serpini1
+GO:0044087,regulation of cellular component biogenesis,49,-0.5477925496473472,-1.1937971462468042,0.24253731343283583,1,1,81,"tags=20%, list=13%, signal=19%",Ankrd27/Rps6/Fbxl2/Lcmt1/Twf1/Mdm1/Arl2/Tenm2/Enpp2/Myo3b
+GO:0016054,organic acid catabolic process,12,-0.6346442371671894,-1.1910567987197829,0.2947761194029851,1,1,90,"tags=33%, list=14%, signal=29%",Abcd2/Eci2/Oaz1/Fah
+GO:0046395,carboxylic acid catabolic process,12,-0.6346442371671894,-1.1910567987197829,0.2947761194029851,1,1,90,"tags=33%, list=14%, signal=29%",Abcd2/Eci2/Oaz1/Fah
+GO:0007049,cell cycle,69,-0.5139476602500193,-1.1815560511573435,0.21554770318021202,1,1,51,"tags=9%, list=8%, signal=9%",Lcmt1/Zbtb17/Mdm1/Arl2/Cdkn1a/4930447C04Rik
+GO:0006935,chemotaxis,13,-0.612131411313374,-1.1776050148524844,0.3031423290203327,1,1,64,"tags=23%, list=10%, signal=21%",Fgf7/Ninj1/Enpp2
+GO:0042330,taxis,13,-0.612131411313374,-1.1776050148524844,0.3031423290203327,1,1,64,"tags=23%, list=10%, signal=21%",Fgf7/Ninj1/Enpp2
+GO:0042594,response to starvation,17,-0.5984726839779161,-1.1769571448265064,0.3345724907063197,1,1,69,"tags=24%, list=11%, signal=22%",Cbl/Rnf152/Cdkn1a/Hfe
+GO:1901605,alpha-amino acid metabolic process,10,-0.6346173149054501,-1.1767898841393072,0.3111954459203036,1,1,53,"tags=40%, list=8%, signal=37%",Ero1a/Gart/Oaz1/Fah
+GO:0006996,organelle organization,149,-0.4470539817200119,-1.1732324291046845,0.16753926701570682,1,1,37,"tags=6%, list=6%, signal=7%",Mdm1/Arl2/Ift25/Dnai4/Atp2b2/Phactr3/Myo3b/Cfap58/4930447C04Rik
+GO:0034220,monoatomic ion transmembrane transport,27,0.5655786737679279,1.1655901049884172,0.32891832229580575,1,1,33,"tags=11%, list=5%, signal=11%",Ano5/Zfas1/Fgf2
+GO:0065009,regulation of molecular function,73,-0.5062492663868664,-1.1650805268084454,0.21505376344086022,1,1,36,"tags=19%, list=6%, signal=20%",Agt/Enpp1/Ripk2/Ctsh/Mvp/Ip6k2/Stimate/Hmgn1/Arl2/Nr4a2/Cdkn1a/Gdnf/Hfe/4930447C04Rik
+GO:1903530,regulation of secretion by cell,23,-0.5737943588433677,-1.163607056113732,0.33695652173913043,1,1,25,"tags=13%, list=4%, signal=13%",Agt/Hfe/Pnkd
+GO:0043408,regulation of MAPK cascade,26,0.5671475064101201,1.1621812794545139,0.3325942350332594,1,1,33,"tags=8%, list=5%, signal=8%",Dixdc1/Fgf2
+GO:0042180,ketone metabolic process,12,-0.6171255121753537,-1.1581788565839415,0.31156716417910446,1,1,123,"tags=42%, list=19%, signal=34%",Cav1/Cyp2b10/Agt/Abcd2/Pnkd
+GO:0016042,lipid catabolic process,14,-0.5952547625810727,-1.1556327692871915,0.3259668508287293,1,1,11,"tags=21%, list=2%, signal=22%",Abcd2/Eci2/Enpp2
+GO:0031669,cellular response to nutrient levels,17,-0.582455119783614,-1.1454569826204455,0.3475836431226766,1,1,40,"tags=18%, list=6%, signal=17%",Rnf152/Cdkn1a/Hfe
+GO:0008284,positive regulation of cell population proliferation,29,-0.5533714978398347,-1.1438606885241458,0.3235294117647059,1,1,98,"tags=38%, list=15%, signal=34%",Cav1/Smarca4/Agt/Ripk2/Ctsh/Rps6/Tbx18/Fgf7/Cdkn1a/Gdnf/Enpp2
+GO:0051046,regulation of secretion,24,-0.5591634332387855,-1.141129298797508,0.36510791366906475,1,1,25,"tags=12%, list=4%, signal=12%",Agt/Hfe/Pnkd
+GO:0080090,regulation of primary metabolic process,192,-0.4220215006004217,-1.1337207721699112,0.19823008849557522,1,1,65,"tags=10%, list=10%, signal=13%",Tbx18/Fgf7/Ss18l1/Hmgn1/Gpd1/Lcmt1/Slc2a13/Zbtb17/Oaz1/Arl2/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Tenm2/Pnkd/Enpp2/4930447C04Rik
+GO:0016051,carbohydrate biosynthetic process,13,0.5830809704016756,1.129603139224775,0.3774403470715835,1,1,10,"tags=8%, list=2%, signal=8%",Fut2
+GO:0009056,catabolic process,106,-0.4541599259972073,-1.1252369079700681,0.2558139534883721,1,1,92,"tags=17%, list=14%, signal=17%",Enpp1/Ripk2/Abcd2/Ctsh/Eci2/Wdr47/Cbl/Fbxl2/Ube3d/Gpd1/Oaz1/Rnf152/Arl2/Gdnf/Hfe/Fah/Pnkd/Enpp2
+GO:0006952,defense response,53,0.5009270470125144,1.1234930115145383,0.3093681917211329,1,1,82,"tags=19%, list=13%, signal=18%",Inhca/Parp9/Ppt1/Msrb1/Mark4/Ifi35/Rnaset2b/Ddit4/Pld1/Ano6
+GO:1901888,regulation of cell junction assembly,14,-0.5782892566844916,-1.1226957886965425,0.34990791896869244,1,1,11,"tags=29%, list=2%, signal=29%",Cav1/Agt/Rps6/Enpp2
+GO:0008610,lipid biosynthetic process,33,0.5292719485094088,1.1213837153188146,0.36853448275862066,1,1,41,"tags=12%, list=6%, signal=12%",Ip6k3/Inpp1/Dgkg/Pecr
+GO:0023061,signal release,20,-0.5569033735770773,-1.115353456484575,0.38979963570127507,1,1,25,"tags=15%, list=4%, signal=15%",Agt/Hfe/Pnkd
+GO:0002443,leukocyte mediated immunity,11,-0.5969163115941765,-1.113374041143857,0.37009345794392523,1,1,158,"tags=64%, list=25%, signal=49%",Cd46/Plcg2/Gzmm/Enpp1/Ctsh/Cbl/Hfe
+GO:0044283,small molecule biosynthetic process,28,0.5319203352465266,1.1092165255943625,0.3827433628318584,1,1,120,"tags=32%, list=19%, signal=27%",Ip6k3/Pecr/Rtn4ip1/Slc19a2/Pgm2/Cry1/Plod2/Cyp27a1/Oat
+GO:0072594,establishment of protein localization to organelle,11,-0.5898911375156777,-1.1002706189360971,0.3850467289719626,1,1,184,"tags=64%, list=29%, signal=46%",Gnptab/Tardbp/Srp19/Zfand2a/Agt/Cbl/Cdkn1a
+GO:0021537,telencephalon development,15,0.5665298193225989,1.098336711402575,0.39740820734341253,1,1,7,"tags=7%, list=1%, signal=7%",Dixdc1
+GO:0019222,regulation of metabolic process,215,-0.4019528712131334,-1.0968391897625835,0.24377224199288255,1,1,67,"tags=10%, list=10%, signal=13%",Fbxl2/Tbx18/Fgf7/Ss18l1/Hmgn1/Gpd1/Lcmt1/Slc2a13/Zbtb17/Oaz1/Rnf152/Arl2/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Tenm2/Pnkd/Enpp2/4930447C04Rik
+GO:0050678,regulation of epithelial cell proliferation,14,0.5655489775337188,1.0935508945180166,0.4074074074074074,1,1,33,"tags=21%, list=5%, signal=21%",Fut2/Zfas1/Fgf2
+GO:0007423,sensory organ development,29,-0.5272114275433323,-1.0897858470514499,0.37316176470588236,1,1,65,"tags=24%, list=10%, signal=23%",Tbx18/Ninj1/Hmgn1/Mdm1/Bcl11b/Atp2b2/Myo3b
+GO:0060429,epithelium development,48,-0.4995183765288161,-1.0896203008874497,0.3743016759776536,1,1,32,"tags=17%, list=5%, signal=17%",Tbx18/Fgf7/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Tmprss13/Myo3b
+GO:1901654,response to ketone,14,-0.560840706892787,-1.0888210224898853,0.3867403314917127,1,1,69,"tags=43%, list=11%, signal=39%",Adcy6/Cav1/Cbl/Grip1/Cdkn1a/Gdnf
+GO:0070925,organelle assembly,48,-0.49796379090687365,-1.0862292183312736,0.3817504655493482,1,1,37,"tags=10%, list=6%, signal=11%",Agfg2/Mdm1/Ift25/Dnai4/Cfap58
+GO:0048511,rhythmic process,16,-0.5552393552806117,-1.0832733447391703,0.39705882352941174,1,1,11,"tags=12%, list=2%, signal=13%",Agt/Enpp2
+GO:0009887,animal organ morphogenesis,39,-0.5062967238875733,-1.0812955021377912,0.3944954128440367,1,1,125,"tags=41%, list=20%, signal=35%",Tab1/Cav1/Smarca4/Bbs2/Col3a1/Agt/Enpp1/Ctsh/Slc26a4/Tbx18/Fgf7/Hmgn1/Bcl11b/Gdnf/Atp2b2/Myo3b
+GO:0001764,neuron migration,10,0.5663580375802464,1.0781492679706421,0.42105263157894735,1,1,67,"tags=40%, list=10%, signal=36%",Fat3/Mdga2/Ndnf/Ddit4
+GO:0001934,positive regulation of protein phosphorylation,25,-0.5236382160125864,-1.077865277976535,0.41935483870967744,1,1,125,"tags=40%, list=20%, signal=34%",Tab1/Cav1/Ccdc88a/Agt/Ripk2/Ip6k2/Fgf7/Cdkn1a/Gdnf/Enpp2
+GO:0034329,cell junction assembly,19,-0.542078082706225,-1.0766794227656997,0.4098360655737705,1,1,36,"tags=21%, list=6%, signal=20%",Agt/Rps6/Arl2/Enpp2
+GO:0090596,sensory organ morphogenesis,14,-0.5536814154205497,-1.0749219118060478,0.39042357274401474,1,1,65,"tags=29%, list=10%, signal=26%",Tbx18/Hmgn1/Atp2b2/Myo3b
+GO:0010562,positive regulation of phosphorus metabolic process,29,-0.5193676752454777,-1.0735722185233074,0.40808823529411764,1,1,125,"tags=38%, list=20%, signal=32%",Tab1/Cav1/Ccdc88a/Agt/Ripk2/Ip6k2/Fgf7/Gpd1/Cdkn1a/Gdnf/Enpp2
+GO:0045937,positive regulation of phosphate metabolic process,29,-0.5193676752454777,-1.0735722185233074,0.40808823529411764,1,1,125,"tags=38%, list=20%, signal=32%",Tab1/Cav1/Ccdc88a/Agt/Ripk2/Ip6k2/Fgf7/Gpd1/Cdkn1a/Gdnf/Enpp2
+GO:0006520,amino acid metabolic process,13,-0.5563086572619881,-1.07021442208296,0.38632162661737524,1,1,53,"tags=31%, list=8%, signal=29%",Ero1a/Gart/Oaz1/Fah
+GO:0051260,protein homooligomerization,13,-0.5541830080529562,-1.0661251446465962,0.3955637707948244,1,1,107,"tags=46%, list=17%, signal=39%",Rnf135/Slc1a5/Ripk2/Arc/Ninj1/Kctd8
+GO:0000165,MAPK cascade,31,0.5103016989329416,1.0647665040380707,0.42070484581497797,1,1,33,"tags=6%, list=5%, signal=6%",Dixdc1/Fgf2
+GO:0006955,immune response,54,0.46892192007246564,1.0599737533881806,0.38427947598253276,1,1,57,"tags=19%, list=9%, signal=18%",Inhca/Lcp1/Parp9/Pag1/Tec/Ppt1/Msrb1/Mark4/Plscr2/Ifi35
+GO:0043393,regulation of protein binding,11,-0.5661374258658746,-1.0559649676780904,0.4336448598130841,1,1,91,"tags=36%, list=14%, signal=32%",Ripk2/Ip6k2/Cdkn1a/Hfe
+GO:0042327,positive regulation of phosphorylation,26,-0.5122026219157971,-1.0556638923634074,0.43920145190562615,1,1,125,"tags=38%, list=20%, signal=32%",Tab1/Cav1/Ccdc88a/Agt/Ripk2/Ip6k2/Fgf7/Cdkn1a/Gdnf/Enpp2
+GO:0090407,organophosphate biosynthetic process,33,0.4972390536815147,1.053514698803419,0.4396551724137931,1,1,76,"tags=18%, list=12%, signal=17%",Ip6k3/Inpp1/Dgkg/Slc19a2/Pld1/Efr3b
+GO:0009790,embryo development,50,-0.48116817832700737,-1.053496745504667,0.4144981412639405,1,1,101,"tags=22%, list=16%, signal=20%",Smarca4/Col3a1/Ttpa/Enpp1/Rps6/Tbx18/Zbtb17/Cdkn1a/Gdnf/Atp2b2/Myo3b
+GO:0019219,regulation of nucleobase-containing compound metabolic process,139,-0.40410962603862344,-1.0468272592079466,0.375,1,1,65,"tags=9%, list=10%, signal=11%",Tbx18/Fgf7/Ss18l1/Hmgn1/Gpd1/Zbtb17/Arl2/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Tenm2/4930447C04Rik
+GO:0061024,membrane organization,40,0.4830909910700976,1.0441652495747438,0.41739130434782606,1,1,55,"tags=10%, list=9%, signal=10%",Ano5/Plscr4/Ppt1/Plscr2
+GO:0032886,regulation of microtubule-based process,21,0.5123137003385934,1.042395862832386,0.4662309368191721,1,1,7,"tags=5%, list=1%, signal=5%",Dixdc1
+GO:0006869,lipid transport,21,-0.5188714781810143,-1.0401510445645863,0.4438305709023941,1,1,8,"tags=19%, list=1%, signal=19%",Agt/Ttpa/Abcd2/Slc10a6
+GO:0016043,cellular component organization,286,-0.36945350729981874,-1.0399046201538862,0.36231884057971014,1,1,109,"tags=18%, list=17%, signal=27%",Gch1/Eml4/Rnf135/Mphosph9/Bbs2/Slc1a5/Ric3/Nde1/Col3a1/Agt/Ero1a/Septin11/Med4/Ttpa/Enpp1/Ripk2/Abcd2/Ankrd27/Ip6k2/Rps6/Arc/Rad52/Wdr47/Cbl/Fbxl2/Fgf7/Ss18l1/Ninj1/Agfg2/Hmgn1/Lcmt1/Twf1/Kctd8/Pomgnt1/Grip1/Mdm1/Arl2/Nr4a2/Ift25/Dnai4/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Phactr3/Tenm2/D16Ertd472e/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0007626,locomotory behavior,12,-0.553160674207658,-1.038134033549705,0.43470149253731344,1,1,92,"tags=33%, list=14%, signal=29%",Enpp1/Wdr47/Nr4a2/Atp2b2
+GO:0010876,lipid localization,22,-0.5151728038257578,-1.0357010293912996,0.46055045871559636,1,1,8,"tags=18%, list=1%, signal=19%",Agt/Ttpa/Abcd2/Slc10a6
+GO:0030001,metal ion transport,26,0.5050103732882322,1.0348517715980325,0.4523281596452328,1,1,33,"tags=12%, list=5%, signal=11%",Inhca/Zfas1/Fgf2
+GO:0009894,regulation of catabolic process,42,-0.48182051687289434,-1.034402912600581,0.44423791821561337,1,1,91,"tags=21%, list=14%, signal=20%",Ripk2/Abcd2/Fbxl2/Gpd1/Oaz1/Rnf152/Arl2/Gdnf/Hfe
+GO:0071840,cellular component organization or biogenesis,292,-0.3651114554047791,-1.0340739795148468,0.36298932384341637,1,1,58,"tags=18%, list=9%, signal=30%",Gch1/Eml4/Rnf135/Mphosph9/Bbs2/Slc1a5/Ric3/Nde1/Col3a1/Agt/Ero1a/Septin11/Med4/Ttpa/Enpp1/Ripk2/Abcd2/Ankrd27/Ip6k2/Rps6/Arc/Rad52/Wdr47/Cbl/Fbxl2/Fgf7/Ss18l1/Ninj1/Agfg2/Hmgn1/Lcmt1/Twf1/Kctd8/Pomgnt1/Grip1/Mdm1/Arl2/Nr4a2/Ift25/Dnai4/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Phactr3/Tenm2/D16Ertd472e/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0048731,system development,149,-0.3916965912710947,-1.0279544798615086,0.4013961605584642,1,1,70,"tags=23%, list=11%, signal=26%",Bbs2/Nde1/Col3a1/Agt/Ttpa/Enpp1/Abcd2/Ctsh/Ankrd27/Arc/Wdr47/Cbl/Tbx18/Fgf7/Ss18l1/Ninj1/Hmgn1/Gart/Serinc5/Twf1/Pomgnt1/Grip1/Mdm1/Nr4a2/Ift25/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Tenm2/D16Ertd472e/Enpp2/Myo3b
+GO:0007409,axonogenesis,21,0.5051569025321047,1.0278340495924096,0.47276688453159044,1,1,7,"tags=5%, list=1%, signal=5%",Dixdc1
+GO:0006355,regulation of DNA-templated transcription,117,-0.40798140484195183,-1.026436780758216,0.42095914742451157,1,1,65,"tags=9%, list=10%, signal=9%",Tbx18/Fgf7/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Bcl11b/Gdnf/Tenm2/4930447C04Rik
+GO:2001141,regulation of RNA biosynthetic process,117,-0.40798140484195183,-1.026436780758216,0.42095914742451157,1,1,65,"tags=9%, list=10%, signal=9%",Tbx18/Fgf7/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Bcl11b/Gdnf/Tenm2/4930447C04Rik
+GO:0045785,positive regulation of cell adhesion,22,-0.5100486435271911,-1.0253994411541487,0.46605504587155966,1,1,65,"tags=32%, list=10%, signal=30%",Cav1/Smarca4/Ripk2/Tbx18/Ninj1/Arl2/Enpp2
+GO:0002064,epithelial cell development,12,-0.5436952511459048,-1.0203699764130918,0.4626865671641791,1,1,111,"tags=33%, list=17%, signal=28%",Smarca4/Agt/Cdkn1a/Bcl11b
+GO:0003008,system process,66,-0.4476043058969408,-1.0199757527180096,0.44858156028368795,1,1,109,"tags=23%, list=17%, signal=21%",Gch1/Bbs2/Slc1a5/Agt/Enpp1/Arc/Wdr47/Tbx18/Twf1/Pomgnt1/Nr4a2/Gdnf/Atp2b2/Pnkd/Myo3b
+GO:0031109,microtubule polymerization or depolymerization,11,-0.5445551871773248,-1.015709568656697,0.4785046728971963,1,1,167,"tags=64%, list=26%, signal=48%",Gda/Hdgfl3/Cav1/Eml4/Nde1/Wdr47/Arl2
+GO:0006812,monoatomic cation transport,30,0.4865693317770838,1.0154161810466966,0.47058823529411764,1,1,33,"tags=10%, list=5%, signal=10%",Inhca/Zfas1/Fgf2
+GO:0021700,developmental maturation,12,-0.5405451068420581,-1.0144580015296636,0.47201492537313433,1,1,92,"tags=42%, list=14%, signal=36%",Enpp1/Ankrd27/Fgf7/Nr4a2/Cdkn1a
+GO:0006351,DNA-templated transcription,121,-0.4009597588717362,-1.0137780709463748,0.45486725663716815,1,1,65,"tags=8%, list=10%, signal=9%",Tbx18/Fgf7/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Bcl11b/Gdnf/Tenm2/4930447C04Rik
+GO:0007623,circadian rhythm,11,0.5250341268186917,1.0093257734479826,0.4817987152034261,1,1,100,"tags=27%, list=16%, signal=23%",Rbm4b/Bmal2/Cry1
+GO:0042752,regulation of circadian rhythm,11,0.5250341268186917,1.0093257734479826,0.4817987152034261,1,1,100,"tags=27%, list=16%, signal=23%",Rbm4b/Bmal2/Cry1
+GO:0009605,response to external stimulus,85,0.41921203776614446,1.0049631843412619,0.4527027027027027,1,1,101,"tags=25%, list=16%, signal=24%",Inhca/Plscr4/Parp9/Rbm4b/Fgf2/Ppt1/Msrb1/Mark4/Plscr2/Ifi35/Tmem150c/Rnaset2b/Ddit4/Phldb2/Pld1/Ano6/F11r/Ercc6/Stk24/Cry1/Plscr1
+GO:0046903,secretion,39,-0.4704250006344899,-1.0046844336132714,0.47522935779816516,1,1,104,"tags=21%, list=16%, signal=18%",Slc1a5/Agt/Enpp1/Cbl/Fgf7/Atp2b2/Hfe/Pnkd
+GO:0051252,regulation of RNA metabolic process,125,-0.3941169854910678,-1.0038490339498927,0.48154657293497366,1,1,65,"tags=8%, list=10%, signal=9%",Tbx18/Fgf7/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Bcl11b/Gdnf/Tenm2/4930447C04Rik
+GO:0045930,negative regulation of mitotic cell cycle,10,-0.5401814094936073,-1.0016745578189872,0.4667931688804554,1,1,77,"tags=30%, list=12%, signal=27%",Rps6/Lcmt1/Cdkn1a
+GO:0009888,tissue development,73,-0.4338856272271053,-0.9985430670393621,0.478494623655914,1,1,111,"tags=23%, list=17%, signal=22%",Smarca4/Bbs2/Col3a1/Agt/Ero1a/Enpp1/Ctsh/Arc/Tbx18/Fgf7/Zbtb17/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Tmprss13/Myo3b
+GO:0001503,ossification,10,0.5242590458037941,0.9980073892396406,0.4863157894736842,1,1,145,"tags=50%, list=23%, signal=39%",Fgf2/Ano6/Fosl2/P2ry2/Cbfb
+GO:0002376,immune system process,87,0.41145543015567276,0.9961747789861073,0.484375,1,1,57,"tags=14%, list=9%, signal=15%",Inhca/Skap2/Lcp1/Parp9/Smarcd1/Pag1/Tec/Ppt1/Msrb1/Mark4/Plscr2/Ifi35
+GO:0071453,cellular response to oxygen levels,10,0.5231692665662613,0.9959328275503326,0.4884210526315789,1,1,44,"tags=20%, list=7%, signal=19%",Zfas1/Ndnf
+GO:0031346,positive regulation of cell projection organization,28,-0.4820429716089724,-0.9930495097872984,0.49272727272727274,1,1,58,"tags=21%, list=9%, signal=20%",Ss18l1/Twf1/Grip1/Tenm2/Enpp2/Myo3b
+GO:0030335,positive regulation of cell migration,18,-0.5000653222735693,-0.9888283479922771,0.47706422018348627,1,1,11,"tags=22%, list=2%, signal=22%",Agt/Ctsh/Fgf7/Enpp2
+GO:0097305,response to alcohol,12,-0.5267394172011155,-0.9885484296075155,0.4962686567164179,1,1,77,"tags=42%, list=12%, signal=37%",Rps6/Arc/Cbl/Grip1/Cdkn1a
+GO:0007275,multicellular organism development,178,-0.36935432529089685,-0.9836080757355485,0.49183303085299457,1,1,102,"tags=20%, list=16%, signal=24%",Nde1/Col3a1/Agt/Ttpa/Enpp1/Ripk2/Abcd2/Ctsh/Ankrd27/Rps6/Arc/Wdr47/Cbl/Tbx18/Fgf7/Ss18l1/Ninj1/Hmgn1/Gart/Serinc5/Twf1/Zbtb17/Pomgnt1/Grip1/Mdm1/Nr4a2/Ift25/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Tenm2/D16Ertd472e/Enpp2/Myo3b
+GO:0060255,regulation of macromolecule metabolic process,192,-0.3660358541853897,-0.9833206380682642,0.4920353982300885,1,1,65,"tags=8%, list=10%, signal=10%",Tbx18/Fgf7/Ss18l1/Hmgn1/Slc2a13/Zbtb17/Oaz1/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Tenm2/Enpp2/4930447C04Rik
+GO:0006096,glycolytic process,11,-0.5254099516936619,-0.9799996914342625,0.502803738317757,1,1,92,"tags=27%, list=14%, signal=24%",Enpp1/Gpd1/Arl2
+GO:0009134,nucleoside diphosphate catabolic process,11,-0.5254099516936619,-0.9799996914342625,0.502803738317757,1,1,92,"tags=27%, list=14%, signal=24%",Enpp1/Gpd1/Arl2
+GO:0009137,purine nucleoside diphosphate catabolic process,11,-0.5254099516936619,-0.9799996914342625,0.502803738317757,1,1,92,"tags=27%, list=14%, signal=24%",Enpp1/Gpd1/Arl2
+GO:0009181,purine ribonucleoside diphosphate catabolic process,11,-0.5254099516936619,-0.9799996914342625,0.502803738317757,1,1,92,"tags=27%, list=14%, signal=24%",Enpp1/Gpd1/Arl2
+GO:0009191,ribonucleoside diphosphate catabolic process,11,-0.5254099516936619,-0.9799996914342625,0.502803738317757,1,1,92,"tags=27%, list=14%, signal=24%",Enpp1/Gpd1/Arl2
+GO:0019364,pyridine nucleotide catabolic process,11,-0.5254099516936619,-0.9799996914342625,0.502803738317757,1,1,92,"tags=27%, list=14%, signal=24%",Enpp1/Gpd1/Arl2
+GO:0046032,ADP catabolic process,11,-0.5254099516936619,-0.9799996914342625,0.502803738317757,1,1,92,"tags=27%, list=14%, signal=24%",Enpp1/Gpd1/Arl2
+GO:0072526,pyridine-containing compound catabolic process,11,-0.5254099516936619,-0.9799996914342625,0.502803738317757,1,1,92,"tags=27%, list=14%, signal=24%",Enpp1/Gpd1/Arl2
+GO:0141187,nucleic acid biosynthetic process,156,-0.37287594929831835,-0.9792041063637509,0.525089605734767,1,1,67,"tags=9%, list=10%, signal=11%",Fbxl2/Tbx18/Fgf7/Prim2/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Cdkn1a/Snrpn/Bcl11b/Gdnf/Tenm2/4930447C04Rik
+GO:0034654,nucleobase-containing compound biosynthetic process,166,-0.3670209564278366,-0.9737426980905368,0.5483304042179262,1,1,67,"tags=9%, list=10%, signal=11%",Fbxl2/Tbx18/Fgf7/Prim2/Ss18l1/Hmgn1/Gart/Zbtb17/Nr4a2/Cdkn1a/Snrpn/Bcl11b/Gdnf/Tenm2/4930447C04Rik
+GO:0006139,nucleobase-containing compound metabolic process,197,-0.36120654092310894,-0.9733987903143566,0.516994633273703,1,1,77,"tags=11%, list=12%, signal=14%",Rps6/Dtwd2/Rad52/Fbxl2/Tbx18/Fgf7/Prim2/Ss18l1/Hmgn1/Gart/Gpd1/Zbtb17/Arl2/Nr4a2/Cdkn1a/Snrpn/Bcl11b/Gdnf/Atp2b2/Tenm2/4930447C04Rik
+GO:0001932,regulation of protein phosphorylation,39,-0.4553082750145409,-0.9723997146950989,0.5174311926605505,1,1,125,"tags=31%, list=20%, signal=26%",Tab1/Cav1/Ccdc88a/Agt/Enpp1/Ripk2/Mvp/Ip6k2/Fgf7/Cdkn1a/Gdnf/Enpp2
+GO:0043085,positive regulation of catalytic activity,27,-0.47100420497312145,-0.9721292127715335,0.5191256830601093,1,1,125,"tags=41%, list=20%, signal=34%",Tab1/Cav1/Ccdc88a/Gch1/Agt/Ctsh/Ip6k2/Hmgn1/Nr4a2/Cdkn1a/Gdnf
+GO:0003018,vascular process in circulatory system,12,-0.517673831852476,-0.9715347604815371,0.5167910447761194,1,1,171,"tags=67%, list=27%, signal=50%",Slit2/Ece1/Adcy6/Cav1/Gch1/Bbs2/Slc1a5/Agt
+GO:0050808,synapse organization,17,0.49492926801571546,0.9714963816733813,0.5129310344827587,1,1,39,"tags=12%, list=6%, signal=11%",Dixdc1/Mdga2
+GO:0051716,cellular response to stimulus,238,-0.3530170309835282,-0.9709024579429828,0.5383211678832117,1,1,101,"tags=16%, list=16%, signal=21%",Col3a1/Cyp2b10/Agt/Ero1a/Evc2/Enpp1/Ripk2/Ctsh/Cpne8/Mvp/Ankrd27/Ip6k2/Rps6/Rad52/Cbl/Fbxl2/Tbx18/Fgf7/Txndc12/Ninj1/Hmgn1/Gpd1/Lcmt1/Oaz1/Kctd8/Grip1/Rnf152/Nr4a2/Ift25/Cdkn1a/Gdnf/Hfe/Mtarc2/Arpp21/Tenm2/Enpp2/Cfap58/4930447C04Rik
+GO:0022008,neurogenesis,79,-0.41307131806993364,-0.9701594890548874,0.5321428571428571,1,1,47,"tags=19%, list=7%, signal=20%",Ankrd27/Arc/Wdr47/Fgf7/Ss18l1/Twf1/Grip1/Nr4a2/Bcl11b/Gdnf/Atp2b2/Tenm2/D16Ertd472e/Enpp2/Myo3b
+GO:0019220,regulation of phosphate metabolic process,50,-0.4429238915668118,-0.9697625472538601,0.5557620817843866,1,1,98,"tags=28%, list=15%, signal=26%",Tab1/Cav1/Ccdc88a/Agt/Enpp1/Ripk2/Mvp/Ip6k2/Fgf7/Gpd1/Arl2/Cdkn1a/Gdnf/Enpp2
+GO:0051174,regulation of phosphorus metabolic process,50,-0.4429238915668118,-0.9697625472538601,0.5557620817843866,1,1,98,"tags=28%, list=15%, signal=26%",Tab1/Cav1/Ccdc88a/Agt/Enpp1/Ripk2/Mvp/Ip6k2/Fgf7/Gpd1/Arl2/Cdkn1a/Gdnf/Enpp2
+GO:0061564,axon development,24,0.47246818940439705,0.9696544328693476,0.5381165919282511,1,1,7,"tags=4%, list=1%, signal=4%",Dixdc1
+GO:0062012,regulation of small molecule metabolic process,22,-0.48097391279788143,-0.966947736557169,0.5100917431192661,1,1,123,"tags=32%, list=19%, signal=27%",Cav1/Agt/Abcd2/Gpd1/Lcmt1/Oaz1/Arl2
+GO:0098876,vesicle-mediated transport to the plasma membrane,11,-0.5173510602510984,-0.9649681696643454,0.5177570093457944,1,1,120,"tags=36%, list=19%, signal=30%",Atp2c1/Bbs2/Ankrd27/Grip1
+GO:2000147,positive regulation of cell motility,19,-0.48488425963247495,-0.9630806362119528,0.5100182149362478,1,1,11,"tags=21%, list=2%, signal=21%",Agt/Ctsh/Fgf7/Enpp2
+GO:0007010,cytoskeleton organization,65,-0.42321375999743194,-0.962516247516171,0.5365418894830659,1,1,76,"tags=17%, list=12%, signal=17%",Arc/Wdr47/Fgf7/Agfg2/Twf1/Mdm1/Arl2/Dnai4/Phactr3/Myo3b/Cfap58
+GO:0099504,synaptic vesicle cycle,12,0.4919307854485317,0.9612080185898901,0.5107296137339056,1,1,218,"tags=67%, list=34%, signal=45%",Pclo/Pld1/Ston2/Atp6v1d/P2ry2/Arpc3/Prkca/Ppp3cc
+GO:0032774,RNA biosynthetic process,152,-0.3659887621158504,-0.960364072087458,0.5706713780918727,1,1,67,"tags=9%, list=10%, signal=10%",Fbxl2/Tbx18/Fgf7/Prim2/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Snrpn/Bcl11b/Gdnf/Tenm2/4930447C04Rik
+GO:0002791,regulation of peptide secretion,11,-0.5145989826475842,-0.9598349680689945,0.5214953271028038,1,1,250,"tags=73%, list=39%, signal=45%",Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt/Hfe
+GO:0090087,regulation of peptide transport,11,-0.5145989826475842,-0.9598349680689945,0.5214953271028038,1,1,250,"tags=73%, list=39%, signal=45%",Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt/Hfe
+GO:0090276,regulation of peptide hormone secretion,11,-0.5145989826475842,-0.9598349680689945,0.5214953271028038,1,1,250,"tags=73%, list=39%, signal=45%",Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt/Hfe
+GO:0010468,regulation of gene expression,161,-0.3632037164407939,-0.9578077934187075,0.5871886120996441,1,1,35,"tags=7%, list=5%, signal=9%",Tbx18/Fgf7/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Tenm2/4930447C04Rik
+GO:0009150,purine ribonucleotide metabolic process,23,-0.4715663658069942,-0.9562972208109748,0.5181159420289855,1,1,53,"tags=22%, list=8%, signal=21%",Enpp1/Gart/Gpd1/Arl2/Atp2b2
+GO:0009259,ribonucleotide metabolic process,23,-0.4715663658069942,-0.9562972208109748,0.5181159420289855,1,1,53,"tags=22%, list=8%, signal=21%",Enpp1/Gart/Gpd1/Arl2/Atp2b2
+GO:0019693,ribose phosphate metabolic process,23,-0.4715663658069942,-0.9562972208109748,0.5181159420289855,1,1,53,"tags=22%, list=8%, signal=21%",Enpp1/Gart/Gpd1/Arl2/Atp2b2
+GO:0043161,proteasome-mediated ubiquitin-dependent protein catabolic process,17,-0.48531049993661796,-0.9544122491324992,0.5241635687732342,1,1,67,"tags=24%, list=10%, signal=22%",Zfand2a/Fbxl2/Ube3d/Hfe
+GO:0002460,adaptive immune response based on somatic recombination of immune receptors built from immunoglobulin superfamily domains,13,-0.49590116631753683,-0.954003812798568,0.5231053604436229,1,1,115,"tags=38%, list=18%, signal=32%",Gzmm/Enpp1/Ripk2/Ctsh/Hfe
+GO:0040017,positive regulation of locomotion,20,-0.4758129522138178,-0.9529473981869513,0.5209471766848816,1,1,11,"tags=20%, list=2%, signal=20%",Agt/Ctsh/Fgf7/Enpp2
+GO:0048513,animal organ development,112,-0.3811093355523143,-0.9525200186000365,0.5596491228070175,1,1,105,"tags=26%, list=16%, signal=26%",Bbs2/Nde1/Col3a1/Agt/Ero1a/Ttpa/Enpp1/Ctsh/Slc26a4/Rps6/Wdr47/Cbl/Tbx18/Fgf7/Ninj1/Hmgn1/Gart/Pomgnt1/Mdm1/Nr4a2/Ift25/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Tmprss13/D16Ertd472e/Myo3b
+GO:0009132,nucleoside diphosphate metabolic process,12,-0.5065484391464163,-0.9506553861093264,0.5279850746268657,1,1,92,"tags=25%, list=14%, signal=22%",Enpp1/Gpd1/Arl2
+GO:0009135,purine nucleoside diphosphate metabolic process,12,-0.5065484391464163,-0.9506553861093264,0.5279850746268657,1,1,92,"tags=25%, list=14%, signal=22%",Enpp1/Gpd1/Arl2
+GO:0009179,purine ribonucleoside diphosphate metabolic process,12,-0.5065484391464163,-0.9506553861093264,0.5279850746268657,1,1,92,"tags=25%, list=14%, signal=22%",Enpp1/Gpd1/Arl2
+GO:0009185,ribonucleoside diphosphate metabolic process,12,-0.5065484391464163,-0.9506553861093264,0.5279850746268657,1,1,92,"tags=25%, list=14%, signal=22%",Enpp1/Gpd1/Arl2
+GO:0046031,ADP metabolic process,12,-0.5065484391464163,-0.9506553861093264,0.5279850746268657,1,1,92,"tags=25%, list=14%, signal=22%",Enpp1/Gpd1/Arl2
+GO:0010556,regulation of macromolecule biosynthetic process,165,-0.3582011315645515,-0.9495565479476259,0.6126760563380281,1,1,35,"tags=7%, list=5%, signal=9%",Tbx18/Fgf7/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Tenm2/4930447C04Rik
+GO:0010639,negative regulation of organelle organization,18,-0.47971781627882876,-0.9485932230148744,0.5229357798165137,1,1,108,"tags=39%, list=17%, signal=33%",Eml4/Mphosph9/Ankrd27/Wdr47/Lcmt1/Twf1/Mdm1
+GO:0043467,regulation of generation of precursor metabolites and energy,10,-0.5102538407072836,-0.9461789711442428,0.5332068311195446,1,1,92,"tags=30%, list=14%, signal=26%",Enpp1/Gpd1/Arl2
+GO:0000902,cell morphogenesis,53,-0.42660141826451714,-0.9447499555452852,0.58195211786372,1,1,42,"tags=21%, list=7%, signal=21%",Ankrd27/Arc/Wdr47/Ss18l1/Grip1/Nr4a2/Bcl11b/Gdnf/Atp2b2/Enpp2/Myo3b
+GO:0050789,regulation of biological process,364,-0.32422701315261415,-0.9436509955157418,0.6571936056838366,1,1,98,"tags=15%, list=15%, signal=29%",Agt/Ero1a/Septin11/Med4/Ttpa/Evc2/Enpp1/Ripk2/Abcd2/Ctsh/Plekhg3/Mvp/Ankrd27/Slc26a4/Ip6k2/Rps6/Arc/Rad52/Wdr47/Cbl/Fbxl2/Stimate/Tbx18/Fgf7/Txndc12/Ss18l1/Ninj1/Hmgn1/Gpd1/Lcmt1/Slc2a13/Twf1/Zbtb17/Oaz1/Kctd8/Grip1/Rnf152/Mdm1/Arl2/Nr4a2/Ift25/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Tenm2/D16Ertd472e/Pnkd/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0042325,regulation of phosphorylation,41,-0.44074010137951664,-0.942943930994772,0.5671641791044776,1,1,125,"tags=29%, list=20%, signal=25%",Tab1/Cav1/Ccdc88a/Agt/Enpp1/Ripk2/Mvp/Ip6k2/Fgf7/Cdkn1a/Gdnf/Enpp2
+GO:0051641,cellular localization,150,-0.35921426936998746,-0.9422206470870581,0.6171328671328671,1,1,108,"tags=17%, list=17%, signal=18%",Eml4/Bbs2/Ric3/Nde1/Agt/Ero1a/Septin11/Enpp1/Abcd2/Ankrd27/Slc26a4/Arc/Dennd2a/Cbl/Fgf7/Oaz1/Grip1/Arl2/Ift25/Cdkn1a/Gdnf/Atp2b2/Hfe/Pnkd/Cfap58
+GO:0033036,macromolecule localization,132,-0.36571831282616196,-0.9409156842870516,0.6176470588235294,1,1,45,"tags=15%, list=7%, signal=18%",Bbs2/Ric3/Agt/Septin11/Ttpa/Abcd2/Ankrd27/Slc26a4/Arc/Dennd2a/Cbl/Fgf7/Oaz1/Grip1/Arl2/Ift25/Cdkn1a/Hfe/Slc10a6/Cfap58
+GO:0007399,nervous system development,103,-0.3810242008002287,-0.9398067038439165,0.5846702317290553,1,1,105,"tags=24%, list=16%, signal=24%",Bbs2/Nde1/Col3a1/Agt/Ttpa/Enpp1/Abcd2/Ankrd27/Arc/Wdr47/Fgf7/Ss18l1/Gart/Serinc5/Twf1/Pomgnt1/Grip1/Nr4a2/Bcl11b/Gdnf/Atp2b2/Tenm2/D16Ertd472e/Enpp2/Myo3b
+GO:0009719,response to endogenous stimulus,55,-0.4207763871559962,-0.9393896251463908,0.5848375451263538,1,1,125,"tags=33%, list=20%, signal=29%",Tab1/Cav1/Smarca4/Bbs2/Col3a1/Agt/Ero1a/Enpp1/Ctsh/Rps6/Cbl/Fgf7/Grip1/Nr4a2/Cdkn1a/Snrpn/Gdnf/Hfe
+GO:0009889,regulation of biosynthetic process,169,-0.3545138272481385,-0.9388086450335665,0.625,1,1,35,"tags=7%, list=5%, signal=9%",Tbx18/Fgf7/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Tenm2/4930447C04Rik
+GO:0050673,epithelial cell proliferation,18,0.47275952529416654,0.9368734811607634,0.5514223194748359,1,1,33,"tags=17%, list=5%, signal=16%",Fut2/Zfas1/Fgf2
+GO:0051130,positive regulation of cellular component organization,57,-0.41695760105759405,-0.9363302759931104,0.5877034358047016,1,1,47,"tags=14%, list=7%, signal=14%",Ss18l1/Twf1/Grip1/Arl2/Hfe/Tenm2/Enpp2/Myo3b
+GO:0006163,purine nucleotide metabolic process,26,-0.45422057913421465,-0.9361612847019234,0.5480943738656987,1,1,53,"tags=19%, list=8%, signal=18%",Enpp1/Gart/Gpd1/Arl2/Atp2b2
+GO:0016070,RNA metabolic process,161,-0.3547739781900993,-0.9355776547182649,0.6548042704626335,1,1,67,"tags=8%, list=10%, signal=10%",Fbxl2/Tbx18/Fgf7/Prim2/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Snrpn/Bcl11b/Gdnf/Tenm2/4930447C04Rik
+GO:0003002,regionalization,13,-0.4861507413326418,-0.9352461585646193,0.5304990757855823,1,1,76,"tags=31%, list=12%, signal=28%",Arc/Tbx18/Ift25/Gdnf
+GO:0032940,secretion by cell,33,-0.44555007228197324,-0.9328598578663706,0.5427509293680297,1,1,104,"tags=18%, list=16%, signal=16%",Slc1a5/Agt/Cbl/Fgf7/Hfe/Pnkd
+GO:0035556,intracellular signal transduction,119,0.36137851269857646,0.9307272250404397,0.591324200913242,1,1,150,"tags=34%, list=23%, signal=32%",Dixdc1/Zfas1/Lcp1/Parp9/Rgl3/Fgf2/Dgkg/Pag1/Ndnf/Tec/Ppt1/Mark4/Rhoq/Ifi35/Ubb/Tle1/Ddit4/Uimc1/Pld1/Pkn1/F11r/Ercc6/Stk24/Cry1/Plscr1/Nsun2/Map2k2/Rpf2/Klf4/Inpp5k/Tgfb2/Cdc42se2/Pabpn1/Gadd45g/Bcl10/Pak6/Pla2r1/Ldlrad4/Pde1a/Rsu1
+GO:0051247,positive regulation of protein metabolic process,48,-0.4262503345303041,-0.9297976602818593,0.6108007448789572,1,1,98,"tags=29%, list=15%, signal=27%",Zfand2a/Tab1/Cav1/Ccdc88a/Agt/Ripk2/Ctsh/Ip6k2/Fgf7/Slc2a13/Oaz1/Cdkn1a/Gdnf/Enpp2
+GO:0090304,nucleic acid metabolic process,173,-0.350488039120282,-0.9290409811425189,0.6389891696750902,1,1,77,"tags=10%, list=12%, signal=12%",Rps6/Dtwd2/Rad52/Fbxl2/Tbx18/Fgf7/Prim2/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Cdkn1a/Snrpn/Bcl11b/Gdnf/Tenm2/4930447C04Rik
+GO:0050794,regulation of cellular process,355,-0.31872423539962236,-0.9288617232919152,0.7189655172413794,1,1,98,"tags=17%, list=15%, signal=32%",Gch1/Eml4/Rnf135/Mphosph9/Bbs2/Ric3/Col3a1/Agt/Ero1a/Septin11/Med4/Ttpa/Evc2/Enpp1/Ripk2/Abcd2/Ctsh/Plekhg3/Mvp/Ankrd27/Slc26a4/Ip6k2/Rps6/Arc/Rad52/Wdr47/Cbl/Fbxl2/Stimate/Tbx18/Fgf7/Txndc12/Ss18l1/Ninj1/Hmgn1/Gpd1/Lcmt1/Slc2a13/Twf1/Zbtb17/Oaz1/Kctd8/Grip1/Rnf152/Mdm1/Arl2/Nr4a2/Ift25/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Tenm2/Pnkd/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0048545,response to steroid hormone,16,-0.47506945103014103,-0.9268616648053236,0.5477941176470589,1,1,32,"tags=25%, list=5%, signal=24%",Cav1/Smarca4/Cdkn1a/Gdnf
+GO:1902533,positive regulation of intracellular signal transduction,37,0.4380708487797322,0.9265720037500407,0.6004366812227074,1,1,58,"tags=14%, list=9%, signal=13%",Dixdc1/Fgf2/Mark4/Ifi35/Ubb
+GO:0031401,positive regulation of protein modification process,34,-0.4436583699662475,-0.9260808950807511,0.5555555555555556,1,1,125,"tags=29%, list=20%, signal=25%",Tab1/Cav1/Ccdc88a/Agt/Ripk2/Ip6k2/Fgf7/Cdkn1a/Gdnf/Enpp2
+GO:0048666,neuron development,59,-0.41317424276581227,-0.9260805873656436,0.6025408348457351,1,1,47,"tags=22%, list=7%, signal=22%",Ankrd27/Arc/Wdr47/Ss18l1/Twf1/Grip1/Nr4a2/Bcl11b/Gdnf/Atp2b2/Tenm2/D16Ertd472e/Myo3b
+GO:0048259,regulation of receptor-mediated endocytosis,12,-0.49276756697396923,-0.9247923899107847,0.5447761194029851,1,1,76,"tags=42%, list=12%, signal=37%",Hnrnpk/Plcg2/Arc/Cbl/Hfe
+GO:0007417,central nervous system development,43,-0.4315168632325494,-0.9241692627989622,0.5970149253731343,1,1,111,"tags=37%, list=17%, signal=33%",Smarca4/Bbs2/Nde1/Col3a1/Agt/Ttpa/Enpp1/Wdr47/Gart/Pomgnt1/Nr4a2/Bcl11b/Gdnf/Atp2b2/D16Ertd472e/Enpp2
+GO:0065007,biological regulation,368,-0.3163577575324927,-0.9219716147891814,0.765017667844523,1,1,98,"tags=14%, list=15%, signal=29%",Agt/Ero1a/Septin11/Med4/Ttpa/Evc2/Enpp1/Ripk2/Abcd2/Ctsh/Plekhg3/Mvp/Ankrd27/Slc26a4/Ip6k2/Rps6/Arc/Rad52/Wdr47/Cbl/Fbxl2/Stimate/Tbx18/Fgf7/Txndc12/Ss18l1/Ninj1/Hmgn1/Gpd1/Lcmt1/Slc2a13/Twf1/Zbtb17/Oaz1/Kctd8/Grip1/Rnf152/Mdm1/Arl2/Nr4a2/Ift25/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Tenm2/D16Ertd472e/Pnkd/Enpp2/Myo3b/Cfap58/4930447C04Rik
+GO:0071363,cellular response to growth factor stimulus,26,-0.44547334740900996,-0.9181329961002451,0.5644283121597096,1,1,125,"tags=42%, list=20%, signal=35%",Tab1/Cav1/Col3a1/Agt/Ero1a/Enpp1/Cbl/Fgf7/Grip1/Gdnf/Hfe
+GO:0051604,protein maturation,22,-0.4558018007538139,-0.9163418385703421,0.5688073394495413,1,1,198,"tags=55%, list=31%, signal=39%",Pigl/Ube4b/Inpp5b/Naa16/Ece1/Pigx/Gzmm/Ric3/Ero1a/Ctsh/Mvp/Arl2
+GO:0097193,intrinsic apoptotic signaling pathway,14,0.47338135355148475,0.9153346981226071,0.5599128540305011,1,1,101,"tags=50%, list=16%, signal=43%",Zfas1/Fgf2/Ubb/Ddit4/Ercc6/Stk24/Plscr1
+GO:0006401,RNA catabolic process,10,-0.49190207754317694,-0.9121487473536128,0.5673624288425048,1,1,27,"tags=20%, list=4%, signal=19%",Tardbp/Gdnf
+GO:0048584,positive regulation of response to stimulus,74,0.3868282197325718,0.9092413746869514,0.6244343891402715,1,1,101,"tags=22%, list=16%, signal=21%",Dixdc1/Parp9/Fgf2/Smarcd1/Tec/Ppt1/Mark4/Plscr2/Ifi35/Ubb/Uimc1/Ano6/F11r/Ercc6/Stk24/Plscr1
+GO:0006457,protein folding,10,-0.4899426811002815,-0.9085153798755109,0.571157495256167,1,1,103,"tags=30%, list=16%, signal=26%",Ric3/Ero1a/Arl2
+GO:0050769,positive regulation of neurogenesis,12,0.46388045306410486,0.906399079589581,0.575107296137339,1,1,33,"tags=17%, list=5%, signal=16%",Dixdc1/Fgf2
+GO:0070848,response to growth factor,27,-0.4375298200501374,-0.9030397500457203,0.5883424408014571,1,1,125,"tags=41%, list=20%, signal=34%",Tab1/Cav1/Col3a1/Agt/Ero1a/Enpp1/Cbl/Fgf7/Grip1/Gdnf/Hfe
+GO:0009725,response to hormone,40,-0.4199854063459992,-0.9004496557325314,0.6051660516605166,1,1,123,"tags=30%, list=19%, signal=26%",Cav1/Smarca4/Bbs2/Col3a1/Agt/Enpp1/Ctsh/Rps6/Nr4a2/Cdkn1a/Snrpn/Gdnf
+GO:0015980,energy derivation by oxidation of organic compounds,15,-0.4629073083418993,-0.8993401982026635,0.5807050092764379,1,1,92,"tags=20%, list=14%, signal=18%",Enpp1/Coq10b/Arl2
+GO:0032102,negative regulation of response to external stimulus,10,0.47206939774385326,0.8986564007873965,0.5663157894736842,1,1,68,"tags=20%, list=11%, signal=18%",Fgf2/Phldb2
+GO:0051259,protein complex oligomerization,17,-0.4564802414119721,-0.8977146258888804,0.5892193308550185,1,1,107,"tags=35%, list=17%, signal=30%",Rnf135/Slc1a5/Ripk2/Arc/Ninj1/Kctd8
+GO:0006643,membrane lipid metabolic process,11,-0.48078899791037283,-0.8967722596009547,0.5906542056074766,1,1,11,"tags=18%, list=2%, signal=18%",Pigx/Enpp2
+GO:0006954,inflammatory response,21,-0.44703765554171926,-0.8961500177298376,0.5930018416206262,1,1,98,"tags=33%, list=15%, signal=29%",Agt/Enpp1/Abcd2/Fbxl2/Ninj1/Pomgnt1/Hfe
+GO:0009896,positive regulation of catabolic process,25,-0.4351199584329354,-0.8956578809713558,0.5860215053763441,1,1,132,"tags=56%, list=21%, signal=46%",Atg7/Oaz2/Trim8/Eif2ak1/Ppp2ca/Hsf1/Tardbp/Zfand2a/Cav1/Ripk2/Abcd2/Gpd1/Oaz1/Rnf152
+GO:0009653,anatomical structure morphogenesis,105,-0.36209865992990864,-0.895608299022049,0.6827094474153298,1,1,81,"tags=23%, list=13%, signal=24%",Bbs2/Col3a1/Agt/Enpp1/Ctsh/Ankrd27/Slc26a4/Rps6/Arc/Wdr47/Tbx18/Fgf7/Ss18l1/Ninj1/Agfg2/Hmgn1/Zbtb17/Grip1/Nr4a2/Bcl11b/Gdnf/Atp2b2/Enpp2/Myo3b
+GO:0007017,microtubule-based process,44,-0.4152922149599556,-0.8938743667324851,0.6294227188081937,1,1,37,"tags=11%, list=6%, signal=11%",Mdm1/Arl2/Ift25/Dnai4/Cfap58
+GO:0009967,positive regulation of signal transduction,49,0.40382047223556716,0.8933589281595056,0.6266094420600858,1,1,58,"tags=12%, list=9%, signal=12%",Dixdc1/Parp9/Fgf2/Mark4/Ifi35/Ubb
+GO:0048667,cell morphogenesis involved in neuron differentiation,32,-0.4285269190124294,-0.8923223948039676,0.6055555555555555,1,1,81,"tags=31%, list=13%, signal=29%",Ankrd27/Arc/Wdr47/Ss18l1/Grip1/Nr4a2/Bcl11b/Gdnf/Atp2b2/Myo3b
+GO:0045739,positive regulation of DNA repair,11,0.46388373860380694,0.8917702475708109,0.5845824411134903,1,1,96,"tags=27%, list=15%, signal=24%",Smarcd1/Uimc1/Ercc6
+GO:0140352,export from cell,35,-0.42503842399380654,-0.8895849501946435,0.6086142322097379,1,1,104,"tags=17%, list=16%, signal=15%",Slc1a5/Agt/Cbl/Fgf7/Hfe/Pnkd
+GO:0009117,nucleotide metabolic process,28,-0.43156551559128487,-0.8890616582761335,0.6090909090909091,1,1,53,"tags=18%, list=8%, signal=17%",Enpp1/Gart/Gpd1/Arl2/Atp2b2
+GO:0006090,pyruvate metabolic process,13,-0.4619859056069958,-0.8887583763536863,0.5711645101663586,1,1,92,"tags=46%, list=14%, signal=40%",Ppp2ca/Pdk4/Slc16a1/Enpp1/Gpd1/Arl2
+GO:0000226,microtubule cytoskeleton organization,33,-0.4241502640448247,-0.8880545187756834,0.6022304832713755,1,1,37,"tags=12%, list=6%, signal=12%",Mdm1/Arl2/Dnai4/Cfap58
+GO:0042176,regulation of protein catabolic process,15,-0.456904545459494,-0.8876779801664803,0.5918367346938775,1,1,45,"tags=27%, list=7%, signal=25%",Zfand2a/Cav1/Oaz1/Hfe
+GO:0010498,proteasomal protein catabolic process,22,-0.4403017669982787,-0.8851806421776125,0.6018348623853211,1,1,67,"tags=27%, list=10%, signal=25%",Zfand2a/Cav1/Fbxl2/Ube3d/Oaz1/Hfe
+GO:0010038,response to metal ion,11,0.45959733029691746,0.8835300548696627,0.5867237687366167,1,1,12,"tags=9%, list=2%, signal=9%",Cpne4
+GO:0002274,myeloid leukocyte activation,10,0.4630262069421206,0.8814413020405628,0.5789473684210527,1,1,135,"tags=50%, list=21%, signal=40%",Plscr2/Ifi35/Jmjd6/Plscr1/Bcl10
+GO:0072001,renal system development,15,-0.4533785726583269,-0.8808276906577288,0.601113172541744,1,1,98,"tags=40%, list=15%, signal=35%",Agt/Enpp1/Ctsh/Tbx18/Ift25/Gdnf
+GO:0098771,inorganic ion homeostasis,23,-0.43411012730861775,-0.8803390961963563,0.5978260869565217,1,1,123,"tags=30%, list=19%, signal=26%",Cav1/Atp2c1/Agt/Ero1a/Enpp1/Atp2b2/Hfe
+GO:0030182,neuron differentiation,68,-0.3848874434460277,-0.8792060730632035,0.6964285714285714,1,1,47,"tags=19%, list=7%, signal=20%",Ankrd27/Arc/Wdr47/Ss18l1/Twf1/Grip1/Nr4a2/Bcl11b/Gdnf/Atp2b2/Tenm2/D16Ertd472e/Myo3b
+GO:0034765,regulation of monoatomic ion transmembrane transport,10,0.4612119966699476,0.8779876749229094,0.5831578947368421,1,1,118,"tags=30%, list=18%, signal=25%",Zfas1/Ano6/Tgfb2
+GO:1904062,regulation of monoatomic cation transmembrane transport,10,0.4612119966699476,0.8779876749229094,0.5831578947368421,1,1,118,"tags=30%, list=18%, signal=25%",Zfas1/Ano6/Tgfb2
+GO:0071219,cellular response to molecule of bacterial origin,11,0.45646242556948763,0.8775035130182385,0.5910064239828694,1,1,135,"tags=45%, list=21%, signal=37%",Plscr4/Plscr2/Plscr1/Pabpn1/Bcl10
+GO:0071222,cellular response to lipopolysaccharide,11,0.45646242556948763,0.8775035130182385,0.5910064239828694,1,1,135,"tags=45%, list=21%, signal=37%",Plscr4/Plscr2/Plscr1/Pabpn1/Bcl10
+GO:0051962,positive regulation of nervous system development,14,0.45281929578788677,0.875575707206258,0.5904139433551199,1,1,33,"tags=14%, list=5%, signal=14%",Dixdc1/Fgf2
+GO:0071383,cellular response to steroid hormone stimulus,10,-0.4712045493794291,-0.8737687013042617,0.6072106261859582,1,1,27,"tags=20%, list=4%, signal=19%",Smarca4/Gdnf
+GO:0065008,regulation of biological quality,96,-0.3599174751255916,-0.8736661129802047,0.7248201438848921,1,1,109,"tags=20%, list=17%, signal=19%",Gch1/Bbs2/Ric3/Agt/Septin11/Ttpa/Enpp1/Ctsh/Ip6k2/Arc/Tbx18/Fgf7/Twf1/Kctd8/Grip1/Gdnf/Atp2b2/Hfe/Myo3b
+GO:0060828,regulation of canonical Wnt signaling pathway,15,0.45063565313981474,0.8736515968429484,0.5961123110151187,1,1,62,"tags=20%, list=10%, signal=18%",Fgf2/Nphp3/Tle1
+GO:0006753,nucleoside phosphate metabolic process,29,-0.4218709828576369,-0.8720391903154453,0.625,1,1,53,"tags=17%, list=8%, signal=17%",Enpp1/Gart/Gpd1/Arl2/Atp2b2
+GO:0044093,positive regulation of molecular function,44,-0.4051375724055605,-0.8720175286899517,0.6517690875232774,1,1,125,"tags=34%, list=20%, signal=29%",Tab1/Cav1/Ccdc88a/Smarca4/Gch1/Agt/Ripk2/Ctsh/Ip6k2/Stimate/Hmgn1/Nr4a2/Cdkn1a/Gdnf/Hfe
+GO:0010506,regulation of autophagy,12,-0.46411043667080665,-0.8710106522371962,0.6082089552238806,1,1,135,"tags=67%, list=21%, signal=54%",Rubcn/Atg7/Trim8/Eif2ak1/Rmc1/Ripk2/Fbxl2/Rnf152
+GO:0031667,response to nutrient levels,30,-0.4187937888754321,-0.8709765426393167,0.6279926335174953,1,1,105,"tags=20%, list=16%, signal=18%",Bbs2/Enpp1/Cbl/Rnf152/Cdkn1a/Hfe
+GO:0007167,enzyme-linked receptor protein signaling pathway,31,-0.41743637420730817,-0.8700707041044348,0.6423357664233577,1,1,125,"tags=39%, list=20%, signal=33%",Tab1/Cav1/Ccdc88a/Col3a1/Agt/Ero1a/Enpp1/Mvp/Cbl/Fgf7/Gdnf/Hfe
+GO:0071216,cellular response to biotic stimulus,12,0.44452647996400263,0.8685823893443684,0.5944206008583691,1,1,135,"tags=42%, list=21%, signal=34%",Plscr4/Plscr2/Plscr1/Pabpn1/Bcl10
+GO:1903532,positive regulation of secretion by cell,12,-0.46222307915778743,-0.8674685890372995,0.6119402985074627,1,1,25,"tags=17%, list=4%, signal=16%",Agt/Hfe
+GO:0050767,regulation of neurogenesis,16,0.4464336504330489,0.8674053999329309,0.6135371179039302,1,1,33,"tags=12%, list=5%, signal=12%",Dixdc1/Fgf2
+GO:0141188,nucleic acid catabolic process,11,-0.4648196749495993,-0.8669861249388219,0.6186915887850467,1,1,27,"tags=27%, list=4%, signal=27%",Hsf1/Tardbp/Gdnf
+GO:0006195,purine nucleotide catabolic process,13,-0.45039398812967146,-0.8664580991570551,0.6025878003696857,1,1,92,"tags=23%, list=14%, signal=20%",Enpp1/Gpd1/Arl2
+GO:0009154,purine ribonucleotide catabolic process,13,-0.45039398812967146,-0.8664580991570551,0.6025878003696857,1,1,92,"tags=23%, list=14%, signal=20%",Enpp1/Gpd1/Arl2
+GO:0009166,nucleotide catabolic process,13,-0.45039398812967146,-0.8664580991570551,0.6025878003696857,1,1,92,"tags=23%, list=14%, signal=20%",Enpp1/Gpd1/Arl2
+GO:0009261,ribonucleotide catabolic process,13,-0.45039398812967146,-0.8664580991570551,0.6025878003696857,1,1,92,"tags=23%, list=14%, signal=20%",Enpp1/Gpd1/Arl2
+GO:0072523,purine-containing compound catabolic process,13,-0.45039398812967146,-0.8664580991570551,0.6025878003696857,1,1,92,"tags=23%, list=14%, signal=20%",Enpp1/Gpd1/Arl2
+GO:1901292,nucleoside phosphate catabolic process,13,-0.45039398812967146,-0.8664580991570551,0.6025878003696857,1,1,92,"tags=23%, list=14%, signal=20%",Enpp1/Gpd1/Arl2
+GO:0031399,regulation of protein modification process,47,-0.3982160121253567,-0.8646077548098646,0.6884328358208955,1,1,125,"tags=26%, list=20%, signal=22%",Tab1/Cav1/Ccdc88a/Agt/Enpp1/Ripk2/Mvp/Ip6k2/Fgf7/Cdkn1a/Gdnf/Enpp2
+GO:0008104,protein localization,108,-0.3486274203470868,-0.8646057828204342,0.7495527728085868,1,1,45,"tags=11%, list=7%, signal=12%",Ankrd27/Slc26a4/Dennd2a/Cbl/Fgf7/Oaz1/Grip1/Arl2/Ift25/Cdkn1a/Hfe/Cfap58
+GO:0070727,cellular macromolecule localization,108,-0.3486274203470868,-0.8646057828204342,0.7495527728085868,1,1,45,"tags=11%, list=7%, signal=12%",Ankrd27/Slc26a4/Dennd2a/Cbl/Fgf7/Oaz1/Grip1/Arl2/Ift25/Cdkn1a/Hfe/Cfap58
+GO:0019362,pyridine nucleotide metabolic process,15,-0.4448750668708051,-0.8643070083471378,0.614100185528757,1,1,92,"tags=20%, list=14%, signal=18%",Enpp1/Gpd1/Arl2
+GO:0046496,nicotinamide nucleotide metabolic process,15,-0.4448750668708051,-0.8643070083471378,0.614100185528757,1,1,92,"tags=20%, list=14%, signal=18%",Enpp1/Gpd1/Arl2
+GO:0072524,pyridine-containing compound metabolic process,15,-0.4448750668708051,-0.8643070083471378,0.614100185528757,1,1,92,"tags=20%, list=14%, signal=18%",Enpp1/Gpd1/Arl2
+GO:0048518,positive regulation of biological process,224,-0.31511977371313493,-0.8633784993406047,0.8282647584973166,1,1,111,"tags=19%, list=17%, signal=24%",Smarca4/Gch1/Rnf135/Bbs2/Ric3/Col3a1/Agt/Med4/Ttpa/Enpp1/Ripk2/Abcd2/Ctsh/Ankrd27/Ip6k2/Rps6/Arc/Cbl/Fbxl2/Stimate/Tbx18/Fgf7/Ss18l1/Ninj1/Gpd1/Slc2a13/Twf1/Zbtb17/Oaz1/Grip1/Rnf152/Arl2/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Tenm2/D16Ertd472e/Enpp2/Myo3b
+GO:0007015,actin filament organization,15,0.44435262147966204,0.8614706240223089,0.6112311015118791,1,1,117,"tags=40%, list=18%, signal=33%",Lcp1/Msrb1/Rhoq/Phldb2/F11r/Inpp5k
+GO:0006468,protein phosphorylation,49,-0.39520574755637866,-0.8612667220773044,0.7033582089552238,1,1,32,"tags=22%, list=5%, signal=23%",Agt/Enpp1/Ripk2/Mvp/Ip6k2/Cbl/Fgf7/Cdkn1a/Gdnf/Enpp2/Myo3b
+GO:0072521,purine-containing compound metabolic process,29,-0.4165141024141763,-0.8609661137722585,0.6360294117647058,1,1,53,"tags=17%, list=8%, signal=17%",Enpp1/Gart/Gpd1/Arl2/Atp2b2
+GO:0051960,regulation of nervous system development,19,0.4347968257350341,0.8606033296532287,0.6291390728476821,1,1,33,"tags=11%, list=5%, signal=10%",Dixdc1/Fgf2
+GO:0034976,response to endoplasmic reticulum stress,11,-0.4606453503948741,-0.8592001346613436,0.6224299065420561,1,1,197,"tags=55%, list=31%, signal=38%",Ube4b/Tardbp/Rpap2/Cav1/Ero1a/Txndc12
+GO:0031099,regeneration,11,-0.4605853580069478,-0.8590882362828172,0.6224299065420561,1,1,92,"tags=55%, list=14%, signal=48%",Ezh1/Sgca/Enpp1/Ninj1/Cdkn1a/Hfe
+GO:0051649,establishment of localization in cell,87,-0.3594909774523452,-0.8588013885015163,0.7436823104693141,1,1,114,"tags=20%, list=18%, signal=19%",Ccdc88a/Eml4/Nde1/Agt/Enpp1/Abcd2/Ankrd27/Arc/Dennd2a/Cbl/Oaz1/Grip1/Ift25/Cdkn1a/Gdnf/Atp2b2/Pnkd
+GO:0008283,cell population proliferation,75,0.365115065726759,0.854625222878662,0.726027397260274,1,1,34,"tags=8%, list=5%, signal=9%",Dixdc1/Fut2/Skap2/Zfas1/Fgf2/Smarcd1
+GO:0010467,gene expression,219,-0.31244323112142275,-0.8543973295072113,0.8442477876106195,1,1,118,"tags=16%, list=18%, signal=20%",Fbxo30/Pigx/Rps3a1/Gzmm/Smarca4/Rnf135/Bbs2/Ric3/Col3a1/Agt/Ero1a/Med4/Enpp1/Ripk2/Abcd2/Ctsh/Mvp/Dtwd1/Rps6/Dtwd2/Tbx18/Fgf7/Ss18l1/Hmgn1/Zbtb17/Pomgnt1/Arl2/Nr4a2/Cdkn1a/Snrpn/Bcl11b/Gdnf/Hfe/Tenm2/4930447C04Rik
+GO:0008016,regulation of heart contraction,14,-0.4393861040399575,-0.8530280009794106,0.6224677716390423,1,1,161,"tags=43%, list=25%, signal=33%",Dsc2/Slc4a3/Cav1/Gch1/Agt/Tbx18
+GO:1903522,regulation of blood circulation,14,-0.4393861040399575,-0.8530280009794106,0.6224677716390423,1,1,161,"tags=43%, list=25%, signal=33%",Dsc2/Slc4a3/Cav1/Gch1/Agt/Tbx18
+GO:0051258,protein polymerization,14,-0.439243975146834,-0.8527520707110935,0.6224677716390423,1,1,171,"tags=57%, list=27%, signal=43%",Slit2/Gda/Hdgfl3/Cav1/Rnf135/Nde1/Twf1/Arl2
+GO:0034655,nucleobase-containing compound catabolic process,24,-0.4172412013452459,-0.8514973104781068,0.6330935251798561,1,1,52,"tags=17%, list=8%, signal=16%",Enpp1/Gpd1/Arl2/Gdnf
+GO:0048699,generation of neurons,71,-0.3706028760525138,-0.8510628339386178,0.750445632798574,1,1,47,"tags=24%, list=7%, signal=25%",Nde1/Col3a1/Agt/Enpp1/Ankrd27/Arc/Wdr47/Ss18l1/Twf1/Grip1/Nr4a2/Bcl11b/Gdnf/Atp2b2/Tenm2/D16Ertd472e/Myo3b
+GO:0048858,cell projection morphogenesis,34,-0.4065876368301737,-0.8487004148554671,0.6704331450094162,1,1,81,"tags=26%, list=13%, signal=24%",Ankrd27/Arc/Wdr47/Ss18l1/Grip1/Nr4a2/Bcl11b/Gdnf/Enpp2
+GO:0120039,plasma membrane bounded cell projection morphogenesis,34,-0.4065876368301737,-0.8487004148554671,0.6704331450094162,1,1,81,"tags=26%, list=13%, signal=24%",Ankrd27/Arc/Wdr47/Ss18l1/Grip1/Nr4a2/Bcl11b/Gdnf/Enpp2
+GO:1902531,regulation of intracellular signal transduction,75,0.3624336310146258,0.848348785794561,0.7374429223744292,1,1,148,"tags=32%, list=23%, signal=28%",Dixdc1/Zfas1/Fgf2/Dgkg/Ppt1/Mark4/Ifi35/Ubb/Tle1/Ddit4/F11r/Cry1/Plscr1/Map2k2/Rpf2/Klf4/Inpp5k/Tgfb2/Cdc42se2/Gadd45g/Bcl10/Pak6/Pla2r1/Ldlrad4
+GO:0006650,glycerophospholipid metabolic process,22,0.41247050779314104,0.846668330386751,0.6564551422319475,1,1,37,"tags=14%, list=6%, signal=13%",Ip6k3/Inpp1/Dgkg
+GO:0051054,positive regulation of DNA metabolic process,18,0.4264852831639647,0.8451712351073973,0.6323851203501094,1,1,116,"tags=28%, list=18%, signal=23%",Fgf2/Smarcd1/Uimc1/Ercc6/Klf4
+GO:0000209,protein polyubiquitination,18,-0.4260347954500063,-0.8424405056857583,0.6568807339449542,1,1,107,"tags=33%, list=17%, signal=29%",Hace1/Rnf135/Ripk2/Cbl/Ube3d/Rnf152
+GO:0010720,positive regulation of cell development,25,0.40941939087328233,0.8419388754634524,0.6666666666666666,1,1,34,"tags=12%, list=5%, signal=12%",Dixdc1/Fgf2/Smarcd1
+GO:0000375,"RNA splicing, via transesterification reactions",10,-0.4539659952726323,-0.8418027343922353,0.6394686907020873,1,1,31,"tags=30%, list=5%, signal=29%",Hnrnpk/Srsf7/Snrpn
+GO:0000377,"RNA splicing, via transesterification reactions with bulged adenosine as nucleophile",10,-0.4539659952726323,-0.8418027343922353,0.6394686907020873,1,1,31,"tags=30%, list=5%, signal=29%",Hnrnpk/Srsf7/Snrpn
+GO:0000398,"mRNA splicing, via spliceosome",10,-0.4539659952726323,-0.8418027343922353,0.6394686907020873,1,1,31,"tags=30%, list=5%, signal=29%",Hnrnpk/Srsf7/Snrpn
+GO:0019216,regulation of lipid metabolic process,19,-0.42380749570217746,-0.8417695243430234,0.6484517304189436,1,1,144,"tags=26%, list=22%, signal=21%",Plcg2/Cav1/Agt/Abcd2/Bcl11b
+GO:0006810,transport,155,0.3169990541685302,0.8414022394233595,0.854875283446712,1,1,26,"tags=5%, list=4%, signal=6%",Inhca/Ano5/Zfas1/Tmem266/Arrdc2/Plscr4/Lcp1
+GO:0006644,phospholipid metabolic process,23,0.41103530006651523,0.8405662225887268,0.6622222222222223,1,1,37,"tags=13%, list=6%, signal=13%",Ip6k3/Inpp1/Dgkg
+GO:0045926,negative regulation of growth,14,-0.43281935651424064,-0.8402792602630011,0.6390423572744015,1,1,111,"tags=43%, list=17%, signal=36%",Smarca4/Bbs2/Agt/Enpp1/Ip6k2/Cdkn1a
+GO:0042221,response to chemical,124,-0.32934660982876535,-0.8370074191179037,0.8014059753954306,1,1,111,"tags=23%, list=17%, signal=24%",Smarca4/Gch1/Bbs2/Col3a1/Cyp2b10/Agt/Ero1a/Ttpa/Enpp1/Ripk2/Ctsh/Cpne8/Ip6k2/Rps6/Arc/Rad52/Cbl/Fgf7/Ninj1/Gpd1/Oaz1/Grip1/Nr4a2/Cdkn1a/Snrpn/Gdnf/Hfe/Mtarc2/Enpp2
+GO:0030336,negative regulation of cell migration,17,0.4258310331776585,0.8358634953938445,0.6379310344827587,1,1,231,"tags=65%, list=36%, signal=43%",Fgf2/Tmem196/Phldb2/Stk24/Klf4/Dach1/Ldlrad4/Trib1/Hdac5/Foxo3/Adamts9
+GO:0040013,negative regulation of locomotion,17,0.4258310331776585,0.8358634953938445,0.6379310344827587,1,1,231,"tags=65%, list=36%, signal=43%",Fgf2/Tmem196/Phldb2/Stk24/Klf4/Dach1/Ldlrad4/Trib1/Hdac5/Foxo3/Adamts9
+GO:2000146,negative regulation of cell motility,17,0.4258310331776585,0.8358634953938445,0.6379310344827587,1,1,231,"tags=65%, list=36%, signal=43%",Fgf2/Tmem196/Phldb2/Stk24/Klf4/Dach1/Ldlrad4/Trib1/Hdac5/Foxo3/Adamts9
+GO:0016197,endosomal transport,14,-0.43010121000548973,-0.8350022270081713,0.6445672191528545,1,1,81,"tags=21%, list=13%, signal=19%",Ankrd27/Dennd2a/Grip1
+GO:0001822,kidney development,13,-0.43402746808233666,-0.8349725460107578,0.6414048059149723,1,1,98,"tags=38%, list=15%, signal=33%",Agt/Enpp1/Ctsh/Ift25/Gdnf
+GO:0031175,neuron projection development,57,-0.37178914199179236,-0.834898869931697,0.7179023508137432,1,1,47,"tags=21%, list=7%, signal=21%",Ankrd27/Arc/Wdr47/Ss18l1/Twf1/Grip1/Nr4a2/Bcl11b/Gdnf/Atp2b2/D16Ertd472e/Myo3b
+GO:0048812,neuron projection morphogenesis,33,0.3938331512543632,0.8344256362218363,0.7176724137931034,1,1,7,"tags=3%, list=1%, signal=3%",Dixdc1
+GO:0051047,positive regulation of secretion,13,-0.43297094033090866,-0.8329400210407633,0.6432532347504621,1,1,25,"tags=15%, list=4%, signal=15%",Agt/Hfe
+GO:0046883,regulation of hormone secretion,12,-0.44367823578772575,-0.8326648982708038,0.6511194029850746,1,1,178,"tags=67%, list=28%, signal=49%",Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt/Hfe
+GO:0034763,negative regulation of transmembrane transport,11,0.43306025094581113,0.8325151650311678,0.6209850107066381,1,1,118,"tags=36%, list=18%, signal=30%",Zfas1/Rhoq/Inpp5k/Tgfb2
+GO:1903311,regulation of mRNA metabolic process,13,-0.4320157734217282,-0.8311024918411773,0.6432532347504621,1,1,27,"tags=31%, list=4%, signal=30%",Tardbp/Hnrnpk/Srsf7/Gdnf
+GO:0016310,phosphorylation,54,-0.37470001680713405,-0.830988443569204,0.7169117647058824,1,1,32,"tags=20%, list=5%, signal=21%",Agt/Enpp1/Ripk2/Mvp/Ip6k2/Cbl/Fgf7/Cdkn1a/Gdnf/Enpp2/Myo3b
+GO:0007098,centrosome cycle,12,-0.44277737082316826,-0.8309742166606563,0.6529850746268657,1,1,37,"tags=25%, list=6%, signal=24%",Nde1/Mdm1/Arl2
+GO:0097191,extrinsic apoptotic signaling pathway,10,-0.4480715206310803,-0.8308724336147856,0.6546489563567363,1,1,123,"tags=30%, list=19%, signal=25%",Cav1/Agt/Gdnf
+GO:0030162,regulation of proteolysis,14,-0.4278516014790943,-0.8306348174642345,0.6464088397790055,1,1,183,"tags=57%, list=29%, signal=42%",Inpp5b/Traf3/Cd46/Zfand2a/Cav1/Ctsh/Oaz1/Hfe
+GO:0070887,cellular response to chemical stimulus,88,-0.34648690743352784,-0.8303457581184958,0.7870036101083032,1,1,111,"tags=27%, list=17%, signal=26%",Smarca4/Gch1/Bbs2/Col3a1/Cyp2b10/Agt/Ero1a/Enpp1/Ripk2/Ctsh/Cpne8/Ip6k2/Rps6/Rad52/Cbl/Ninj1/Gpd1/Oaz1/Grip1/Nr4a2/Gdnf/Hfe/Mtarc2/Enpp2
+GO:0002237,response to molecule of bacterial origin,15,0.4282759733581246,0.8303026744705996,0.6436285097192225,1,1,200,"tags=60%, list=31%, signal=42%",Plscr4/Plscr2/Plscr1/Fosl2/Pabpn1/Bcl10/Extl3/Trib1/Prkca
+GO:0032496,response to lipopolysaccharide,15,0.4282759733581246,0.8303026744705996,0.6436285097192225,1,1,200,"tags=60%, list=31%, signal=42%",Plscr4/Plscr2/Plscr1/Fosl2/Pabpn1/Bcl10/Extl3/Trib1/Prkca
+GO:0071495,cellular response to endogenous stimulus,48,-0.3806107215536237,-0.8302420660120087,0.7262569832402235,1,1,125,"tags=31%, list=20%, signal=27%",Tab1/Cav1/Smarca4/Bbs2/Col3a1/Agt/Ero1a/Enpp1/Ctsh/Cbl/Fgf7/Grip1/Nr4a2/Gdnf/Hfe
+GO:0010647,positive regulation of cell communication,56,0.36854963588920464,0.8291089927744325,0.7299107142857143,1,1,58,"tags=11%, list=9%, signal=11%",Dixdc1/Parp9/Fgf2/Mark4/Ifi35/Ubb
+GO:0051222,positive regulation of protein transport,10,-0.44704487071554727,-0.828968685943905,0.6565464895635673,1,1,250,"tags=70%, list=39%, signal=43%",Atg7/Oaz2/Lrrc8a/Tardbp/Atp2c1/Agt/Oaz1
+GO:0023056,positive regulation of signaling,57,0.3670333995221966,0.8289554926679172,0.7282850779510023,1,1,58,"tags=11%, list=9%, signal=11%",Dixdc1/Parp9/Fgf2/Mark4/Ifi35/Ubb
+GO:0043066,negative regulation of apoptotic process,38,-0.3892997387224112,-0.8284475050880513,0.6941391941391941,1,1,123,"tags=37%, list=19%, signal=32%",Cav1/Rps3a1/Smarca4/Gch1/Agt/Ttpa/Ctsh/Rps6/Cbl/Txndc12/Nr4a2/Cdkn1a/Bcl11b/Gdnf
+GO:0016358,dendrite development,14,-0.42622099517167655,-0.8274691442078166,0.6482504604051565,1,1,81,"tags=36%, list=13%, signal=32%",Ankrd27/Arc/Ss18l1/Grip1/D16Ertd472e
+GO:0031032,actomyosin structure organization,12,0.42300767003309897,0.8265357167881121,0.6330472103004292,1,1,117,"tags=33%, list=18%, signal=28%",Phldb2/Epb41l2/F11r/Inpp5k
+GO:0006469,negative regulation of protein kinase activity,11,-0.4428727025987463,-0.82605042118517,0.6467289719626168,1,1,123,"tags=36%, list=19%, signal=30%",Cav1/Agt/Mvp/Cdkn1a
+GO:0072593,reactive oxygen species metabolic process,13,-0.4292056463031713,-0.8256964307797373,0.6487985212569316,1,1,144,"tags=38%, list=22%, signal=30%",Plcg2/Gch1/Agt/Abcd2/Cdkn1a
+GO:0051246,regulation of protein metabolic process,78,-0.352078282047535,-0.8232234514687194,0.7913669064748201,1,1,98,"tags=17%, list=15%, signal=16%",Agt/Enpp1/Ripk2/Ctsh/Mvp/Ip6k2/Fgf7/Slc2a13/Oaz1/Cdkn1a/Gdnf/Hfe/Enpp2
+GO:0050801,monoatomic ion homeostasis,29,-0.3981832857964148,-0.8230749310867503,0.6856617647058824,1,1,149,"tags=38%, list=23%, signal=30%",Slc4a3/Plcg2/Cav1/Atp2c1/Agt/Ero1a/Ttpa/Enpp1/Slc26a4/Atp2b2/Hfe
+GO:0055080,monoatomic cation homeostasis,29,-0.3981832857964148,-0.8230749310867503,0.6856617647058824,1,1,149,"tags=38%, list=23%, signal=30%",Slc4a3/Plcg2/Cav1/Atp2c1/Agt/Ero1a/Ttpa/Enpp1/Slc26a4/Atp2b2/Hfe
+GO:0048870,cell motility,76,-0.35239413704821565,-0.8213495855699694,0.7921847246891652,1,1,35,"tags=24%, list=5%, signal=25%",Ccdc88a/Smarca4/Bbs2/Nde1/Col3a1/Agt/Enpp1/Ctsh/Plekhg3/Arc/Wdr47/Fgf7/Ninj1/Nr4a2/Bcl11b/Gdnf/Enpp2/Cfap58
+GO:0006950,response to stress,146,0.3119073383418775,0.8208226597716807,0.8545034642032333,1,1,50,"tags=9%, list=8%, signal=11%",Inhca/Ano5/Zfas1/Lcp1/Parp9/Fgf2/Smarcd1/Chd1l/Ndnf/Tec/Ppt1/Msrb1/Mark4
+GO:0032956,regulation of actin cytoskeleton organization,13,0.4235421717573866,0.8205285219334743,0.6529284164859002,1,1,7,"tags=8%, list=1%, signal=8%",Dixdc1
+GO:0051234,establishment of localization,165,0.3078471172026488,0.8203185672114779,0.8870967741935484,1,1,26,"tags=4%, list=4%, signal=5%",Inhca/Ano5/Zfas1/Tmem266/Arrdc2/Plscr4/Lcp1
+GO:0045216,cell-cell junction organization,12,-0.43668694620882864,-0.8195441252501067,0.6604477611940298,1,1,123,"tags=33%, list=19%, signal=27%",Cav1/Agt/Rps6/Arl2
+GO:0032103,positive regulation of response to external stimulus,23,0.40059240635656573,0.8192105294955854,0.6911111111111111,1,1,101,"tags=35%, list=16%, signal=30%",Parp9/Fgf2/Ppt1/Mark4/Ifi35/Ano6/Stk24/Plscr1
+GO:0006109,regulation of carbohydrate metabolic process,19,-0.4122987795533647,-0.818910828787547,0.6794171220400729,1,1,92,"tags=21%, list=14%, signal=19%",Enpp1/Gpd1/Lcmt1/Arl2
+GO:0031023,microtubule organizing center organization,13,-0.42556220101332265,-0.8186872504544527,0.6580406654343808,1,1,37,"tags=23%, list=6%, signal=22%",Nde1/Mdm1/Arl2
+GO:0006629,lipid metabolic process,63,0.3566157213901572,0.8186841080932321,0.7687074829931972,1,1,47,"tags=11%, list=7%, signal=11%",Ip6k3/Fut2/Inpp1/Nphp3/Dgkg/Pecr/Ppt1
+GO:0007389,pattern specification process,14,-0.42165293338008003,-0.818600669345713,0.6593001841620626,1,1,76,"tags=29%, list=12%, signal=26%",Arc/Tbx18/Ift25/Gdnf
+GO:1901698,response to nitrogen compound,42,-0.38073093692141124,-0.817377376589692,0.7230483271375465,1,1,101,"tags=38%, list=16%, signal=34%",Slit2/Hnrnpk/Fbn1/Plcg2/Adcy6/Cav1/Col3a1/Agt/Enpp1/Ripk2/Rps6/Arc/Gpd1/Oaz1/Nr4a2/Mtarc2
+GO:0048771,tissue remodeling,10,-0.4406972011994278,-0.81719801234427,0.6698292220113852,1,1,200,"tags=70%, list=31%, signal=49%",Pdk4/Plekhm1/Klf6/Cav1/Agt/Enpp1/Cbl
+GO:0043069,negative regulation of programmed cell death,39,-0.3812660880943625,-0.8142681686908377,0.7119266055045872,1,1,123,"tags=36%, list=19%, signal=31%",Cav1/Rps3a1/Smarca4/Gch1/Agt/Ttpa/Ctsh/Rps6/Cbl/Txndc12/Nr4a2/Cdkn1a/Bcl11b/Gdnf
+GO:0090150,establishment of protein localization to membrane,11,-0.43647642620232485,-0.8141200249781413,0.6523364485981309,1,1,138,"tags=45%, list=22%, signal=36%",Snap47/Srp19/Atp2c1/Bbs2/Grip1
+GO:0006091,generation of precursor metabolites and energy,23,-0.40145324315674996,-0.814113661519026,0.6829710144927537,1,1,92,"tags=17%, list=14%, signal=15%",Enpp1/Gpd1/Coq10b/Arl2
+GO:0044238,primary metabolic process,347,-0.2801289171444254,-0.8139805928717614,0.9653379549393414,1,1,54,"tags=10%, list=8%, signal=20%",Dtwd2/Eci2/Rad52/Cbl/Fbxl2/Tbx18/Fgf7/Prim2/Ube3d/Ss18l1/Hmgn1/Gart/Gpd1/Lcmt1/Slc2a13/Serinc5/Zbtb17/Oaz1/Pomgnt1/Rnf152/Arl2/Nr4a2/Cdkn1a/Snrpn/Bcl11b/Gdnf/Atp2b2/Hfe/Tmprss13/Fah/Tenm2/Pnkd/Enpp2/Myo3b/4930447C04Rik
+GO:0055085,transmembrane transport,43,0.3741522067709403,0.8123859023132814,0.759656652360515,1,1,63,"tags=16%, list=10%, signal=16%",Ano5/Zfas1/Tmem266/Fgf2/Rhoq/Tmem150c/Slc19a2
+GO:0051128,regulation of cellular component organization,122,-0.3203107999938514,-0.8122362159225488,0.8538732394366197,1,1,81,"tags=16%, list=13%, signal=17%",Ankrd27/Ip6k2/Rps6/Arc/Wdr47/Cbl/Fbxl2/Fgf7/Ss18l1/Lcmt1/Twf1/Grip1/Mdm1/Arl2/Cdkn1a/Hfe/Tenm2/Enpp2/Myo3b
+GO:0031344,regulation of cell projection organization,41,-0.3795694601673465,-0.8120720527483075,0.7220149253731343,1,1,16,"tags=15%, list=2%, signal=15%",Ss18l1/Twf1/Grip1/Tenm2/Enpp2/Myo3b
+GO:0120035,regulation of plasma membrane bounded cell projection organization,41,-0.3795694601673465,-0.8120720527483075,0.7220149253731343,1,1,16,"tags=15%, list=2%, signal=15%",Ss18l1/Twf1/Grip1/Tenm2/Enpp2/Myo3b
+GO:0016052,carbohydrate catabolic process,14,-0.4159125297956793,-0.8074561999385258,0.6648250460405156,1,1,92,"tags=21%, list=14%, signal=19%",Enpp1/Gpd1/Arl2
+GO:0032970,regulation of actin filament-based process,18,0.407431328227766,0.807411773614053,0.6761487964989059,1,1,7,"tags=6%, list=1%, signal=6%",Dixdc1
+GO:0055086,nucleobase-containing small molecule metabolic process,32,-0.3873964128403677,-0.8066762658477399,0.7185185185185186,1,1,53,"tags=16%, list=8%, signal=15%",Enpp1/Gart/Gpd1/Arl2/Atp2b2
+GO:0006508,proteolysis,48,-0.3690750203080637,-0.8050787590092088,0.7690875232774674,1,1,87,"tags=27%, list=14%, signal=25%",Cd46/Adamts17/Ece1/Hace1/Zfand2a/Cav1/Ctsh/Cbl/Fbxl2/Ube3d/Oaz1/Hfe/Tmprss13
+GO:0006914,autophagy,24,-0.3941369249981744,-0.8043465758271543,0.6870503597122302,1,1,250,"tags=67%, list=39%, signal=42%",Vps4b/Rubcn/Atg7/Rab43/Bmal1/Gabarapl1/Trim8/Eif2ak1/Abi2/1600014C10Rik/Plekhm1/Rmc1/Ripk2/Wdr47/Fbxl2/Rnf152
+GO:0061919,process utilizing autophagic mechanism,24,-0.3941369249981744,-0.8043465758271543,0.6870503597122302,1,1,250,"tags=67%, list=39%, signal=42%",Vps4b/Rubcn/Atg7/Rab43/Bmal1/Gabarapl1/Trim8/Eif2ak1/Abi2/1600014C10Rik/Plekhm1/Rmc1/Ripk2/Wdr47/Fbxl2/Rnf152
+GO:0032501,multicellular organismal process,239,-0.2922208442827413,-0.8036523825064632,0.9524680073126143,1,1,70,"tags=11%, list=11%, signal=15%",Wdr47/Cbl/Tbx18/Fgf7/Ss18l1/Ninj1/Hmgn1/Gart/Serinc5/Twf1/Zbtb17/Pomgnt1/Grip1/Mdm1/Nr4a2/Ift25/Cdkn1a/Bcl11b/Gdnf/Atp2b2/Hfe/Tenm2/D16Ertd472e/Pnkd/Enpp2/Myo3b
+GO:0030522,intracellular receptor signaling pathway,15,-0.413040352712435,-0.8024582588783399,0.6846011131725418,1,1,144,"tags=53%, list=22%, signal=42%",Plcg2/Tab1/Cav1/Smarca4/Rnf135/Ripk2/Fbxl2/Nr4a2
+GO:0010558,negative regulation of macromolecule biosynthetic process,76,-0.3441140098410002,-0.8020505157639853,0.8241563055062167,1,1,35,"tags=14%, list=5%, signal=16%",Smarca4/Bbs2/Agt/Enpp1/Abcd2/Tbx18/Nr4a2/Cdkn1a/Gdnf/Hfe/Tenm2
+GO:0044281,small molecule metabolic process,75,-0.34549939526629503,-0.8020415127025781,0.8209219858156028,1,1,100,"tags=23%, list=16%, signal=22%",Cyp2b10/Agt/Ero1a/Ttpa/Enpp1/Abcd2/Ip6k2/Eci2/Gart/Gpd1/Lcmt1/Oaz1/Arl2/Atp2b2/Mtarc2/Fah/Pnkd
+GO:0045807,positive regulation of endocytosis,10,-0.43226702712341997,-0.8015656881999824,0.6774193548387096,1,1,169,"tags=50%, list=26%, signal=37%",Hnrnpk/Plcg2/Cav1/Cbl/Hfe
+GO:0046034,ATP metabolic process,16,-0.410226333247589,-0.8003525828831296,0.6875,1,1,92,"tags=19%, list=14%, signal=16%",Enpp1/Gpd1/Arl2
+GO:0090257,regulation of muscle system process,16,-0.4097073841561115,-0.7993401119321285,0.6875,1,1,161,"tags=38%, list=25%, signal=29%",Dsc2/Ece1/Sgca/Cav1/Agt/Twf1
+GO:0030334,regulation of cell migration,39,-0.37421248358700093,-0.7992038191348991,0.7431192660550459,1,1,111,"tags=28%, list=17%, signal=25%",Plcg2/Hace1/Cav1/Smarca4/Col3a1/Agt/Ctsh/Plekhg3/Fgf7/Ninj1/Enpp2
+GO:0001666,response to hypoxia,13,0.4123372103449229,0.7988211429776969,0.6702819956616052,1,1,122,"tags=46%, list=19%, signal=38%",Zfas1/Ndnf/Ddit4/Hp1bp3/Tgfb2/Fosl2
+GO:0036293,response to decreased oxygen levels,13,0.4123372103449229,0.7988211429776969,0.6702819956616052,1,1,122,"tags=46%, list=19%, signal=38%",Zfas1/Ndnf/Ddit4/Hp1bp3/Tgfb2/Fosl2
+GO:0006793,phosphorus metabolic process,102,-0.32465973704282225,-0.7972257985797273,0.8348294434470377,1,1,53,"tags=15%, list=8%, signal=16%",Enpp1/Ripk2/Mvp/Ip6k2/Cbl/Fgf7/Gart/Gpd1/Serinc5/Arl2/Cdkn1a/Gdnf/Atp2b2/Enpp2/Myo3b
+GO:0006796,phosphate-containing compound metabolic process,102,-0.32465973704282225,-0.7972257985797273,0.8348294434470377,1,1,53,"tags=15%, list=8%, signal=16%",Enpp1/Ripk2/Mvp/Ip6k2/Cbl/Fgf7/Gart/Gpd1/Serinc5/Arl2/Cdkn1a/Gdnf/Atp2b2/Enpp2/Myo3b
+GO:0009890,negative regulation of biosynthetic process,79,-0.33899889434521585,-0.7961893739435231,0.825,1,1,35,"tags=14%, list=5%, signal=15%",Smarca4/Bbs2/Agt/Enpp1/Abcd2/Tbx18/Nr4a2/Cdkn1a/Gdnf/Hfe/Tenm2
+GO:0050896,response to stimulus,284,-0.2825698783972414,-0.7953531881469474,0.9602169981916817,1,1,101,"tags=17%, list=16%, signal=25%",Col3a1/Cyp2b10/Agt/Ero1a/Ttpa/Evc2/Enpp1/Ripk2/Abcd2/Ctsh/Cpne8/Mvp/Ankrd27/Ip6k2/Rps6/Arc/Rad52/Wdr47/Cbl/Fbxl2/Tbx18/Fgf7/Txndc12/Ninj1/Hmgn1/Gpd1/Lcmt1/Serinc5/Twf1/Oaz1/Kctd8/Pomgnt1/Grip1/Rnf152/Nr4a2/Ift25/Cdkn1a/Snrpn/Gdnf/Atp2b2/Hfe/Mtarc2/Arpp21/Tenm2/Enpp2/Cfap58/4930447C04Rik
+GO:0030900,forebrain development,23,0.3888200177381595,0.7951360224393327,0.7066666666666667,1,1,58,"tags=17%, list=9%, signal=16%",Dixdc1/Fgf2/Ndnf/Ubb
+GO:0045444,fat cell differentiation,15,-0.40826004529739307,-0.7931710375693642,0.6975881261595547,1,1,157,"tags=40%, list=24%, signal=31%",Fbn1/Mrap/Bbs2/Ero1a/Enpp1/Nr4a2
+GO:0048732,gland development,15,-0.4081031712980093,-0.7928662614486243,0.6975881261595547,1,1,30,"tags=27%, list=5%, signal=26%",Fgf7/Bcl11b/Atp2b2/Hfe
+GO:0006511,ubiquitin-dependent protein catabolic process,27,-0.38398089022002585,-0.792517426782226,0.7012750455373407,1,1,69,"tags=15%, list=11%, signal=14%",Cbl/Fbxl2/Ube3d/Hfe
+GO:0032101,regulation of response to external stimulus,35,0.37137609428689067,0.7923205631801561,0.7585470085470085,1,1,116,"tags=34%, list=18%, signal=30%",Parp9/Fgf2/Ppt1/Mark4/Ifi35/Phldb2/Ano6/Ercc6/Stk24/Plscr1/Map2k2/Klf4
+GO:0062197,cellular response to chemical stress,18,-0.40064699521126,-0.7922387111379977,0.7064220183486238,1,1,123,"tags=28%, list=19%, signal=23%",Cav1/Gch1/Rad52/Ninj1/Nr4a2
+GO:0008285,negative regulation of cell population proliferation,27,0.383936682360571,0.7912476524622091,0.7262693156732892,1,1,64,"tags=19%, list=10%, signal=17%",Skap2/Zfas1/Fgf2/Ifi35/Tmem196
+GO:0043603,amide metabolic process,14,-0.40678855148143245,-0.7897428291450024,0.6887661141804788,1,1,234,"tags=57%, list=37%, signal=37%",Gss/Tm9sf2/Pdk4/Gda/Ece1/Enpp1/Ctsh/Slc2a13
+GO:0030308,negative regulation of cell growth,12,-0.42067028280740004,-0.789485149339084,0.6958955223880597,1,1,111,"tags=42%, list=17%, signal=35%",Smarca4/Agt/Enpp1/Ip6k2/Cdkn1a
+GO:0002790,peptide secretion,13,-0.4101259106836293,-0.7889912528843168,0.6987060998151571,1,1,25,"tags=62%, list=4%, signal=60%",Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt/Hfe
+GO:0015833,peptide transport,13,-0.4101259106836293,-0.7889912528843168,0.6987060998151571,1,1,25,"tags=62%, list=4%, signal=60%",Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt/Hfe
+GO:0030072,peptide hormone secretion,13,-0.4101259106836293,-0.7889912528843168,0.6987060998151571,1,1,25,"tags=62%, list=4%, signal=60%",Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt/Hfe
+GO:0006631,fatty acid metabolic process,14,-0.40606626040888566,-0.7883405669795065,0.6924493554327809,1,1,123,"tags=43%, list=19%, signal=35%",Cav1/Cyp2b10/Agt/Enpp1/Abcd2/Eci2
+GO:0006873,intracellular monoatomic ion homeostasis,25,-0.382941241199647,-0.7882523749649616,0.7078853046594982,1,1,149,"tags=36%, list=23%, signal=29%",Slc4a3/Plcg2/Cav1/Atp2c1/Agt/Ero1a/Ttpa/Atp2b2/Hfe
+GO:0030003,intracellular monoatomic cation homeostasis,25,-0.382941241199647,-0.7882523749649616,0.7078853046594982,1,1,149,"tags=36%, list=23%, signal=29%",Slc4a3/Plcg2/Cav1/Atp2c1/Agt/Ero1a/Ttpa/Atp2b2/Hfe
+GO:0008152,metabolic process,380,-0.26943747771181176,-0.7882241676744205,0.9910233393177738,1,1,74,"tags=10%, list=12%, signal=22%",Dtwd2/Eci2/Rad52/Wdr47/Cbl/Fbxl2/Tbx18/Fgf7/Prim2/Ube3d/Ss18l1/Hmgn1/Gart/Gpd1/Lcmt1/Slc2a13/Serinc5/Zbtb17/Oaz1/Pomgnt1/Rnf152/Coq10b/Arl2/Nr4a2/Cdkn1a/Snrpn/Bcl11b/Gdnf/Atp2b2/Hfe/Mtarc2/Tmprss13/Fah/Tenm2/Pnkd/Enpp2/Myo3b/4930447C04Rik
+GO:0141124,intracellular signaling cassette,73,0.33519149342109705,0.787424260841176,0.8265765765765766,1,1,62,"tags=11%, list=10%, signal=11%",Dixdc1/Rgl3/Fgf2/Dgkg/Ndnf/Rhoq/Ifi35/Tle1
+GO:0060284,regulation of cell development,38,0.3682837105474429,0.7855971007842151,0.7894736842105263,1,1,34,"tags=8%, list=5%, signal=8%",Dixdc1/Fgf2/Smarcd1
+GO:0051603,proteolysis involved in protein catabolic process,33,-0.3750989832320046,-0.7853545672015488,0.7472118959107806,1,1,87,"tags=27%, list=14%, signal=25%",Hace1/Zfand2a/Cav1/Ctsh/Cbl/Fbxl2/Ube3d/Oaz1/Hfe
+GO:0042886,amide transport,14,-0.40436922255013974,-0.7850459229319998,0.6942909760589319,1,1,25,"tags=57%, list=4%, signal=56%",Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt/Hfe
+GO:0050778,positive regulation of immune response,24,0.3823581517455241,0.7847200829566108,0.7062780269058296,1,1,135,"tags=42%, list=21%, signal=34%",Parp9/Tec/Ppt1/Mark4/Plscr2/Ifi35/Plscr1/Tgfb2/Fosl2/Bcl10
+GO:0045934,negative regulation of nucleobase-containing compound metabolic process,56,-0.3492942974289767,-0.7831593362001412,0.7996389891696751,1,1,35,"tags=9%, list=5%, signal=9%",Tbx18/Nr4a2/Cdkn1a/Gdnf/Tenm2
+GO:0051494,negative regulation of cytoskeleton organization,12,-0.41729474397990357,-0.7831501694647247,0.7014925373134329,1,1,108,"tags=50%, list=17%, signal=42%",Slit2/Hdgfl3/Eml4/Wdr47/Twf1/Mdm1
+GO:0033673,negative regulation of kinase activity,12,-0.417061395447394,-0.7827122369352222,0.7014925373134329,1,1,123,"tags=33%, list=19%, signal=27%",Cav1/Agt/Mvp/Cdkn1a
+GO:0051348,negative regulation of transferase activity,12,-0.417061395447394,-0.7827122369352222,0.7014925373134329,1,1,123,"tags=33%, list=19%, signal=27%",Cav1/Agt/Mvp/Cdkn1a
+GO:0006338,chromatin remodeling,53,-0.3528710391801048,-0.7814669251097314,0.8084714548802947,1,1,10,"tags=4%, list=2%, signal=4%",Ripk2/Myo3b
+GO:0046486,glycerolipid metabolic process,29,0.3741482477467807,0.7801698728217986,0.740174672489083,1,1,37,"tags=10%, list=6%, signal=10%",Ip6k3/Inpp1/Dgkg
+GO:0006575,modified amino acid metabolic process,12,-0.4149752010323912,-0.7787970102681822,0.7052238805970149,1,1,109,"tags=33%, list=17%, signal=28%",Gch1/Ero1a/Gart/Serinc5
+GO:0043502,regulation of muscle adaptation,10,-0.4194949713841476,-0.7778820829143649,0.698292220113852,1,1,153,"tags=40%, list=24%, signal=31%",Ece1/Sgca/Agt/Twf1
+GO:0040012,regulation of locomotion,42,-0.3619757134415952,-0.7771124706452355,0.7825278810408922,1,1,111,"tags=24%, list=17%, signal=21%",Cav1/Smarca4/Bbs2/Col3a1/Agt/Ctsh/Plekhg3/Fgf7/Ninj1/Enpp2
+GO:2000145,regulation of cell motility,42,-0.3619757134415952,-0.7771124706452355,0.7825278810408922,1,1,111,"tags=24%, list=17%, signal=21%",Cav1/Smarca4/Bbs2/Col3a1/Agt/Ctsh/Plekhg3/Fgf7/Ninj1/Enpp2
+GO:0051098,regulation of binding,16,-0.3978920265636485,-0.7762883202737219,0.7113970588235294,1,1,111,"tags=31%, list=17%, signal=26%",Smarca4/Ripk2/Ip6k2/Cdkn1a/Hfe
+GO:0009410,response to xenobiotic stimulus,12,-0.4128435977771502,-0.7747965634026113,0.7089552238805971,1,1,100,"tags=17%, list=16%, signal=14%",Cyp2b10/Cdkn1a
+GO:0009893,positive regulation of metabolic process,139,-0.29847870326155096,-0.7731952488490534,0.9154929577464789,1,1,114,"tags=17%, list=18%, signal=18%",Ccdc88a/Smarca4/Gch1/Rnf135/Agt/Med4/Ripk2/Abcd2/Ctsh/Ip6k2/Tbx18/Fgf7/Ss18l1/Gpd1/Slc2a13/Zbtb17/Oaz1/Rnf152/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Enpp2
+GO:0051050,positive regulation of transport,34,-0.3699048349856404,-0.772129692277102,0.768361581920904,1,1,69,"tags=24%, list=11%, signal=22%",Cav1/Atp2c1/Agt/Cbl/Stimate/Oaz1/Atp2b2/Hfe
+GO:0042113,B cell activation,10,0.40532945559440653,0.7716066990117177,0.6652631578947369,1,1,15,"tags=10%, list=2%, signal=10%",Skap2
+GO:0035264,multicellular organism growth,10,-0.41492673130522806,-0.7694110585869035,0.7039848197343453,1,1,105,"tags=50%, list=16%, signal=42%",Hsf1/Bbs2/Col3a1/Agt/Enpp1
+GO:0016192,vesicle-mediated transport,64,-0.33521037305939627,-0.7642850731777786,0.831858407079646,1,1,92,"tags=12%, list=14%, signal=12%",Enpp1/Ankrd27/Arc/Dennd2a/Cbl/Grip1/Hfe/Enpp2
+GO:0048522,positive regulation of cellular process,212,-0.2804099969091207,-0.7639585417286577,0.964221824686941,1,1,103,"tags=16%, list=16%, signal=20%",Ric3/Col3a1/Agt/Med4/Enpp1/Ripk2/Abcd2/Ctsh/Ankrd27/Ip6k2/Rps6/Arc/Cbl/Stimate/Tbx18/Fgf7/Ss18l1/Ninj1/Gpd1/Slc2a13/Twf1/Zbtb17/Oaz1/Grip1/Rnf152/Arl2/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Tenm2/Enpp2/Myo3b
+GO:0006898,receptor-mediated endocytosis,16,-0.3887983141955585,-0.7585464651271278,0.7242647058823529,1,1,76,"tags=38%, list=12%, signal=34%",Hnrnpk/Plcg2/Cav1/Arc/Cbl/Hfe
+GO:0051235,maintenance of location,13,-0.39349907960795977,-0.7570049190776533,0.7264325323475046,1,1,157,"tags=54%, list=24%, signal=41%",Fbn1/Plcg2/Adcy6/Cav1/Ccdc88a/Ero1a/Arl2
+GO:0060047,heart contraction,16,0.38939075566698694,0.7565729953866064,0.7205240174672489,1,1,18,"tags=6%, list=3%, signal=6%",Zfas1
+GO:0034330,cell junction organization,29,-0.36367224039836293,-0.7517379932343252,0.7702205882352942,1,1,98,"tags=31%, list=15%, signal=28%",Agt/Septin11/Rps6/Arc/Fgf7/Arl2/Gdnf/Atp2b2/Enpp2
+GO:0006909,phagocytosis,10,0.3945216892015905,0.7510324603647358,0.6863157894736842,1,1,125,"tags=40%, list=20%, signal=33%",Ano6/Jmjd6/Plscr1/Cdc42se2
+GO:0010948,negative regulation of cell cycle process,19,-0.3778859031171315,-0.7505597238100178,0.7540983606557377,1,1,77,"tags=21%, list=12%, signal=19%",Rps6/Lcmt1/Mdm1/Cdkn1a
+GO:0050796,regulation of insulin secretion,10,-0.40449739071822477,-0.750071620136729,0.7267552182163188,1,1,250,"tags=70%, list=39%, signal=43%",Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt
+GO:1901293,nucleoside phosphate biosynthetic process,10,-0.4043559418622229,-0.7498093272888088,0.7267552182163188,1,1,312,"tags=90%, list=49%, signal=47%",Ndufv1/Acacb/Ak3/Mpi/Ak6/Pdk4/Cox11/Adcy6/Gart
+GO:0071900,regulation of protein serine/threonine kinase activity,10,-0.4041947663142414,-0.7495104546454371,0.7267552182163188,1,1,125,"tags=50%, list=20%, signal=41%",Tab1/Cav1/Agt/Ip6k2/Cdkn1a
+GO:0048583,regulation of response to stimulus,139,0.2861841871418508,0.7493818998012004,0.9447004608294931,1,1,125,"tags=24%, list=20%, signal=24%",Dixdc1/Zfas1/Parp9/Fgf2/Smarcd1/Nphp3/Dgkg/Tec/Ppt1/Mark4/Plscr2/Ifi35/Ubb/Tle1/Ddit4/Phldb2/Pclo/Uimc1/Ano6/Tcf4/Pkn1/F11r/Ercc6/Stk24/Cry1/Plscr1/Map2k2/Rpf2/Klf4/Inpp5k/Tgfb2/Fosl2/Cdc42se2
+GO:0003015,heart process,17,0.3815271066178893,0.7488993428811014,0.7349137931034483,1,1,18,"tags=6%, list=3%, signal=6%",Zfas1
+GO:0019538,protein metabolic process,176,0.2754904819356156,0.7488068599283785,0.975609756097561,1,1,50,"tags=6%, list=8%, signal=8%",Gal3st2c/Ip6k3/Fut2/Parp9/Rbm4b/Ttll7/Fgf2/Mrpl4/Ppt1/Msrb1/Mark4
+GO:0051253,negative regulation of RNA metabolic process,46,-0.3437628800902872,-0.7457895967195118,0.8299065420560747,1,1,35,"tags=9%, list=5%, signal=9%",Tbx18/Nr4a2/Gdnf/Tenm2
+GO:0098742,cell-cell adhesion via plasma-membrane adhesion molecules,10,0.3916815113081873,0.7456257467427981,0.6884210526315789,1,1,39,"tags=20%, list=6%, signal=19%",Fat3/Mdga2
+GO:2000781,positive regulation of double-strand break repair,10,0.39143896021313895,0.7451640135842309,0.6884210526315789,1,1,96,"tags=20%, list=15%, signal=17%",Smarcd1/Ercc6
+GO:0061448,connective tissue development,10,0.39116958866996343,0.7446512235948319,0.6884210526315789,1,1,122,"tags=40%, list=19%, signal=33%",Fgf2/Ubb/Tgfb2/Fosl2
+GO:0023052,signaling,197,-0.27620232366417324,-0.7443248592609306,0.9731663685152058,1,1,107,"tags=16%, list=17%, signal=20%",Rnf135/Bbs2/Ric3/Col3a1/Agt/Ero1a/Evc2/Enpp1/Ripk2/Ctsh/Mvp/Rps6/Arc/Cbl/Fbxl2/Tbx18/Fgf7/Txndc12/Ninj1/Lcmt1/Kctd8/Grip1/Rnf152/Nr4a2/Ift25/Cdkn1a/Gdnf/Atp2b2/Hfe/Tenm2/Pnkd/Cfap58
+GO:0010959,regulation of metal ion transport,16,-0.38140142837442037,-0.7441151227377389,0.7334558823529411,1,1,26,"tags=31%, list=4%, signal=31%",Cav1/Agt/Stimate/Atp2b2/Hfe
+GO:0043269,regulation of monoatomic ion transport,16,-0.38140142837442037,-0.7441151227377389,0.7334558823529411,1,1,26,"tags=31%, list=4%, signal=31%",Cav1/Agt/Stimate/Atp2b2/Hfe
+GO:0016477,cell migration,66,0.32181104753082385,0.7425622568911475,0.8721461187214612,1,1,89,"tags=20%, list=14%, signal=19%",Dixdc1/Fat3/Lcp1/Fgf2/Mdga2/Ndnf/Tmem196/Ddit4/Phldb2/Pld1/Ano6/Pkn1/F11r
+GO:0051493,regulation of cytoskeleton organization,26,-0.35989877405848886,-0.7417614132046777,0.7531760435571688,1,1,47,"tags=19%, list=7%, signal=19%",Wdr47/Twf1/Mdm1/Arl2/Myo3b
+GO:0065003,protein-containing complex assembly,74,-0.320496418008491,-0.7414796692472349,0.8839285714285714,1,1,150,"tags=34%, list=23%, signal=29%",Hdgfl3/Plcg2/Srp19/Gtf2a2/Gtf2f2/Cav1/Smarca4/Gch1/Rnf135/Slc1a5/Ric3/Nde1/Med4/Ripk2/Ankrd27/Rps6/Arc/Rad52/Fbxl2/Ninj1/Lcmt1/Twf1/Kctd8/Arl2/Dnai4
+GO:0001933,negative regulation of protein phosphorylation,17,-0.37684285200215695,-0.7410996341432063,0.7453531598513011,1,1,123,"tags=41%, list=19%, signal=34%",Tardbp/Slit2/Cav1/Agt/Enpp1/Mvp/Cdkn1a
+GO:0051651,maintenance of location in cell,12,-0.39392963084522625,-0.7393001268390591,0.7555970149253731,1,1,144,"tags=50%, list=22%, signal=40%",Plcg2/Adcy6/Cav1/Ccdc88a/Ero1a/Arl2
+GO:0051179,localization,191,-0.2752220820816525,-0.7389906636081084,0.9769911504424779,1,1,49,"tags=7%, list=8%, signal=10%",Slc2a13/Oaz1/Pomgnt1/Grip1/Arl2/Ift25/Cdkn1a/Gdnf/Atp2b2/Hfe/Pnkd/Enpp2/Slc10a6/Cfap58
+GO:0045786,negative regulation of cell cycle,20,-0.3684936051523431,-0.7380106418806676,0.7777777777777778,1,1,77,"tags=20%, list=12%, signal=18%",Rps6/Lcmt1/Mdm1/Cdkn1a
+GO:0007154,cell communication,199,-0.2726817360734871,-0.7379903972656966,0.982174688057041,1,1,107,"tags=16%, list=17%, signal=19%",Rnf135/Bbs2/Ric3/Col3a1/Agt/Ero1a/Evc2/Enpp1/Ripk2/Ctsh/Mvp/Rps6/Arc/Cbl/Fbxl2/Tbx18/Fgf7/Txndc12/Ninj1/Lcmt1/Kctd8/Grip1/Rnf152/Nr4a2/Ift25/Cdkn1a/Gdnf/Atp2b2/Hfe/Tenm2/Pnkd/Cfap58
+GO:0007420,brain development,34,0.34656364396629524,0.736468774919281,0.8046709129511678,1,1,67,"tags=18%, list=10%, signal=17%",Dixdc1/Fgf2/Ndnf/Ppt1/Ubb/Ddit4
+GO:0030155,regulation of cell adhesion,30,-0.35345444180445257,-0.73508857074984,0.7882136279926335,1,1,65,"tags=17%, list=10%, signal=16%",Tbx18/Ninj1/Arl2/Hfe/Enpp2
+GO:0002429,immune response-activating cell surface receptor signaling pathway,13,0.3783585455412326,0.7329942537851482,0.7223427331887202,1,1,135,"tags=46%, list=21%, signal=37%",Tec/Plscr2/Ifi35/Plscr1/Fosl2/Bcl10
+GO:0002768,immune response-regulating cell surface receptor signaling pathway,13,0.3783585455412326,0.7329942537851482,0.7223427331887202,1,1,135,"tags=46%, list=21%, signal=37%",Tec/Plscr2/Ifi35/Plscr1/Fosl2/Bcl10
+GO:0009914,hormone transport,14,-0.37738069663827445,-0.7326501641760836,0.7569060773480663,1,1,25,"tags=36%, list=4%, signal=35%",Tardbp/Slc16a1/Fbn1/Agt/Hfe
+GO:0046879,hormone secretion,14,-0.37738069663827445,-0.7326501641760836,0.7569060773480663,1,1,25,"tags=36%, list=4%, signal=35%",Tardbp/Slc16a1/Fbn1/Agt/Hfe
+GO:0051248,negative regulation of protein metabolic process,27,-0.35489682479840773,-0.7324893647734657,0.7759562841530054,1,1,98,"tags=22%, list=15%, signal=20%",Cav1/Agt/Enpp1/Mvp/Cdkn1a/Hfe
+GO:0055082,intracellular chemical homeostasis,35,-0.34926802817190006,-0.7310011610865762,0.8314606741573034,1,1,149,"tags=31%, list=23%, signal=26%",Slc4a3/Plcg2/Cav1/Atp2c1/Smarca4/Agt/Ero1a/Ttpa/Enpp1/Atp2b2/Hfe
+GO:0051094,positive regulation of developmental process,53,-0.32915261518163935,-0.7289401892415908,0.8710865561694291,1,1,111,"tags=25%, list=17%, signal=22%",Smarca4/Bbs2/Agt/Ripk2/Ctsh/Ankrd27/Tbx18/Ss18l1/Ninj1/Grip1/Gdnf/D16Ertd472e/Enpp2
+GO:0030178,negative regulation of Wnt signaling pathway,10,0.38287710286966226,0.7288652067962536,0.6989473684210527,1,1,62,"tags=20%, list=10%, signal=18%",Nphp3/Tle1
+GO:0090090,negative regulation of canonical Wnt signaling pathway,10,0.38287710286966226,0.7288652067962536,0.6989473684210527,1,1,62,"tags=20%, list=10%, signal=18%",Nphp3/Tle1
+GO:1904951,positive regulation of establishment of protein localization,12,-0.38796663958435873,-0.7281091936106022,0.7667910447761194,1,1,260,"tags=67%, list=41%, signal=40%",Cep135/Atg7/Oaz2/Lrrc8a/Tardbp/Atp2c1/Agt/Oaz1
+GO:0010604,positive regulation of macromolecule metabolic process,129,-0.2853990919357677,-0.7277757263063603,0.9543859649122807,1,1,65,"tags=21%, list=10%, signal=24%",Gtf2a2/Gtf2f2/Dgcr8/Zfand2a/Tab1/Cav1/Ccdc88a/Smarca4/Gch1/Rnf135/Agt/Med4/Ripk2/Ctsh/Ip6k2/Tbx18/Fgf7/Ss18l1/Slc2a13/Zbtb17/Oaz1/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Enpp2
+GO:0055074,calcium ion homeostasis,16,-0.37272318874635363,-0.7271838559265225,0.75,1,1,144,"tags=38%, list=22%, signal=30%",Plcg2/Cav1/Atp2c1/Ero1a/Enpp1/Atp2b2
+GO:0009966,regulation of signal transduction,110,0.2867510411332398,0.7269598551522091,0.9450800915331807,1,1,118,"tags=22%, list=18%, signal=21%",Dixdc1/Zfas1/Parp9/Fgf2/Nphp3/Dgkg/Ppt1/Mark4/Plscr2/Ifi35/Ubb/Tle1/Ddit4/Pclo/Tcf4/F11r/Ercc6/Cry1/Plscr1/Map2k2/Rpf2/Klf4/Inpp5k/Tgfb2
+GO:1902903,regulation of supramolecular fiber organization,19,-0.36575620170018036,-0.7264676228072904,0.7723132969034608,1,1,171,"tags=47%, list=27%, signal=36%",Slit2/Gda/Hdgfl3/Cav1/Ccdc88a/Eml4/Wdr47/Twf1/Arl2
+GO:0043500,muscle adaptation,11,-0.38773210009634906,-0.7232016394602379,0.7420560747663552,1,1,153,"tags=36%, list=24%, signal=28%",Ece1/Sgca/Agt/Twf1
+GO:0007155,cell adhesion,43,-0.3376709001871292,-0.723181626221698,0.8582089552238806,1,1,36,"tags=14%, list=6%, signal=14%",Tbx18/Ninj1/Arl2/Hfe/Tenm2/Enpp2
+GO:0043170,macromolecule metabolic process,304,-0.2551177023367659,-0.7229412353155603,0.9963963963963964,1,1,69,"tags=9%, list=11%, signal=15%",Cbl/Fbxl2/Tbx18/Fgf7/Prim2/Ube3d/Ss18l1/Hmgn1/Lcmt1/Slc2a13/Zbtb17/Oaz1/Pomgnt1/Rnf152/Arl2/Nr4a2/Cdkn1a/Snrpn/Bcl11b/Gdnf/Hfe/Tmprss13/Tenm2/Enpp2/Myo3b/4930447C04Rik
+GO:0016071,mRNA metabolic process,28,-0.35091145357304965,-0.7229074324770822,0.7909090909090909,1,1,31,"tags=11%, list=5%, signal=11%",Enpp1/Snrpn/Gdnf
+GO:0050790,regulation of catalytic activity,43,-0.3371597064367501,-0.7220868148905805,0.8600746268656716,1,1,125,"tags=30%, list=20%, signal=26%",Tab1/Cav1/Ccdc88a/Gch1/Agt/Ctsh/Mvp/Ip6k2/Hmgn1/Arl2/Nr4a2/Cdkn1a/Gdnf
+GO:0051249,regulation of lymphocyte activation,18,-0.3650483680320486,-0.7218460441472734,0.7834862385321101,1,1,32,"tags=28%, list=5%, signal=27%",Cav1/Smarca4/Ripk2/Cdkn1a/Hfe
+GO:0030198,extracellular matrix organization,17,0.3673119688076484,0.7209964568727536,0.7521551724137931,1,1,118,"tags=35%, list=18%, signal=30%",Lcp1/Nphp3/Ndnf/Phldb2/Plod2/Tgfb2
+GO:0043062,extracellular structure organization,17,0.3673119688076484,0.7209964568727536,0.7521551724137931,1,1,118,"tags=35%, list=18%, signal=30%",Lcp1/Nphp3/Ndnf/Phldb2/Plod2/Tgfb2
+GO:0045229,external encapsulating structure organization,17,0.3673119688076484,0.7209964568727536,0.7521551724137931,1,1,118,"tags=35%, list=18%, signal=30%",Lcp1/Nphp3/Ndnf/Phldb2/Plod2/Tgfb2
+GO:0035148,tube formation,10,-0.3887369379588191,-0.7208465407997632,0.7495256166982922,1,1,27,"tags=20%, list=4%, signal=19%",Cc2d2a/Gdnf
+GO:0072175,epithelial tube formation,10,-0.3887369379588191,-0.7208465407997632,0.7495256166982922,1,1,27,"tags=20%, list=4%, signal=19%",Cc2d2a/Gdnf
+GO:0045597,positive regulation of cell differentiation,39,0.33504536418211456,0.7200439025198464,0.8402625820568927,1,1,34,"tags=8%, list=5%, signal=8%",Dixdc1/Fgf2/Smarcd1
+GO:0019941,modification-dependent protein catabolic process,28,-0.349464988707096,-0.7199275918598333,0.7927272727272727,1,1,69,"tags=14%, list=11%, signal=13%",Cbl/Fbxl2/Ube3d/Hfe
+GO:0043632,modification-dependent macromolecule catabolic process,28,-0.349464988707096,-0.7199275918598333,0.7927272727272727,1,1,69,"tags=14%, list=11%, signal=13%",Cbl/Fbxl2/Ube3d/Hfe
+GO:0043524,negative regulation of neuron apoptotic process,11,0.37375521967466724,0.7185071539333013,0.6980728051391863,1,1,47,"tags=36%, list=7%, signal=34%",Fgf2/Mdga2/Ndnf/Ppt1
+GO:0051049,regulation of transport,74,-0.3104219608016945,-0.7181720602450556,0.9160714285714285,1,1,98,"tags=15%, list=15%, signal=14%",Agt/Enpp1/Ankrd27/Arc/Cbl/Stimate/Oaz1/Gdnf/Atp2b2/Hfe/Pnkd
+GO:0010817,regulation of hormone levels,18,-0.3620610308727332,-0.715938888548658,0.7889908256880734,1,1,178,"tags=39%, list=28%, signal=29%",Tardbp/Slc16a1/Fbn1/Ece1/Agt/Enpp1/Hfe
+GO:1901699,cellular response to nitrogen compound,30,-0.3441590299304589,-0.7157566563053601,0.8084714548802947,1,1,171,"tags=47%, list=27%, signal=36%",Uso1/Pdk4/Hsf1/Slit2/Hnrnpk/Fbn1/Adcy6/Cav1/Agt/Enpp1/Ripk2/Gpd1/Oaz1/Nr4a2
+GO:0060322,head development,36,0.33577393917757853,0.7131107721130122,0.841991341991342,1,1,67,"tags=17%, list=10%, signal=16%",Dixdc1/Fgf2/Ndnf/Ppt1/Ubb/Ddit4
+GO:0010629,negative regulation of gene expression,44,-0.33114940115402225,-0.7127654952042276,0.8770949720670391,1,1,32,"tags=34%, list=5%, signal=35%",Hsf1/Tardbp/Slit2/Hnrnpk/Cd46/Srsf7/Ezh1/Dgcr8/Smarca4/Bbs2/Agt/Abcd2/Cdkn1a/Gdnf/Hfe
+GO:0009628,response to abiotic stimulus,47,-0.328277315866536,-0.7127566556440369,0.8582089552238806,1,1,101,"tags=26%, list=16%, signal=23%",Col3a1/Agt/Ero1a/Ttpa/Wdr47/Cbl/Ninj1/Hmgn1/Nr4a2/Cdkn1a/Atp2b2/Arpp21
+GO:0032870,cellular response to hormone stimulus,32,-0.34212503857784027,-0.7124075996199516,0.8296296296296296,1,1,213,"tags=47%, list=33%, signal=33%",Uso1/Slit3/Pdk4/Hsf1/Hnrnpk/Fbn1/Adcy6/Cav1/Smarca4/Bbs2/Agt/Enpp1/Ctsh/Nr4a2/Gdnf
+GO:0001501,skeletal system development,16,-0.3648694779248049,-0.7118612468402598,0.7683823529411765,1,1,105,"tags=31%, list=16%, signal=27%",Bbs2/Col3a1/Enpp1/Ninj1/Ift25
+GO:0048729,tissue morphogenesis,24,-0.34856723384030364,-0.7113488820827683,0.7859712230215827,1,1,111,"tags=33%, list=17%, signal=29%",Smarca4/Col3a1/Agt/Enpp1/Ctsh/Tbx18/Fgf7/Gdnf
+GO:0042326,negative regulation of phosphorylation,18,-0.3587827914087325,-0.709456503209933,0.8036697247706422,1,1,123,"tags=44%, list=19%, signal=37%",Cox11/Tardbp/Slit2/Cav1/Agt/Enpp1/Mvp/Cdkn1a
+GO:0062207,regulation of pattern recognition receptor signaling pathway,10,0.372471813344653,0.7090571445105271,0.7305263157894737,1,1,57,"tags=30%, list=9%, signal=28%",Ppt1/Mark4/Ifi35
+GO:1901700,response to oxygen-containing compound,66,-0.31111099319985214,-0.7089423968609672,0.9060283687943262,1,1,111,"tags=26%, list=17%, signal=24%",Smarca4/Gch1/Col3a1/Agt/Enpp1/Ripk2/Ctsh/Ip6k2/Rps6/Arc/Cbl/Gpd1/Oaz1/Grip1/Nr4a2/Cdkn1a/Gdnf
+GO:0000122,negative regulation of transcription by RNA polymerase II,31,-0.33957186727500077,-0.7077762071287295,0.822992700729927,1,1,65,"tags=10%, list=10%, signal=9%",Tbx18/Nr4a2/Tenm2
+GO:0048878,chemical homeostasis,56,-0.31546998767910023,-0.707321212972471,0.8772563176895307,1,1,157,"tags=30%, list=24%, signal=25%",Fbn1/Slc4a3/Plcg2/Adcy6/Cav1/Atp2c1/Smarca4/Agt/Ero1a/Ttpa/Enpp1/Ctsh/Slc26a4/Rps6/Fgf7/Atp2b2/Hfe
+GO:0005975,carbohydrate metabolic process,33,0.3330010754453476,0.7055389658184889,0.834051724137931,1,1,10,"tags=3%, list=2%, signal=3%",Fut2
+GO:0034504,protein localization to nucleus,16,-0.3615966174253922,-0.7054758879741331,0.7794117647058824,1,1,36,"tags=19%, list=6%, signal=18%",Agt/Arl2/Cdkn1a
+GO:0080134,regulation of response to stress,57,0.3123574234931509,0.7054682277343731,0.9042316258351893,1,1,118,"tags=28%, list=18%, signal=25%",Parp9/Fgf2/Smarcd1/Ppt1/Mark4/Ifi35/Phldb2/Uimc1/Ano6/Ercc6/Stk24/Cry1/Plscr1/Map2k2/Klf4/Tgfb2
+GO:0030036,actin cytoskeleton organization,31,0.33786926535013106,0.7049787943897186,0.8259911894273128,1,1,89,"tags=26%, list=14%, signal=23%",Dixdc1/Lcp1/Msrb1/Rhoq/Phldb2/Pclo/Epb41l2/F11r
+GO:0071705,nitrogen compound transport,79,-0.3000896287187341,-0.7048051707602423,0.9375,1,1,105,"tags=18%, list=16%, signal=17%",Bbs2/Slc1a5/Agt/Ankrd27/Arc/Dennd2a/Cbl/Oaz1/Grip1/Arl2/Ift25/Cdkn1a/Gdnf/Hfe
+GO:0010605,negative regulation of macromolecule metabolic process,89,-0.29300846744024434,-0.7045111316979534,0.9364791288566243,1,1,35,"tags=13%, list=5%, signal=15%",Smarca4/Bbs2/Agt/Enpp1/Abcd2/Mvp/Tbx18/Nr4a2/Cdkn1a/Gdnf/Hfe/Tenm2
+GO:0007166,cell surface receptor signaling pathway,89,-0.29215886791227236,-0.7024683500330733,0.9364791288566243,1,1,114,"tags=20%, list=18%, signal=19%",Ccdc88a/Smarca4/Bbs2/Col3a1/Agt/Ero1a/Evc2/Enpp1/Ripk2/Mvp/Cbl/Tbx18/Fgf7/Ninj1/Ift25/Gdnf/Hfe/Cfap58
+GO:0006325,chromatin organization,60,-0.31229493003093645,-0.6999720104406173,0.8933092224231465,1,1,10,"tags=5%, list=2%, signal=5%",Ss18l1/Hmgn1/Myo3b
+GO:0042692,muscle cell differentiation,23,-0.3446601941747573,-0.6989420995906888,0.8007246376811594,1,1,429,"tags=83%, list=67%, signal=28%",Rora/Myom1/Cdh2/Dpf3/Epc1/Ank2/Alpk3/Hdac4/Plec/Rbm4/Casq2/Atg7/Tcap/Cxadr/Dock1/Smarca4/Agt/Tbx18/Ninj1
+GO:0030029,actin filament-based process,35,0.32669999798325056,0.6970053548817835,0.8482905982905983,1,1,89,"tags=23%, list=14%, signal=21%",Dixdc1/Lcp1/Msrb1/Rhoq/Phldb2/Pclo/Epb41l2/F11r
+GO:0019725,cellular homeostasis,40,-0.32508837951845404,-0.6969902167954866,0.8708487084870848,1,1,123,"tags=25%, list=19%, signal=22%",Cav1/Atp2c1/Smarca4/Rnf135/Agt/Ero1a/Ttpa/Enpp1/Atp2b2/Hfe
+GO:0035295,tube development,48,-0.3188988364254821,-0.6956273531181012,0.8770949720670391,1,1,157,"tags=35%, list=24%, signal=29%",Fbn1/Ece1/Cemip2/Itga7/Tab1/Cav1/Smarca4/Col3a1/Agt/Enpp1/Ctsh/Tbx18/Fgf7/Ninj1/Ift25/Cdkn1a/Gdnf
+GO:0140014,mitotic nuclear division,10,-0.37471649174739446,-0.6948480076913781,0.7647058823529411,1,1,108,"tags=30%, list=17%, signal=25%",Eml4/Nde1/Lcmt1
+GO:0051240,positive regulation of multicellular organismal process,62,-0.3069361635645884,-0.6936431752642809,0.8976660682226212,1,1,111,"tags=26%, list=17%, signal=24%",Smarca4/Gch1/Rnf135/Bbs2/Agt/Ttpa/Ripk2/Ctsh/Ankrd27/Ss18l1/Ninj1/Twf1/Grip1/Cdkn1a/Gdnf/Enpp2
+GO:0043933,protein-containing complex organization,86,-0.2894410903859488,-0.6909045601502575,0.9461400359066428,1,1,111,"tags=31%, list=17%, signal=30%",Hdgfl3/Plcg2/Srp19/Gtf2a2/Gtf2f2/Cav1/Smarca4/Gch1/Eml4/Rnf135/Slc1a5/Ric3/Nde1/Med4/Ripk2/Ankrd27/Rps6/Arc/Rad52/Wdr47/Fbxl2/Ninj1/Lcmt1/Twf1/Kctd8/Arl2/Dnai4
+GO:0009416,response to light stimulus,11,-0.36996920008597506,-0.6900701076477349,0.7775700934579439,1,1,54,"tags=18%, list=8%, signal=17%",Hmgn1/Cdkn1a
+GO:0006417,regulation of translation,15,0.35576392056270917,0.6897228728644009,0.7818574514038877,1,1,252,"tags=53%, list=39%, signal=33%",Rbm4b/Pld1/Alkbh1/Prkca/Foxo3/Otud6b/Gtdc1/Gigyf2
+GO:0001701,in utero embryonic development,21,-0.3439389441173246,-0.6894741126342493,0.8139963167587477,1,1,187,"tags=43%, list=29%, signal=31%",Hsf1/Inpp5b/Slit2/Ell/Tab1/Smarca4/Col3a1/Ttpa/Cdkn1a
+GO:0048519,negative regulation of biological process,196,-0.2555456707830445,-0.6894489592086215,0.9946714031971581,1,1,111,"tags=19%, list=17%, signal=22%",Smarca4/Gch1/Eml4/Mphosph9/Bbs2/Col3a1/Agt/Ero1a/Ttpa/Enpp1/Abcd2/Ctsh/Mvp/Ankrd27/Ip6k2/Rps6/Arc/Wdr47/Cbl/Fbxl2/Tbx18/Txndc12/Lcmt1/Twf1/Zbtb17/Oaz1/Rnf152/Mdm1/Arl2/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Tenm2/Pnkd/Enpp2
+GO:0002252,immune effector process,20,-0.34414678422851297,-0.6892493806633363,0.8142076502732241,1,1,92,"tags=35%, list=14%, signal=31%",Gzmm/Enpp1/Ripk2/Ctsh/Rps6/Cbl/Hfe
+GO:0051347,positive regulation of transferase activity,17,-0.3499543352700628,-0.6882206427892869,0.8048327137546468,1,1,125,"tags=35%, list=20%, signal=29%",Tab1/Ccdc88a/Agt/Ip6k2/Hmgn1/Cdkn1a
+GO:0051051,negative regulation of transport,24,-0.33714506576954983,-0.68803875508496,0.8075539568345323,1,1,92,"tags=17%, list=14%, signal=15%",Enpp1/Ankrd27/Oaz1/Pnkd
+GO:0030217,T cell differentiation,17,-0.3497637249201983,-0.6878457882317491,0.8066914498141264,1,1,111,"tags=29%, list=17%, signal=25%",Smarca4/Enpp1/Ripk2/Rps6/Bcl11b
+GO:0045089,positive regulation of innate immune response,16,0.35367043507135637,0.6871696272893978,0.7816593886462883,1,1,57,"tags=25%, list=9%, signal=23%",Parp9/Ppt1/Mark4/Ifi35
+GO:0016053,organic acid biosynthetic process,12,0.3506807859132164,0.6852126220924527,0.7339055793991416,1,1,138,"tags=42%, list=22%, signal=33%",Pecr/Plod2/Cyp27a1/Oat/Mthfr
+GO:0046394,carboxylic acid biosynthetic process,12,0.3506807859132164,0.6852126220924527,0.7339055793991416,1,1,138,"tags=42%, list=22%, signal=33%",Pecr/Plod2/Cyp27a1/Oat/Mthfr
+GO:0009987,cellular process,520,-0.23026480000171715,-0.684993805200667,1,1,1,54,"tags=7%, list=8%, signal=35%",Hmgn1/Gart/Gpd1/Lcmt1/Slc2a13/Serinc5/Twf1/Zbtb17/Oaz1/Kctd8/Pomgnt1/Grip1/Rnf152/Coq10b/Mdm1/Arl2/Nr4a2/Ift25/Dnai4/Cdkn1a/Snrpn/Bcl11b/Gdnf/Atp2b2/Hfe/Mtarc2/Arpp21/Phactr3/Tmprss13/Fah/Tenm2/D16Ertd472e/Pnkd/Enpp2/Myo3b/Slc10a6/Cfap58/4930447C04Rik
+GO:1903828,negative regulation of protein localization,10,0.3594037370574553,0.6841800597903682,0.7452631578947368,1,1,126,"tags=30%, list=20%, signal=24%",Rhoq/Inpp5k/Ube2g2
+GO:0065004,protein-DNA complex assembly,10,-0.36856579898455966,-0.6834425939818085,0.7817836812144212,1,1,137,"tags=50%, list=21%, signal=40%",Gtf2a2/Gtf2f2/Smarca4/Med4/Rad52
+GO:0007169,cell surface receptor protein tyrosine kinase signaling pathway,22,-0.33971857444019216,-0.682968655639776,0.8165137614678899,1,1,114,"tags=32%, list=18%, signal=27%",Ccdc88a/Agt/Enpp1/Mvp/Cbl/Fgf7/Gdnf
+GO:0042770,signal transduction in response to DNA damage,11,0.35491327425406516,0.6822853920258488,0.73875802997858675,1,1,100,"tags=36%, list=16%, signal=31%",Parp9/Uimc1/Ercc6/Cry1
+GO:1902532,negative regulation of intracellular signal transduction,31,0.32678854285388326,0.6818583889918596,0.8414096916299559,1,1,118,"tags=32%, list=18%, signal=28%",Fgf2/Dgkg/Ppt1/Ifi35/Tle1/Ddit4/Cry1/Klf4/Inpp5k/Tgfb2
+GO:0007610,behavior,27,-0.32982694193359774,-0.6807463755680231,0.819672131147541,1,1,105,"tags=26%, list=16%, signal=23%",Bbs2/Agt/Enpp1/Arc/Wdr47/Nr4a2/Atp2b2
+GO:0045088,regulation of innate immune response,18,0.34261485570520367,0.6789641570144954,0.7943107221006565,1,1,57,"tags=22%, list=9%, signal=21%",Parp9/Ppt1/Mark4/Ifi35
+GO:0002009,morphogenesis of an epithelium,22,-0.3373682836098557,-0.678243641791468,0.8220183486238533,1,1,111,"tags=32%, list=17%, signal=27%",Smarca4/Agt/Enpp1/Ctsh/Tbx18/Fgf7/Gdnf
+GO:2000779,regulation of double-strand break repair,11,0.35268614193506953,0.6780039521429562,0.7408993576017131,1,1,96,"tags=18%, list=15%, signal=16%",Smarcd1/Ercc6
+GO:0009892,negative regulation of metabolic process,100,-0.27667884286219235,-0.6775225112806831,0.9554367201426025,1,1,45,"tags=13%, list=7%, signal=14%",Smarca4/Bbs2/Agt/Enpp1/Abcd2/Mvp/Tbx18/Oaz1/Nr4a2/Cdkn1a/Gdnf/Hfe/Tenm2
+GO:0048523,negative regulation of cellular process,189,-0.2527543998857355,-0.6771534238408967,0.9946236559139785,1,1,111,"tags=19%, list=17%, signal=22%",Smarca4/Gch1/Eml4/Mphosph9/Bbs2/Col3a1/Agt/Ero1a/Ttpa/Enpp1/Abcd2/Ctsh/Mvp/Ankrd27/Ip6k2/Rps6/Arc/Wdr47/Cbl/Fbxl2/Tbx18/Txndc12/Lcmt1/Twf1/Zbtb17/Oaz1/Rnf152/Mdm1/Nr4a2/Cdkn1a/Bcl11b/Gdnf/Hfe/Tenm2/Pnkd/Enpp2
+GO:0031400,negative regulation of protein modification process,18,-0.34205639809692434,-0.6763817605119459,0.8275229357798165,1,1,123,"tags=39%, list=19%, signal=32%",Tardbp/Slit2/Cav1/Agt/Enpp1/Mvp/Cdkn1a
+GO:0043254,regulation of protein-containing complex assembly,19,-0.3403178979945583,-0.6759418793328933,0.8160291438979964,1,1,81,"tags=53%, list=13%, signal=47%",Hsf1/Slit2/Gda/Plcg2/Cav1/Ankrd27/Fbxl2/Lcmt1/Twf1/Arl2
+GO:0002757,immune response-activating signaling pathway,20,0.3366962007656794,0.6749570060946865,0.7902869757174393,1,1,57,"tags=25%, list=9%, signal=24%",Tec/Ppt1/Mark4/Plscr2/Ifi35
+GO:0006886,intracellular protein transport,26,-0.32718899152451986,-0.6743456389179016,0.822141560798548,1,1,45,"tags=15%, list=7%, signal=15%",Agt/Oaz1/Grip1/Cdkn1a
+GO:0043412,macromolecule modification,125,-0.2645872858371126,-0.6739260195854443,0.984182776801406,1,1,101,"tags=16%, list=16%, signal=17%",Col3a1/Agt/Ero1a/Enpp1/Ripk2/Mvp/Dtwd1/Ip6k2/Dtwd2/Cbl/Fbxl2/Fgf7/Ube3d/Lcmt1/Pomgnt1/Rnf152/Cdkn1a/Gdnf/Enpp2/Myo3b
+GO:0002250,adaptive immune response,15,-0.346280803699249,-0.6727572475538559,0.8107606679035251,1,1,115,"tags=33%, list=18%, signal=28%",Gzmm/Enpp1/Ripk2/Ctsh/Hfe
+GO:0031349,positive regulation of defense response,17,0.342659641378096,0.6726064172340448,0.7995689655172413,1,1,57,"tags=24%, list=9%, signal=22%",Parp9/Ppt1/Mark4/Ifi35
+GO:0036211,protein modification process,114,-0.2674339951882124,-0.672401029508398,0.9790575916230366,1,1,101,"tags=16%, list=16%, signal=16%",Col3a1/Agt/Ero1a/Enpp1/Ripk2/Mvp/Ip6k2/Cbl/Fbxl2/Fgf7/Ube3d/Lcmt1/Pomgnt1/Rnf152/Cdkn1a/Gdnf/Enpp2/Myo3b
+GO:0048589,developmental growth,31,-0.32249222723837256,-0.6721767832387084,0.8594890510948905,1,1,127,"tags=29%, list=20%, signal=24%",Sgca/Smarca4/Bbs2/Col3a1/Agt/Enpp1/Fgf7/Ninj1/Cdkn1a
+GO:0043523,regulation of neuron apoptotic process,17,0.34218169450914704,0.6716682555939429,0.8017241379310345,1,1,58,"tags=29%, list=9%, signal=27%",Fgf2/Mdga2/Ndnf/Ppt1/Ubb
+GO:0034599,cellular response to oxidative stress,14,-0.3458528219746853,-0.6714416743032107,0.8029465930018416,1,1,109,"tags=21%, list=17%, signal=18%",Gch1/Rad52/Nr4a2
+GO:0051146,striated muscle cell differentiation,17,-0.34134615384615385,-0.6712917822045549,0.8104089219330854,1,1,429,"tags=100%, list=67%, signal=34%",Sik1/Spag9/Mypn/Myom1/Cdh2/Epc1/Alpk3/Hdac4/Plec/Casq2/Atg7/Tcap/Cxadr/Dock1/Agt/Tbx18
+GO:0001654,eye development,18,0.3385242454734361,0.6708577434091361,0.8008752735229759,1,1,33,"tags=11%, list=5%, signal=11%",Fat3/Fgf2
+GO:0048880,sensory system development,18,0.3385242454734361,0.6708577434091361,0.8008752735229759,1,1,33,"tags=11%, list=5%, signal=11%",Fat3/Fgf2
+GO:0150063,visual system development,18,0.3385242454734361,0.6708577434091361,0.8008752735229759,1,1,33,"tags=11%, list=5%, signal=11%",Fat3/Fgf2
+GO:0032879,regulation of localization,92,-0.27489985351061375,-0.6675423909209879,0.9569120287253142,1,1,103,"tags=16%, list=16%, signal=16%",Ric3/Agt/Ero1a/Enpp1/Ankrd27/Slc26a4/Arc/Cbl/Stimate/Oaz1/Grip1/Gdnf/Atp2b2/Hfe/Pnkd
+GO:0070936,protein K48-linked ubiquitination,10,-0.3598504599200932,-0.6672814798630796,0.7988614800759013,1,1,40,"tags=20%, list=6%, signal=19%",Hace1/Rnf152
+GO:0055002,striated muscle cell development,12,-0.3552817944691227,-0.6667685168822175,0.8246268656716418,1,1,275,"tags=75%, list=43%, signal=44%",Alpk3/Hdac4/Plec/Casq2/Atg7/Tcap/Cxadr/Agt/Tbx18
+GO:0043010,camera-type eye development,17,0.3392814301325152,0.6659753282811364,0.8060344827586207,1,1,33,"tags=12%, list=5%, signal=11%",Fat3/Fgf2
+GO:0030163,protein catabolic process,39,-0.3116409687737225,-0.6655701329241028,0.8917431192660551,1,1,87,"tags=23%, list=14%, signal=21%",Hace1/Zfand2a/Cav1/Ctsh/Cbl/Fbxl2/Ube3d/Oaz1/Hfe
+GO:0048659,smooth muscle cell proliferation,11,-0.35648567723064356,-0.6649205112324467,0.7925233644859813,1,1,123,"tags=36%, list=19%, signal=30%",Cav1/Agt/Enpp1/Cdkn1a
+GO:0009141,nucleoside triphosphate metabolic process,17,-0.3380364135907035,-0.6647828427901774,0.8104089219330854,1,1,92,"tags=18%, list=14%, signal=16%",Enpp1/Gpd1/Arl2
+GO:0009144,purine nucleoside triphosphate metabolic process,17,-0.3380364135907035,-0.6647828427901774,0.8104089219330854,1,1,92,"tags=18%, list=14%, signal=16%",Enpp1/Gpd1/Arl2
+GO:0009199,ribonucleoside triphosphate metabolic process,17,-0.3380364135907035,-0.6647828427901774,0.8104089219330854,1,1,92,"tags=18%, list=14%, signal=16%",Enpp1/Gpd1/Arl2
+GO:0009205,purine ribonucleoside triphosphate metabolic process,17,-0.3380364135907035,-0.6647828427901774,0.8104089219330854,1,1,92,"tags=18%, list=14%, signal=16%",Enpp1/Gpd1/Arl2
+GO:0033674,positive regulation of kinase activity,13,-0.34516225990687033,-0.66401560300924,0.8151571164510166,1,1,125,"tags=46%, list=20%, signal=38%",Fbn1/Tab1/Ccdc88a/Agt/Ip6k2/Cdkn1a
+GO:0045860,positive regulation of protein kinase activity,13,-0.34516225990687033,-0.66401560300924,0.8151571164510166,1,1,125,"tags=46%, list=20%, signal=38%",Fbn1/Tab1/Ccdc88a/Agt/Ip6k2/Cdkn1a
+GO:0031647,regulation of protein stability,12,-0.35363006982132883,-0.6636686732908705,0.8302238805970149,1,1,239,"tags=58%, list=37%, signal=37%",Utp25/Usp12/Usp7/Tardbp/Naa16/Ctsh/Ip6k2
+GO:0071375,cellular response to peptide hormone stimulus,19,-0.3335445371017113,-0.6624885807603211,0.8324225865209471,1,1,213,"tags=53%, list=33%, signal=36%",Uso1/Pdk4/Hsf1/Hnrnpk/Fbn1/Adcy6/Cav1/Agt/Enpp1/Nr4a2
+GO:0006874,intracellular calcium ion homeostasis,15,-0.34089732978685494,-0.6622981893187774,0.8200371057513914,1,1,144,"tags=33%, list=22%, signal=26%",Plcg2/Cav1/Atp2c1/Ero1a/Atp2b2
+GO:0044057,regulation of system process,27,-0.3205047561254939,-0.6615058485084843,0.8451730418943534,1,1,170,"tags=41%, list=27%, signal=31%",Mtg2/Hnrnpk/Dsc2/Ece1/Slc4a3/Sgca/Cav1/Gch1/Agt/Tbx18/Twf1
+GO:0002253,activation of immune response,21,0.3247200331118377,0.6607022589301547,0.8017429193899782,1,1,57,"tags=24%, list=9%, signal=22%",Tec/Ppt1/Mark4/Plscr2/Ifi35
+GO:0001816,cytokine production,30,-0.3172599326356853,-0.6598138907146097,0.8655616942909761,1,1,107,"tags=40%, list=17%, signal=35%",Hsf1/Traf3/Cd46/Fbn1/Plcg2/Rnf135/Col3a1/Agt/Enpp1/Ripk2/Abcd2/Hfe
+GO:0002833,positive regulation of response to biotic stimulus,19,0.3332149749204411,0.6595400424602096,0.8101545253863135,1,1,57,"tags=21%, list=9%, signal=20%",Parp9/Ppt1/Mark4/Ifi35
+GO:0050793,regulation of developmental process,102,-0.26833024207658673,-0.6589045918385088,0.9658886894075404,1,1,98,"tags=18%, list=15%, signal=18%",Agt/Ttpa/Enpp1/Ripk2/Ctsh/Ankrd27/Arc/Tbx18/Fgf7/Ss18l1/Ninj1/Hmgn1/Grip1/Cdkn1a/Bcl11b/Gdnf/D16Ertd472e/Enpp2
+GO:0055001,muscle cell development,13,-0.3422339269421844,-0.6583821401275147,0.8280961182994455,1,1,330,"tags=77%, list=51%, signal=38%",Ank2/Alpk3/Hdac4/Plec/Casq2/Atg7/Tcap/Cxadr/Agt/Tbx18
+GO:0048585,negative regulation of response to stimulus,64,-0.2886806898373932,-0.6581966427342308,0.9380530973451328,1,1,111,"tags=22%, list=17%, signal=20%",Smarca4/Bbs2/Col3a1/Agt/Enpp1/Mvp/Cbl/Fbxl2/Tbx18/Txndc12/Rnf152/Nr4a2/Gdnf/Hfe
+GO:0002696,positive regulation of leukocyte activation,12,-0.35059390167472704,-0.6579706010461621,0.832089552238806,1,1,123,"tags=42%, list=19%, signal=34%",Cd46/Cav1/Smarca4/Ripk2/Cdkn1a
+GO:0050867,positive regulation of cell activation,12,-0.35059390167472704,-0.6579706010461621,0.832089552238806,1,1,123,"tags=42%, list=19%, signal=34%",Cd46/Cav1/Smarca4/Ripk2/Cdkn1a
+GO:0051251,positive regulation of lymphocyte activation,12,-0.35059390167472704,-0.6579706010461621,0.832089552238806,1,1,123,"tags=42%, list=19%, signal=34%",Cd46/Cav1/Smarca4/Ripk2/Cdkn1a
+GO:0001558,regulation of cell growth,17,-0.3336762749263769,-0.6562081885230783,0.8252788104089219,1,1,111,"tags=29%, list=17%, signal=25%",Smarca4/Agt/Enpp1/Ip6k2/Cdkn1a
+GO:0001775,cell activation,48,0.2966406296167817,0.6538009621090387,0.9354838709677419,1,1,135,"tags=33%, list=21%, signal=28%",Skap2/Lcp1/Smarcd1/Pag1/Tec/Plscr2/Ifi35/Tcf4/Pkn1/F11r/Jmjd6/Plscr1/Pfdn1/Fosl2/Gadd45g/Bcl10
+GO:0001817,regulation of cytokine production,23,-0.3223707351202569,-0.6537409374791339,0.842391304347826,1,1,107,"tags=39%, list=17%, signal=34%",Hsf1/Traf3/Cd46/Plcg2/Rnf135/Agt/Ripk2/Abcd2/Hfe
+GO:1901701,cellular response to oxygen-containing compound,50,-0.2985231827411503,-0.6536034917541111,0.9182156133828996,1,1,111,"tags=24%, list=17%, signal=22%",Smarca4/Gch1/Agt/Enpp1/Ripk2/Ip6k2/Rps6/Gpd1/Oaz1/Grip1/Nr4a2/Gdnf
+GO:0034762,regulation of transmembrane transport,18,0.3297937759909967,0.6535564625283512,0.8161925601750547,1,1,118,"tags=28%, list=18%, signal=23%",Zfas1/Rhoq/Ano6/Inpp5k/Tgfb2
+GO:0002684,positive regulation of immune system process,35,0.3054021744690639,0.6515670410515021,0.8888888888888888,1,1,57,"tags=20%, list=9%, signal=19%",Parp9/Smarcd1/Tec/Ppt1/Mark4/Plscr2/Ifi35
+GO:0009058,biosynthetic process,275,0.22673100075387256,0.6497798976361787,1,1,1,45,"tags=6%, list=7%, signal=9%",Gal3st2c/Ip6k3/Fut2/Zscan20/Zfp970/Inpp1/Parp9/Rbm4b/Fgf2/Smarcd1/Bmal2/Dgkg/Mdga2/Pecr/Mrpl4/Elmod3
+GO:0070588,calcium ion transmembrane transport,15,0.3343344565625647,0.648177368613307,0.8077753779697624,1,1,33,"tags=13%, list=5%, signal=13%",Zfas1/Fgf2
+GO:0001525,angiogenesis,21,0.3178952535727963,0.6468159975408182,0.8082788671023965,1,1,127,"tags=33%, list=20%, signal=28%",Fgf2/Ndnf/Tcf4/Jmjd6/Klf4/Tgfb2/Slc31a1
+GO:0042127,regulation of cell population proliferation,58,-0.2874927036780936,-0.6449020232146826,0.9388489208633094,1,1,98,"tags=21%, list=15%, signal=19%",Agt/Ripk2/Ctsh/Rps6/Tbx18/Fgf7/Hmgn1/Zbtb17/Cdkn1a/Bcl11b/Gdnf/Enpp2
+GO:0048608,reproductive structure development,10,-0.34773052398650484,-0.6448071198541848,0.8159392789373814,1,1,98,"tags=50%, list=15%, signal=43%",Slit3/Hnrnpk/Agt/Cbl/Fgf7
+GO:0061458,reproductive system development,10,-0.34773052398650484,-0.6448071198541848,0.8159392789373814,1,1,98,"tags=50%, list=15%, signal=43%",Slit3/Hnrnpk/Agt/Cbl/Fgf7
+GO:0008150,biological_process,588,0.21766667840984863,0.644527635810978,1,1,1,58,"tags=9%, list=9%, signal=94%",Inhca/Gal3st2c/Gm13274/4930458D05Rik/Ano5/Dixdc1/Ip6k3/Fut2/Cpne4/Fat3/Skap2/4921504A21Rik/Zscan20/Zfas1/Tmem266/Zfp970/Arrdc2/Plscr4/Inpp1/Lcp1/Parp9/Rbm4b/Rgl3/Ttll7/Fgf2/Smarcd1/Nphp3/Bmal2/Dgkg/Chd1l/Mdga2/Pag1/Pecr/Tuba1c/Mrpl4/Ndnf/Elmod3/Tec/Ppt1/Msrb1/Ccdc122/Mark4/Rhoq/Rtn4ip1/2500002B13Rik/Cabin1/Plscr2/Gm16193/Ifi35/Ubb
+GO:0019637,organophosphate metabolic process,55,-0.28739205285187575,-0.6416070887991322,0.9350180505415162,1,1,64,"tags=13%, list=10%, signal=13%",Fgf7/Gart/Gpd1/Serinc5/Arl2/Atp2b2/Enpp2
+GO:0000075,cell cycle checkpoint signaling,14,-0.33045395947098394,-0.6415461888108096,0.8250460405156538,1,1,77,"tags=21%, list=12%, signal=19%",Rps6/Lcmt1/Cdkn1a
+GO:0098655,monoatomic cation transmembrane transport,22,0.3122635377623416,0.6409758835181826,0.8424507658643327,1,1,127,"tags=32%, list=20%, signal=26%",Zfas1/Fgf2/Tmem150c/Ano6/Atp6v1d/Tgfb2/Slc31a1
+GO:0045787,positive regulation of cell cycle,15,0.3303878852783112,0.6405261135904984,0.8142548596112311,1,1,132,"tags=27%, list=21%, signal=22%",Mark4/Plscr1/Tgfb2/Larp7
+GO:0051402,neuron apoptotic process,18,0.323093478793944,0.6402783995302371,0.8271334792122538,1,1,58,"tags=28%, list=9%, signal=26%",Fgf2/Mdga2/Ndnf/Ppt1/Ubb
+GO:0006936,muscle contraction,17,0.32547732238540567,0.6388792529524076,0.8362068965517241,1,1,18,"tags=6%, list=3%, signal=6%",Zfas1
+GO:0051607,defense response to virus,14,0.3303864095690789,0.6388383112218096,0.8104575163398693,1,1,101,"tags=29%, list=16%, signal=25%",Parp9/Ddit4/Ercc6/Plscr1
+GO:0001819,positive regulation of cytokine production,13,-0.3319099966246625,-0.6385211888837016,0.8410351201478743,1,1,180,"tags=46%, list=28%, signal=34%",Traf3/Cd46/Plcg2/Rnf135/Agt/Ripk2
+GO:0002764,immune response-regulating signaling pathway,21,0.3130747717428781,0.6370078461815155,0.8126361655773421,1,1,57,"tags=24%, list=9%, signal=22%",Tec/Ppt1/Mark4/Plscr2/Ifi35
+GO:0002694,regulation of leukocyte activation,22,-0.3162341448928315,-0.6357556667625617,0.8568807339449541,1,1,32,"tags=23%, list=5%, signal=22%",Cav1/Smarca4/Ripk2/Cdkn1a/Hfe
+GO:0009314,response to radiation,16,-0.3251031649708005,-0.6342770726783654,0.8419117647058824,1,1,101,"tags=25%, list=16%, signal=22%",Col3a1/Cbl/Hmgn1/Cdkn1a
+GO:0009615,response to virus,15,0.3270131194418071,0.6339834231897501,0.8250539956803455,1,1,101,"tags=27%, list=16%, signal=23%",Parp9/Ddit4/Ercc6/Plscr1
+GO:0043086,negative regulation of catalytic activity,17,-0.32180597475408595,-0.6328640410406032,0.8420074349442379,1,1,98,"tags=29%, list=15%, signal=26%",Cav1/Agt/Mvp/Arl2/Cdkn1a
+GO:0009059,macromolecule biosynthetic process,234,-0.22960078134483963,-0.6318240570422347,1,1,1,36,"tags=16%, list=6%, signal=24%",Fbxo30/Pigx/Rps3a1/Gzmm/Smarca4/Gch1/Rnf135/Bbs2/Ric3/Col3a1/Agt/Ero1a/Med4/Enpp1/Ripk2/Abcd2/Ctsh/Mvp/Dtwd1/Rps6/Dtwd2/Fbxl2/Tbx18/Fgf7/Prim2/Ss18l1/Hmgn1/Zbtb17/Pomgnt1/Arl2/Nr4a2/Cdkn1a/Snrpn/Bcl11b/Gdnf/Hfe/Tenm2/4930447C04Rik
+GO:2000026,regulation of multicellular organismal development,56,0.2800789295759192,0.630080555195126,0.953125,1,1,34,"tags=5%, list=5%, signal=6%",Dixdc1/Fgf2/Smarcd1
+GO:0009612,response to mechanical stimulus,11,-0.3369520534847628,-0.6284862084906567,0.8317757009345794,1,1,26,"tags=27%, list=4%, signal=27%",Cav1/Col3a1/Atp2b2
+GO:0045595,regulation of cell differentiation,69,0.2703504332696671,0.62736784864391415,0.9541284403669725,1,1,35,"tags=6%, list=5%, signal=6%",Dixdc1/Fgf2/Smarcd1/Nphp3
+GO:0022603,regulation of anatomical structure morphogenesis,44,-0.2902301667132288,-0.6246909937920853,0.9385474860335196,1,1,87,"tags=20%, list=14%, signal=19%",Ctsh/Ankrd27/Arc/Fgf7/Ss18l1/Ninj1/Grip1/Gdnf/Enpp2
+GO:0045944,positive regulation of transcription by RNA polymerase II,50,-0.28449693011428095,-0.62289362323078,0.9423791821561338,1,1,58,"tags=10%, list=9%, signal=10%",Ss18l1/Zbtb17/Nr4a2/Bcl11b/Gdnf
+GO:0016032,viral process,15,-0.32041612791498886,-0.6225071386722659,0.8385899814471243,1,1,123,"tags=60%, list=19%, signal=50%",Atg7/Rab43/Oaz2/Trim8/Tardbp/Cav1/Smarca4/Fbxl2/Oaz1
+GO:0071214,cellular response to abiotic stimulus,13,-0.32350744534334436,-0.6223565445874627,0.8521256931608133,1,1,57,"tags=23%, list=9%, signal=21%",Cav1/Ninj1/Cdkn1a
+GO:0104004,cellular response to environmental stimulus,13,-0.32350744534334436,-0.6223565445874627,0.8521256931608133,1,1,57,"tags=23%, list=9%, signal=21%",Cav1/Ninj1/Cdkn1a
+GO:0002521,leukocyte differentiation,28,-0.3016599510550181,-0.6214451494184389,0.8818181818181818,1,1,158,"tags=32%, list=25%, signal=25%",Cd46/Fbn1/Plcg2/Smarca4/Enpp1/Ripk2/Rps6/Ninj1/Bcl11b
+GO:0016049,cell growth,18,-0.3130428448562315,-0.6190104079255627,0.8550458715596331,1,1,111,"tags=28%, list=17%, signal=24%",Smarca4/Agt/Enpp1/Ip6k2/Cdkn1a
+GO:0007165,signal transduction,183,-0.23102798779524703,-0.6182585593664327,1,1,1,69,"tags=9%, list=11%, signal=11%",Cbl/Fbxl2/Tbx18/Fgf7/Txndc12/Ninj1/Lcmt1/Kctd8/Rnf152/Nr4a2/Ift25/Cdkn1a/Gdnf/Hfe/Tenm2/Cfap58
+GO:0043434,response to peptide hormone,23,-0.30408002561759534,-0.6166489056203242,0.8713768115942029,1,1,213,"tags=52%, list=33%, signal=36%",Uso1/Pdk4/Hsf1/Hnrnpk/Fbn1/Adcy6/Cav1/Col3a1/Agt/Enpp1/Rps6/Nr4a2
+GO:0032386,regulation of intracellular transport,17,0.31401006459781866,0.6163701790941953,0.8491379310344828,1,1,137,"tags=29%, list=21%, signal=24%",Lcp1/Nsun2/Map2k2/Ube2g2/Xpo1
+GO:0009057,macromolecule catabolic process,54,-0.27781586689440774,-0.6161242713480913,0.9522058823529411,1,1,69,"tags=13%, list=11%, signal=13%",Ctsh/Cbl/Fbxl2/Ube3d/Oaz1/Gdnf/Hfe
+GO:0030100,regulation of endocytosis,21,-0.3070590535638904,-0.6155431715521502,0.8710865561694291,1,1,76,"tags=24%, list=12%, signal=22%",Plcg2/Cav1/Arc/Cbl/Hfe
+GO:0006282,regulation of DNA repair,15,0.3174435607729722,0.6154308294172463,0.8401727861771058,1,1,96,"tags=20%, list=15%, signal=17%",Smarcd1/Uimc1/Ercc6
+GO:0006352,DNA-templated transcription initiation,12,0.3138330400872348,0.613213979595212,0.8047210300429185,1,1,96,"tags=25%, list=15%, signal=22%",Smarcd1/Gtf2e2/Ercc6
+GO:0006367,transcription initiation at RNA polymerase II promoter,12,0.3138330400872348,0.613213979595212,0.8047210300429185,1,1,96,"tags=25%, list=15%, signal=22%",Smarcd1/Gtf2e2/Ercc6
+GO:0022411,cellular component disassembly,20,0.3058671293315976,0.6131556026083773,0.847682119205298,1,1,67,"tags=15%, list=10%, signal=14%",Lcp1/Smarcd1/Ddit4
+GO:0006006,glucose metabolic process,16,-0.31372677062749965,-0.612081699396313,0.8566176470588235,1,1,52,"tags=19%, list=8%, signal=18%",Fbn1/Gpd1/Lcmt1
+GO:0046649,lymphocyte activation,35,0.28676504904174227,0.6118052525524625,0.9166666666666666,1,1,40,"tags=11%, list=6%, signal=11%",Skap2/Lcp1/Smarcd1/Pag1
+GO:0045321,leukocyte activation,41,0.28172607900422636,0.6107528105241377,0.9120171673819742,1,1,57,"tags=15%, list=9%, signal=14%",Skap2/Lcp1/Smarcd1/Pag1/Plscr2/Ifi35
+GO:0046907,intracellular transport,56,-0.2721724922753581,-0.610243081410881,0.9584837545126353,1,1,114,"tags=18%, list=18%, signal=16%",Ccdc88a/Nde1/Agt/Abcd2/Ankrd27/Dennd2a/Oaz1/Grip1/Ift25/Cdkn1a
+GO:0033043,regulation of organelle organization,57,0.270008315064659,0.6098215479306064,0.9710467706013363,1,1,34,"tags=5%, list=5%, signal=5%",Dixdc1/Lcp1/Smarcd1
+GO:0006913,nucleocytoplasmic transport,15,-0.3138293584561161,-0.609710307764851,0.849721706864564,1,1,32,"tags=27%, list=5%, signal=26%",Tardbp/Ptpn14/Agt/Cdkn1a
+GO:0051169,nuclear transport,15,-0.3138293584561161,-0.609710307764851,0.849721706864564,1,1,32,"tags=27%, list=5%, signal=26%",Tardbp/Ptpn14/Agt/Cdkn1a
+GO:1902115,regulation of organelle assembly,14,0.31481797414023266,0.608735036057731,0.8474945533769063,1,1,50,"tags=14%, list=8%, signal=13%",Lcp1/Mark4
+GO:0033157,regulation of intracellular protein transport,11,0.3165106863308791,0.6084602447105029,0.7944325481798715,1,1,26,"tags=9%, list=4%, signal=9%",Lcp1
+GO:0002831,regulation of response to biotic stimulus,25,0.2958507210784259,0.6083938107536183,0.8648648648648649,1,1,101,"tags=24%, list=16%, signal=21%",Parp9/Ppt1/Mark4/Ifi35/Ercc6/Plscr1
+GO:0030098,lymphocyte differentiation,21,-0.30313320740264676,-0.6076732593347111,0.8766114180478821,1,1,111,"tags=33%, list=17%, signal=28%",Cd46/Plcg2/Smarca4/Enpp1/Ripk2/Rps6/Bcl11b
+GO:0033993,response to lipid,41,-0.2836485883693953,-0.6068535948986511,0.9440298507462687,1,1,111,"tags=29%, list=17%, signal=26%",Plcg2/Adcy6/Cav1/Smarca4/Gch1/Ripk2/Ctsh/Cbl/Oaz1/Grip1/Cdkn1a/Gdnf
+GO:0045087,innate immune response,31,0.2906856388827622,0.6065281227447855,0.9052863436123348,1,1,66,"tags=19%, list=10%, signal=18%",Parp9/Ppt1/Msrb1/Mark4/Ifi35/Rnaset2b
+GO:0010648,negative regulation of cell communication,56,-0.2705138456768789,-0.6065241985702022,0.9584837545126353,1,1,98,"tags=20%, list=15%, signal=18%",Agt/Enpp1/Mvp/Arc/Cbl/Fbxl2/Tbx18/Txndc12/Rnf152/Nr4a2/Gdnf
+GO:0023057,negative regulation of signaling,56,-0.2705138456768789,-0.6065241985702022,0.9584837545126353,1,1,98,"tags=20%, list=15%, signal=18%",Agt/Enpp1/Mvp/Arc/Cbl/Fbxl2/Tbx18/Txndc12/Rnf152/Nr4a2/Gdnf
+GO:0008219,cell death,87,-0.2536554571635317,-0.6059669712904134,0.98014440433213,1,1,116,"tags=24%, list=18%, signal=23%",Rps3a1/Gzmm/Smarca4/Gch1/Agt/Ero1a/Ttpa/Enpp1/Ripk2/Ctsh/Ip6k2/Rps6/Cbl/Txndc12/Ninj1/Lcmt1/Rnf152/Nr4a2/Cdkn1a/Bcl11b/Gdnf
+GO:0012501,programmed cell death,87,-0.2536554571635317,-0.6059669712904134,0.98014440433213,1,1,116,"tags=24%, list=18%, signal=23%",Rps3a1/Gzmm/Smarca4/Gch1/Agt/Ero1a/Ttpa/Enpp1/Ripk2/Ctsh/Ip6k2/Rps6/Cbl/Txndc12/Ninj1/Lcmt1/Rnf152/Nr4a2/Cdkn1a/Bcl11b/Gdnf
+GO:0045892,negative regulation of DNA-templated transcription,42,-0.28185951653832375,-0.6051139265378088,0.9516728624535316,1,1,35,"tags=7%, list=5%, signal=7%",Tbx18/Nr4a2/Tenm2
+GO:1902679,negative regulation of RNA biosynthetic process,42,-0.28185951653832375,-0.6051139265378088,0.9516728624535316,1,1,35,"tags=7%, list=5%, signal=7%",Tbx18/Nr4a2/Tenm2
+GO:0051338,regulation of transferase activity,27,-0.2931077754220482,-0.6049598453043781,0.8961748633879781,1,1,125,"tags=30%, list=20%, signal=25%",Tab1/Cav1/Ccdc88a/Agt/Mvp/Ip6k2/Hmgn1/Cdkn1a
+GO:0042110,T cell activation,26,-0.29341398185715684,-0.6047344017932278,0.8838475499092558,1,1,123,"tags=27%, list=19%, signal=23%",Cav1/Smarca4/Enpp1/Ripk2/Rps6/Bcl11b/Hfe
+GO:0097190,apoptotic signaling pathway,29,-0.29250726529057963,-0.6046346137806303,0.90625,1,1,98,"tags=24%, list=15%, signal=21%",Agt/Ero1a/Ctsh/Txndc12/Nr4a2/Cdkn1a/Gdnf
+GO:1901136,carbohydrate derivative catabolic process,15,-0.31108767879349375,-0.6043837495387064,0.8552875695732839,1,1,92,"tags=33%, list=14%, signal=29%",Gda/Cemip2/Enpp1/Gpd1/Arl2
+GO:0002263,cell activation involved in immune response,11,0.31412019157813953,0.6038647568326923,0.7987152034261242,1,1,57,"tags=18%, list=9%, signal=17%",Lcp1/Ifi35
+GO:0002366,leukocyte activation involved in immune response,11,0.31412019157813953,0.6038647568326923,0.7987152034261242,1,1,57,"tags=18%, list=9%, signal=17%",Lcp1/Ifi35
+GO:0043065,positive regulation of apoptotic process,30,0.28912626051259477,0.6033744095990687,0.9041394335511983,1,1,147,"tags=30%, list=23%, signal=24%",Zfas1/Ubb/Tmem196/Ano6/Plscr1/Tgfb2/Gadd45g/Bcl10/Pla2r1
+GO:0000082,G1/S transition of mitotic cell cycle,15,-0.309407633124935,-0.6011197427336222,0.8589981447124304,1,1,111,"tags=20%, list=17%, signal=17%",Smarca4/Rps6/Cdkn1a
+GO:0098609,cell-cell adhesion,30,-0.28866365099261154,-0.6003414458516968,0.9060773480662984,1,1,65,"tags=30%, list=10%, signal=28%",Itga7/Cav1/Atp2c1/Smarca4/Ripk2/Tbx18/Ninj1/Hfe/Tenm2
+GO:0007548,sex differentiation,11,-0.3213340139185706,-0.5993552909921614,0.8560747663551402,1,1,98,"tags=36%, list=15%, signal=31%",Hnrnpk/Agt/Cbl/Fgf7
+GO:0006816,calcium ion transport,17,0.30529754108120044,0.5992683715862787,0.8685344827586207,1,1,33,"tags=12%, list=5%, signal=11%",Zfas1/Fgf2
+GO:0016236,macroautophagy,14,-0.30767751004759114,-0.5973277919557316,0.8692449355432781,1,1,279,"tags=71%, list=44%, signal=41%",Rab2a/Vps4b/Rubcn/Atg7/Rab43/Gabarapl1/Eif2ak1/Abi2/Plekhm1/Ripk2
+GO:0019318,hexose metabolic process,17,-0.3029757543549373,-0.5958325055490792,0.8661710037174721,1,1,52,"tags=18%, list=8%, signal=17%",Fbn1/Gpd1/Lcmt1
+GO:0003012,muscle system process,24,-0.29154087882068,-0.5949706630357953,0.8848920863309353,1,1,161,"tags=33%, list=25%, signal=26%",Dsc2/Ece1/Sgca/Cav1/Bbs2/Agt/Twf1/Gdnf
+GO:0051239,regulation of multicellular organismal process,117,-0.23632049653172596,-0.5945566312787626,0.9964476021314387,1,1,111,"tags=19%, list=17%, signal=19%",Smarca4/Gch1/Rnf135/Bbs2/Agt/Ttpa/Enpp1/Ripk2/Abcd2/Ctsh/Ankrd27/Tbx18/Fgf7/Ss18l1/Ninj1/Twf1/Grip1/Nr4a2/Cdkn1a/Gdnf/Hfe/Enpp2
+GO:0071897,DNA biosynthetic process,10,-0.3205168577628271,-0.5943440039413473,0.855787476280835,1,1,32,"tags=20%, list=5%, signal=19%",Gch1/Cdkn1a
+GO:0044772,mitotic cell cycle phase transition,22,-0.2951831495716727,-0.5934348428333356,0.8844036697247707,1,1,77,"tags=18%, list=12%, signal=17%",Smarca4/Rps6/Lcmt1/Cdkn1a
+GO:0051924,regulation of calcium ion transport,12,0.3025020526361552,0.5910737998815384,0.8218884120171673,1,1,18,"tags=8%, list=3%, signal=8%",Zfas1
+GO:0048638,regulation of developmental growth,13,-0.30679394343643096,-0.590203475332123,0.8798521256931608,1,1,187,"tags=46%, list=29%, signal=33%",Hsf1/Slit2/Hnrnpk/Bbs2/Agt/Cdkn1a
+GO:0098657,import into cell,40,-0.274857978225997,-0.5892961234587343,0.9391143911439115,1,1,104,"tags=15%, list=16%, signal=13%",Slc1a5/Agt/Arc/Cbl/Gdnf/Hfe
+GO:0033002,muscle cell proliferation,14,-0.30226688562679943,-0.5868235586828046,0.8784530386740331,1,1,123,"tags=29%, list=19%, signal=24%",Cav1/Agt/Enpp1/Cdkn1a
+GO:0098662,inorganic cation transmembrane transport,21,0.28791423526880067,0.5858141359413095,0.8671023965141612,1,1,33,"tags=10%, list=5%, signal=9%",Zfas1/Fgf2
+GO:0030097,hemopoiesis,42,-0.27242306842596525,-0.584855159901263,0.9609665427509294,1,1,111,"tags=19%, list=17%, signal=17%",Smarca4/Slc1a5/Enpp1/Ripk2/Rps6/Ninj1/Dnai4/Bcl11b
+GO:0006915,apoptotic process,85,-0.24367601597108704,-0.5817070736664629,0.992831541218638,1,1,116,"tags=24%, list=18%, signal=22%",Rps3a1/Gzmm/Smarca4/Gch1/Agt/Ero1a/Ttpa/Enpp1/Ripk2/Ctsh/Ip6k2/Rps6/Cbl/Txndc12/Lcmt1/Rnf152/Nr4a2/Cdkn1a/Bcl11b/Gdnf
+GO:0070482,response to oxygen levels,16,0.2982074652905578,0.5794069632574299,0.8820960698689956,1,1,122,"tags=38%, list=19%, signal=31%",Zfas1/Ndnf/Ddit4/Hp1bp3/Tgfb2/Fosl2
+GO:0023051,regulation of signaling,124,-0.22734619849915166,-0.5777817325976964,1,1,1,92,"tags=18%, list=14%, signal=19%",Col3a1/Agt/Enpp1/Ripk2/Ctsh/Mvp/Arc/Cbl/Fbxl2/Tbx18/Fgf7/Txndc12/Ninj1/Lcmt1/Kctd8/Grip1/Rnf152/Nr4a2/Gdnf/Atp2b2/Hfe/Pnkd
+GO:1901988,negative regulation of cell cycle phase transition,17,-0.29363267339724036,-0.5774583906024066,0.8773234200743495,1,1,77,"tags=18%, list=12%, signal=16%",Rps6/Lcmt1/Cdkn1a
+GO:0042981,regulation of apoptotic process,67,-0.25241539908499333,-0.5751879936307188,0.9856887298747764,1,1,116,"tags=25%, list=18%, signal=23%",Cav1/Rps3a1/Smarca4/Gch1/Agt/Ttpa/Ripk2/Ctsh/Ip6k2/Rps6/Cbl/Txndc12/Lcmt1/Nr4a2/Cdkn1a/Bcl11b/Gdnf
+GO:1901990,regulation of mitotic cell cycle phase transition,21,-0.2866470387524026,-0.5746244095452897,0.8987108655616943,1,1,51,"tags=14%, list=8%, signal=14%",Smarca4/Lcmt1/Cdkn1a
+GO:0010563,negative regulation of phosphorus metabolic process,22,-0.2857689552852961,-0.5745085900480902,0.8935779816513761,1,1,123,"tags=41%, list=19%, signal=34%",Ppp2ca/Cox11/Tardbp/Slit2/Cav1/Agt/Enpp1/Mvp/Cdkn1a
+GO:0045936,negative regulation of phosphate metabolic process,22,-0.2857689552852961,-0.5745085900480902,0.8935779816513761,1,1,123,"tags=41%, list=19%, signal=34%",Ppp2ca/Cox11/Tardbp/Slit2/Cav1/Agt/Enpp1/Mvp/Cdkn1a
+GO:0048660,regulation of smooth muscle cell proliferation,10,-0.3095953351098808,-0.5740918975529479,0.8690702087286527,1,1,123,"tags=30%, list=19%, signal=25%",Cav1/Agt/Cdkn1a
+GO:0010646,regulation of cell communication,126,-0.2251978702929815,-0.5739875883882535,0.9982486865148862,1,1,92,"tags=17%, list=14%, signal=19%",Col3a1/Agt/Enpp1/Ripk2/Ctsh/Mvp/Arc/Cbl/Fbxl2/Tbx18/Fgf7/Txndc12/Ninj1/Lcmt1/Kctd8/Grip1/Rnf152/Nr4a2/Gdnf/Atp2b2/Hfe/Pnkd
+GO:0005996,monosaccharide metabolic process,18,-0.2902730763064193,-0.573985504945068,0.8880733944954129,1,1,97,"tags=17%, list=15%, signal=15%",Ero1a/Gpd1/Lcmt1
+GO:0031347,regulation of defense response,25,0.2791150864299782,0.5739782903112992,0.9054054054054054,1,1,101,"tags=24%, list=16%, signal=21%",Parp9/Ppt1/Mark4/Ifi35/Ercc6/Plscr1
+GO:1903047,mitotic cell cycle process,30,-0.27559167656848016,-0.5731553141758374,0.9281767955801105,1,1,111,"tags=20%, list=17%, signal=17%",Smarca4/Eml4/Nde1/Rps6/Lcmt1/Cdkn1a
+GO:0002218,activation of innate immune response,14,-0.29513089377974333,-0.5729696820937851,0.8839779005524862,1,1,144,"tags=50%, list=22%, signal=40%",Plcg2/Tab1/Cav1/Rnf135/Ripk2/Fbxl2/Ninj1
+GO:0002221,pattern recognition receptor signaling pathway,14,-0.29513089377974333,-0.5729696820937851,0.8839779005524862,1,1,144,"tags=50%, list=22%, signal=40%",Plcg2/Tab1/Cav1/Rnf135/Ripk2/Fbxl2/Ninj1
+GO:0002758,innate immune response-activating signaling pathway,14,-0.29513089377974333,-0.5729696820937851,0.8839779005524862,1,1,144,"tags=50%, list=22%, signal=40%",Plcg2/Tab1/Cav1/Rnf135/Ripk2/Fbxl2/Ninj1
+GO:0044092,negative regulation of molecular function,34,-0.2742014611174801,-0.5723609690119097,0.9397363465160076,1,1,36,"tags=15%, list=6%, signal=15%",Agt/Mvp/Arl2/Cdkn1a/Hfe
+GO:0007507,heart development,34,-0.2734968484358078,-0.5708901789015416,0.9397363465160076,1,1,125,"tags=24%, list=20%, signal=20%",Tab1/Smarca4/Col3a1/Agt/Enpp1/Tbx18/Ift25/Cdkn1a
+GO:0050863,regulation of T cell activation,15,-0.2927867969937939,-0.5688286430013317,0.8905380333951762,1,1,123,"tags=27%, list=19%, signal=22%",Cav1/Smarca4/Ripk2/Hfe
+GO:2000045,regulation of G1/S transition of mitotic cell cycle,14,-0.29286440492563526,-0.5685695009349242,0.8876611418047882,1,1,32,"tags=14%, list=5%, signal=14%",Smarca4/Cdkn1a
+GO:0042391,regulation of membrane potential,16,-0.29130860339457193,-0.5683438001095049,0.8915441176470589,1,1,161,"tags=38%, list=25%, signal=29%",Dsc2/Slc4a3/Cav1/Agt/Tbx18/Kctd8
+GO:0045912,negative regulation of carbohydrate metabolic process,10,0.29804603458618206,0.5673762755862981,0.8315789473684211,1,1,117,"tags=30%, list=18%, signal=25%",Ddit4/Cry1/Inpp5k
+GO:0043067,regulation of programmed cell death,68,-0.24829697907542422,-0.5671897476618322,0.9839285714285714,1,1,116,"tags=25%, list=18%, signal=23%",Cav1/Rps3a1/Smarca4/Gch1/Agt/Ttpa/Ripk2/Ctsh/Ip6k2/Rps6/Cbl/Txndc12/Lcmt1/Nr4a2/Cdkn1a/Bcl11b/Gdnf
+GO:0048871,multicellular organismal-level homeostasis,48,-0.2599130619153423,-0.5669592191918811,0.9534450651769087,1,1,145,"tags=27%, list=23%, signal=23%",Ezh1/Adcy6/Cav1/Smarca4/Bbs2/Slc1a5/Col3a1/Enpp1/Ctsh/Rps6/Cbl/Fgf7/Hfe
+GO:0009968,negative regulation of signal transduction,54,-0.25551744302963697,-0.5666720917102935,0.9705882352941176,1,1,98,"tags=19%, list=15%, signal=17%",Agt/Enpp1/Mvp/Cbl/Fbxl2/Tbx18/Txndc12/Rnf152/Nr4a2/Gdnf
+GO:0045859,regulation of protein kinase activity,23,-0.27934149529910796,-0.5664812314478194,0.9039855072463768,1,1,125,"tags=30%, list=20%, signal=25%",Tab1/Cav1/Ccdc88a/Agt/Mvp/Ip6k2/Cdkn1a
+GO:0051726,regulation of cell cycle,49,0.2559093319869208,0.5661399117885402,0.9721030042918455,1,1,142,"tags=31%, list=22%, signal=26%",Parp9/Fgf2/Smarcd1/Mark4/Uimc1/Ercc6/Cry1/Plscr1/Nsun2/Klf4/Tgfb2/Larp7/Gadd45g/Xpo1/Dach1
+GO:0040011,locomotion,49,0.2531783151982328,0.5600981719589045,0.9721030042918455,1,1,8,"tags=2%, list=1%, signal=2%",Ip6k3
+GO:0050865,regulation of cell activation,25,-0.27195885431019196,-0.5598044549372406,0.9157706093189965,1,1,32,"tags=20%, list=5%, signal=20%",Cav1/Smarca4/Ripk2/Cdkn1a/Hfe
+GO:0006289,nucleotide-excision repair,10,-0.30112298681236155,-0.558381368487237,0.8785578747628083,1,1,111,"tags=30%, list=17%, signal=25%",Smarca4/Rad52/Hmgn1
+GO:0045931,positive regulation of mitotic cell cycle,10,0.2931854199683043,0.558123351209093,0.8463157894736842,1,1,456,"tags=100%, list=71%, signal=29%",Larp7/Prkca/Ptpn11/Ube2e2/Pbx1/Cul4a/Vps4b/Rad51b/Rpl17/Hsf1
+GO:0044843,cell cycle G1/S phase transition,16,-0.2851259289352922,-0.5562813870668405,0.9044117647058824,1,1,111,"tags=25%, list=17%, signal=21%",Plcg2/Smarca4/Rps6/Cdkn1a
+GO:0003007,heart morphogenesis,11,0.2889813580482873,0.5555378552085236,0.8372591006423983,1,1,35,"tags=9%, list=5%, signal=9%",Nphp3
+GO:1902904,negative regulation of supramolecular fiber organization,11,-0.2974574896748301,-0.5548205685036329,0.8785046728971962,1,1,171,"tags=45%, list=27%, signal=34%",Slit2/Hdgfl3/Eml4/Wdr47/Twf1
+GO:0008015,blood circulation,25,0.26934615909134824,0.5538892572041304,0.9211711711711712,1,1,18,"tags=4%, list=3%, signal=4%",Zfas1
+GO:0030099,myeloid cell differentiation,20,-0.2761167030569136,-0.5530002757381929,0.9034608378870674,1,1,187,"tags=40%, list=29%, signal=29%",Hsf1/Slc48a1/Fbn1/Smarca4/Slc1a5/Enpp1/Rps6/Ninj1
+GO:0072659,protein localization to plasma membrane,16,-0.28317004049928013,-0.5524654439283274,0.90625,1,1,148,"tags=38%, list=23%, signal=30%",Mrap/Adcy6/Atp2c1/Ccdc88a/Bbs2/Grip1
+GO:0006979,response to oxidative stress,21,-0.27505827883580747,-0.5513931061506379,0.9134438305709024,1,1,109,"tags=19%, list=17%, signal=16%",Gch1/Ero1a/Rad52/Nr4a2
+GO:0072359,circulatory system development,53,-0.24884154741517642,-0.5510835894889989,0.9779005524861878,1,1,160,"tags=30%, list=25%, signal=25%",Ptpn14/Fbn1/Ece1/Cemip2/Itga7/Tab1/Cav1/Smarca4/Col3a1/Agt/Enpp1/Ctsh/Tbx18/Ninj1/Ift25/Cdkn1a
+GO:2001233,regulation of apoptotic signaling pathway,19,-0.27634968250211817,-0.5488877453824571,0.9052823315118397,1,1,98,"tags=26%, list=15%, signal=23%",Agt/Ctsh/Txndc12/Nr4a2/Gdnf
+GO:0043549,regulation of kinase activity,24,-0.26889084083667514,-0.5487469287463127,0.9136690647482014,1,1,125,"tags=29%, list=20%, signal=24%",Tab1/Cav1/Ccdc88a/Agt/Mvp/Ip6k2/Cdkn1a
+GO:0016567,protein ubiquitination,35,-0.26199200547080076,-0.5483366490685396,0.947565543071161,1,1,123,"tags=26%, list=19%, signal=22%",Hace1/Cav1/Fbxo30/Rnf135/Ripk2/Cbl/Fbxl2/Ube3d/Rnf152
+GO:0030323,respiratory tube development,12,-0.292171537529782,-0.5483275129394809,0.9029850746268657,1,1,125,"tags=42%, list=20%, signal=34%",Tab1/Col3a1/Ctsh/Fgf7/Ift25
+GO:0030324,lung development,12,-0.292171537529782,-0.5483275129394809,0.9029850746268657,1,1,125,"tags=42%, list=20%, signal=34%",Tab1/Col3a1/Ctsh/Fgf7/Ift25
+GO:0032984,protein-containing complex disassembly,14,-0.28197613907657015,-0.5474309269883167,0.8950276243093923,1,1,111,"tags=36%, list=17%, signal=30%",Hdgfl3/Smarca4/Eml4/Wdr47/Twf1
+GO:0045765,regulation of angiogenesis,12,0.279626527993258,0.5463761749988932,0.8540772532188842,1,1,118,"tags=33%, list=18%, signal=28%",Fgf2/Tcf4/Klf4/Tgfb2
+GO:1901342,regulation of vasculature development,12,0.279626527993258,0.5463761749988932,0.8540772532188842,1,1,118,"tags=33%, list=18%, signal=28%",Fgf2/Tcf4/Klf4/Tgfb2
+GO:0060541,respiratory system development,13,-0.2836695880340807,-0.5457173464000823,0.8964879852125693,1,1,125,"tags=38%, list=20%, signal=32%",Tab1/Col3a1/Ctsh/Fgf7/Ift25
+GO:0040007,growth,39,-0.25517297245053944,-0.5449717020866368,0.9541284403669725,1,1,111,"tags=26%, list=17%, signal=23%",Sgca/Smarca4/Bbs2/Col3a1/Agt/Enpp1/Ip6k2/Fgf7/Ninj1/Cdkn1a
+GO:0080135,regulation of cellular response to stress,32,0.25786671383554594,0.5445858529939626,0.9372294372294372,1,1,118,"tags=28%, list=18%, signal=24%",Smarcd1/Uimc1/Ercc6/Stk24/Cry1/Plscr1/Map2k2/Klf4/Tgfb2
+GO:1903037,regulation of leukocyte cell-cell adhesion,15,-0.2798017839522243,-0.5436012508387432,0.9035250463821892,1,1,123,"tags=27%, list=19%, signal=22%",Cav1/Smarca4/Ripk2/Hfe
+GO:0097553,calcium ion transmembrane import into cytosol,10,0.2854429824055452,0.5433844354761026,0.8547368421052631,1,1,33,"tags=10%, list=5%, signal=10%",Fgf2
+GO:0043433,negative regulation of DNA-binding transcription factor activity,11,0.28253968253968254,0.5431543761489449,0.854389721627409,1,1,463,"tags=100%, list=72%, signal=28%",Klf4/Trib1/Prnp/Fzd6/Sik1/Pbx1/Hdac4/Pias2/Usp7/Bhlhe40/Traf3
+GO:0043687,post-translational protein modification,48,-0.248893982008434,-0.5429228398956818,0.9590316573556797,1,1,123,"tags=21%, list=19%, signal=18%",Cav1/Fbxo30/Rnf135/Enpp1/Ripk2/Cbl/Fbxl2/Ube3d/Lcmt1/Rnf152
+GO:0050878,regulation of body fluid levels,14,-0.2786194570015731,-0.5409142352358216,0.9005524861878453,1,1,26,"tags=29%, list=4%, signal=28%",Adcy6/Cav1/Enpp1/Atp2b2
+GO:0007249,canonical NF-kappaB signal transduction,12,-0.28811708573883593,-0.5407183957555873,0.9048507462686567,1,1,180,"tags=50%, list=28%, signal=37%",Traf3/Plcg2/Cav1/Atp2c1/Agt/Ripk2
+GO:0043122,regulation of canonical NF-kappaB signal transduction,12,-0.28811708573883593,-0.5407183957555873,0.9048507462686567,1,1,180,"tags=50%, list=28%, signal=37%",Traf3/Plcg2/Cav1/Atp2c1/Agt/Ripk2
+GO:0006357,regulation of transcription by RNA polymerase II,88,-0.22516422755390444,-0.5395994977538383,0.9963898916967509,1,1,65,"tags=9%, list=10%, signal=9%",Tbx18/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Bcl11b/Gdnf/Tenm2
+GO:0006412,translation,23,0.263754077319212,0.5393764682223359,0.9133333333333333,1,1,75,"tags=13%, list=12%, signal=12%",Rbm4b/Mrpl4/Pld1
+GO:0040029,epigenetic regulation of gene expression,13,0.2781253910645601,0.5388124991083441,0.8806941431670282,1,1,34,"tags=8%, list=5%, signal=7%",Smarcd1
+GO:0043009,chordate embryonic development,32,-0.25873836640019027,-0.5387713781574306,0.9537037037037037,1,1,187,"tags=34%, list=29%, signal=26%",Hsf1/Inpp5b/Slit2/Ell/Ece1/Tab1/Smarca4/Col3a1/Ttpa/Tbx18/Cdkn1a
+GO:0007346,regulation of mitotic cell cycle,26,-0.2607439464924935,-0.5374005475311925,0.9310344827586207,1,1,77,"tags=15%, list=12%, signal=14%",Smarca4/Rps6/Lcmt1/Cdkn1a
+GO:0032446,protein modification by small protein conjugation,37,-0.25327892004733543,-0.5363364130740733,0.9503676470588235,1,1,123,"tags=22%, list=19%, signal=19%",Cav1/Fbxo30/Rnf135/Ripk2/Cbl/Fbxl2/Ube3d/Rnf152
+GO:0051129,negative regulation of cellular component organization,31,-0.2562486892293808,-0.534104096431524,0.9470802919708029,1,1,108,"tags=32%, list=17%, signal=28%",Cav1/Eml4/Mphosph9/Ankrd27/Rps6/Wdr47/Fbxl2/Lcmt1/Twf1/Mdm1
+GO:0071824,protein-DNA complex organization,12,0.27321718382910476,0.5338526387886737,0.8626609442060086,1,1,131,"tags=33%, list=20%, signal=27%",Smarcd1/Tcf4/Hp1bp3/Cenpc1
+GO:1902806,regulation of cell cycle G1/S phase transition,15,-0.27383024083146035,-0.5319996868171248,0.9072356215213359,1,1,32,"tags=20%, list=5%, signal=19%",Plcg2/Smarca4/Cdkn1a
+GO:0042592,homeostatic process,91,-0.2198557638193734,-0.5313261504627398,0.9981981981981982,1,1,123,"tags=24%, list=19%, signal=23%",Slc4a3/Ezh1/Plcg2/Adcy6/Cav1/Atp2c1/Smarca4/Rnf135/Bbs2/Slc1a5/Col3a1/Agt/Ero1a/Ttpa/Enpp1/Ctsh/Slc26a4/Rps6/Cbl/Fgf7/Atp2b2/Hfe
+GO:0035265,organ growth,10,0.2781061680537976,0.5294176856505518,0.8694736842105263,1,1,122,"tags=30%, list=19%, signal=25%",Fgf2/Tgfb2/Fosl2
+GO:1903131,mononuclear cell differentiation,25,-0.2562952010255819,-0.5275621405196496,0.9336917562724014,1,1,111,"tags=28%, list=17%, signal=24%",Cd46/Plcg2/Smarca4/Enpp1/Ripk2/Rps6/Bcl11b
+GO:0050776,regulation of immune response,31,0.2523746399359651,0.5265905710962501,0.947136563876652,1,1,135,"tags=35%, list=21%, signal=29%",Parp9/Tec/Ppt1/Mark4/Plscr2/Ifi35/Pkn1/Plscr1/Tgfb2/Fosl2/Bcl10
+GO:0002682,regulation of immune system process,51,0.23691778783555814,0.5263273166367559,0.9805194805194806,1,1,57,"tags=16%, list=9%, signal=16%",Parp9/Smarcd1/Pag1/Tec/Ppt1/Mark4/Plscr2/Ifi35
+GO:0008380,RNA splicing,15,-0.2698699933137853,-0.5243056847495512,0.9146567717996289,1,1,31,"tags=27%, list=5%, signal=26%",Tardbp/Hnrnpk/Srsf7/Snrpn
+GO:0019827,stem cell population maintenance,12,0.2678738518323926,0.5234120367504324,0.869098712446352,1,1,229,"tags=50%, list=36%, signal=33%",Smarcd1/Klf4/Wdr43/Med6/Foxo3/Foxo1
+GO:0098727,maintenance of cell number,12,0.2678738518323926,0.5234120367504324,0.869098712446352,1,1,229,"tags=50%, list=36%, signal=33%",Smarcd1/Klf4/Wdr43/Med6/Foxo3/Foxo1
+GO:0003013,circulatory system process,26,0.25534844289762476,0.5232521993297511,0.9379157427937915,1,1,18,"tags=4%, list=3%, signal=4%",Zfas1
+GO:0002683,negative regulation of immune system process,18,-0.26357844327735547,-0.5211995813813687,0.908256880733945,1,1,101,"tags=33%, list=16%, signal=29%",Slit2/Cd46/Fbn1/Col3a1/Fbxl2/Hfe
+GO:0060562,epithelial tube morphogenesis,16,-0.26606542217861956,-0.5190942916090822,0.9209558823529411,1,1,98,"tags=19%, list=15%, signal=16%",Agt/Ctsh/Gdnf
+GO:0007517,muscle organ development,14,-0.2670610593935514,-0.518474661668426,0.9134438305709024,1,1,282,"tags=57%, list=44%, signal=33%",Myh14/Plec/Tcap/Bmal1/Ube4b/Cav1/Col3a1/Ero1a
+GO:0097435,supramolecular fiber organization,38,-0.2435944659321871,-0.5183800744820772,0.9560439560439561,1,1,123,"tags=29%, list=19%, signal=25%",Cav1/Rnd3/Ccdc88a/Eml4/Nde1/Col3a1/Ero1a/Wdr47/Agfg2/Twf1/Arl2
+GO:0045893,positive regulation of DNA-templated transcription,72,-0.22462580034779994,-0.5170951181882281,0.998211091234347,1,1,65,"tags=10%, list=10%, signal=10%",Tbx18/Fgf7/Ss18l1/Zbtb17/Nr4a2/Bcl11b/Gdnf
+GO:1902680,positive regulation of RNA biosynthetic process,72,-0.22462580034779994,-0.5170951181882281,0.998211091234347,1,1,65,"tags=10%, list=10%, signal=10%",Tbx18/Fgf7/Ss18l1/Zbtb17/Nr4a2/Bcl11b/Gdnf
+GO:0051668,localization within membrane,27,-0.24885065844658347,-0.5136153608377237,0.9471766848816029,1,1,148,"tags=30%, list=23%, signal=24%",Mrap/Adcy6/Srp19/Atp2c1/Ccdc88a/Bbs2/Ankrd27/Grip1
+GO:0016311,dephosphorylation,10,0.2694136291600634,0.5128701065164638,0.8821052631578947,1,1,471,"tags=100%, list=73%, signal=27%",Inpp5k/Ccdc159/Ppp3cc/Ppm1b/Ptpn11/Mtmr3/Cdc14b/Ppp2ca/Inpp5b/Ppm1j
+GO:0044770,cell cycle phase transition,29,0.24579156318252293,0.5125219047359015,0.9410480349344978,1,1,132,"tags=28%, list=21%, signal=23%",Parp9/Smarcd1/Uimc1/Ercc6/Cry1/Nsun2/Klf4/Larp7
+GO:1901987,regulation of cell cycle phase transition,29,0.24579156318252293,0.5125219047359015,0.9410480349344978,1,1,132,"tags=28%, list=21%, signal=23%",Parp9/Smarcd1/Uimc1/Ercc6/Cry1/Nsun2/Klf4/Larp7
+GO:0010976,positive regulation of neuron projection development,10,-0.27497585910600353,-0.5098959668736283,0.9127134724857685,1,1,98,"tags=30%, list=15%, signal=26%",Agt/Ankrd27/Twf1
+GO:0071396,cellular response to lipid,30,-0.24514054422375103,-0.5098252871468231,0.9650092081031307,1,1,45,"tags=20%, list=7%, signal=20%",Smarca4/Gch1/Ripk2/Oaz1/Grip1/Gdnf
+GO:0051336,regulation of hydrolase activity,10,-0.274697920794006,-0.5093805775416776,0.9127134724857685,1,1,123,"tags=30%, list=19%, signal=25%",Cav1/Ctsh/Arl2
+GO:0006790,sulfur compound metabolic process,10,0.26716463688852526,0.5085888052717774,0.8863157894736842,1,1,173,"tags=40%, list=27%, signal=30%",Slc19a2/Mthfr/Extl3/Gclm
+GO:0010608,post-transcriptional regulation of gene expression,22,0.24762955433806366,0.5083032540861581,0.9299781181619255,1,1,29,"tags=9%, list=5%, signal=9%",Parp9/Rbm4b
+GO:0062014,negative regulation of small molecule metabolic process,10,-0.27363957021006696,-0.5074180463724202,0.9127134724857685,1,1,45,"tags=60%, list=7%, signal=57%",Acacb/Mtch2/Acadl/Usp7/Ppp2ca/Oaz1
+GO:0006366,transcription by RNA polymerase II,95,-0.20943252096520615,-0.5069361291304507,0.9981785063752276,1,1,65,"tags=8%, list=10%, signal=9%",Tbx18/Ss18l1/Hmgn1/Zbtb17/Nr4a2/Bcl11b/Gdnf/Tenm2
+GO:0051254,positive regulation of RNA metabolic process,76,-0.21735058278999134,-0.5065941578747802,0.9964476021314387,1,1,65,"tags=9%, list=10%, signal=9%",Tbx18/Fgf7/Ss18l1/Zbtb17/Nr4a2/Bcl11b/Gdnf
+GO:0010564,regulation of cell cycle process,38,0.23704143746421802,0.5056402461048395,0.9649122807017544,1,1,153,"tags=34%, list=24%, signal=28%",Parp9/Smarcd1/Mark4/Uimc1/Ercc6/Cry1/Plscr1/Nsun2/Klf4/Larp7/Xpo1/Dach1/Drg1
+GO:1903829,positive regulation of protein localization,21,-0.2519449264944686,-0.505059132147068,0.9373848987108656,1,1,120,"tags=29%, list=19%, signal=24%",Atp2c1/Ccdc88a/Ric3/Agt/Oaz1/Grip1
+GO:0019221,cytokine-mediated signaling pathway,14,0.26078659158038886,0.5042594396416107,0.9237472766884531,1,1,28,"tags=7%, list=4%, signal=7%",Parp9
+GO:0022407,regulation of cell-cell adhesion,19,0.2534988326997648,0.5017560537978091,0.9183222958057395,1,1,40,"tags=16%, list=6%, signal=15%",Smarcd1/Mdga2/Pag1
+GO:0072657,protein localization to membrane,22,-0.24894336819272128,-0.5004745995569723,0.9486238532110092,1,1,148,"tags=32%, list=23%, signal=25%",Mrap/Adcy6/Srp19/Atp2c1/Ccdc88a/Bbs2/Grip1
+GO:0050803,regulation of synapse structure or activity,13,-0.25937372575635786,-0.49897749817529535,0.9242144177449169,1,1,96,"tags=54%, list=15%, signal=47%",Dock1/Abi2/Slit2/Hnrnpk/Septin11/Arc/Fgf7
+GO:0050807,regulation of synapse organization,13,-0.25937372575635786,-0.49897749817529535,0.9242144177449169,1,1,96,"tags=54%, list=15%, signal=47%",Dock1/Abi2/Slit2/Hnrnpk/Septin11/Arc/Fgf7
+GO:0045935,positive regulation of nucleobase-containing compound metabolic process,84,-0.20885913467681244,-0.49660566547640345,0.9982078853046595,1,1,65,"tags=10%, list=10%, signal=10%",Tbx18/Fgf7/Ss18l1/Gpd1/Zbtb17/Nr4a2/Bcl11b/Gdnf
+GO:0048646,anatomical structure formation involved in morphogenesis,51,-0.22496584876759276,-0.4946661946363215,0.9796296296296296,1,1,111,"tags=20%, list=17%, signal=18%",Smarca4/Col3a1/Agt/Enpp1/Ctsh/Tbx18/Ninj1/Agfg2/Gdnf/Atp2b2
+GO:0007159,leukocyte cell-cell adhesion,16,-0.2527059782289645,-0.49302998367852424,0.9375,1,1,123,"tags=25%, list=19%, signal=21%",Cav1/Smarca4/Ripk2/Hfe
+GO:0060627,regulation of vesicle-mediated transport,29,-0.23846776184494628,-0.4929308779356805,0.9742647058823529,1,1,81,"tags=21%, list=13%, signal=19%",Cav1/Atp2c1/Ankrd27/Arc/Cbl/Hfe
+GO:0140694,membraneless organelle assembly,22,0.23967946971540044,0.49198430582991237,0.936542669584245,1,1,169,"tags=32%, list=26%, signal=24%",Lcp1/Brix1/Jmjd6/Rpf2/Cenpc1/Drg1/Cdk5rap2
+GO:0050870,positive regulation of T cell activation,11,0.2555783149624607,0.49132383448876044,0.892933618843683,1,1,34,"tags=9%, list=5%, signal=9%",Smarcd1
+GO:1903039,positive regulation of leukocyte cell-cell adhesion,11,0.2555783149624607,0.49132383448876044,0.892933618843683,1,1,34,"tags=9%, list=5%, signal=9%",Smarcd1
+GO:0009891,positive regulation of biosynthetic process,102,-0.19923933933179364,-0.48924681222893923,1,1,1,111,"tags=16%, list=17%, signal=15%",Smarca4/Gch1/Rnf135/Agt/Med4/Ripk2/Abcd2/Ctsh/Tbx18/Fgf7/Ss18l1/Zbtb17/Nr4a2/Bcl11b/Gdnf/Hfe
+GO:0006400,tRNA modification,10,-0.26342195520204625,-0.48847121700130514,0.9222011385199241,1,1,82,"tags=40%, list=13%, signal=35%",Osgep/Elp4/Dtwd1/Dtwd2
+GO:0040008,regulation of growth,25,-0.23548173705192604,-0.48471937342283417,0.9444444444444444,1,1,111,"tags=24%, list=17%, signal=21%",Smarca4/Bbs2/Agt/Enpp1/Ip6k2/Cdkn1a
+GO:0051656,establishment of organelle localization,16,0.2491903760819924,0.4841684259579659,0.9366812227074236,1,1,213,"tags=50%, list=33%, signal=34%",Ubb/Pclo/Cenpc1/Xpo1/Copg2/Cdk5rap2/Preb/Ndel1
+GO:0010638,positive regulation of organelle organization,19,0.24438428186042666,0.4837154142706746,0.9293598233995585,1,1,50,"tags=11%, list=8%, signal=10%",Lcp1/Mark4
+GO:0061061,muscle structure development,36,-0.22976079997342552,-0.4830019522666933,0.975925925925926,1,1,123,"tags=53%, list=19%, signal=45%",Myh14/Plec/Rbm4/Casq2/Atg7/Tcap/Bmal1/Cxadr/Dock1/Lrrc8a/Plekhm3/Ube4b/Cav1/Smarca4/Col3a1/Agt/Ero1a/Tbx18/Ninj1
+GO:0010557,positive regulation of macromolecule biosynthetic process,99,-0.19630631273741758,-0.47926766567235757,1,1,1,111,"tags=15%, list=17%, signal=15%",Smarca4/Gch1/Rnf135/Agt/Med4/Ripk2/Ctsh/Tbx18/Fgf7/Ss18l1/Zbtb17/Nr4a2/Bcl11b/Gdnf/Hfe
+GO:0035239,tube morphogenesis,37,-0.2260511714845572,-0.47867968823683055,0.9761029411764706,1,1,141,"tags=27%, list=22%, signal=22%",Cemip2/Itga7/Cav1/Smarca4/Col3a1/Agt/Enpp1/Ctsh/Ninj1/Gdnf
+GO:0051056,regulation of small GTPase mediated signal transduction,10,-0.25753869301519805,-0.4775617078142548,0.9259962049335864,1,1,171,"tags=40%, list=27%, signal=30%",Slit2/Sipa1l2/Col3a1/Cbl
+GO:0001568,blood vessel development,29,-0.2293553972037024,-0.4740949318609277,0.9816176470588235,1,1,141,"tags=34%, list=22%, signal=28%",Cemip2/Itga7/Tab1/Cav1/Smarca4/Col3a1/Agt/Enpp1/Ctsh/Ninj1
+GO:0043491,phosphatidylinositol 3-kinase/protein kinase B signal transduction,12,-0.2509716281195935,-0.4710063472598233,0.9328358208955224,1,1,114,"tags=33%, list=18%, signal=28%",Ccdc88a/Agt/Cbl/Fbxl2
+GO:0051896,regulation of phosphatidylinositol 3-kinase/protein kinase B signal transduction,12,-0.2509716281195935,-0.4710063472598233,0.9328358208955224,1,1,114,"tags=33%, list=18%, signal=28%",Ccdc88a/Agt/Cbl/Fbxl2
+GO:0009743,response to carbohydrate,10,-0.25356576862123614,-0.47019459518203605,0.9259962049335864,1,1,482,"tags=100%, list=75%, signal=25%",Gclm/Prkca/Sidt2/Foxo3/Mlxipl/Rbm4/Atg7/Smarca4/Agt
+GO:0007264,small GTPase-mediated signal transduction,19,-0.2363062076424427,-0.4693531049442945,0.9453551912568307,1,1,119,"tags=26%, list=19%, signal=22%",Rnd3/Ccdc88a/Col3a1/Cbl/Cdkn1a
+GO:0048738,cardiac muscle tissue development,13,0.2421693703811173,0.4691548770973425,0.9219088937093276,1,1,33,"tags=8%, list=5%, signal=7%",Fgf2
+GO:0043068,positive regulation of programmed cell death,31,0.22427683454603195,0.4679632882971924,0.973568281938326,1,1,147,"tags=29%, list=23%, signal=24%",Zfas1/Ubb/Tmem196/Ano6/Plscr1/Tgfb2/Gadd45g/Bcl10/Pla2r1
+GO:0048193,Golgi vesicle transport,11,-0.2507936507936508,-0.46778272775227075,0.9271028037383178,1,1,484,"tags=100%, list=76%, signal=25%",Gosr2/Preb/Arfgef2/Gcc2/Stx6/Nsf/Cog8/Uso1/Atp2c1/Bbs2
+GO:0051241,negative regulation of multicellular organismal process,37,0.21927178499362282,0.46378593269406593,0.980349344978166,1,1,148,"tags=27%, list=23%, signal=22%",Zfas1/Pag1/Tcf4/Pkn1/Cry1/Klf4/Tgfb2/P2ry2/Cbfb/Ldlrad4
+GO:0070371,ERK1 and ERK2 cascade,12,0.23592550550942254,0.4609865745213794,0.9120171673819742,1,1,116,"tags=25%, list=18%, signal=21%",Fgf2/Map2k2/Klf4
+GO:0070647,protein modification by small protein conjugation or removal,43,-0.21479021296073356,-0.4600110208471226,0.9850746268656716,1,1,123,"tags=19%, list=19%, signal=16%",Cav1/Fbxo30/Rnf135/Ripk2/Cbl/Fbxl2/Ube3d/Rnf152
+GO:0051052,regulation of DNA metabolic process,27,0.22299624017716224,0.45956862069868976,0.9735099337748344,1,1,142,"tags=26%, list=22%, signal=21%",Fgf2/Smarcd1/Uimc1/Ercc6/Klf4/Lig3/Dach1
+GO:0001894,tissue homeostasis,15,-0.2352747478418578,-0.45709375190917934,0.9443413729128015,1,1,105,"tags=27%, list=16%, signal=23%",Bbs2/Col3a1/Enpp1/Cbl
+GO:0060249,anatomical structure homeostasis,15,-0.2352747478418578,-0.45709375190917934,0.9443413729128015,1,1,105,"tags=27%, list=16%, signal=23%",Bbs2/Col3a1/Enpp1/Cbl
+GO:0048514,blood vessel morphogenesis,27,0.22085008022420685,0.4551456413309888,0.9757174392935982,1,1,127,"tags=26%, list=20%, signal=22%",Fgf2/Ndnf/Tcf4/Jmjd6/Klf4/Tgfb2/Slc31a1
+GO:0016050,vesicle organization,12,-0.24237158211915663,-0.45486637046929146,0.9421641791044776,1,1,81,"tags=42%, list=13%, signal=37%",Uso1/Plekhm1/Snap47/Ankrd27/Agfg2
+GO:0042254,ribosome biogenesis,11,0.2360157128020094,0.45371668183395564,0.9122055674518201,1,1,151,"tags=36%, list=24%, signal=28%",Brix1/Rpf2/Xpo1/Wdr43
+GO:0001944,vasculature development,31,-0.21715192864378519,-0.4526139625745781,0.9854014598540146,1,1,171,"tags=39%, list=27%, signal=30%",Slit2/Ptpn14/Cemip2/Itga7/Tab1/Cav1/Smarca4/Col3a1/Agt/Enpp1/Ctsh/Ninj1
+GO:0050900,leukocyte migration,10,-0.24389859244053155,-0.45226846100566154,0.9354838709677419,1,1,171,"tags=40%, list=27%, signal=30%",Slit2/Itga7/Enpp1/Ninj1
+GO:0000278,mitotic cell cycle,35,-0.21288355023052355,-0.44555501747258197,0.9868913857677902,1,1,111,"tags=17%, list=17%, signal=15%",Smarca4/Eml4/Nde1/Rps6/Lcmt1/Cdkn1a
+GO:1990778,protein localization to cell periphery,18,-0.2252667320842321,-0.44544206651188434,0.9522935779816514,1,1,148,"tags=33%, list=23%, signal=26%",Mrap/Adcy6/Atp2c1/Ccdc88a/Bbs2/Grip1
+GO:0010628,positive regulation of gene expression,41,-0.20788250714399237,-0.44475541902780674,0.9888059701492538,1,1,27,"tags=37%, list=4%, signal=37%",Hsf1/Traf3/Tardbp/Hnrnpk/Cd46/Plcg2/Dgcr8/Cav1/Smarca4/Rnf135/Agt/Ripk2/Ctsh/Gdnf/Hfe
+GO:0033044,regulation of chromosome organization,13,-0.22952281967016414,-0.4415509782233625,0.9537892791127541,1,1,111,"tags=23%, list=17%, signal=19%",Smarca4/Gch1/Lcmt1
+GO:0022409,positive regulation of cell-cell adhesion,13,0.2275691139138183,0.44086979084665184,0.9414316702819957,1,1,145,"tags=31%, list=23%, signal=24%",Smarcd1/F11r/Bcl10/Cbfb
+GO:0006397,mRNA processing,19,-0.2216758985188257,-0.4402942787629075,0.9544626593806922,1,1,31,"tags=32%, list=5%, signal=31%",Tsen15/Hsf1/Tardbp/Hnrnpk/Srsf7/Snrpn
+GO:0007005,mitochondrion organization,21,0.2150526618672609,0.43756394738881377,0.9564270152505446,1,1,429,"tags=95%, list=67%, signal=33%",Chchd6/Lig3/Ndufb8/Gclm/Ghitm/Mtx3/Coq7/Nubpl/Rap1gds1/Opa3/Cert1/Rhot1/Uqcc1/Mtch2/Myh14/Plec/Atg7/Atpaf2/Cxadr/Ddhd2
+GO:0043484,regulation of RNA splicing,10,0.22979397781299526,0.4374480320287486,0.9389473684210526,1,1,496,"tags=100%, list=77%, signal=23%",Jmjd6/Larp7/Hnrnph3/Ptbp2/Rbpms/Rbm39/Rbm4/Taf12/Hnrnpk/Srsf7
+GO:0099003,vesicle-mediated transport in synapse,16,0.2216010282103375,0.4305632613354337,0.962882096069869,1,1,218,"tags=56%, list=34%, signal=38%",Pclo/Pld1/Ston2/Atp6v1d/P2ry2/Rnf216/Arpc3/Prkca/Ppp3cc
+GO:0050708,regulation of protein secretion,14,-0.22158308376924413,-0.43018332455352876,0.9539594843462247,1,1,250,"tags=50%, list=39%, signal=31%",Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt
+GO:0030073,insulin secretion,12,-0.2289228586860708,-0.4296267282556033,0.9496268656716418,1,1,273,"tags=67%, list=43%, signal=39%",Rbm4/Atg7/Bmal1/Lrrc8a/Tardbp/Slc16a1/Fbn1/Agt
+GO:0090068,positive regulation of cell cycle process,10,0.2250396196513471,0.4283973830902228,0.9452631578947368,1,1,499,"tags=100%, list=78%, signal=23%",Plscr1/Larp7/Ube2e2/Pbx1/Cul4a/Cdc14b/Vps4b/Rad51b/Rpl17/Plcg2
+GO:0008033,tRNA processing,12,-0.22801980256633558,-0.42793193443562444,0.9514925373134329,1,1,209,"tags=42%, list=33%, signal=29%",Tsen15/Osgep/Elp4/Dtwd1/Dtwd2
+GO:0015031,protein transport,64,-0.18682304527941934,-0.4259595654200595,0.9982300884955753,1,1,123,"tags=17%, list=19%, signal=15%",Cav1/Atp2c1/Bbs2/Agt/Ankrd27/Dennd2a/Cbl/Oaz1/Grip1/Ift25/Cdkn1a
+GO:0022613,ribonucleoprotein complex biogenesis,13,0.2183750479182111,0.4230581208761448,0.9501084598698482,1,1,151,"tags=31%, list=24%, signal=24%",Brix1/Rpf2/Xpo1/Wdr43
+GO:0000819,sister chromatid segregation,12,-0.22476437867745325,-0.4218223780440383,0.9533582089552238,1,1,111,"tags=25%, list=17%, signal=21%",Smarca4/Eml4/Lcmt1
+GO:0006897,endocytosis,32,-0.19793865548907544,-0.41216802785069917,0.9981481481481481,1,1,76,"tags=9%, list=12%, signal=9%",Arc/Cbl/Hfe
+GO:1902105,regulation of leukocyte differentiation,15,-0.21179258952220867,-0.4114724179253536,0.9591836734693877,1,1,187,"tags=40%, list=29%, signal=29%",Hsf1/Cd46/Fbn1/Smarca4/Ripk2/Ninj1
+GO:0009451,RNA modification,12,0.20860964368817408,0.4076127540695091,0.9484978540772532,1,1,155,"tags=42%, list=24%, signal=32%",Jmjd6/Nsun2/Larp7/Wdr4/Alkbh1
+GO:0006399,tRNA metabolic process,13,-0.21125247878299852,-0.4064028962034772,0.9648798521256932,1,1,82,"tags=38%, list=13%, signal=34%",Tsen15/Osgep/Elp4/Dtwd1/Dtwd2
+GO:0009792,embryo development ending in birth or egg hatching,34,-0.1946240677762068,-0.40625319635952867,0.9981167608286252,1,1,187,"tags=32%, list=29%, signal=24%",Hsf1/Inpp5b/Slit2/Ell/Ece1/Tab1/Smarca4/Col3a1/Ttpa/Tbx18/Cdkn1a
+GO:0032880,regulation of protein localization,45,-0.18799968412744897,-0.40539485491849486,0.9962616822429906,1,1,120,"tags=31%, list=19%, signal=27%",Tardbp/Slc16a1/Hnrnpk/Ptpn14/Fbn1/Mrap/Atp2c1/Ccdc88a/Ric3/Agt/Slc26a4/Oaz1/Grip1/Hfe
+GO:0030258,lipid modification,12,0.2066825874841386,0.4038473831466395,0.9527896995708155,1,1,37,"tags=8%, list=6%, signal=8%",Dgkg
+GO:1902107,positive regulation of leukocyte differentiation,12,-0.21238756155215105,-0.39859441610838275,0.9589552238805971,1,1,111,"tags=42%, list=17%, signal=35%",Hsf1/Cd46/Smarca4/Ripk2/Ninj1
+GO:1903708,positive regulation of hemopoiesis,12,-0.21238756155215105,-0.39859441610838275,0.9589552238805971,1,1,111,"tags=42%, list=17%, signal=35%",Hsf1/Cd46/Smarca4/Ripk2/Ninj1
+GO:0032368,regulation of lipid transport,10,0.203155876361589,0.38673832602251557,0.9705263157894737,1,1,147,"tags=30%, list=23%, signal=23%",Cry1/P2ry2/Pla2r1
+GO:0060537,muscle tissue development,23,-0.19057159557525272,-0.38646328582458084,0.9818840579710145,1,1,123,"tags=22%, list=19%, signal=18%",Cav1/Col3a1/Agt/Ero1a/Tbx18
+GO:0060341,regulation of cellular localization,52,-0.1694181504652426,-0.375002453630266,0.9981684981684982,1,1,123,"tags=29%, list=19%, signal=25%",Tardbp/Slc16a1/Hnrnpk/Ptpn14/Fbn1/Mrap/Cav1/Atp2c1/Ccdc88a/Ric3/Agt/Slc26a4/Oaz1/Grip1/Hfe
+GO:0048872,homeostasis of number of cells,19,-0.18814116962720123,-0.37368735681287196,0.9854280510018215,1,1,145,"tags=37%, list=23%, signal=29%",Ppp2ca/Slc48a1/Ezh1/Smarca4/Slc1a5/Enpp1/Rps6
+GO:0007186,G protein-coupled receptor signaling pathway,20,-0.1844925246431319,-0.36949744752767766,0.9817850637522769,1,1,171,"tags=35%, list=27%, signal=26%",Slit2/Ece1/Mrap/Adcy6/Cav1/Agt/Kctd8
+GO:0008286,insulin receptor signaling pathway,10,0.19286144679477257,0.3671413026465281,0.9768421052631578,1,1,229,"tags=50%, list=36%, signal=33%",Rhoq/Inpp5k/Prkca/Ndel1/Foxo1
+GO:0051223,regulation of protein transport,24,0.1781707068466334,0.36566274635143775,0.9865470852017937,1,1,26,"tags=4%, list=4%, signal=4%",Lcp1
+GO:0045184,establishment of protein localization,72,-0.15832865513558406,-0.3644771638571923,1,1,1,81,"tags=18%, list=13%, signal=18%",Srp19/Zfand2a/Cav1/Atp2c1/Bbs2/Agt/Ankrd27/Dennd2a/Cbl/Oaz1/Grip1/Ift25/Cdkn1a
+GO:0032868,response to insulin,15,-0.18224201641116253,-0.3540613168263368,0.9777365491651205,1,1,98,"tags=40%, list=15%, signal=35%",Uso1/Pdk4/Hnrnpk/Agt/Enpp1/Rps6
+GO:1905952,regulation of lipid localization,11,0.18349186254217084,0.35274481528272744,0.9700214132762313,1,1,147,"tags=27%, list=23%, signal=21%",Cry1/P2ry2/Pla2r1
+GO:0033500,carbohydrate homeostasis,20,-0.17580890705733473,-0.3521060950083009,0.9872495446265938,1,1,111,"tags=35%, list=17%, signal=30%",Pdk4/Slc16a1/Fbn1/Smarca4/Agt/Enpp1/Rps6
+GO:0042593,glucose homeostasis,20,-0.17580890705733473,-0.3521060950083009,0.9872495446265938,1,1,111,"tags=35%, list=17%, signal=30%",Pdk4/Slc16a1/Fbn1/Smarca4/Agt/Enpp1/Rps6
+GO:0051640,organelle localization,22,0.1681228490408282,0.3451017447498312,0.9890590809628009,1,1,243,"tags=45%, list=38%, signal=29%",Ubb/Pclo/Cenpc1/Xpo1/Copg2/Cdk5rap2/Preb/Ndel1/Spag9/Stx6
+GO:0006396,RNA processing,40,-0.16093458068258223,-0.3450441029174845,1,1,1,82,"tags=28%, list=13%, signal=26%",Osgep/Hsf1/Tardbp/Hnrnpk/Elp4/Srsf7/Dgcr8/Dtwd1/Rps6/Dtwd2/Snrpn
+GO:1903706,regulation of hemopoiesis,18,-0.16952128605240943,-0.33521111296941086,0.9926605504587156,1,1,158,"tags=56%, list=25%, signal=43%",Smap1/Clptm1/Atg7/Meaf6/Hsf1/Cd46/Fbn1/Smarca4/Ripk2/Ninj1
+GO:0034097,response to cytokine,30,-0.15883796138560594,-0.330339518212535,0.998158379373849,1,1,180,"tags=33%, list=28%, signal=25%",Traf3/Slit2/Klf6/Srsf7/Cav1/Gch1/Bbs2/Col3a1/Ripk2/Gpd1
+GO:1901652,response to peptide,30,-0.15883796138560594,-0.330339518212535,0.998158379373849,1,1,180,"tags=33%, list=28%, signal=25%",Traf3/Slit2/Klf6/Srsf7/Cav1/Gch1/Bbs2/Col3a1/Ripk2/Gpd1
+GO:0014706,striated muscle tissue development,21,-0.16324340514180197,-0.32724442471144916,0.996316758747698,1,1,123,"tags=19%, list=19%, signal=16%",Cav1/Agt/Ero1a/Tbx18
+GO:0070201,regulation of establishment of protein localization,27,0.15869130705158405,0.32704383284950866,0.9955849889624724,1,1,26,"tags=4%, list=4%, signal=4%",Lcp1
+GO:0071345,cellular response to cytokine stimulus,26,0.1512533792358108,0.3099437867844194,0.9977827050997783,1,1,126,"tags=19%, list=20%, signal=16%",Parp9/Plscr1/Klf4/Inpp5k/Ube2g2
+GO:0015931,nucleobase-containing compound transport,10,-0.1664025356576862,-0.3085652030882111,0.9924098671726755,1,1,537,"tags=40%, list=84%, signal=7%",Lrrc8a/Hsf1/Srsf7/Arc
+GO:0009306,protein secretion,19,0.15434083601286175,0.30549035667311036,0.9955849889624724,1,1,545,"tags=100%, list=85%, signal=15%",Pclo/Tgfb2/Copg2/Sidt2/Foxo1/Rap1gds1/Ptpn11/Tango2/Myom1/Zfp384/Rbm4/Atg7/Bmal1/Lrrc8a/Gnptab/Tardbp/Slc16a1/Fbn1/Agt
+GO:0035592,establishment of protein localization to extracellular region,19,0.15434083601286175,0.30549035667311036,0.9955849889624724,1,1,545,"tags=100%, list=85%, signal=15%",Pclo/Tgfb2/Copg2/Sidt2/Foxo1/Rap1gds1/Ptpn11/Tango2/Myom1/Zfp384/Rbm4/Atg7/Bmal1/Lrrc8a/Gnptab/Tardbp/Slc16a1/Fbn1/Agt
+GO:0071692,protein localization to extracellular region,19,0.15434083601286175,0.30549035667311036,0.9955849889624724,1,1,545,"tags=100%, list=85%, signal=15%",Pclo/Tgfb2/Copg2/Sidt2/Foxo1/Rap1gds1/Ptpn11/Tango2/Myom1/Zfp384/Rbm4/Atg7/Bmal1/Lrrc8a/Gnptab/Tardbp/Slc16a1/Fbn1/Agt
+GO:0032869,cellular response to insulin stimulus,13,0.143312101910828,0.27763862726621225,0.9978308026030369,1,1,551,"tags=100%, list=86%, signal=14%",Rhoq/Inpp5k/Prkca/Ndel1/Foxo1/Ptpn11/Rbm4/Eprs1/Uso1/Pdk4/Hnrnpk/Agt/Enpp1
