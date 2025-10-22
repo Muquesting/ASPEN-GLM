@@ -1,0 +1,14 @@
+celltype,n_aged_only,n_young_only
+Cardiomyocyte,728,648
+Coronary_EC,109,89
+Endocardial_EC,123,82
+Fibroblast,331,262
+Lymphatic_EC,18,14
+M1,5,1
+M2,72,62
+MacFib,114,61
+Mesothelial,73,46
+Myeloid,15,18
+Pericytes,135,129
+Smooth_Muscle,11,19
+Unknown_1,29,5

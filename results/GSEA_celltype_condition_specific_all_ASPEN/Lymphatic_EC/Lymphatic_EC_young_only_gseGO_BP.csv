@@ -1,0 +1,6 @@
+ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment,my_sign
+GO:0050789,regulation of biological process,12,0.819078904219862,1.2959049945341272,0.13730929264909847,0.13730929264909847,0.13730929264909847,9,"tags=75%, list=64%, signal=187%",Airn/Kcnq1ot1/Tspan5/Man2a1/Zeb1/Plcb4/Cacna2d1/Dyrk1a/Lama2,BL6-biased
+GO:0050794,regulation of cellular process,12,0.819078904219862,1.2959049945341272,0.13730929264909847,0.13730929264909847,0.13730929264909847,9,"tags=75%, list=64%, signal=187%",Airn/Kcnq1ot1/Tspan5/Man2a1/Zeb1/Plcb4/Cacna2d1/Dyrk1a/Lama2,BL6-biased
+GO:0065007,biological regulation,12,0.819078904219862,1.2959049945341272,0.13730929264909847,0.13730929264909847,0.13730929264909847,9,"tags=75%, list=64%, signal=187%",Airn/Kcnq1ot1/Tspan5/Man2a1/Zeb1/Plcb4/Cacna2d1/Dyrk1a/Lama2,BL6-biased
+GO:0008150,biological_process,13,0.9086396239330546,1.2156174628850243,0.09864864864864865,0.13730929264909847,0.13730929264909847,12,"tags=92%, list=86%, signal=185%",Airn/Kcnq1ot1/Tspan5/Man2a1/Zeb1/Plcb4/Cacna2d1/Dyrk1a/Lama2/Hmcn1/Ambra1/Mcu,BL6-biased
+GO:0009987,cellular process,13,0.9086396239330546,1.2156174628850243,0.09864864864864865,0.13730929264909847,0.13730929264909847,12,"tags=92%, list=86%, signal=185%",Airn/Kcnq1ot1/Tspan5/Man2a1/Zeb1/Plcb4/Cacna2d1/Dyrk1a/Lama2/Hmcn1/Ambra1/Mcu,BL6-biased

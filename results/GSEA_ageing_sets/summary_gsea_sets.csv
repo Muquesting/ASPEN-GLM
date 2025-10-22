@@ -1,0 +1,37 @@
+celltype,subset,n_genes,n_terms,top,padj
+Cardiomyocyte,shared,2019,2060,regulation of cell adhesion,0.40756843088242056
+Cardiomyocyte,aged_only,665,985,pallium development,0.429138694592134
+Cardiomyocyte,young_only,589,790,negative regulation of phosphorus metabolic process,0.42281950942118196
+Cardiomyocyte,condition_specific,1254,1567,pallium development,0.9513880393462826
+Coronary_EC,shared,56,50,animal organ development,0.4020713689090805
+Coronary_EC,aged_only,43,65,cellular component assembly,0.09873649701589539
+Coronary_EC,young_only,36,44,apoptotic process,0.4147812971342383
+Coronary_EC,condition_specific,79,147,actin filament-based process,0.6380530973451328
+Endocardial_EC,shared,54,51,anatomical structure morphogenesis,0.23574435745082306
+Endocardial_EC,aged_only,40,45,regulation of molecular function,0.8303821062441752
+Endocardial_EC,young_only,27,36,macromolecule metabolic process,0.9731379731379731
+Endocardial_EC,condition_specific,67,117,regulation of molecular function,0.9884057971014492
+Fibroblast,shared,181,297,regulation of cell adhesion,0.4498540794282858
+Fibroblast,aged_only,192,424,cell junction organization,0.5370619986682147
+Fibroblast,young_only,133,257,chromatin organization,0.9977924944812362
+Fibroblast,condition_specific,325,644,cell junction organization,0.730253116420533
+M2,shared,47,70,anatomical structure morphogenesis,0.7598371777476254
+M2,aged_only,42,56,transport,0.340723673884064
+M2,young_only,30,40,regulation of metabolic process,0.0795875498046338
+M2,condition_specific,72,106,neuron differentiation,0.4773162219970731
+MacFib,shared,34,38,regulation of cell communication,0.8460061170780284
+MacFib,aged_only,42,55,cellular component organization,0.9241496598639456
+MacFib,young_only,19,7,regulation of cellular process,0.7526483050847458
+MacFib,condition_specific,61,89,nucleobase-containing compound metabolic process,0.9262241272783442
+Mesothelial,shared,33,31,biological_process,0.9579617834394905
+Mesothelial,aged_only,22,23,metabolic process,0.359375
+Mesothelial,young_only,15,5,regulation of biological process,0.23809523809523808
+Mesothelial,condition_specific,37,49,metabolic process,0.14006344372852841
+Myeloid,aged_only,10,0,NA,NA
+Myeloid,condition_specific,10,0,NA,NA
+Pericytes,shared,97,116,striated muscle tissue development,0.040385558172116885
+Pericytes,aged_only,63,111,multicellular organismal process,0.18660303926325267
+Pericytes,young_only,79,170,positive regulation of gene expression,0.10679099621596566
+Pericytes,condition_specific,142,285,regulation of phosphate metabolic process,0.670070725733938
+Unknown_1,aged_only,16,5,regulation of cellular process,0.5290215588723052
+Unknown_1,condition_specific,18,10,regulation of cellular process,0.8110367892976589

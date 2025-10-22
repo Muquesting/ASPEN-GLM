@@ -11,8 +11,11 @@ suppressPackageStartupMessages({
   library(dplyr); library(readr); library(tibble); library(purrr); library(ggplot2); library(clusterProfiler)
 })
 
-base_dir <- "results/celltype_wo_condition"
-out_dir  <- "results/GO_term_celltype_all"
+args <- commandArgs(trailingOnly = TRUE)
+base_dir <- if (length(args) >= 1) args[[1]] else "results/celltype_wo_condition"
+out_dir  <- if (length(args) >= 2) args[[2]] else "results/GO_term_celltype_all"
+alpha <- suppressWarnings(as.numeric(Sys.getenv("FDR_ALPHA", unset = "0.1")))
+if (!is.finite(alpha)) alpha <- 0.1
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
 `%||%` <- function(a,b) if (!is.null(a)) a else b
@@ -30,8 +33,8 @@ for (grp in grp_dirs) {
   message("enrichGO (BP) for ", gid)
   d <- suppressMessages(readr::read_csv(file.path(grp, "bb_mean_results_norm.csv"), show_col_types = FALSE))
   genes_all <- d$gene %||% d$`...1` %||% d[[1]]
-  padj <- suppressWarnings(p.adjust(d$pval_mean, method = "BH"))
-  sig_genes <- unique(as.character(genes_all[is.finite(padj) & padj < 0.05]))
+  padj <- suppressWarnings(as.numeric(d$padj_mean %||% p.adjust(d$pval_mean, method = "BH")))
+  sig_genes <- unique(as.character(genes_all[is.finite(padj) & padj < alpha]))
   bg <- unique(as.character(genes_all))
   if (length(sig_genes) < 5 || length(bg) < 10) {
     message("  skip (too few genes): ", length(sig_genes), "/", length(bg))
@@ -65,4 +68,3 @@ for (grp in grp_dirs) {
 }
 
 if (length(summ_rows)) readr::write_csv(bind_rows(summ_rows), file.path(out_dir, "summary_enrichGO_BP_all.csv"))
-

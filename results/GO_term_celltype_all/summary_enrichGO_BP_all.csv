@@ -1,20 +1,20 @@
 celltype,condition,n_sig,n_bg,n_terms,top,padj
-Cardiomyocyte,F1_Aged,2550,6723,11,cell communication involved in cardiac conduction,0.007735845069222121
-Cardiomyocyte,F1_Young,2326,6415,2,blood circulation,0.02471805500984721
-Coronary_EC,F1_Aged,86,1986,0,NA,NA
-Coronary_EC,F1_Young,83,1793,1,cardiac conduction,0.0399891646475309
-Endocardial_EC,F1_Aged,77,2842,0,NA,NA
-Endocardial_EC,F1_Young,72,2119,0,NA,NA
-Fibroblast,F1_Aged,347,4468,0,NA,NA
-Fibroblast,F1_Young,247,3308,0,NA,NA
-M2,F1_Aged,66,1227,0,NA,NA
-M2,F1_Young,60,1152,0,NA,NA
-MacFib,F1_Aged,84,2730,0,NA,NA
-MacFib,F1_Young,45,1643,0,NA,NA
-Mesothelial,F1_Aged,47,1176,0,NA,NA
-Mesothelial,F1_Young,41,1383,0,NA,NA
-Myeloid,F1_Aged,14,668,0,NA,NA
-Pericytes,F1_Aged,135,2393,20,metal ion transport,0.01263368466733474
-Pericytes,F1_Young,135,2023,0,NA,NA
-Unknown_1,F1_Aged,23,1405,0,NA,NA
+Cardiomyocyte,F1_Aged,2886,6723,3,cell communication involved in cardiac conduction,0.014423899266258528
+Cardiomyocyte,F1_Young,2691,6415,0,NA,NA
+Coronary_EC,F1_Aged,114,1986,1,regulation of heart rate,0.048426122790915446
+Coronary_EC,F1_Young,98,1793,0,NA,NA
+Endocardial_EC,F1_Aged,100,2842,0,NA,NA
+Endocardial_EC,F1_Young,86,2119,0,NA,NA
+Fibroblast,F1_Aged,449,4468,0,NA,NA
+Fibroblast,F1_Young,319,3308,3,platelet activation,0.026208987143191625
+M2,F1_Aged,95,1227,0,NA,NA
+M2,F1_Young,80,1152,0,NA,NA
+MacFib,F1_Aged,110,2730,0,NA,NA
+MacFib,F1_Young,54,1643,0,NA,NA
+Mesothelial,F1_Aged,59,1176,0,NA,NA
+Mesothelial,F1_Young,53,1383,0,NA,NA
+Myeloid,F1_Aged,19,668,0,NA,NA
+Pericytes,F1_Aged,181,2393,0,NA,NA
+Pericytes,F1_Young,182,2023,0,NA,NA
+Unknown_1,F1_Aged,30,1405,0,NA,NA
 Unknown_1,F1_Young,9,796,0,NA,NA

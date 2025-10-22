@@ -1,0 +1,26 @@
+celltype,condition,n_sig,n_bg,n_terms,top,padj
+Cardiomyocyte,F1_Aged,3212,6723,17,cell communication involved in cardiac conduction,0.015833658380940144
+Cardiomyocyte,F1_Young,3015,6415,0,NA,NA
+Coronary_EC,F1_Aged,225,1986,0,NA,NA
+Coronary_EC,F1_Young,183,1793,0,NA,NA
+Endocardial_EC,F1_Aged,254,2842,0,NA,NA
+Endocardial_EC,F1_Young,181,2119,0,NA,NA
+Fibroblast,F1_Aged,749,4468,0,NA,NA
+Fibroblast,F1_Young,558,3308,0,NA,NA
+Lymphatic_EC,F1_Aged,26,710,0,NA,NA
+Lymphatic_EC,F1_Young,21,710,0,NA,NA
+M1,F1_Aged,12,99,0,NA,NA
+M2,F1_Aged,153,1227,0,NA,NA
+M2,F1_Young,141,1152,0,NA,NA
+MacFib,F1_Aged,244,2730,0,NA,NA
+MacFib,F1_Young,108,1643,0,NA,NA
+Mesothelial,F1_Aged,132,1176,0,NA,NA
+Mesothelial,F1_Young,112,1383,0,NA,NA
+Myeloid,F1_Aged,37,668,0,NA,NA
+Myeloid,F1_Young,26,495,0,NA,NA
+Pericytes,F1_Aged,335,2393,9,cardiac muscle cell action potential involved in contraction,0.01647565684147149
+Pericytes,F1_Young,280,2023,0,NA,NA
+Smooth_Muscle,F1_Aged,29,458,0,NA,NA
+Smooth_Muscle,F1_Young,37,394,0,NA,NA
+Unknown_1,F1_Aged,48,1405,0,NA,NA
+Unknown_1,F1_Young,12,796,0,NA,NA

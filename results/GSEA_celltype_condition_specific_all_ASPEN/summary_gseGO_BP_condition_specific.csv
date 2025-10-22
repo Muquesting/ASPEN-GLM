@@ -1,0 +1,37 @@
+celltype,subset,n_genes,n_terms,top,padj
+Cardiomyocyte,aged_only,728,1027,response to toxic substance,0.9867980095460547
+Cardiomyocyte,young_only,648,814,cell projection morphogenesis,0.21149062799838264
+Cardiomyocyte,condition_specific,1376,1592,positive regulation of canonical NF-kappaB signal transduction,0.9067817203754711
+Coronary_EC,aged_only,109,245,actin filament-based process,0.8830100261551875
+Coronary_EC,young_only,89,165,blood vessel development,0.0991854513925476
+Coronary_EC,condition_specific,198,398,response to cytokine,0.2962554736273757
+Endocardial_EC,aged_only,123,180,regulation of localization,0.9984639016897081
+Endocardial_EC,young_only,82,167,positive regulation of developmental process,0.9789655172413793
+Endocardial_EC,condition_specific,205,377,heart contraction,1
+Fibroblast,aged_only,331,644,phosphorus metabolic process,0.09302470165084861
+Fibroblast,young_only,262,503,regulation of epithelial cell proliferation,0.9977091196708345
+Fibroblast,condition_specific,593,1067,aminoglycan metabolic process,0.10560149699663417
+Lymphatic_EC,aged_only,18,7,regulation of biological process,0.04319004154646576
+Lymphatic_EC,young_only,14,5,regulation of biological process,0.13730929264909847
+Lymphatic_EC,condition_specific,32,39,response to stimulus,0.013799007162822065
+M1,condition_specific,6,0,NA,NA
+M2,aged_only,72,116,gene expression,0.4621642860368939
+M2,young_only,62,112,positive regulation of biosynthetic process,0.882445635045698
+M2,condition_specific,134,260,negative regulation of transport,0.5348456182216973
+MacFib,aged_only,114,222,response to oxygen-containing compound,0.2672728090226162
+MacFib,young_only,61,97,phosphorylation,0.9844236760124611
+MacFib,condition_specific,175,334,response to oxygen-containing compound,0.07757923396883894
+Mesothelial,aged_only,73,151,cellular process,0.07158441859551529
+Mesothelial,young_only,46,95,regulation of transcription by RNA polymerase II,0.9409667194928685
+Mesothelial,condition_specific,119,263,G protein-coupled receptor signaling pathway,0.2291534350415156
+Myeloid,aged_only,15,6,cellular component organization,0.23663101604278075
+Myeloid,young_only,18,14,response to stimulus,0.8347634763476348
+Myeloid,condition_specific,33,45,cellular component assembly,0.9782608695652174
+Pericytes,aged_only,135,266,multicellular organismal-level homeostasis,0.06162189950704379
+Pericytes,young_only,129,253,response to lipid,0.161415999667005
+Pericytes,condition_specific,264,493,multicellular organismal-level homeostasis,0.0700358119446998
+Smooth_Muscle,aged_only,11,2,biological_process,0.8180076628352491
+Smooth_Muscle,young_only,19,13,cellular component organization,0.8137651821862348
+Smooth_Muscle,condition_specific,30,38,cellular component organization,0.2581873259434417
+Unknown_1,aged_only,29,32,cell development,0.3868677905944986
+Unknown_1,condition_specific,34,40,anatomical structure morphogenesis,0.22485607999826335

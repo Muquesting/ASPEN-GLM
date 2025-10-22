@@ -1,13 +1,11 @@
 gene,condition
 Apoe,F1_Aged
-Cnnm2,F1_Aged
+Cd44,F1_Aged
+Dock10,F1_Aged
 Gda,F1_Aged
-Gpd2,F1_Aged
 Lyz2,F1_Aged
-Mpp7,F1_Aged
 Neat1,F1_Aged
-Prkg1,F1_Aged
 Sash1,F1_Aged
 Tanc2,F1_Aged
-Tnfaip8,F1_Aged
 Vav3,F1_Aged
+Wipf1,F1_Aged
