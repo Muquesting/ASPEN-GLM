@@ -1,13 +1,9 @@
 #!/usr/bin/env Rscript
 suppressPackageStartupMessages({
-  ok_aspen <- requireNamespace("ASPEN", quietly = TRUE)
-  if (ok_aspen) {
-    library(ASPEN)
-  } else {
-    message("ASPEN not installed; sourcing repo R/ functions…")
-    rfiles <- list.files("R", full.names = TRUE, pattern = "\\.R$")
-    invisible(lapply(rfiles, source))
-  }
+  message("ASPEN not installed; sourcing repo R/ functions…")
+  rfiles <- list.files("R", full.names = TRUE, pattern = "\\.R$")
+  if (!length(rfiles)) stop("No helper scripts found under R/")
+  invisible(lapply(rfiles, source))
   suppressWarnings(suppressMessages(library(assertthat)))
   suppressWarnings(suppressMessages(library(locfit)))
   suppressWarnings(suppressMessages(library(Matrix)))
@@ -15,22 +11,79 @@ suppressPackageStartupMessages({
   suppressWarnings(suppressMessages(library(doParallel)))
   suppressWarnings(suppressMessages(library(foreach)))
 })
+derive_shrinkage_params <- function(estimates, theta_filter = 1e-03, default_delta = 50, default_N = 30) {
+  pars <- tryCatch({
+    vals <- estim_delta(estimates, thetaFilter = theta_filter)
+    if (!is.null(vals) && length(vals) >= 2) {
+      if (is.null(names(vals))) {
+        names(vals) <- c("N", "delta")[seq_along(vals)]
+      }
+      vals
+    } else {
+      NULL
+    }
+  }, error = function(e) NULL)
+  if (!is.null(pars)) {
+    N_est <- as.numeric(pars["N"])
+    delta_est <- as.numeric(pars["delta"])
+  } else {
+    N_est <- NA_real_
+    delta_est <- NA_real_
+  }
+  if (!is.finite(N_est) || N_est <= 0)   N_est <- default_N
+  if (!is.finite(delta_est) || delta_est <= 0) delta_est <- default_delta
+  list(delta = delta_est, N = N_est)
+}
 
 # Source Veronika's original ASPEN functions (bb_mean, bb_var, correct_theta_sc, estim_params_multicore, …)
-veronika_path <- "/Users/z5345125/Downloads/allelic_imbalance_sc.R"
-if (!file.exists(veronika_path)) stop("Cannot find ", veronika_path)
+veronika_base <- Sys.getenv("VERONIKA_ASPEN_ROOT", "/g/data/zk16/veronika/projects/forpubl/ASPEN/R")
+veronika_path <- file.path(veronika_base, "allelic_imbalance_sc.R")
+if (!file.exists(veronika_path)) {
+  stop("Cannot find Veronika ASPEN script at ", veronika_path,
+       ". Override by setting VERONIKA_ASPEN_ROOT or update the path.")
+}
 source(veronika_path)
 
 args <- commandArgs(trailingOnly = TRUE)
-input_rds       <- if (length(args) >= 1) args[[1]] else "data/aspensce_sexupdated.rds"
+input_rds       <- if (length(args) >= 1) args[[1]] else "/g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered.rds"
 root_out_base   <- if (length(args) >= 2) args[[2]] else file.path("results", "celltype_wo_condition")
-max_genes       <- if (length(args) >= 3) as.integer(args[[3]]) else 2000L
+max_genes       <- if (length(args) >= 3) as.integer(args[[3]]) else 20000L
 min_counts_est  <- if (length(args) >= 4) as.integer(args[[4]]) else 0L
 min_cells_est   <- if (length(args) >= 5) as.integer(args[[5]]) else 5L
 min_counts_test <- if (length(args) >= 6) as.integer(args[[6]]) else 0L
 min_cells_test  <- if (length(args) >= 7) as.integer(args[[7]]) else 5L
 min_counts_glob <- if (length(args) >= 8) as.integer(args[[8]]) else 5L
-top_k           <- if (length(args) >= 9) as.integer(args[[9]]) else 5L
+top_k           <- if (length(args) >= 9) as.integer(args[[9]]) else 10L
+bb_var_perms    <- suppressWarnings(as.integer(Sys.getenv("BB_VAR_PERMUTATIONS", unset = "500")))
+if (!is.finite(bb_var_perms) || bb_var_perms <= 0) bb_var_perms <- 500L
+veronika_cores  <- suppressWarnings(as.integer(Sys.getenv(
+  "VERONIKA_CORES",
+  unset = Sys.getenv("BB_VAR_CORES", Sys.getenv("PBS_NCPUS", "4")))
+))
+if (!is.finite(veronika_cores) || veronika_cores < 1L) veronika_cores <- 4L
+detected_cores <- tryCatch(parallel::detectCores(logical = TRUE), error = function(e) NA_integer_)
+if (is.finite(detected_cores)) veronika_cores <- min(veronika_cores, detected_cores)
+veronika_cores <- max(1L, veronika_cores)
+options(mc.cores = veronika_cores)
+bb_var_cores <- suppressWarnings(as.integer(Sys.getenv("BB_VAR_CORES", veronika_cores)))
+if (!is.finite(bb_var_cores) || bb_var_cores < 1L) bb_var_cores <- veronika_cores
+bb_var_cores <- min(bb_var_cores, veronika_cores)
+
+# Auto-discover default input if relative path missing
+if (!file.exists(input_rds)) {
+  alt_paths <- c(
+    "/g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered.rds",
+    "/g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_sexupdated.rds"
+  )
+  alt_hit <- alt_paths[file.exists(alt_paths)]
+  if (length(alt_hit)) {
+    message("Input RDS not found at ", input_rds, "; using ", alt_hit[1])
+    input_rds <- alt_hit[1]
+  } else {
+    stop("Input RDS not found: ", input_rds,
+         ". Tried alternatives: ", paste(alt_paths, collapse = ", "))
+  }
+}
 
 # Write into a separate results folder
 root_out <- paste0(root_out_base, "_allcells_veronika")
@@ -42,15 +95,19 @@ stopifnot(inherits(sce, "SingleCellExperiment"))
 meta_full <- as.data.frame(SummarizedExperiment::colData(sce))
 
 pick_col <- function(df, candidates) { for (nm in candidates) if (!is.null(df[[nm]])) return(nm); NULL }
-ct_col <- pick_col(meta_full, c("celltype_new", "celltype", "celltype_old"))
-if (is.null(ct_col)) stop("No celltype column found (celltype_new/celltype/celltype_old)")
+ct_col <- pick_col(meta_full, c("celltype", "celltype_new", "celltype_old", "predicted.id"))
+if (is.null(ct_col)) stop("No celltype column found (celltype/celltype_new/celltype_old/predicted.id)")
 
 # Sex labels
-sex_all <- as.character(meta_full$sex)
+sex_col <- pick_col(meta_full, c("pred.sex", "sex", "sex_pred"))
+if (is.null(sex_col)) stop("No sex column found (pred.sex/sex/sex_pred)")
+sex_all <- as.character(meta_full[[sex_col]])
 sex_all[sex_all %in% c("Female","F")] <- "F"
 sex_all[sex_all %in% c("Male","M")]   <- "M"
-cond_all <- meta_full$condition_new; if (is.null(cond_all)) cond_all <- meta_full$condition_old
-cond_all <- as.character(cond_all); cond_all[is.na(cond_all) | cond_all == ""] <- "NA"
+cond_col <- pick_col(meta_full, c("condition", "condition_new", "condition_old"))
+if (is.null(cond_col)) stop("No condition column found (condition/condition_new/condition_old)")
+cond_all <- as.character(meta_full[[cond_col]])
+cond_all[is.na(cond_all) | cond_all == ""] <- "NA"
 
 keep_cells_all <- which(sex_all %in% c("F","M"))
 cts <- as.character(meta_full[[ct_col]])
@@ -96,7 +153,7 @@ for (ct in ct_keep) {
     keep_expr <- Matrix::rowSums(tots > 1) >= 10
     a1s <- a1s[keep_expr, , drop = FALSE]
     tots<- tots[keep_expr, , drop = FALSE]
-    if (!is.null(max_genes) && is.finite(max_genes) && nrow(tots) > max_genes) {
+    if (!is.null(max_genes) && is.finite(max_genes) && max_genes > 0 && nrow(tots) > max_genes) {
       ord <- order(Matrix::rowMeans(tots), decreasing = TRUE)
       sel <- ord[seq_len(max_genes)]
       a1s <- a1s[sel, , drop = FALSE]
@@ -112,12 +169,17 @@ for (ct in ct_keep) {
     a1_norm <- sweep(a1, 2, norm_sf, "/"); tot_norm <- sweep(tot, 2, norm_sf, "/")
 
     # Parameter estimation via Veronika's function; use small cluster if available
-    cores <- max(1L, parallel::detectCores(logical = TRUE) - 1L)
+    cores <- veronika_cores
     est <- estim_params_multicore(a1, tot, min_counts = min_counts_est, min_cells = min_cells_est, cores = cores)
     if (is.null(est) || !nrow(est)) { message("No estimates returned for ", ct, " / ", cond_lbl); next }
 
-    # Shrinkage with data-driven δ,N (Veronika default)
-    est_shrunk <- tryCatch(correct_theta_sc(est, delta_set = 50, N_set = 30), error = function(e) NULL)
+    # Use fixed shrinkage parameters per Veronika's baseline
+    shrink_vals <- list(delta = 50, N = 30)
+    message("Using fixed shrinkage parameters (delta, N) = (50, 30).")
+    est_shrunk <- tryCatch(
+      correct_theta_sc(est, delta_set = shrink_vals$delta, N_set = shrink_vals$N),
+      error = function(e) NULL
+    )
     if (!is.null(est_shrunk)) {
       tc <- est_shrunk$thetaCorrected
       if (!is.numeric(tc) || sum(is.finite(tc)) / length(tc) < 0.9) {
@@ -125,8 +187,11 @@ for (ct in ct_keep) {
       }
     }
     if (is.null(est_shrunk)) {
-      message("correct_theta_sc unstable; retrying with fixed δ=50, N=30.")
-      est_shrunk <- tryCatch(correct_theta_sc_mod(est, delta_set = 50, N_set = 30, thetaFilter = 0), error = function(e) NULL)
+      message("correct_theta_sc unstable; retrying with correct_theta_sc_mod (delta=50, N=30).")
+      est_shrunk <- tryCatch(
+        correct_theta_sc_mod(est, delta_set = shrink_vals$delta, N_set = shrink_vals$N, thetaFilter = 0),
+        error = function(e) NULL
+      )
     }
     if (is.null(est_shrunk)) {
       stop("Unable to obtain shrunk dispersions for ", ct, " / ", cond_lbl, "; aborting.")
@@ -202,10 +267,12 @@ for (ct in ct_keep) {
     meta_subset$sex_group <- sex_vec
     rownames(meta_subset) <- colnames(a1)
 
+    var_min_counts <- if (min_counts_test > 0) min_counts_test else 5L
     res_group_var <- NULL
     estimates_group_list <- NULL
     if (nlevels(sex_vec) >= 2) {
       group_tables <- list()
+      sex_indices <- split(seq_len(ncol(a1)), sex_vec)
       for (lvl in levels(sex_vec)) {
         idx <- which(sex_vec == lvl)
         if (length(idx) < min_cells_est) next
@@ -216,7 +283,13 @@ for (ct in ct_keep) {
                                         cores = max(1L, cores %/% max(1L, length(levels(sex_vec)))))
         if (is.null(est_g) || !nrow(est_g)) next
         est_g <- est_g[!duplicated(rownames(est_g)), , drop = FALSE]
-        est_g_shrunk <- tryCatch(correct_theta_sc(est_g, delta_set = 50, N_set = 30), error = function(e) NULL)
+        # Fixed per-batch shrinkage as well for consistency
+        shrink_vals_g <- list(delta = 50, N = 30)
+        message("  Using fixed shrinkage parameters for ", lvl, ": (50, 30).")
+        est_g_shrunk <- tryCatch(
+          correct_theta_sc(est_g, delta_set = shrink_vals_g$delta, N_set = shrink_vals_g$N),
+          error = function(e) NULL
+        )
         if (!is.null(est_g_shrunk)) {
           tc_g <- est_g_shrunk$thetaCorrected
           if (!is.numeric(tc_g) || sum(is.finite(tc_g))/length(tc_g) < 0.9) {
@@ -224,7 +297,13 @@ for (ct in ct_keep) {
           }
         }
         if (is.null(est_g_shrunk)) {
-          est_g_shrunk <- tryCatch(correct_theta_sc_mod(est_g, delta_set = 50, N_set = 30, thetaFilter = 0), error = function(e) NULL)
+          est_g_shrunk <- tryCatch(
+            correct_theta_sc_mod(est_g,
+                                 delta_set = shrink_vals_g$delta,
+                                 N_set = shrink_vals_g$N,
+                                 thetaFilter = 0),
+            error = function(e) NULL
+          )
         }
         if (is.null(est_g_shrunk)) next
         if (!("bb_mu" %in% colnames(est_g_shrunk)) && "mean_reestim" %in% colnames(est_g_shrunk)) est_g_shrunk$bb_mu <- est_g_shrunk$mean_reestim
@@ -247,15 +326,20 @@ for (ct in ct_keep) {
             rows <- lapply(names(group_tables), function(lvl) {
               df_row <- group_tables[[lvl]][gene, , drop = FALSE]
               if (nrow(df_row) == 0) return(NULL)
+              idx_cells <- sex_indices[[lvl]]
               pull_val <- function(df, col, default = NA_real_) {
                 if (col %in% colnames(df)) as.numeric(df[[col]]) else default
               }
+              counts_vec <- if (length(idx_cells)) as.numeric(tot[gene, idx_cells]) else numeric(0)
+              n_val <- if (length(counts_vec)) sum(counts_vec >= var_min_counts) else 0L
+              mean_val <- if (length(counts_vec)) mean(counts_vec) else pull_val(df_row, "tot_gene_mean")
+              var_val <- if (length(counts_vec) > 1) stats::var(counts_vec) else pull_val(df_row, "tot_gene_variance")
               data.frame(
                 sex_group = lvl,
                 group = lvl,
-                N = pull_val(df_row, "N"),
-                tot_gene_mean = pull_val(df_row, "tot_gene_mean"),
-                tot_gene_variance = pull_val(df_row, "tot_gene_variance"),
+                N = n_val,
+                tot_gene_mean = mean_val,
+                tot_gene_variance = var_val,
                 bb_mu = pull_val(df_row, "bb_mu"),
                 bb_theta = pull_val(df_row, "bb_theta"),
                 alpha = pull_val(df_row, "alpha"),
@@ -292,9 +376,14 @@ for (ct in ct_keep) {
                         equalGroups = FALSE),
               error = function(e) NULL
             )
+          } else {
+            estimates_group_list <- NULL
           }
         }
       }
+    }
+    if (is.list(estimates_group_list) && !length(estimates_group_list)) {
+      estimates_group_list <- NULL
     }
 
     # bb_mean primary run on RAW counts (mirrors Veronika notebook semantics)
@@ -325,6 +414,54 @@ for (ct in ct_keep) {
       bm_norm$padj_mean <- suppressWarnings(p.adjust(bm_norm$pval_mean, method = "BH"))
     }
 
+    var_min_counts <- if (min_counts_test > 0) min_counts_test else 5L
+    bb_var_batch <- if (!is.null(estimates_group_list)) "sex_group" else NULL
+    bb_var_meta  <- if (!is.null(estimates_group_list)) meta_subset else NULL
+    bb_var_raw <- tryCatch(
+      bb_var(a1_counts = a1,
+             tot_counts = tot,
+             estimates = est_shrunk,
+             estimates_group = estimates_group_list,
+             min_cells = max(var_min_counts, min_cells_test),
+             min_counts = var_min_counts,
+             batch = bb_var_batch,
+             metadata = bb_var_meta),
+      error = function(e) e
+    )
+    if (inherits(bb_var_raw, "error")) {
+      msg <- conditionMessage(bb_var_raw)
+      message("bb_var failed for ", ct, " / ", cond_lbl, ": ", msg)
+      bb_var_raw <- tryCatch(
+        bb_var(a1_counts = a1,
+               tot_counts = tot,
+               estimates = est_shrunk,
+               estimates_group = NULL,
+               min_cells = max(var_min_counts, min_cells_test),
+               min_counts = var_min_counts,
+               batch = NULL,
+               metadata = NULL),
+        error = function(e) {
+          message("bb_var fallback (no batch) also failed for ", ct, " / ", cond_lbl, ": ", conditionMessage(e))
+          NULL
+        }
+      )
+    }
+    if (!is.null(bb_var_raw) && nrow(bb_var_raw) && "pval_disp" %in% colnames(bb_var_raw)) {
+      bb_var_raw$padj_disp <- suppressWarnings(p.adjust(bb_var_raw$pval_disp, method = "BH"))
+    }
+    if (is.null(bb_var_raw)) {
+      bb_var_raw <- data.frame(
+        AR = numeric(0),
+        N = numeric(0),
+        loglik0_disp = numeric(0),
+        loglik1_disp = numeric(0),
+        llr_disp = numeric(0),
+        pval_disp = numeric(0),
+        padj_disp = numeric(0)
+      )
+    }
+    message("bb_var rows (", ct, " / ", cond_lbl, "): ", nrow(bb_var_raw))
+
     if (!is.null(res_group_var) && "pval_var" %in% colnames(res_group_var)) {
       res_group_var$padj_var <- suppressWarnings(p.adjust(res_group_var$pval_var, method = "BH"))
     }
@@ -336,6 +473,7 @@ for (ct in ct_keep) {
     if (!is.null(estimates_group_list)) {
       saveRDS(estimates_group_list, file = file.path(out_dir, "estimates_by_sex.rds"))
     }
+    if (!is.null(bb_var_raw)) saveRDS(bb_var_raw, file = file.path(out_dir, "bb_var_results.rds"))
     saveRDS(res_group_var, file = file.path(out_dir, "group_var_sex_results.rds"))
     to_csv(est_shrunk, file.path(out_dir, "estimates_global_shrunk.csv"),
            cols = c("AR","mean_reestim","theta_reestim","thetaCorrected","theta_smoothed","tot_gene_mean","N"))
@@ -343,6 +481,8 @@ for (ct in ct_keep) {
            cols = c("bb_mu","AR","N","bb_theta","thetaCorrected","log2FC","llr_mean","pval_mean","padj_mean"))
     to_csv(bm_norm,   file.path(out_dir, "bb_mean_results_norm.csv"),
            cols = c("bb_mu","AR","N","bb_theta","thetaCorrected","log2FC","llr_mean","pval_mean","padj_mean"))
+    to_csv(bb_var_raw, file.path(out_dir, "bb_var_results.csv"),
+           cols = c("AR","N","loglik0_disp","loglik1_disp","llr_disp","pval_disp","padj_disp"))
     to_csv(res_group_var, file.path(out_dir, "group_var_sex_results.csv"),
            cols = c("bb_mu","AR","N","bb_theta","thetaCorrected","theta_common","log2FC","llr_var","pval_var","padj_var"))
 
@@ -356,7 +496,8 @@ for (ct in ct_keep) {
       sprintf("Veronika path: trend mean across USABLE cells (tot>0); δ,N estimated from data"),
       "bb_mean: primary run on raw counts; normalized output retained for diagnostics",
       sprintf("Thresholds (est/test/glob): min_counts_est=%d, min_cells_est=%d, min_counts_test=%d, min_cells_test=%d, min_counts_glob=%d",
-              min_counts_est, min_cells_est, min_counts_test, min_cells_test, min_counts_glob)
+              min_counts_est, min_cells_est, min_counts_test, min_cells_test, min_counts_glob),
+      sprintf("bb_var permutations: %d", bb_var_perms)
     )
     writeLines(lines, file.path(out_dir, "filter_log.txt"))
     message("Done: ", out_dir)

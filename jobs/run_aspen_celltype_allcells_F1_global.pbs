@@ -1,0 +1,31 @@
+#PBS -P zk16
+#PBS -q normal
+#PBS -l walltime=08:00:00,mem=192GB
+#PBS -l ncpus=24
+#PBS -l storage=gdata/zk16+scratch/zk16
+#PBS -l wd
+#PBS -N aspen_celltype_F1_global
+
+set -euo pipefail
+
+module purge
+module load gcc/14.2.0
+module load R/4.4.2
+
+cd /g/data/zk16/muqing/repos/ASPEN-GLM
+
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export BB_VAR_PERMUTATIONS=100
+export BB_VAR_CORES=24
+export SHRINKAGE_SCOPE=global
+
+echo "[`date`] Running ASPEN celltype pipeline (F1 SCE, global shrinkage)…"
+Rscript scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell.R \
+  /g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered.rds \
+  results/celltype_wo_condition_global \
+  20000 0 5 0 5 5 10
+
+echo "[`date`] Completed ASPEN celltype pipeline (global shrinkage)."
+

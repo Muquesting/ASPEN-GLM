@@ -1,0 +1,8 @@
+gene,condition,padj,status,padj_other,celltype
+Itpr1,F1_Aged,0.0153481699440152,aged_only,1,Smooth_Muscle
+Rasal2,F1_Aged,4.95731394713288e-6,aged_only,1,Smooth_Muscle
+Rock1,F1_Aged,0.00164167736917194,aged_only,1,Smooth_Muscle
+Syne1,F1_Aged,0.00486299578901635,aged_only,1,Smooth_Muscle
+Tpm1,F1_Aged,0.0269857347997807,aged_only,1,Smooth_Muscle
+Zfpm2,F1_Aged,1.7832591140717e-4,aged_only,1,Smooth_Muscle
+9530026P05Rik,F1_Young,4.95822182340362e-5,young_only,1,Smooth_Muscle

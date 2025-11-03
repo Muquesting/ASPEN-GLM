@@ -1,7 +1,0 @@
-ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment,my_sign
-GO:0016043,cellular component organization,10,0.6967694137063287,1.4034817311359948,0.07887700534759358,0.23663101604278075,0.23663101604278075,10,"tags=90%, list=67%, signal=90%",Gda/Neat1/Cd44/Dock10/Dock4/Mitf/Mctp1/Zswim6/Smyd3,BL6-biased
-GO:0071840,cellular component organization or biogenesis,10,0.6967694137063287,1.4034817311359948,0.07887700534759358,0.23663101604278075,0.23663101604278075,10,"tags=90%, list=67%, signal=90%",Gda/Neat1/Cd44/Dock10/Dock4/Mitf/Mctp1/Zswim6/Smyd3,BL6-biased
-GO:0050896,response to stimulus,13,-0.5,-0.9811125493052991,0.5178571428571429,0.7682926829268293,0.7682926829268292,15,"tags=46%, list=100%, signal=0%",Smyd3/Ms4a6d/Anks1/Cd163/Wipf1/Sash1,CAST-biased
-GO:0050789,regulation of biological process,12,-0.36346962648824466,-0.8044481873191747,0.7682926829268293,0.7682926829268293,0.7682926829268292,13,"tags=92%, list=87%, signal=61%",Cd44/Dock10/Dock4/Mitf/Mctp1/Zswim6/Smyd3/Ms4a6d/Anks1/Wipf1/Sash1,CAST-biased
-GO:0050794,regulation of cellular process,12,-0.36346962648824466,-0.8044481873191747,0.7682926829268293,0.7682926829268293,0.7682926829268292,13,"tags=92%, list=87%, signal=61%",Cd44/Dock10/Dock4/Mitf/Mctp1/Zswim6/Smyd3/Ms4a6d/Anks1/Wipf1/Sash1,CAST-biased
-GO:0065007,biological regulation,12,-0.36346962648824466,-0.8044481873191747,0.7682926829268293,0.7682926829268293,0.7682926829268292,13,"tags=92%, list=87%, signal=61%",Cd44/Dock10/Dock4/Mitf/Mctp1/Zswim6/Smyd3/Ms4a6d/Anks1/Wipf1/Sash1,CAST-biased

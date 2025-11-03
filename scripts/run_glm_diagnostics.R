@@ -49,19 +49,19 @@ if (!is.null(max_genes) && is.finite(max_genes) && nrow(tots) > max_genes) {
   tots <- tots[sel, , drop = FALSE]
 }
 
-# Design similar to main runner
+# Design similar to main runner (use factors so term-level tests aggregate by variable)
 cond <- meta$condition_new; if (is.null(cond)) cond <- meta$condition_old
 design_df <- data.frame(
   sex = factor(sex[keep_cells], levels = c("F","M")),
   condition = factor(ifelse(is.na(cond), "NA", as.character(cond)))
 )
 rownames(design_df) <- colnames(tots)
-design <- stats::model.matrix(~ sex + condition, data = design_df)
 
-diag <- glm_diagnostics(as.matrix(a1s), as.matrix(tots), design,
+diag <- glm_diagnostics(as.matrix(a1s), as.matrix(tots), design_df,
                         min_counts = min_counts, min_cells = min_cells,
                         dispersion_method = "deviance",
-                        use_effective_trials = TRUE, maxit = 100)
+                        use_effective_trials = TRUE, maxit = 100,
+                        return_coefs = TRUE, return_drop1 = TRUE)
 
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 outfile <- file.path(out_dir, "glm_diagnostics.csv")

@@ -1,0 +1,11 @@
+celltype,n_shared
+Cardiomyocyte,959
+Coronary_EC,110
+Endocardial_EC,257
+Fibroblast,320
+Lymphatic_EC,45
+Mesothelial,142
+Myeloid,242
+Pericytes,80
+Smooth_Muscle,0
+T_cell,0

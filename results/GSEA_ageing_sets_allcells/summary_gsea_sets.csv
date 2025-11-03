@@ -1,0 +1,30 @@
+celltype,subset,n_genes,n_terms,top,padj
+Cardiomyocyte,shared,1571,1797,regulation of cell adhesion,0.09385647845429802
+Cardiomyocyte,aged_only,503,763,regulation of vesicle-mediated transport,1
+Cardiomyocyte,young_only,780,1068,cell morphogenesis,0.022583279220930556
+Cardiomyocyte,condition_specific,1283,1560,response to hypoxia,0.1295261040938951
+Coronary_EC,shared,31,59,regulation of response to stimulus,0.9944367176634215
+Coronary_EC,aged_only,46,80,regulation of biosynthetic process,0.9715078051616944
+Coronary_EC,young_only,18,5,regulation of cellular process,0.29827315541601257
+Coronary_EC,condition_specific,64,122,apoptotic process,0.8233676191089584
+Endocardial_EC,shared,54,87,phosphorus metabolic process,0.03688326553680446
+Endocardial_EC,aged_only,54,92,protein metabolic process,0.49534065023814455
+Endocardial_EC,young_only,39,120,homeostatic process,0.029293062313444578
+Endocardial_EC,condition_specific,93,233,negative regulation of cell communication,0.6979584329061278
+Fibroblast,shared,376,716,developmental growth,1
+Fibroblast,aged_only,348,710,muscle organ development,0.8899942659920346
+Fibroblast,young_only,171,341,negative regulation of phosphorus metabolic process,0.9982931269913518
+Fibroblast,condition_specific,519,951,muscle organ development,0.9680093063835976
+Lymphatic_EC,condition_specific,11,3,regulation of biological process,0.345679012345679
+Mesothelial,shared,47,105,negative regulation of response to stimulus,0.3653344591331827
+Mesothelial,aged_only,18,8,regulation of biological process,0.27559055118110237
+Mesothelial,young_only,37,89,positive regulation of signal transduction,0.8144557757183295
+Mesothelial,condition_specific,55,126,biological_process,1
+Myeloid,shared,102,276,protein-containing complex organization,0.7113879529070626
+Myeloid,aged_only,106,262,organonitrogen compound catabolic process,0.2690106473931775
+Myeloid,young_only,42,114,regulation of biological quality,0.5826185958254269
+Myeloid,condition_specific,148,341,organonitrogen compound catabolic process,0.625907441016334
+Pericytes,shared,102,257,regulation of response to stress,0.262474812974845
+Pericytes,aged_only,81,207,catabolic process,0.8290742934506685
+Pericytes,young_only,53,132,regulation of cell population proliferation,0.9984177215189873
+Pericytes,condition_specific,134,325,response to biotic stimulus,0.7300846725419043

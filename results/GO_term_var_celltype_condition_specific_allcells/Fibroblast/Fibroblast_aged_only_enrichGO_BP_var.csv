@@ -1,0 +1,3 @@
+ID,Description,GeneRatio,BgRatio,pvalue,p.adjust,qvalue,geneID,Count
+GO:0006935,chemotaxis,20/208,126/4099,3.7081508633431615e-6,0.0050430851741467,0.004826451097393494,Angpt1/Bmpr2/Cxcl1/Fgf7/Gab1/Lpar1/Lyn/Mcu/Mycbp2/Nedd9/Nr4a1/Parva/Ptprj/Sema5a/Smoc2/St6gal1/Syk/Tgfb1/Vav3/Vcam1,20
+GO:0042330,taxis,20/208,126/4099,3.7081508633431615e-6,0.0050430851741467,0.004826451097393494,Angpt1/Bmpr2/Cxcl1/Fgf7/Gab1/Lpar1/Lyn/Mcu/Mycbp2/Nedd9/Nr4a1/Parva/Ptprj/Sema5a/Smoc2/St6gal1/Syk/Tgfb1/Vav3/Vcam1,20

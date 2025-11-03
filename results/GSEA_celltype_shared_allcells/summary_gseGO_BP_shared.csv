@@ -1,0 +1,8 @@
+celltype,n_genes,n_terms,top,padj
+Cardiomyocyte,1571,1797,regulation of cell adhesion,0.09385647845429802
+Coronary_EC,31,59,regulation of response to stimulus,0.9944367176634215
+Endocardial_EC,54,87,phosphorus metabolic process,0.03688326553680446
+Fibroblast,376,716,developmental growth,1
+Mesothelial,47,105,negative regulation of response to stimulus,0.3653344591331827
+Myeloid,102,276,protein-containing complex organization,0.7113879529070626
+Pericytes,102,257,regulation of response to stress,0.262474812974845

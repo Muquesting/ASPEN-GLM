@@ -17,6 +17,11 @@ sets_dir <- if (length(args) >= 2) args[[2]] else file.path(base_dir, "ageing_se
 out_dir  <- if (length(args) >= 3) args[[3]] else "results/GSEA_var_ageing_sets"
 shared_out_dir <- if (length(args) >= 4) args[[4]] else "results/GSEA_var_celltype_shared"
 condition_out_dir <- if (length(args) >= 5) args[[5]] else "results/GSEA_var_celltype_condition_specific"
+overwrite <- suppressWarnings(as.integer(Sys.getenv("OVERWRITE_RESULTS", unset = "1")))
+if (!is.finite(overwrite)) overwrite <- 1L
+if (overwrite == 1L && dir.exists(out_dir)) unlink(out_dir, recursive = TRUE, force = TRUE)
+if (overwrite == 1L && dir.exists(shared_out_dir)) unlink(shared_out_dir, recursive = TRUE, force = TRUE)
+if (overwrite == 1L && dir.exists(condition_out_dir)) unlink(condition_out_dir, recursive = TRUE, force = TRUE)
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(shared_out_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(condition_out_dir, recursive = TRUE, showWarnings = FALSE)
@@ -24,6 +29,22 @@ dir.create(condition_out_dir, recursive = TRUE, showWarnings = FALSE)
 `%||%` <- function(a,b) if (!is.null(a)) a else b
 score_fun <- function(llr, p) sign(llr) * -log10(p + 1e-300)
 pick_column <- function(df, candidates) { for (nm in candidates) if (nm %in% names(df)) return(df[[nm]]); NULL }
+
+pick_var_table <- function(dir_path) {
+  candidates <- c("bb_var_results.rds", "bb_var_results.csv",
+                  "bb_var_quick.rds", "bb_var_quick.csv",
+                  "group_var_sex_results.rds", "group_var_sex_results.csv")
+  for (nm in candidates) {
+    f <- file.path(dir_path, nm)
+    if (file.exists(f)) return(f)
+  }
+  NULL
+}
+
+if (!dir.exists(sets_dir)) {
+  message("Variance ageing gene sets directory not found: ", sets_dir, ". Nothing to run.")
+  quit(save = "no", status = 0)
+}
 
 cts <- list.dirs(sets_dir, full.names = FALSE, recursive = FALSE)
 cts <- cts[cts != ""]
@@ -36,12 +57,21 @@ for (ct in cts) {
   if (!dir.exists(cond_ct_dir)) dir.create(cond_ct_dir, recursive = TRUE, showWarnings = FALSE)
 
   read_rank <- function(cond) {
-    p <- file.path(base_dir, ct, cond, "group_var_sex_results.csv")
-    if (!file.exists(p)) return(NULL)
-    d <- suppressMessages(readr::read_csv(p, show_col_types = FALSE))
-    genes <- pick_column(d, c("gene","...1")); if (is.null(genes) && ncol(d) >= 1) genes <- d[[1]]
-    pval  <- suppressWarnings(as.numeric(pick_column(d, c("pval_var","pval_disp"))))
-    llr   <- suppressWarnings(as.numeric(pick_column(d, c("llr_var","llr_disp"))))
+    data_file <- pick_var_table(file.path(base_dir, ct, cond))
+    if (is.null(data_file)) return(NULL)
+    d <- tryCatch({
+      if (grepl("\\.rds$", data_file)) {
+        readRDS(data_file)
+      } else {
+        suppressMessages(readr::read_csv(data_file, show_col_types = FALSE))
+      }
+    }, error = function(e) NULL)
+    if (is.null(d)) return(NULL)
+    genes <- rownames(d)
+    if (is.null(genes)) genes <- pick_column(d, c("gene","...1"))
+    if (is.null(genes) && ncol(d) >= 1) genes <- d[[1]]
+    pval  <- suppressWarnings(as.numeric(pick_column(d, c("pval_disp","pval_var"))))
+    llr   <- suppressWarnings(as.numeric(pick_column(d, c("llr_disp","llr_var"))))
     if (is.null(pval) || is.null(llr)) return(NULL)
     scores <- score_fun(llr, pval)
     names(scores) <- as.character(genes)

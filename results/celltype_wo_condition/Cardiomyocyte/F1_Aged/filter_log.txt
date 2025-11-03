@@ -1,9 +1,0 @@
-Cell type: Cardiomyocyte
-Condition: F1_Aged
-Cells kept (F/M): 2874
-Genes kept (after expression & coverage filters): 6723
-Expression filter: rowSums(tot > 1) >= 10
-Thresholds (est/test/glob): min_counts_est=0, min_cells_est=5, min_counts_test=0, min_cells_test=5, min_counts_glob=5
-Design columns:
- - (Intercept)
- - sexM

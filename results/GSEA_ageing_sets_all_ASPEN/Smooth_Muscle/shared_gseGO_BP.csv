@@ -1,3 +1,0 @@
-ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment,my_sign
-GO:0008150,biological_process,11,0.5858521731868069,0.8543670456511374,0.8937644341801386,0.8937644341801386,0.8937644341801386,1,"tags=9%, list=8%, signal=55%",Grm1,BL6-biased
-GO:0009987,cellular process,11,0.5858521731868069,0.8543670456511374,0.8937644341801386,0.8937644341801386,0.8937644341801386,1,"tags=9%, list=8%, signal=55%",Grm1,BL6-biased

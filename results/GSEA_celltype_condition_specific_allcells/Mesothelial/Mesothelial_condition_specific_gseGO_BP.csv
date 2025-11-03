@@ -1,0 +1,127 @@
+ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment
+GO:0008150,biological_process,53,0.6569799308528814,1.426331084104108,0.08089033875963308,1,1,45,"tags=85%, list=82%, signal=425%",Mpp7/Rad51b/Atp8a1/Prickle1/Vps13a/Slc38a1/Rbm28/Usp53/Grb10/Anxa3/Igfbp6/Xdh/Neat1/Fbxl17/Clic4/Pawr/Cdon/Cog5/Kiz/Rora/Cav1/Ghr/Lpp/Sipa1l1/Zcchc7/Ror1/Celf2/Slc1a5/Igfbp7/Slit3/Vwa5a/Sema3d/Igfbp5/Tmem108/Zdbf2/Man1a/Btaf1/Slc4a4/Dapk1/Mcc/Rbm47/St3gal6/Pan3/Macf1/4732440D04Rik
+GO:0033036,macromolecule localization,11,0.6979033283345643,1.3696973453198025,0.1125,1,1,5,"tags=36%, list=9%, signal=41%",Mpp7/Atp8a1/Prickle1/Vps13a
+GO:0016043,cellular component organization,25,0.53145058863454675,1.3099668565981075,0.08333333333333333,1,1,5,"tags=16%, list=9%, signal=27%",Mpp7/Atp8a1/Prickle1/Vps13a
+GO:0071840,cellular component organization or biogenesis,25,0.53145058863454675,1.3099668565981075,0.08333333333333333,1,1,5,"tags=16%, list=9%, signal=27%",Mpp7/Atp8a1/Prickle1/Vps13a
+GO:0048518,positive regulation of biological process,26,0.5196491165532496,1.2992907707839452,0.08993576017130621,1,1,6,"tags=19%, list=11%, signal=32%",Mpp7/Rad51b/Atp8a1/Prickle1/Slc38a1
+GO:1902531,regulation of intracellular signal transduction,11,-0.6468826135593723,-1.2983352782262796,0.132890365448505,1,1,10,"tags=27%, list=18%, signal=28%",Igfbp5/Gucy1a2/Sema5a
+GO:0022607,cellular component assembly,11,0.6556910185718925,1.2868519335351611,0.185,1,1,4,"tags=18%, list=7%, signal=21%",Mpp7/Prickle1
+GO:0044085,cellular component biogenesis,11,0.6556910185718925,1.2868519335351611,0.185,1,1,4,"tags=18%, list=7%, signal=21%",Mpp7/Prickle1
+GO:0051641,cellular localization,12,0.629870108580503,1.2581988678674518,0.18159203980099503,1,1,5,"tags=25%, list=9%, signal=29%",Mpp7/Prickle1/Vps13a
+GO:0071705,nitrogen compound transport,10,0.615048197431521,1.2050017825919621,0.2769607843137255,1,1,6,"tags=40%, list=11%, signal=44%",Atp8a1/Prickle1/Vps13a/Slc38a1
+GO:0048522,positive regulation of cellular process,25,0.4858841779114101,1.1976506994652156,0.17094017094017094,1,1,3,"tags=12%, list=5%, signal=21%",Mpp7/Rad51b/Atp8a1
+GO:0050789,regulation of biological process,38,0.42153395814504174,1.116780202218093,0.22950819672131148,1,1,4,"tags=11%, list=7%, signal=32%",Mpp7/Rad51b/Atp8a1/Prickle1
+GO:0050794,regulation of cellular process,38,0.42153395814504174,1.116780202218093,0.22950819672131148,1,1,4,"tags=11%, list=7%, signal=32%",Mpp7/Rad51b/Atp8a1/Prickle1
+GO:0032502,developmental process,26,-0.4726883555053976,-1.110069489507902,0.31962616822429907,1,1,6,"tags=15%, list=11%, signal=26%",Sema5a/Frk/Smap1/Pcsk6
+GO:0009987,cellular process,51,0.4497898988746216,1.109554061564543,0.10909090909090909,1,1,30,"tags=59%, list=55%, signal=368%",Mpp7/Rad51b/Atp8a1/Prickle1/Vps13a/Slc38a1/Rbm28/Usp53/Grb10/Anxa3/Igfbp6/Xdh/Neat1/Fbxl17/Clic4/Pawr/Cdon/Cog5/Kiz/Rora/Cav1/Ghr/Lpp/Sipa1l1/Zcchc7/Ror1/Celf2/Slc1a5/Igfbp7/Slit3
+GO:0051128,regulation of cellular component organization,14,0.5175117685390154,1.0776841469001899,0.3764705882352941,1,1,3,"tags=14%, list=5%, signal=18%",Mpp7/Atp8a1
+GO:0051179,localization,25,0.41484464261636883,1.022546110751272,0.41239316239316237,1,1,6,"tags=20%, list=11%, signal=33%",Mpp7/Atp8a1/Prickle1/Vps13a/Slc38a1
+GO:0007275,multicellular organism development,19,-0.4528506925613023,-1.013337027371837,0.4543859649122807,1,1,6,"tags=16%, list=11%, signal=21%",Sema5a/Smap1/Pcsk6
+GO:0048870,cell motility,14,0.47958680378389307,0.9987079075699679,0.5058823529411764,1,1,11,"tags=43%, list=20%, signal=46%",Atp8a1/Prickle1/Vps13a/Grb10/Anxa3/Igfbp6
+GO:0009888,tissue development,11,0.5057169095007079,0.9925144075174758,0.5175,1,1,4,"tags=18%, list=7%, signal=21%",Rad51b/Prickle1
+GO:0010647,positive regulation of cell communication,14,-0.46534693015581824,-0.98713823420918545,0.5025996533795494,1,1,16,"tags=43%, list=29%, signal=41%",Igfbp5/Tmem108/Rbm47/Macf1/Gucy1a2/Sema5a
+GO:0048584,positive regulation of response to stimulus,14,-0.46534693015581824,-0.98713823420918545,0.5025996533795494,1,1,16,"tags=43%, list=29%, signal=41%",Igfbp5/Tmem108/Rbm47/Macf1/Gucy1a2/Sema5a
+GO:0019538,protein metabolic process,16,-0.4522797527503725,-0.9868610981988883,0.5123239436619719,1,1,5,"tags=38%, list=9%, signal=48%",Man1a/Dapk1/St3gal6/Pan3/Frk/Pcsk6
+GO:0009967,positive regulation of signal transduction,13,-0.4724278931709398,-0.9839576279372398,0.5017006802721088,1,1,16,"tags=46%, list=29%, signal=43%",Igfbp5/Tmem108/Rbm47/Macf1/Gucy1a2/Sema5a
+GO:0023056,positive regulation of signaling,13,-0.4724278931709398,-0.9839576279372398,0.5017006802721088,1,1,16,"tags=46%, list=29%, signal=43%",Igfbp5/Tmem108/Rbm47/Macf1/Gucy1a2/Sema5a
+GO:0030154,cell differentiation,20,-0.43282195255584555,-0.9741273977586873,0.5238938053097345,1,1,6,"tags=45%, list=11%, signal=63%",Sema3d/Igfbp5/Tmem108/Zdbf2/Rbm47/Macf1/Sema5a/Frk/Smap1
+GO:0048869,cellular developmental process,20,-0.43282195255584555,-0.9741273977586873,0.5238938053097345,1,1,6,"tags=45%, list=11%, signal=63%",Sema3d/Igfbp5/Tmem108/Zdbf2/Rbm47/Macf1/Sema5a/Frk/Smap1
+GO:0071702,organic substance transport,14,0.4652576540264646,0.9688683976864836,0.5505882352941176,1,1,9,"tags=36%, list=16%, signal=40%",Atp8a1/Prickle1/Vps13a/Slc38a1/Grb10
+GO:0065007,biological regulation,40,0.36084671920005323,0.9510478264827504,0.6025369978858351,1,1,4,"tags=10%, list=7%, signal=34%",Mpp7/Rad51b/Atp8a1/Prickle1
+GO:0006793,phosphorus metabolic process,11,-0.4659431811787037,-0.9351781252005569,0.5880398671096345,1,1,18,"tags=27%, list=33%, signal=23%",Dapk1/Pan3/Frk
+GO:0006796,phosphate-containing compound metabolic process,11,-0.4659431811787037,-0.9351781252005569,0.5880398671096345,1,1,18,"tags=27%, list=33%, signal=23%",Dapk1/Pan3/Frk
+GO:0045595,regulation of cell differentiation,11,-0.46550426732423555,-0.934297196683677,0.5880398671096345,1,1,13,"tags=27%, list=24%, signal=26%",Macf1/Sema5a/Smap1
+GO:1901564,organonitrogen compound metabolic process,18,-0.41454850533279475,-0.9192550144109105,0.6038732394366197,1,1,5,"tags=28%, list=9%, signal=38%",Dapk1/St3gal6/Pan3/Frk/Pcsk6
+GO:0048856,anatomical structure development,24,-0.39194201030215037,-0.9127687101175476,0.5978062157221207,1,1,6,"tags=12%, list=11%, signal=20%",Sema5a/Smap1/Pcsk6
+GO:0040007,growth,11,0.46137221116042465,0.9054839935192548,0.59,1,1,4,"tags=18%, list=7%, signal=21%",Rad51b/Prickle1
+GO:0051240,positive regulation of multicellular organismal process,10,-0.4543739310905515,-0.8943430034169251,0.6599326599326599,1,1,16,"tags=30%, list=29%, signal=26%",Rbm47/Macf1/Sema5a
+GO:0043412,macromolecule modification,14,-0.42146766776570316,-0.8940573631702898,0.6499133448873483,1,1,21,"tags=43%, list=38%, signal=36%",Man1a/Dapk1/Rbm47/St3gal6/Pan3/Frk
+GO:0008283,cell population proliferation,16,0.4111397792479136,0.877204492589525,0.6889400921658986,1,1,4,"tags=12%, list=7%, signal=16%",Rad51b/Prickle1
+GO:0009605,response to external stimulus,13,-0.4166779454584605,-0.8678434291319891,0.6768707482993197,1,1,18,"tags=31%, list=33%, signal=27%",Dapk1/Rbm47/Sema5a/Frk
+GO:0006996,organelle organization,13,-0.41506698316691015,-0.864488168661548,0.685374149659864,1,1,14,"tags=31%, list=25%, signal=30%",Pan3/Macf1/Stxbp6/Sema5a
+GO:0010467,gene expression,21,-0.3755761869666566,-0.857439681805986,0.7087033747779752,1,1,5,"tags=10%, list=9%, signal=14%",Frk/Pcsk6
+GO:0050793,regulation of developmental process,14,-0.39903094166900466,-0.8464624425954104,0.7157712305025996,1,1,6,"tags=21%, list=11%, signal=26%",Macf1/Sema5a/Smap1
+GO:0016477,cell migration,13,0.41539226949544567,0.8360566341547176,0.7342995169082126,1,1,11,"tags=38%, list=20%, signal=40%",Atp8a1/Prickle1/Grb10/Anxa3/Igfbp6
+GO:0035556,intracellular signal transduction,13,-0.39294232452099326,-0.8184076409136224,0.7482993197278912,1,1,10,"tags=31%, list=18%, signal=33%",Igfbp5/Dapk1/Gucy1a2/Sema5a
+GO:0090304,nucleic acid metabolic process,15,0.3873756280375267,0.8130116199374067,0.7576470588235295,1,1,10,"tags=27%, list=18%, signal=30%",Rad51b/Prickle1/Rbm28/Anxa3
+GO:0006139,nucleobase-containing compound metabolic process,16,0.37879456078371443,0.8081929972715878,0.7788018433179723,1,1,10,"tags=25%, list=18%, signal=29%",Rad51b/Prickle1/Rbm28/Anxa3
+GO:0006725,cellular aromatic compound metabolic process,16,0.37879456078371443,0.8081929972715878,0.7788018433179723,1,1,10,"tags=25%, list=18%, signal=29%",Rad51b/Prickle1/Rbm28/Anxa3
+GO:0046483,heterocycle metabolic process,16,0.37879456078371443,0.8081929972715878,0.7788018433179723,1,1,10,"tags=25%, list=18%, signal=29%",Rad51b/Prickle1/Rbm28/Anxa3
+GO:0051172,negative regulation of nitrogen compound metabolic process,10,-0.4072763336319883,-0.801640927257502,0.7710437710437711,1,1,20,"tags=60%, list=36%, signal=47%",Igfbp5/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0051234,establishment of localization,24,-0.34291782592564074,-0.7985994188404649,0.7989031078610603,1,1,19,"tags=42%, list=35%, signal=48%",Man1a/Slc4a4/Dapk1/Mcc/Pan3/Macf1/Slco2a1/Stxbp6/Smap1/Pcsk6
+GO:0007165,signal transduction,24,-0.34268977943854073,-0.7980683359445114,0.7989031078610603,1,1,18,"tags=29%, list=33%, signal=35%",Dapk1/Mcc/Rbm47/Macf1/Gucy1a2/Sema5a/Frk
+GO:0009059,macromolecule biosynthetic process,22,-0.34758993690645534,-0.7971228487675216,0.8032490974729242,1,1,5,"tags=41%, list=9%, signal=62%",Igfbp5/Zdbf2/Btaf1/Dapk1/Rbm47/St3gal6/Pan3/Frk/Pcsk6
+GO:0048519,negative regulation of biological process,19,-0.35094063052208274,-0.7852944494925447,0.7771929824561403,1,1,20,"tags=47%, list=36%, signal=46%",Sema3d/Igfbp5/Btaf1/Dapk1/Mcc/Rbm47/Pan3/Sema5a/Frk
+GO:0048523,negative regulation of cellular process,19,-0.35094063052208274,-0.7852944494925447,0.7771929824561403,1,1,20,"tags=47%, list=36%, signal=46%",Sema3d/Igfbp5/Btaf1/Dapk1/Mcc/Rbm47/Pan3/Sema5a/Frk
+GO:1901360,organic cyclic compound metabolic process,17,0.36465289010749596,0.7830456897907723,0.8271889400921659,1,1,10,"tags=24%, list=18%, signal=28%",Rad51b/Prickle1/Rbm28/Anxa3
+GO:0036211,protein modification process,13,-0.3742133270837652,-0.7793994871649411,0.7908163265306123,1,1,21,"tags=38%, list=38%, signal=31%",Man1a/Dapk1/St3gal6/Pan3/Frk
+GO:0070887,cellular response to chemical stimulus,11,-0.3861693407033048,-0.7750668635932765,0.7890365448504983,1,1,18,"tags=45%, list=33%, signal=38%",Slit3/Igfbp5/Dapk1/Rbm47/Sema5a
+GO:0048468,cell development,15,-0.3580546097087844,-0.7711858387963682,0.804159445407279,1,1,16,"tags=60%, list=29%, signal=59%",Slc1a5/Slit3/Sema3d/Tmem108/Zdbf2/Rbm47/Macf1/Sema5a/Smap1
+GO:0006810,transport,23,-0.33108940249448854,-0.7659422114631671,0.8409506398537477,1,1,14,"tags=26%, list=25%, signal=33%",Pan3/Macf1/Slco2a1/Stxbp6/Smap1/Pcsk6
+GO:0032501,multicellular organismal process,28,0.300220003538801,0.7656156163262676,0.885593220338983,1,1,10,"tags=25%, list=18%, signal=42%",Rad51b/Atp8a1/Prickle1/Vps13a/Usp53/Grb10/Anxa3
+GO:0044249,cellular biosynthetic process,23,-0.3224182047741232,-0.7458822629781606,0.8647166361974405,1,1,5,"tags=35%, list=9%, signal=54%",Zdbf2/Btaf1/Dapk1/Rbm47/St3gal6/Pan3/Frk/Pcsk6
+GO:0009058,biosynthetic process,24,-0.31599293619784563,-0.7358957631441776,0.8793418647166362,1,1,5,"tags=33%, list=9%, signal=54%",Zdbf2/Btaf1/Dapk1/Rbm47/St3gal6/Pan3/Frk/Pcsk6
+GO:1901576,organic substance biosynthetic process,24,-0.31599293619784563,-0.7358957631441776,0.8793418647166362,1,1,5,"tags=33%, list=9%, signal=54%",Zdbf2/Btaf1/Dapk1/Rbm47/St3gal6/Pan3/Frk/Pcsk6
+GO:0031325,positive regulation of cellular metabolic process,13,-0.35303585288071204,-0.7352917247238304,0.8418367346938775,1,1,19,"tags=31%, list=35%, signal=26%",Slc4a4/Dapk1/Rbm47/Pan3
+GO:1901575,organic substance catabolic process,10,0.36929960852985433,0.723531405257935,0.7647058823529411,1,1,5,"tags=20%, list=9%, signal=22%",Prickle1/Vps13a
+GO:0051239,regulation of multicellular organismal process,17,-0.32719176898018304,-0.7204252053635857,0.852112676056338,1,1,17,"tags=47%, list=31%, signal=47%",Sema3d/Igfbp5/Tmem108/Mcc/Rbm47/Macf1/Sema5a/Smap1
+GO:0007399,nervous system development,12,0.35724156877630286,0.7136089350271001,0.818407960199005,1,1,5,"tags=17%, list=9%, signal=19%",Prickle1/Vps13a
+GO:0051173,positive regulation of nitrogen compound metabolic process,10,0.36390378944831436,0.712959922179126,0.7794117647058824,1,1,10,"tags=20%, list=18%, signal=20%",Prickle1/Anxa3
+GO:0034641,cellular nitrogen compound metabolic process,18,0.32580074618014637,0.709564588460958,0.8986175115207373,1,1,7,"tags=17%, list=13%, signal=22%",Rad51b/Prickle1/Rbm28
+GO:0044237,cellular metabolic process,27,0.28082896807444757,0.7087091377886011,0.9408033826638478,1,1,10,"tags=26%, list=18%, signal=42%",Rad51b/Prickle1/Vps13a/Slc38a1/Rbm28/Grb10/Anxa3
+GO:0044238,primary metabolic process,28,0.2753715296846936,0.7022474882857227,0.940677966101695,1,1,10,"tags=25%, list=18%, signal=42%",Rad51b/Prickle1/Vps13a/Slc38a1/Rbm28/Grb10/Anxa3
+GO:0006807,nitrogen compound metabolic process,25,0.28391965142791603,0.6998305040230427,0.9423076923076923,1,1,7,"tags=20%, list=13%, signal=32%",Rad51b/Prickle1/Vps13a/Slc38a1/Rbm28
+GO:0007166,cell surface receptor signaling pathway,22,-0.30486618118009146,-0.6991450932037516,0.9025270758122743,1,1,18,"tags=41%, list=33%, signal=46%",Sema3d/Igfbp5/Tmem108/Dapk1/Mcc/Rbm47/Macf1/Sema5a/Frk
+GO:0065009,regulation of molecular function,10,0.3555555555555555,0.6966040711022856,0.8014705882352942,1,1,39,"tags=100%, list=71%, signal=36%",Anxa3/Xdh/Pawr/Cdon/Cav1/Ghr/Sipa1l1/Ror1/Btaf1/Dapk1
+GO:0065008,regulation of biological quality,18,-0.31034697452545473,-0.6881897024589522,0.8890845070422535,1,1,6,"tags=33%, list=11%, signal=44%",Slc4a4/Rbm47/Pan3/Macf1/Sema5a/Pcsk6
+GO:0007167,enzyme-linked receptor protein signaling pathway,10,0.3437428775330281,0.6734606847241551,0.8284313725490197,1,1,12,"tags=40%, list=22%, signal=38%",Prickle1/Grb10/Igfbp6/Xdh
+GO:0042127,regulation of cell population proliferation,13,0.32929585671554873,0.662771086089541,0.8864734299516909,1,1,2,"tags=8%, list=4%, signal=10%",Rad51b
+GO:0007154,cell communication,25,-0.2839736335421241,-0.6623989898312064,0.9344569288389513,1,1,18,"tags=28%, list=33%, signal=35%",Dapk1/Mcc/Rbm47/Macf1/Gucy1a2/Sema5a/Frk
+GO:0023052,signaling,25,-0.2839736335421241,-0.6623989898312064,0.9344569288389513,1,1,18,"tags=28%, list=33%, signal=35%",Dapk1/Mcc/Rbm47/Macf1/Gucy1a2/Sema5a/Frk
+GO:0007267,cell-cell signaling,10,0.33680927016117734,0.6598763684416848,0.8406862745098039,1,1,9,"tags=30%, list=16%, signal=31%",Prickle1/Slc38a1/Grb10
+GO:0009966,regulation of signal transduction,22,-0.28700235719744116,-0.6581782505222157,0.9350180505415162,1,1,18,"tags=27%, list=33%, signal=31%",Dapk1/Mcc/Rbm47/Macf1/Gucy1a2/Sema5a
+GO:0071704,organic substance metabolic process,30,0.25324457867341194,0.6476625390978217,0.9829059829059829,1,1,10,"tags=23%, list=18%, signal=42%",Rad51b/Prickle1/Vps13a/Slc38a1/Rbm28/Grb10/Anxa3
+GO:0008152,metabolic process,31,0.24824457867341193,0.6384985009114795,0.9892008639308856,1,1,10,"tags=23%, list=18%, signal=42%",Rad51b/Prickle1/Vps13a/Slc38a1/Rbm28/Grb10/Anxa3
+GO:0051171,regulation of nitrogen compound metabolic process,16,-0.29064529863639277,-0.6341794804088059,0.9154929577464789,1,1,20,"tags=38%, list=36%, signal=34%",Igfbp5/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0009056,catabolic process,11,0.31937179588825726,0.6267955506703936,0.88,1,1,5,"tags=18%, list=9%, signal=21%",Prickle1/Vps13a
+GO:0048731,system development,16,0.2932110379951114,0.6255926883957796,0.9193548387096774,1,1,5,"tags=12%, list=9%, signal=16%",Prickle1/Vps13a
+GO:0019219,regulation of nucleobase-containing compound metabolic process,12,-0.2997990619495037,-0.6146315888801782,0.945,1,1,20,"tags=33%, list=36%, signal=27%",Btaf1/Rbm47/Pan3/Frk
+GO:0051252,regulation of RNA metabolic process,12,-0.2997990619495037,-0.6146315888801782,0.945,1,1,20,"tags=33%, list=36%, signal=27%",Btaf1/Rbm47/Pan3/Frk
+GO:0010033,response to organic substance,10,0.3111111111111111,0.6095285622145,0.8823529411764706,1,1,41,"tags=100%, list=75%, signal=31%",Grb10/Clic4/Rora/Cav1/Ghr/Slit3/Igfbp5/Man1a/Dapk1/Rbm47
+GO:0009893,positive regulation of metabolic process,14,0.29268292682926833,0.6094929033260644,0.9152941176470588,1,1,43,"tags=100%, list=78%, signal=29%",Prickle1/Grb10/Anxa3/Xdh/Pawr/Cdon/Rora/Cav1/Ghr/Ror1/Slc4a4/Dapk1/Rbm47/Pan3
+GO:0048583,regulation of response to stimulus,23,-0.26251757373484974,-0.6073081453513541,0.9579524680073126,1,1,18,"tags=48%, list=33%, signal=55%",Igfbp7/Slit3/Sema3d/Igfbp5/Tmem108/Dapk1/Mcc/Rbm47/Macf1/Gucy1a2/Sema5a
+GO:1901362,organic cyclic compound biosynthetic process,10,-0.30843187363878,-0.6070856388207788,0.9545454545454546,1,1,5,"tags=20%, list=9%, signal=22%",Btaf1/Frk
+GO:0043170,macromolecule metabolic process,27,-0.2544041957368599,-0.5988751322262317,0.9810964083175804,1,1,5,"tags=7%, list=9%, signal=13%",Frk/Pcsk6
+GO:0048513,animal organ development,14,0.2795874783923545,0.5822224951248122,0.9317647058823529,1,1,4,"tags=7%, list=7%, signal=9%",Prickle1
+GO:0009890,negative regulation of biosynthetic process,14,-0.27438797210919214,-0.5820579028756285,0.9549393414211439,1,1,20,"tags=43%, list=36%, signal=37%",Igfbp5/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0009892,negative regulation of metabolic process,14,-0.27438797210919214,-0.5820579028756285,0.9549393414211439,1,1,20,"tags=43%, list=36%, signal=37%",Igfbp5/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0010558,negative regulation of macromolecule biosynthetic process,14,-0.27438797210919214,-0.5820579028756285,0.9549393414211439,1,1,20,"tags=43%, list=36%, signal=37%",Igfbp5/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0010605,negative regulation of macromolecule metabolic process,14,-0.27438797210919214,-0.5820579028756285,0.9549393414211439,1,1,20,"tags=43%, list=36%, signal=37%",Igfbp5/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0031324,negative regulation of cellular metabolic process,14,-0.27438797210919214,-0.5820579028756285,0.9549393414211439,1,1,20,"tags=43%, list=36%, signal=37%",Igfbp5/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0031327,negative regulation of cellular biosynthetic process,14,-0.27438797210919214,-0.5820579028756285,0.9549393414211439,1,1,20,"tags=43%, list=36%, signal=37%",Igfbp5/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0022008,neurogenesis,11,-0.2864176245305747,-0.574858712290438,0.9584717607973422,1,1,13,"tags=45%, list=24%, signal=43%",Slit3/Sema3d/Tmem108/Macf1/Sema5a
+GO:0030182,neuron differentiation,11,-0.2864176245305747,-0.574858712290438,0.9584717607973422,1,1,13,"tags=45%, list=24%, signal=43%",Slit3/Sema3d/Tmem108/Macf1/Sema5a
+GO:0048699,generation of neurons,11,-0.2864176245305747,-0.574858712290438,0.9584717607973422,1,1,13,"tags=45%, list=24%, signal=43%",Slit3/Sema3d/Tmem108/Macf1/Sema5a
+GO:0044271,cellular nitrogen compound biosynthetic process,12,-0.2747244197737859,-0.563224933166028,0.9633333333333334,1,1,20,"tags=42%, list=36%, signal=34%",Igfbp5/Btaf1/Dapk1/Pan3/Frk
+GO:0010468,regulation of gene expression,18,-0.25218664377402045,-0.5592200523570114,0.9788732394366197,1,1,24,"tags=39%, list=44%, signal=33%",Igfbp5/Zdbf2/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0080090,regulation of primary metabolic process,19,-0.24686897600579227,-0.5524149093846745,0.9771929824561404,1,1,20,"tags=32%, list=36%, signal=31%",Btaf1/Slc4a4/Dapk1/Rbm47/Pan3/Frk
+GO:0010604,positive regulation of macromolecule metabolic process,11,0.2727272727272727,0.5352515259416833,0.9575,1,1,43,"tags=100%, list=78%, signal=27%",Prickle1/Anxa3/Xdh/Pawr/Cdon/Rora/Cav1/Ghr/Dapk1/Rbm47/Pan3
+GO:0048585,negative regulation of response to stimulus,11,0.27160161656398885,0.5330423256183777,0.965,1,1,9,"tags=18%, list=16%, signal=19%",Prickle1/Grb10
+GO:0006950,response to stress,13,0.2578411422616922,0.5189547648726323,0.9806763285024155,1,1,2,"tags=8%, list=4%, signal=10%",Rad51b
+GO:0010646,regulation of cell communication,23,-0.22353621879123148,-0.5171286802691316,0.9926873857404022,1,1,18,"tags=26%, list=33%, signal=30%",Dapk1/Mcc/Rbm47/Macf1/Gucy1a2/Sema5a
+GO:0023051,regulation of signaling,23,-0.22353621879123148,-0.5171286802691316,0.9926873857404022,1,1,18,"tags=26%, list=33%, signal=30%",Dapk1/Mcc/Rbm47/Macf1/Gucy1a2/Sema5a
+GO:0050896,response to stimulus,30,0.19471072152443408,0.49796461962849425,1,1,1,16,"tags=37%, list=29%, signal=57%",Rad51b/Prickle1/Usp53/Grb10/Anxa3/Igfbp6/Xdh/Neat1/Fbxl17/Clic4/Pawr
+GO:0030334,regulation of cell migration,10,-0.24805801415551187,-0.48825193133112793,0.9949494949494949,1,1,17,"tags=50%, list=31%, signal=42%",Sema3d/Igfbp5/Mcc/Macf1/Sema5a
+GO:0040012,regulation of locomotion,10,-0.24805801415551187,-0.48825193133112793,0.9949494949494949,1,1,17,"tags=50%, list=31%, signal=42%",Sema3d/Igfbp5/Mcc/Macf1/Sema5a
+GO:2000145,regulation of cell motility,10,-0.24805801415551187,-0.48825193133112793,0.9949494949494949,1,1,17,"tags=50%, list=31%, signal=42%",Sema3d/Igfbp5/Mcc/Macf1/Sema5a
+GO:0031323,regulation of cellular metabolic process,21,-0.21166115393854715,-0.4832219900562224,0.9946714031971581,1,1,22,"tags=38%, list=40%, signal=37%",Igfbp5/Zdbf2/Btaf1/Slc4a4/Dapk1/Rbm47/Pan3/Frk
+GO:0051716,cellular response to stimulus,27,0.19061437863121242,0.48104065921726497,0.9936575052854123,1,1,4,"tags=7%, list=7%, signal=13%",Rad51b/Prickle1
+GO:0016070,RNA metabolic process,14,0.2217258469045977,0.4617294614220719,0.9905882352941177,1,1,10,"tags=21%, list=18%, signal=24%",Prickle1/Rbm28/Anxa3
+GO:0040011,locomotion,11,0.2352099979656171,0.4616205378687349,0.995,1,1,3,"tags=9%, list=5%, signal=11%",Atp8a1
+GO:0019222,regulation of metabolic process,22,-0.18747846757003572,-0.4299415900300216,0.9963898916967509,1,1,22,"tags=36%, list=40%, signal=36%",Igfbp5/Zdbf2/Btaf1/Slc4a4/Dapk1/Rbm47/Pan3/Frk
+GO:0009653,anatomical structure morphogenesis,14,0.19842950879061372,0.41321637284604956,0.9976470588235294,1,1,4,"tags=7%, list=7%, signal=9%",Prickle1
+GO:0010556,regulation of macromolecule biosynthetic process,19,-0.18238042685544903,-0.40810987514497266,0.9982456140350877,1,1,24,"tags=37%, list=44%, signal=32%",Igfbp5/Zdbf2/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0031326,regulation of cellular biosynthetic process,19,-0.18238042685544903,-0.40810987514497266,0.9982456140350877,1,1,24,"tags=37%, list=44%, signal=32%",Igfbp5/Zdbf2/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0060255,regulation of macromolecule metabolic process,20,-0.16852561533755267,-0.37929087966782365,0.9982300884955753,1,1,24,"tags=35%, list=44%, signal=31%",Igfbp5/Zdbf2/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0009889,regulation of biosynthetic process,20,-0.15703670003841444,-0.35343344083568523,1,1,1,24,"tags=60%, list=44%, signal=53%",Zcchc7/Ror1/Celf2/Igfbp7/Slit3/Igfbp5/Zdbf2/Btaf1/Dapk1/Rbm47/Pan3/Frk
+GO:0042221,response to chemical,15,0.1659378881756035,0.3482651501802029,1,1,1,9,"tags=13%, list=16%, signal=15%",Prickle1/Grb10

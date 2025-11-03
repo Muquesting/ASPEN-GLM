@@ -1,0 +1,31 @@
+celltype,subset,n_genes,n_terms,top,padj
+Cardiomyocyte,shared,1571,59,heart process,4.684819717924598e-4
+Cardiomyocyte,aged_only,503,0,NA,NA
+Cardiomyocyte,young_only,780,0,NA,NA
+Cardiomyocyte,condition_specific,1283,0,NA,NA
+Coronary_EC,shared,31,0,NA,NA
+Coronary_EC,aged_only,46,0,NA,NA
+Coronary_EC,young_only,18,0,NA,NA
+Coronary_EC,condition_specific,64,0,NA,NA
+Endocardial_EC,shared,54,0,NA,NA
+Endocardial_EC,aged_only,54,0,NA,NA
+Endocardial_EC,young_only,39,0,NA,NA
+Endocardial_EC,condition_specific,93,0,NA,NA
+Fibroblast,shared,376,1,cell adhesion,0.009548690344152453
+Fibroblast,aged_only,348,0,NA,NA
+Fibroblast,young_only,171,0,NA,NA
+Fibroblast,condition_specific,519,0,NA,NA
+Lymphatic_EC,young_only,8,0,NA,NA
+Lymphatic_EC,condition_specific,11,0,NA,NA
+Mesothelial,shared,47,0,NA,NA
+Mesothelial,aged_only,18,0,NA,NA
+Mesothelial,young_only,37,0,NA,NA
+Mesothelial,condition_specific,55,0,NA,NA
+Myeloid,shared,102,0,NA,NA
+Myeloid,aged_only,106,0,NA,NA
+Myeloid,young_only,42,0,NA,NA
+Myeloid,condition_specific,148,0,NA,NA
+Pericytes,shared,102,0,NA,NA
+Pericytes,aged_only,81,0,NA,NA
+Pericytes,young_only,53,0,NA,NA
+Pericytes,condition_specific,134,0,NA,NA

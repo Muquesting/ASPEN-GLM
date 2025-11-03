@@ -70,7 +70,9 @@ aspen_glm_pipeline <- function(a1_counts,
                                glob_mean = c("estimate", 0.5),
                                genes.excl = character(0),
                                run_group_mean = FALSE,
-                               run_group_var = FALSE) {
+                               run_group_var = FALSE,
+                               run_bb_var = FALSE,
+                               bb_var_args = list()) {
 
   dispersion_method <- match.arg(dispersion_method)
   if (length(glob_mean) > 1 && is.character(glob_mean)) glob_mean <- glob_mean[1]
@@ -113,7 +115,8 @@ aspen_glm_pipeline <- function(a1_counts,
     estimates_group = NULL,
     res_bb_mean = NULL,
     res_group_mean = NULL,
-    res_group_var = NULL
+    res_group_var = NULL,
+    res_bb_var_raw = NULL
   )
 
   # 3) Group-wise estimates + shrinkage
@@ -182,6 +185,27 @@ aspen_glm_pipeline <- function(a1_counts,
                                    estimates = estimates_shrunk,
                                    estimates_group = out$estimates_group,
                                    equalGroups = TRUE)
+  }
+
+  if (isTRUE(run_bb_var)) {
+    default_bb_args <- list(
+      a1_counts = a1_counts,
+      tot_counts = tot_counts,
+      estimates = estimates_shrunk,
+      estimates_group = out$estimates_group,
+      min_cells = max(min_cells_test, 5L),
+      min_counts = max(min_counts_test, 5L)
+    )
+    merged_args <- modifyList(default_bb_args, bb_var_args, keep.null = TRUE)
+    if (is.null(merged_args$n_pmt)) merged_args$n_pmt <- 500L
+    if (is.null(merged_args$n_sim)) merged_args$n_sim <- merged_args$n_pmt
+    out$res_bb_var_raw <- tryCatch(do.call(bb_var, merged_args), error = function(e) {
+      warning("bb_var failed: ", conditionMessage(e))
+      NULL
+    })
+    if (!is.null(out$res_bb_var_raw) && "pval_disp" %in% colnames(out$res_bb_var_raw)) {
+      out$res_bb_var_raw$padj_disp <- suppressWarnings(stats::p.adjust(out$res_bb_var_raw$pval_disp, method = "BH"))
+    }
   }
 
   out

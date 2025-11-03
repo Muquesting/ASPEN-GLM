@@ -1,2 +1,0 @@
-ID,Description,GeneRatio,BgRatio,RichFactor,FoldEnrichment,zScore,pvalue,p.adjust,qvalue,geneID,Count
-GO:0061337,cardiac conduction,6/73,16/1736,0.375,8.917808219178083,6.6644726679179005,2.5816116622034148e-5,0.0399891646475309,0.038669825213846945,Ank2/Cacna1c/Cacna2d1/Gja1/Pln/Ryr2,6

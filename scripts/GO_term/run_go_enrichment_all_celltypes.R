@@ -16,6 +16,9 @@ base_dir <- if (length(args) >= 1) args[[1]] else "results/celltype_wo_condition
 out_dir  <- if (length(args) >= 2) args[[2]] else "results/GO_term_celltype_all"
 alpha <- suppressWarnings(as.numeric(Sys.getenv("FDR_ALPHA", unset = "0.1")))
 if (!is.finite(alpha)) alpha <- 0.1
+overwrite <- suppressWarnings(as.integer(Sys.getenv("OVERWRITE_RESULTS", unset = "1")))
+if (!is.finite(overwrite)) overwrite <- 1L
+if (overwrite == 1L && dir.exists(out_dir)) unlink(out_dir, recursive = TRUE, force = TRUE)
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
 `%||%` <- function(a,b) if (!is.null(a)) a else b

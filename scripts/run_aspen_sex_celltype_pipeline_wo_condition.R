@@ -1,13 +1,9 @@
 #!/usr/bin/env Rscript
 suppressPackageStartupMessages({
-  ok_aspen <- requireNamespace("ASPEN", quietly = TRUE)
-  if (ok_aspen) {
-    library(ASPEN)
-  } else {
-    message("Package ASPEN not installed; sourcing functions from R/ directory…")
-    rfiles <- list.files("R", full.names = TRUE, pattern = "\\.R$")
-    invisible(lapply(rfiles, source))
-  }
+  message("Sourcing ASPEN helpers from local R/ directory…")
+  rfiles <- list.files("R", full.names = TRUE, pattern = "\\.R$")
+  if (!length(rfiles)) stop("No helper scripts found under R/")
+  invisible(lapply(rfiles, source))
   suppressWarnings(suppressMessages(library(assertthat)))
   suppressWarnings(suppressMessages(library(locfit)))
   suppressWarnings(suppressMessages(library(Matrix)))
@@ -26,6 +22,8 @@ min_counts_test <- if (length(args) >= 6) as.integer(args[[6]]) else 0L
 min_cells_test  <- if (length(args) >= 7) as.integer(args[[7]]) else 5L
 min_counts_glob <- if (length(args) >= 8) as.integer(args[[8]]) else 5L
 top_k           <- if (length(args) >= 9) as.integer(args[[9]]) else 5L
+bb_var_perms    <- suppressWarnings(as.integer(Sys.getenv("BB_VAR_PERMUTATIONS", unset = "500")))
+if (!is.finite(bb_var_perms) || bb_var_perms <= 0) bb_var_perms <- 500L
 
 message("Loading ", input_rds)
 sce <- readRDS(input_rds)
@@ -275,7 +273,20 @@ for (ct in ct_keep) {
 
     # Allelic variance (raw & normalized)
     var_min_counts <- if (min_counts_test > 0) min_counts_test else 5L
-    bb_var_raw  <- NULL
+    bb_var_raw <- tryCatch(
+      bb_var(a1_counts = a1,
+             tot_counts = tot,
+             estimates = res$estimates_shrunk,
+             estimates_group = out_group$estimates_group,
+             min_cells = max(var_min_counts, min_cells_test),
+             min_counts = var_min_counts,
+             n_pmt = bb_var_perms,
+             n_sim = bb_var_perms),
+      error = function(e) NULL
+    )
+    if (!is.null(bb_var_raw) && "pval_disp" %in% colnames(bb_var_raw)) {
+      bb_var_raw$padj_disp <- suppressWarnings(p.adjust(bb_var_raw$pval_disp, method = "BH"))
+    }
     bb_var_norm <- NULL
 
     if (!is.null(res_group_mean) && "pval" %in% colnames(res_group_mean)) {
@@ -309,7 +320,7 @@ for (ct in ct_keep) {
            cols = c("AR","N","log2FC","llr_mean","pval_mean","padj_mean"))
     to_csv(bb_mean_norm, file.path(out_dir, "bb_mean_results_norm.csv"),
            cols = c("AR","N","log2FC","llr_mean","pval_mean","padj_mean"))
-    to_csv(bb_var_raw, file.path(out_dir, "bb_var_results.csv"),
+to_csv(bb_var_raw, file.path(out_dir, "bb_var_results.csv"),
            cols = c("AR","N","log2FC","llr_disp","pval_disp","padj_disp"))
     to_csv(bb_var_norm, file.path(out_dir, "bb_var_results_norm.csv"),
            cols = c("AR","N","log2FC","llr_disp","pval_disp","padj_disp"))

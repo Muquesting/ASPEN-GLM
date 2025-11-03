@@ -1,0 +1,3 @@
+gene,condition,padj,bb_mu,status,padj_other,bb_mu_other,celltype
+Prkg1,F1_Aged,5.35114581335004e-6,0.18644685146786,shared,1.18455833088057e-7,0.136428571428571,Smooth_Muscle
+Prkg1,F1_Young,1.18455833088057e-7,0.136428571428571,shared,5.35114581335004e-6,0.18644685146786,Smooth_Muscle

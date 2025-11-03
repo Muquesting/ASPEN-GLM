@@ -25,8 +25,8 @@
 #' @examples
 #' bb_var()
 bb_var <- function(a1_counts, tot_counts, estimates, estimates_group = NULL,
-                         min_cells = 5, min_counts = 5, batch = NULL, metadata = NULL,
-                         n_pmt = 500, n_sim = 500) {
+                   min_cells = 5, min_counts = 5, batch = NULL, metadata = NULL,
+                   n_pmt = 500, n_sim = 500, cores = NULL) {
 
   # Basic assertions to ensure matrix dimensions and order
   assert_that(are_equal(dim(a1_counts), dim(tot_counts)),
@@ -40,20 +40,24 @@ bb_var <- function(a1_counts, tot_counts, estimates, estimates_group = NULL,
 
   len <- nrow(estimates)
 
-  # Pre-allocate output vectors
-  N           <- numeric(len)
-  loglik0_disp <- numeric(len)
-  loglik1_disp <- numeric(len)
-  llr_disp    <- numeric(len)
-  pval_disp   <- numeric(len)
-  AR          <- numeric(len)
-  log2FC      <- numeric(len)
+  # Determine parallel strategy (default serial)
+  if (!is.null(cores)) {
+    cores <- suppressWarnings(as.integer(cores))
+  }
+  if (is.null(cores) || !is.finite(cores) || cores < 1) {
+    cores_env <- Sys.getenv("BB_VAR_CORES", Sys.getenv("PBS_NCPUS", "1"))
+    cores <- suppressWarnings(as.integer(cores_env))
+  }
+  if (!is.finite(cores) || cores < 1) cores <- 1L
+  cores <- min(cores, parallel::detectCores())
+  if (.Platform$OS.type == "windows") cores <- 1L
+  if (cores > len) cores <- len
+  index_chunks <- if (cores > 1L && len > 1L) parallel::splitIndices(len, cores) else list(seq_len(len))
 
   # Convert counts to matrices (if not already)
   a1_counts <- as.matrix(a1_counts)
   tot_counts <- as.matrix(tot_counts)
 
-  # Vectorized version of the beta-binomial likelihood function
   lbetabin_vec <- function(y, n, mu, theta) {
     min_theta <- 1e-06
     theta <- pmax(theta, min_theta)
@@ -63,89 +67,131 @@ bb_var <- function(a1_counts, tot_counts, estimates, estimates_group = NULL,
           lgamma(y + alpha) - lgamma(alpha) + lgamma(n - y + beta) - lgamma(beta))
   }
 
-  # Main loop over genes
-  for (k in 1:len) {
-    # Get counts for gene k and remove any NAs without building a data.frame
-    y <- round(a1_counts[k, ])
-    n <- round(tot_counts[k, ])
-    valid <- !is.na(y) & !is.na(n)
-    y <- y[valid]
-    n <- n[valid]
-    if (length(n) == 0) next  # Skip iteration if no valid observations
+  make_chunk <- function(ids) {
+    n_ids <- length(ids)
+    N_vec           <- numeric(n_ids)
+    loglik0_vec     <- rep(NA_real_, n_ids)
+    loglik1_vec     <- rep(NA_real_, n_ids)
+    llr_vec         <- rep(NA_real_, n_ids)
+    pval_vec        <- rep(NA_real_, n_ids)
+    AR_vec          <- rep(NA_real_, n_ids)
+    log2FC_vec      <- rep(NA_real_, n_ids)
 
-    a2 <- n - y  # Compute second allele counts
+    for (ii in seq_along(ids)) {
+      k <- ids[ii]
 
-    AR[k]     <- mean(y / n)  # Mean allelic ratio
-    log2FC[k] <- log2(mean(y)) - log2(mean(a2))
-    N[k]      <- estimates[k, "N"]
+      # Get counts for gene k and remove any NAs without building a data.frame
+      y <- round(a1_counts[k, ])
+      n <- round(tot_counts[k, ])
+      valid <- !is.na(y) & !is.na(n)
+      y <- y[valid]
+      n <- n[valid]
+      if (!length(n)) next  # Skip iteration if no valid observations
 
-    if (!is.na(N[k]) && N[k] >= min_cells) {
-      mu          <- estimates[k, "bb_mu"]
-      theta       <- estimates[k, "bb_theta"]
-      theta_adj   <- estimates[k, "thetaCorrected"]
-      theta_common<- estimates[k, "theta_common"]
+      a2 <- n - y  # Compute second allele counts
 
-      if (is.null(batch)) {
-        # Global dispersion deviation test
-        disp_null_lik <- lbetabin_vec(y, n, mu, theta_common)
-        disp_alt_lik  <- lbetabin_vec(y, n, mu, theta_adj)
-        loglik0_disp[k] <- disp_null_lik
-        loglik1_disp[k] <- disp_alt_lik
-        llr_disp[k]     <- disp_null_lik - disp_alt_lik
+      AR_vec[ii]     <- mean(y / n)
+      log2FC_vec[ii] <- log2(mean(y)) - log2(mean(a2))
+      N_vec[ii]      <- estimates[k, "N"]
 
-        simu_points <- simu_pert(n_pmt, n_sim, n, bb_mu = mu, theta_common = theta_common, thetaCorrected = theta_adj)
-        pval_disp[k] <- cal_p_value(simu_points, llr_disp[k])
-      } else {
-        # Batch-specific dispersion test
-        assert_that(!is.null(metadata), msg = "cell metadata is required")
-        assert_that(!is.null(estimates_group),
-                    msg = "beta-binomial estimates per batch are required, run estim_bbparams_bygroup")
-        assert_that(are_equal(nrow(metadata), ncol(tot_counts)),
-                    msg = "Number of cells in metadata and the count matrices must be the same")
+      if (!is.na(N_vec[ii]) && N_vec[ii] >= min_cells) {
+        mu            <- estimates[k, "bb_mu"]
+        theta_adj     <- estimates[k, "thetaCorrected"]
+        theta_common  <- estimates[k, "theta_common"]
 
-        # Split metadata by batch
-        batch_id <- split(metadata, metadata[, colnames(metadata) == batch])
-        # For each batch, subset y and n using the cell IDs from metadata (assuming count matrix column names are cell IDs)
-        df_list <- lapply(batch_id, function(meta) {
-          idx <- which(colnames(tot_counts) %in% rownames(meta))
-          list(y = y[idx], n = n[idx])
-        })
+        if (is.null(batch)) {
+          # Global dispersion deviation test
+          disp_null_lik <- lbetabin_vec(y, n, mu, theta_common)
+          disp_alt_lik  <- lbetabin_vec(y, n, mu, theta_adj)
+          loglik0_vec[ii] <- disp_null_lik
+          loglik1_vec[ii] <- disp_alt_lik
+          llr_vec[ii]     <- disp_null_lik - disp_alt_lik
 
-        # Extract batch-specific parameters; align using names
-        theta_common_batch <- estimates_group[[k]]$theta_common
-        names(theta_common_batch) <- estimates_group[[k]]$group
-        theta_adj_batch <- estimates_group[[k]]$thetaCorrected
-        names(theta_adj_batch) <- estimates_group[[k]]$group
+          simu_points <- simu_pert(n_pmt, n_sim, n,
+                                   bb_mu = mu,
+                                   theta_common = theta_common,
+                                   thetaCorrected = theta_adj)
+          pval_vec[ii] <- cal_p_value(simu_points, llr_vec[ii])
+        } else {
+          # Batch-specific dispersion test
+          assert_that(!is.null(metadata), msg = "cell metadata is required")
+          assert_that(!is.null(estimates_group),
+                      msg = "beta-binomial estimates per batch are required, run estim_bbparams_bygroup")
+          assert_that(are_equal(nrow(metadata), ncol(tot_counts)),
+                      msg = "Number of cells in metadata and the count matrices must be the same")
 
-        common_batches <- intersect(names(batch_id), names(theta_common_batch))
-        theta_common_batch <- theta_common_batch[common_batches]
-        theta_adj_batch    <- theta_adj_batch[common_batches]
-        df_list <- df_list[common_batches]
+          batch_id <- split(metadata, metadata[, colnames(metadata) == batch])
+          df_list <- lapply(batch_id, function(meta) {
+            idx <- which(colnames(tot_counts) %in% rownames(meta))
+            list(y = y[idx], n = n[idx])
+          })
 
-        # Compute likelihoods for each batch and sum over batches
-        disp_null_lik_list <- mapply(function(d, theta_val) {
-          lbetabin_vec(d$y, d$n, mu, theta_val)
-        }, df_list, theta_common_batch, SIMPLIFY = FALSE)
+          theta_common_batch <- estimates_group[[k]]$theta_common
+          names(theta_common_batch) <- estimates_group[[k]]$group
+          theta_adj_batch <- estimates_group[[k]]$thetaCorrected
+          names(theta_adj_batch) <- estimates_group[[k]]$group
+          common_batches <- intersect(names(batch_id), names(theta_common_batch))
+          theta_common_batch <- theta_common_batch[common_batches]
+          theta_adj_batch    <- theta_adj_batch[common_batches]
+          df_list <- df_list[common_batches]
 
-        disp_alt_lik_list <- mapply(function(d, theta_val) {
-          lbetabin_vec(d$y, d$n, mu, theta_val)
-        }, df_list, theta_adj_batch, SIMPLIFY = FALSE)
+          disp_null_lik_list <- mapply(function(d, theta_val) {
+            lbetabin_vec(d$y, d$n, mu, theta_val)
+          }, df_list, theta_common_batch, SIMPLIFY = FALSE)
 
-        loglik0_disp[k] <- sum(unlist(disp_null_lik_list))
-        loglik1_disp[k] <- sum(unlist(disp_alt_lik_list))
-        llr_disp[k]     <- loglik0_disp[k] - loglik1_disp[k]
+          disp_alt_lik_list <- mapply(function(d, theta_val) {
+            lbetabin_vec(d$y, d$n, mu, theta_val)
+          }, df_list, theta_adj_batch, SIMPLIFY = FALSE)
 
-        simu_points <- simu_pert(n_pmt, n_sim, n, bb_mu = mu, theta_common = theta_common, thetaCorrected = theta_adj)
-        pval_disp[k] <- cal_p_value(simu_points, llr_disp[k])
+          loglik0_vec[ii] <- sum(unlist(disp_null_lik_list))
+          loglik1_vec[ii] <- sum(unlist(disp_alt_lik_list))
+          llr_vec[ii]     <- loglik0_vec[ii] - loglik1_vec[ii]
+
+          simu_points <- simu_pert(n_pmt, n_sim, n,
+                                   bb_mu = mu,
+                                   theta_common = theta_common,
+                                   thetaCorrected = theta_adj)
+          pval_vec[ii] <- cal_p_value(simu_points, llr_vec[ii])
+        }
       }
-    } else {
-
-        loglik0_disp[k] <- NA
-        loglik1_disp[k] <- NA
-        llr_disp[k]     <- NA
-        pval_disp[k]    <- NA
-
     }
+
+    list(idx = ids,
+         N = N_vec,
+         loglik0 = loglik0_vec,
+         loglik1 = loglik1_vec,
+         llr = llr_vec,
+         pval = pval_vec,
+         AR = AR_vec,
+         log2FC = log2FC_vec)
+  }
+
+  chunk_results <- if (length(index_chunks) == 1L) {
+    list(make_chunk(index_chunks[[1]]))
+  } else {
+    parallel::mclapply(index_chunks, make_chunk,
+                       mc.cores = cores,
+                       mc.preschedule = FALSE)
+  }
+
+  # Pre-allocate output vectors
+  N            <- numeric(len)
+  loglik0_disp <- rep(NA_real_, len)
+  loglik1_disp <- rep(NA_real_, len)
+  llr_disp     <- rep(NA_real_, len)
+  pval_disp    <- rep(NA_real_, len)
+  AR           <- rep(NA_real_, len)
+  log2FC       <- rep(NA_real_, len)
+
+  for (chunk in chunk_results) {
+    ids <- chunk$idx
+    N[ids]            <- chunk$N
+    loglik0_disp[ids] <- chunk$loglik0
+    loglik1_disp[ids] <- chunk$loglik1
+    llr_disp[ids]     <- chunk$llr
+    pval_disp[ids]    <- chunk$pval
+    AR[ids]           <- chunk$AR
+    log2FC[ids]       <- chunk$log2FC
   }
 
   # Combine results with the original estimates data.frame

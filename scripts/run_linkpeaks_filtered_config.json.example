@@ -1,0 +1,14 @@
+{
+  "multiome_path": "/g/data/zk16/muqing/Projects/Multiome/data/multiome/wnn_multiome_with_allelic_fracs_and_fixed_condition_ATACagg_wnn_sexupdated.rds",
+  "filtered_fragment_dir": "/g/data/zk16/muqing/Projects/Multiome/data/multiome/filtered_fragments",
+  "fragment_manifest": "/g/data/zk16/muqing/Projects/Multiome/data/multiome/filtered_fragments/filtered_fragments_manifest.tsv",
+  "gex_qc_dir": "/g/data/zk16/muqing/Projects/Multiome/QC/GEX/per_sample_qc",
+  "atac_qc_dir": "/g/data/zk16/muqing/Projects/Multiome/QC/ATAC",
+  "gtf_path": "/g/data/zk16/muqing/Projects/Multiome/ref/BL6_T2T/geneset/genes.gtf",
+  "gtf_gene_map": "/g/data/zk16/muqing/Projects/Multiome/ref/BL6_ref/geneset_m39/t2t_gene_to_grcm39.tsv",
+  "regionstats_fasta": "/g/data/zk16/muqing/Projects/Multiome/ref/BL6_T2T/genome/softmasked.fa",
+  "output_dir": "/g/data/zk16/muqing/Projects/Multiome/linkpeaks_output",
+  "expression_assay": "RNA_gene",
+  "rna_ai_path": null,
+  "ai_table_path": null
+}

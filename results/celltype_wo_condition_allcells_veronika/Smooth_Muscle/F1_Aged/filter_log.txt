@@ -1,8 +1,9 @@
 Cell type: Smooth_Muscle
 Condition: F1_Aged
-Cells kept (F/M): 24
-Genes kept (after expression filter): 458
+Cells kept (F/M): 32
+Genes kept (after expression filter): 41
 Expression filter: rowSums(tot > 1) >= 10
 Veronika path: trend mean across USABLE cells (tot>0); δ,N estimated from data
 bb_mean: primary run on raw counts; normalized output retained for diagnostics
 Thresholds (est/test/glob): min_counts_est=0, min_cells_est=5, min_counts_test=0, min_cells_test=5, min_counts_glob=5
+bb_var permutations: 100

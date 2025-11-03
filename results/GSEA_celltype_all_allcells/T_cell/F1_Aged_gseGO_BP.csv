@@ -1,0 +1,438 @@
+ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment,my_sign
+GO:0097190,apoptotic signaling pathway,11,-0.8971258895173726,-1.460434471672414,0.03313202410365265,1,1,6,"tags=18%, list=4%, signal=19%",Wwox/Serinc3,CAST-biased
+GO:0045934,negative regulation of nucleobase-containing compound metabolic process,20,0.771755053909732,1.4577709691157834,0.047604025823734436,1,1,32,"tags=30%, list=21%, signal=27%",Zeb1/Nr3c1/Bach2/Crebbp/Setd5/App,BL6-biased
+GO:0000122,negative regulation of transcription by RNA polymerase II,17,0.7949505891045884,1.4405721255345936,0.05530973451327434,1,1,24,"tags=24%, list=16%, signal=22%",Zeb1/Nr3c1/Bach2/Crebbp,BL6-biased
+GO:0045892,negative regulation of DNA-templated transcription,19,0.773281771466984,1.4371392178331537,0.06836994579279335,1,1,32,"tags=32%, list=21%, signal=28%",Zeb1/Nr3c1/Bach2/Crebbp/Setd5/App,BL6-biased
+GO:0051253,negative regulation of RNA metabolic process,19,0.773281771466984,1.4371392178331537,0.06836994579279335,1,1,32,"tags=32%, list=21%, signal=28%",Zeb1/Nr3c1/Bach2/Crebbp/Setd5/App,BL6-biased
+GO:1902679,negative regulation of RNA biosynthetic process,19,0.773281771466984,1.4371392178331537,0.06836994579279335,1,1,32,"tags=32%, list=21%, signal=28%",Zeb1/Nr3c1/Bach2/Crebbp/Setd5/App,BL6-biased
+GO:2001233,regulation of apoptotic signaling pathway,10,-0.9057634105211546,-1.435264258461458,0.02526017325789518,1,1,6,"tags=20%, list=4%, signal=21%",Wwox/Serinc3,CAST-biased
+GO:0080134,regulation of response to stress,16,-0.8163848028803223,-1.4161562634814524,0.07875457875457875,1,1,2,"tags=19%, list=1%, signal=21%",Peli1/Pafah1b1/Serinc3,CAST-biased
+GO:0006955,immune response,30,-0.7302089329811805,-1.3830669158962872,0.05391304347826087,1,1,14,"tags=20%, list=9%, signal=23%",Prkch/Cblb/Ext1/Dennd1b/Apbb1ip/Serinc3,CAST-biased
+GO:1902533,positive regulation of intracellular signal transduction,15,-0.8095204703363938,-1.3807575187216674,0.10261194029850747,1,1,2,"tags=27%, list=1%, signal=29%",Igf1r/Akt3/Peli1/Serinc3,CAST-biased
+GO:1902531,regulation of intracellular signal transduction,31,-0.7177913281585095,-1.3618608911416743,0.07142857142857142,1,1,5,"tags=23%, list=3%, signal=28%",Ldlrad4/Igf1r/Akt3/Peli1/Pafah1b1/Pde3b/Serinc3,CAST-biased
+GO:0051301,cell division,11,-0.8336439196031787,-1.3570919438559046,0.11296296296296296,1,1,26,"tags=27%, list=17%, signal=24%",Igf1r/Pafah1b1/Ext1,CAST-biased
+GO:0035556,intracellular signal transduction,45,-0.6646915062940867,-1.3471910326170824,0.06200317965023847,1,1,27,"tags=24%, list=18%, signal=29%",Ldlrad4/Igf1r/Akt3/Peli1/Pafah1b1/Pde7a/Prkch/Cblb/Wwox/Pde3b/Serinc3,CAST-biased
+GO:1903131,mononuclear cell differentiation,18,0.7251937517072433,1.338431265238444,0.125,1,1,29,"tags=33%, list=19%, signal=31%",Zeb1/Il7r/Dock10/Arid1b/Rora/Themis,BL6-biased
+GO:0030098,lymphocyte differentiation,17,0.7356416787250475,1.3330953033778454,0.11946902654867257,1,1,29,"tags=35%, list=19%, signal=32%",Zeb1/Il7r/Dock10/Arid1b/Rora/Themis,BL6-biased
+GO:0009890,negative regulation of biosynthetic process,32,0.6271549379580302,1.330209187953163,0.09004739336492891,1,1,32,"tags=25%, list=21%, signal=25%",Zeb1/Nr3c1/Bach2/Fyn/Crebbp/Pan3/Setd5/App,BL6-biased
+GO:0031327,negative regulation of cellular biosynthetic process,32,0.6271549379580302,1.330209187953163,0.09004739336492891,1,1,32,"tags=25%, list=21%, signal=25%",Zeb1/Nr3c1/Bach2/Fyn/Crebbp/Pan3/Setd5/App,BL6-biased
+GO:0010558,negative regulation of macromolecule biosynthetic process,30,0.6326631869460844,1.3241952948340026,0.0936768149882904,1,1,32,"tags=27%, list=21%, signal=26%",Zeb1/Nr3c1/Bach2/Fyn/Crebbp/Pan3/Setd5/App,BL6-biased
+GO:0033554,cellular response to stress,23,-0.7187470809444874,-1.3230538108955212,0.13380281690140844,1,1,2,"tags=26%, list=1%, signal=30%",Igf1r/Parp8/Akt3/Pafah1b1/Prkch/Serinc3,CAST-biased
+GO:0002521,leukocyte differentiation,24,0.6732144645068503,1.3219516228692132,0.12761020881670534,1,1,37,"tags=46%, list=25%, signal=41%",Zeb1/Nr3c1/Il7r/Dock10/Arid1b/Rora/Themis/App/Stat4/Gab2/Cd44,BL6-biased
+GO:1902105,regulation of leukocyte differentiation,10,0.8114190976493342,1.31955589863959,0.12446351931330472,1,1,9,"tags=20%, list=6%, signal=20%",Zeb1/Il7r,BL6-biased
+GO:0061061,muscle structure development,17,0.7273876255776429,1.3181376958865103,0.13716814159292035,1,1,27,"tags=41%, list=18%, signal=38%",Zeb1/Nr3c1/Smyd3/Utrn/Ripor2/Arid1b/Rora,BL6-biased
+GO:1903706,regulation of hemopoiesis,11,0.7770334853240666,1.2777807205698357,0.16883116883116883,1,1,9,"tags=18%, list=6%, signal=18%",Zeb1/Il7r,BL6-biased
+GO:0030217,T cell differentiation,15,0.7250249876878534,1.2695242273646707,0.17381974248927037,1,1,29,"tags=33%, list=19%, signal=30%",Zeb1/Il7r/Arid1b/Rora/Themis,BL6-biased
+GO:0042981,regulation of apoptotic process,26,-0.6705353449197317,-1.2526353599976674,0.1945392491467577,1,1,14,"tags=19%, list=9%, signal=21%",Prkch/Cblb/Gnaq/Wwox/Serinc3,CAST-biased
+GO:0043068,positive regulation of programmed cell death,12,-0.7599803651066764,-1.2525134787951562,0.21468926553672316,1,1,6,"tags=17%, list=4%, signal=17%",Wwox/Serinc3,CAST-biased
+GO:0043065,positive regulation of apoptotic process,11,-0.7624692506627294,-1.241226443545325,0.2222222222222222,1,1,6,"tags=18%, list=4%, signal=19%",Wwox/Serinc3,CAST-biased
+GO:0010647,positive regulation of cell communication,30,-0.6535006211282224,-1.2377759950293747,0.1826086956521739,1,1,23,"tags=23%, list=15%, signal=25%",Akt3/Peli1/Pafah1b1/Prkch/Gnaq/Wwox/Serinc3,CAST-biased
+GO:0023056,positive regulation of signaling,30,-0.6535006211282224,-1.2377759950293747,0.1826086956521739,1,1,23,"tags=23%, list=15%, signal=25%",Akt3/Peli1/Pafah1b1/Prkch/Gnaq/Wwox/Serinc3,CAST-biased
+GO:0043067,regulation of programmed cell death,27,-0.6592150726558836,-1.2339574754779958,0.20103986135181975,1,1,14,"tags=19%, list=9%, signal=20%",Prkch/Cblb/Gnaq/Wwox/Serinc3,CAST-biased
+GO:0006915,apoptotic process,28,-0.6540537858819974,-1.2295273656622128,0.19827586206896552,1,1,14,"tags=18%, list=9%, signal=20%",Prkch/Cblb/Gnaq/Wwox/Serinc3,CAST-biased
+GO:0098542,defense response to other organism,12,-0.7449552576112505,-1.2277508000176254,0.24293785310734464,1,1,2,"tags=17%, list=1%, signal=18%",Peli1/Serinc3,CAST-biased
+GO:0008219,cell death,29,-0.6431612239146373,-1.217331633546378,0.21107266435986158,1,1,14,"tags=17%, list=9%, signal=19%",Prkch/Cblb/Gnaq/Wwox/Serinc3,CAST-biased
+GO:0012501,programmed cell death,29,-0.6431612239146373,-1.217331633546378,0.21107266435986158,1,1,14,"tags=17%, list=9%, signal=19%",Prkch/Cblb/Gnaq/Wwox/Serinc3,CAST-biased
+GO:0007165,signal transduction,82,-0.55312511014495,-1.2162654449122514,0.10490463215258855,1,1,15,"tags=12%, list=10%, signal=24%",Pde7a/Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Apbb1ip/Serinc3,CAST-biased
+GO:0043434,response to peptide hormone,11,-0.7460133060702068,-1.2144377519830067,0.2462962962962963,1,1,26,"tags=36%, list=17%, signal=32%",Prkca/Igf1r/Akt3/Pde3b,CAST-biased
+GO:0042692,muscle cell differentiation,14,0.7049320970765305,1.213252183267391,0.22417582417582418,1,1,27,"tags=36%, list=18%, signal=32%",Zeb1/Nr3c1/Smyd3/Ripor2/Rora,BL6-biased
+GO:0048584,positive regulation of response to stimulus,40,-0.6080703182511787,-1.2045143021283589,0.19071310116086235,1,1,14,"tags=20%, list=9%, signal=25%",Akt3/Peli1/Pafah1b1/Prkch/Cblb/Dennd1b/Wwox/Serinc3,CAST-biased
+GO:0009967,positive regulation of signal transduction,27,-0.6415265908892887,-1.2008471368174902,0.23743500866551126,1,1,6,"tags=26%, list=4%, signal=30%",Igf1r/Akt3/Peli1/Pafah1b1/Prkch/Wwox/Serinc3,CAST-biased
+GO:0016358,dendrite development,12,0.7083523623395143,1.1983324290052144,0.2526539278131635,1,1,26,"tags=50%, list=17%, signal=45%",Nr3c1/Dock10/Fyn/Crebbp/Arid1b/Camk1d,BL6-biased
+GO:0048878,chemical homeostasis,14,-0.7046721561511583,-1.1965021786061492,0.27239488117001825,1,1,11,"tags=43%, list=7%, signal=44%",Prkca/Bcl2/Stim1/Igf1r/Ext1/Pde3b,CAST-biased
+GO:0009607,response to biotic stimulus,17,-0.6765750565201101,-1.1863306846824064,0.2727272727272727,1,1,11,"tags=18%, list=7%, signal=18%",Peli1/Ext1/Serinc3,CAST-biased
+GO:0043207,response to external biotic stimulus,17,-0.6765750565201101,-1.1863306846824064,0.2727272727272727,1,1,11,"tags=18%, list=7%, signal=18%",Peli1/Ext1/Serinc3,CAST-biased
+GO:0044419,biological process involved in interspecies interaction between organisms,17,-0.6765750565201101,-1.1863306846824064,0.2727272727272727,1,1,11,"tags=18%, list=7%, signal=18%",Peli1/Ext1/Serinc3,CAST-biased
+GO:0051707,response to other organism,17,-0.6765750565201101,-1.1863306846824064,0.2727272727272727,1,1,11,"tags=18%, list=7%, signal=18%",Peli1/Ext1/Serinc3,CAST-biased
+GO:0045596,negative regulation of cell differentiation,12,0.7008942409628284,1.1857153909598805,0.26963906581740976,1,1,17,"tags=17%, list=11%, signal=16%",Zeb1/Crim1,BL6-biased
+GO:0002376,immune system process,42,-0.5935651933533604,-1.185377473084579,0.19407894736842105,1,1,14,"tags=14%, list=9%, signal=18%",Prkch/Cblb/Ext1/Dennd1b/Apbb1ip/Serinc3,CAST-biased
+GO:0023052,signaling,84,-0.5367976746022068,-1.1833226895137425,0.13531799729364005,1,1,15,"tags=12%, list=10%, signal=24%",Pde7a/Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Apbb1ip/Serinc3,CAST-biased
+GO:0007154,cell communication,85,-0.5358652736698059,-1.1818112730306363,0.14266304347826086,1,1,15,"tags=12%, list=10%, signal=24%",Pde7a/Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Apbb1ip/Serinc3,CAST-biased
+GO:0015031,protein transport,16,-0.6757739017184027,-1.172243089581503,0.28205128205128205,1,1,9,"tags=25%, list=6%, signal=26%",Pafah1b1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0007155,cell adhesion,29,-0.6188155418532068,-1.1712517894704928,0.2698961937716263,1,1,21,"tags=24%, list=14%, signal=26%",Peli1/Dst/Lpp/Cblb/Ext1/Pde3b/Apbb1ip,CAST-biased
+GO:0045597,positive regulation of cell differentiation,20,0.6193366185123388,1.1698672240677364,0.25740318906605925,1,1,9,"tags=15%, list=6%, signal=16%",Zeb1/Nr3c1/Il7r,BL6-biased
+GO:0001934,positive regulation of protein phosphorylation,11,0.7084072233544816,1.1649293233962128,0.30952380952380953,1,1,19,"tags=27%, list=13%, signal=26%",Eif4g3/Smyd3/Fyn,BL6-biased
+GO:0051716,cellular response to stimulus,91,-0.5226077976578063,-1.1584244917407258,0.1588785046728972,1,1,15,"tags=11%, list=10%, signal=25%",Pde7a/Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Apbb1ip/Serinc3,CAST-biased
+GO:0022402,cell cycle process,19,0.6173530688582146,1.1473467230743748,0.3054298642533937,1,1,25,"tags=26%, list=17%, signal=25%",Eif4g3/Nfia/Ripor2/Crebbp/Arid1b,BL6-biased
+GO:0006357,regulation of transcription by RNA polymerase II,32,0.5400024603619222,1.1453568979772795,0.24170616113744076,1,1,27,"tags=25%, list=18%, signal=26%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Rora,BL6-biased
+GO:0007264,small GTPase mediated signal transduction,10,0.7032296589834521,1.1436147452015584,0.34120171673819744,1,1,28,"tags=40%, list=19%, signal=35%",Dock10/Elmo1/Ripor2/Dlc1,BL6-biased
+GO:0002366,leukocyte activation involved in immune response,10,-0.7200157322784265,-1.1409302187141548,0.3283582089552239,1,1,3,"tags=20%, list=2%, signal=21%",Dock2/Apbb1ip,CAST-biased
+GO:0002263,cell activation involved in immune response,11,-0.699660094093441,-1.1389791909999705,0.32222222222222224,1,1,3,"tags=18%, list=2%, signal=19%",Dock2/Apbb1ip,CAST-biased
+GO:0006366,transcription by RNA polymerase II,33,0.5347693350672384,1.1354495127771005,0.24,1,1,27,"tags=24%, list=18%, signal=25%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Rora,BL6-biased
+GO:0001503,ossification,11,-0.6959473492185639,-1.1329352002254847,0.32592592592592595,1,1,11,"tags=36%, list=7%, signal=36%",Bcl2/Lncpint/Ext1/Wwox,CAST-biased
+GO:0019725,cellular homeostasis,11,-0.6950724093964051,-1.131510882532895,0.3277777777777778,1,1,36,"tags=45%, list=24%, signal=37%",Prkca/Bcl2/Stim1/Igf1r/Pde3b,CAST-biased
+GO:0055082,intracellular chemical homeostasis,11,-0.6950724093964051,-1.131510882532895,0.3277777777777778,1,1,36,"tags=45%, list=24%, signal=37%",Prkca/Bcl2/Stim1/Igf1r/Pde3b,CAST-biased
+GO:0007409,axonogenesis,15,-0.6620898799946503,-1.129292727449193,0.3451492537313433,1,1,36,"tags=40%, list=24%, signal=34%",Prkca/Bcl2/Igf1r/Dst/Pafah1b1/Ext1,CAST-biased
+GO:0061564,axon development,15,-0.6620898799946503,-1.129292727449193,0.3451492537313433,1,1,36,"tags=40%, list=24%, signal=34%",Prkca/Bcl2/Igf1r/Dst/Pafah1b1/Ext1,CAST-biased
+GO:0010563,negative regulation of phosphorus metabolic process,12,-0.6844638047032716,-1.1280556452506851,0.3352165725047081,1,1,14,"tags=25%, list=9%, signal=25%",Prkch/Cblb/Gnaq,CAST-biased
+GO:0045936,negative regulation of phosphate metabolic process,12,-0.6844638047032716,-1.1280556452506851,0.3352165725047081,1,1,14,"tags=25%, list=9%, signal=25%",Prkch/Cblb/Gnaq,CAST-biased
+GO:0051128,regulation of cellular component organization,37,0.5259087103743598,1.1279744835406997,0.2536231884057971,1,1,32,"tags=30%, list=21%, signal=31%",Eif4g3/Nr3c1/Tbc1d5/Fyn/Ripor2/Arid1b/Camk1d/Dlc1/Pan3/Setd5/App,BL6-biased
+GO:0051094,positive regulation of developmental process,29,0.5418972295903507,1.1266980396094946,0.2665094339622642,1,1,25,"tags=21%, list=17%, signal=21%",Zeb1/Nr3c1/Il7r/Ripor2/Crebbp/Arid1b,BL6-biased
+GO:0050851,antigen receptor-mediated signaling pathway,12,-0.6798308276078568,-1.1204200976426337,0.3465160075329567,1,1,14,"tags=42%, list=9%, signal=41%",Bcl2/Pde4b/Prkch/Cblb/Dennd1b,CAST-biased
+GO:0010564,regulation of cell cycle process,10,0.6887370016061153,1.1200463184974927,0.3605150214592275,1,1,32,"tags=50%, list=21%, signal=42%",Eif4g3/Ripor2/Crebbp/Arid1b/App,BL6-biased
+GO:0021700,developmental maturation,10,-0.7057729155738086,-1.1183611841091976,0.34888059701492535,1,1,11,"tags=30%, list=7%, signal=30%",Bcl2/Ext1/Gnaq,CAST-biased
+GO:0044271,cellular nitrogen compound biosynthetic process,51,0.488469686445779,1.1172202047462771,0.2569060773480663,1,1,32,"tags=27%, list=21%, signal=33%",Zeb1/Eif4g3/Nr3c1/Smyd3/Nfia/Bach2/St6galnac3/Crebbp/Arid1b/Camk1d/Rora/Pan3/Setd5/App,BL6-biased
+GO:0042326,negative regulation of phosphorylation,11,-0.6849851267760483,-1.1150897587682065,0.34074074074074073,1,1,14,"tags=27%, list=9%, signal=27%",Prkch/Cblb/Gnaq,CAST-biased
+GO:0043086,negative regulation of catalytic activity,13,-0.6609382703846296,-1.114587232223084,0.36065573770491804,1,1,14,"tags=23%, list=9%, signal=23%",Prkch/Cblb/Gnaq,CAST-biased
+GO:0045859,regulation of protein kinase activity,13,-0.6594391785225276,-1.1120592069531052,0.36429872495446264,1,1,14,"tags=23%, list=9%, signal=23%",Prkch/Cblb/Gnaq,CAST-biased
+GO:0001933,negative regulation of protein phosphorylation,10,-0.698789570387593,-1.1072954404129414,0.35447761194029853,1,1,14,"tags=30%, list=9%, signal=29%",Prkch/Cblb/Gnaq,CAST-biased
+GO:0051130,positive regulation of cellular component organization,17,0.6103370866805222,1.1060242061614147,0.35398230088495575,1,1,32,"tags=41%, list=21%, signal=37%",Eif4g3/Tbc1d5/Fyn/Ripor2/Camk1d/Pan3/App,BL6-biased
+GO:0006508,proteolysis,12,0.6526803937144382,1.104151158585432,0.35881104033970274,1,1,32,"tags=33%, list=21%, signal=29%",Fbxl17/Fyn/Dlc1/App,BL6-biased
+GO:0002429,immune response-activating cell surface receptor signaling pathway,14,-0.6498759853335554,-1.1034607022398366,0.3619744058500914,1,1,21,"tags=43%, list=14%, signal=41%",Bcl2/Pde4b/Peli1/Prkch/Cblb/Dennd1b,CAST-biased
+GO:0002768,immune response-regulating cell surface receptor signaling pathway,14,-0.6498759853335554,-1.1034607022398366,0.3619744058500914,1,1,21,"tags=43%, list=14%, signal=41%",Bcl2/Pde4b/Peli1/Prkch/Cblb/Dennd1b,CAST-biased
+GO:0042327,positive regulation of phosphorylation,12,0.6507746340968035,1.1009271507707934,0.3651804670912951,1,1,19,"tags=25%, list=13%, signal=24%",Eif4g3/Smyd3/Fyn,BL6-biased
+GO:0006952,defense response,22,-0.6022493518622771,-1.0960352480257969,0.3823008849557522,1,1,11,"tags=14%, list=7%, signal=15%",Peli1/Ext1/Serinc3,CAST-biased
+GO:0060341,regulation of cellular localization,17,-0.6245596993448483,-1.0951251137748512,0.3563636363636364,1,1,9,"tags=24%, list=6%, signal=25%",Bcl2/Stim1/Gnaq/Pde3b,CAST-biased
+GO:0009894,regulation of catabolic process,11,-0.6705791378309552,-1.0916381973989722,0.37037037037037035,1,1,12,"tags=36%, list=8%, signal=36%",Bcl2/Tnrc6b/Cblb/Pde3b,CAST-biased
+GO:0001568,blood vessel development,12,-0.6615232939067345,-1.0902476961215317,0.384180790960452,1,1,36,"tags=42%, list=24%, signal=34%",Prkca/Stim1/Ets1/Akt3/Pde3b,CAST-biased
+GO:0001944,vasculature development,12,-0.6615232939067345,-1.0902476961215317,0.384180790960452,1,1,36,"tags=42%, list=24%, signal=34%",Prkca/Stim1/Ets1/Akt3/Pde3b,CAST-biased
+GO:0048514,blood vessel morphogenesis,12,-0.6615232939067345,-1.0902476961215317,0.384180790960452,1,1,36,"tags=42%, list=24%, signal=34%",Prkca/Stim1/Ets1/Akt3/Pde3b,CAST-biased
+GO:0007049,cell cycle,22,0.5632499003760034,1.087934840250781,0.3340961098398169,1,1,25,"tags=23%, list=17%, signal=22%",Eif4g3/Nfia/Ripor2/Crebbp/Arid1b,BL6-biased
+GO:0072359,circulatory system development,21,-0.5989970752658091,-1.0869545017016724,0.38869257950530034,1,1,11,"tags=19%, list=7%, signal=21%",Akt3/Ext1/Gnaq/Pde3b,CAST-biased
+GO:0001525,angiogenesis,10,-0.6859305325354365,-1.0869191288805686,0.375,1,1,36,"tags=50%, list=24%, signal=41%",Prkca/Stim1/Ets1/Akt3/Pde3b,CAST-biased
+GO:0002252,immune effector process,13,-0.6432416790666892,-1.0847442111413002,0.3879781420765027,1,1,8,"tags=23%, list=5%, signal=24%",Dock2/Dennd1b/Apbb1ip,CAST-biased
+GO:0007267,cell-cell signaling,28,-0.5768002808915416,-1.0843018497652301,0.3775862068965517,1,1,11,"tags=18%, list=7%, signal=20%",Pafah1b1/Ext1/Gnaq/Wwox/Pde3b,CAST-biased
+GO:0048583,regulation of response to stimulus,64,-0.5080237302259869,-1.0841723964288956,0.312316715542522,1,1,14,"tags=11%, list=9%, signal=17%",Prkch/Cblb/Gnaq/Dennd1b/Wwox/Pde3b/Serinc3,CAST-biased
+GO:0030155,regulation of cell adhesion,22,-0.5924215086542257,-1.0781495292038719,0.39823008849557523,1,1,12,"tags=18%, list=8%, signal=20%",Peli1/Cblb/Pde3b/Apbb1ip,CAST-biased
+GO:0016043,cellular component organization,69,0.44673524195949627,1.0749470798140477,0.2948717948717949,1,1,33,"tags=29%, list=22%, signal=42%",Neat1/Eif4g3/Nr3c1/Il7r/Tbc1d5/Smyd3/Nfia/Dock10/Fyn/Elmo1/Ripor2/Vps13b/Crebbp/Arid1b/Camk1d/Dlc1/Pan3/Setd5/App/Emb,BL6-biased
+GO:0071840,cellular component organization or biogenesis,69,0.44673524195949627,1.0749470798140477,0.2948717948717949,1,1,33,"tags=29%, list=22%, signal=42%",Neat1/Eif4g3/Nr3c1/Il7r/Tbc1d5/Smyd3/Nfia/Dock10/Fyn/Elmo1/Ripor2/Vps13b/Crebbp/Arid1b/Camk1d/Dlc1/Pan3/Setd5/App/Emb,BL6-biased
+GO:0002253,activation of immune response,16,-0.6195289837644186,-1.0746768529630446,0.3791208791208791,1,1,21,"tags=38%, list=14%, signal=36%",Bcl2/Pde4b/Peli1/Prkch/Cblb/Dennd1b,CAST-biased
+GO:0002757,immune response-activating signaling pathway,16,-0.6195289837644186,-1.0746768529630446,0.3791208791208791,1,1,21,"tags=38%, list=14%, signal=36%",Bcl2/Pde4b/Peli1/Prkch/Cblb/Dennd1b,CAST-biased
+GO:0002764,immune response-regulating signaling pathway,16,-0.6195289837644186,-1.0746768529630446,0.3791208791208791,1,1,21,"tags=38%, list=14%, signal=36%",Bcl2/Pde4b/Peli1/Prkch/Cblb/Dennd1b,CAST-biased
+GO:0071396,cellular response to lipid,10,0.6592823067595213,1.0721461440499729,0.4055793991416309,1,1,13,"tags=20%, list=9%, signal=20%",Nr3c1/Smyd3,BL6-biased
+GO:0034641,cellular nitrogen compound metabolic process,59,0.4548191655324987,1.068313263240593,0.30994152046783624,1,1,32,"tags=24%, list=21%, signal=31%",Zeb1/Eif4g3/Nr3c1/Smyd3/Nfia/Bach2/St6galnac3/Crebbp/Arid1b/Camk1d/Rora/Pan3/Setd5/App,BL6-biased
+GO:0032880,regulation of protein localization,15,-0.6261773489452538,-1.0680385663997831,0.39738805970149255,1,1,9,"tags=27%, list=6%, signal=28%",Bcl2/Stim1/Gnaq/Pde3b,CAST-biased
+GO:0060284,regulation of cell development,17,0.5879163419555351,1.0653943854817123,0.41150442477876104,1,1,9,"tags=12%, list=6%, signal=12%",Zeb1/Il7r,BL6-biased
+GO:0045944,positive regulation of transcription by RNA polymerase II,27,0.521926833097765,1.0648024592400094,0.36470588235294116,1,1,14,"tags=15%, list=9%, signal=16%",Zeb1/Nr3c1/Smyd3/Nfia,BL6-biased
+GO:0010562,positive regulation of phosphorus metabolic process,14,0.6178535974218062,1.063382174141855,0.3912087912087912,1,1,32,"tags=36%, list=21%, signal=31%",Eif4g3/Smyd3/Fyn/Dlc1/App,BL6-biased
+GO:0045937,positive regulation of phosphate metabolic process,14,0.6178535974218062,1.063382174141855,0.3912087912087912,1,1,32,"tags=36%, list=21%, signal=31%",Eif4g3/Smyd3/Fyn/Dlc1/App,BL6-biased
+GO:0051241,negative regulation of multicellular organismal process,22,-0.5828057367115771,-1.0606497594597768,0.4176991150442478,1,1,29,"tags=27%, list=19%, signal=26%",Bcl2/Pde4b/Ldlrad4/Peli1/Cblb/Pde3b,CAST-biased
+GO:0035264,multicellular organism growth,10,-0.6692066510927572,-1.0604186222155738,0.4141791044776119,1,1,35,"tags=30%, list=23%, signal=25%",Bcl2/Lncpint/Ext1,CAST-biased
+GO:0007420,brain development,16,-0.6103455550536614,-1.0587466567576644,0.3974358974358974,1,1,26,"tags=31%, list=17%, signal=29%",Igf1r/Akt3/Pafah1b1/Ext1/Gnaq,CAST-biased
+GO:0043549,regulation of kinase activity,14,-0.6234663441887281,-1.0586182987332418,0.41316270566727603,1,1,14,"tags=29%, list=9%, signal=29%",Igf1r/Prkch/Cblb/Gnaq,CAST-biased
+GO:0051338,regulation of transferase activity,14,-0.6234663441887281,-1.0586182987332418,0.41316270566727603,1,1,14,"tags=29%, list=9%, signal=29%",Igf1r/Prkch/Cblb/Gnaq,CAST-biased
+GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,10,-0.6679363328888841,-1.058405687829272,0.4141791044776119,1,1,12,"tags=50%, list=8%, signal=49%",Atxn1/Prkca/Igf1r/Cblb/Ext1,CAST-biased
+GO:0009966,regulation of signal transduction,54,-0.5043486209783412,-1.0538987387538064,0.39334341906202724,1,1,14,"tags=11%, list=9%, signal=16%",Prkch/Cblb/Gnaq/Wwox/Pde3b/Serinc3,CAST-biased
+GO:0050778,positive regulation of immune response,18,-0.5924031855015199,-1.04612673282251,0.4139194139194139,1,1,21,"tags=33%, list=14%, signal=33%",Bcl2/Pde4b/Peli1/Prkch/Cblb/Dennd1b,CAST-biased
+GO:0050801,monoatomic ion homeostasis,10,-0.6592104594405813,-1.044578750089536,0.417910447761194,1,1,36,"tags=40%, list=24%, signal=33%",Prkca/Bcl2/Stim1/Ext1,CAST-biased
+GO:0055080,monoatomic cation homeostasis,10,-0.6592104594405813,-1.044578750089536,0.417910447761194,1,1,36,"tags=40%, list=24%, signal=33%",Prkca/Bcl2/Stim1/Ext1,CAST-biased
+GO:0098771,inorganic ion homeostasis,10,-0.6592104594405813,-1.044578750089536,0.417910447761194,1,1,36,"tags=40%, list=24%, signal=33%",Prkca/Bcl2/Stim1/Ext1,CAST-biased
+GO:0010646,regulation of cell communication,57,-0.49831825928367945,-1.044235381053293,0.39123867069486407,1,1,14,"tags=11%, list=9%, signal=15%",Prkch/Cblb/Gnaq/Wwox/Pde3b/Serinc3,CAST-biased
+GO:0045184,establishment of protein localization,19,-0.5828290582505097,-1.0427257983896283,0.4303571428571429,1,1,9,"tags=21%, list=6%, signal=23%",Pafah1b1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0023051,regulation of signaling,58,-0.49750011996624144,-1.0421036035302875,0.40061162079510704,1,1,14,"tags=10%, list=9%, signal=15%",Prkch/Cblb/Gnaq/Wwox/Pde3b/Serinc3,CAST-biased
+GO:0030097,hemopoiesis,29,0.5007065536801392,1.0410555021244647,0.375,1,1,37,"tags=38%, list=25%, signal=35%",Zeb1/Nr3c1/Il7r/Dock10/Arid1b/Rora/Themis/App/Stat4/Gab2/Cd44,BL6-biased
+GO:0001819,positive regulation of cytokine production,11,-0.6345849580341897,-1.0330431422690274,0.42962962962962964,1,1,29,"tags=27%, list=19%, signal=24%",Pde4b/Peli1/Dennd1b,CAST-biased
+GO:0045893,positive regulation of DNA-templated transcription,34,0.4830262425782359,1.0262679413142632,0.39285714285714285,1,1,27,"tags=21%, list=18%, signal=22%",Zeb1/Nr3c1/Smyd3/Nfia/Crebbp/Arid1b/Rora,BL6-biased
+GO:1902680,positive regulation of RNA biosynthetic process,34,0.4830262425782359,1.0262679413142632,0.39285714285714285,1,1,27,"tags=21%, list=18%, signal=22%",Zeb1/Nr3c1/Smyd3/Nfia/Crebbp/Arid1b/Rora,BL6-biased
+GO:0031400,negative regulation of protein modification process,12,-0.6220328631969871,-1.0251640452558388,0.4519774011299435,1,1,14,"tags=25%, list=9%, signal=25%",Prkch/Cblb/Gnaq,CAST-biased
+GO:0048522,positive regulation of cellular process,81,-0.46581312235659383,-1.024102642777586,0.43306010928961747,1,1,9,"tags=6%, list=6%, signal=13%",Gnaq/Dennd1b/Wwox/Apbb1ip/Serinc3,CAST-biased
+GO:0071705,nitrogen compound transport,18,-0.5743382710865472,-1.0142258410680967,0.4542124542124542,1,1,9,"tags=22%, list=6%, signal=24%",Pafah1b1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0051146,striated muscle cell differentiation,11,0.6124670887363917,1.0071620499655924,0.48917748917748916,1,1,22,"tags=27%, list=15%, signal=25%",Nr3c1/Smyd3/Ripor2,BL6-biased
+GO:0008104,protein localization,31,-0.5299320232303982,-1.005436634700732,0.46689895470383275,1,1,9,"tags=13%, list=6%, signal=15%",Pafah1b1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0070727,cellular macromolecule localization,31,-0.5299320232303982,-1.005436634700732,0.46689895470383275,1,1,9,"tags=13%, list=6%, signal=15%",Pafah1b1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0048646,anatomical structure formation involved in morphogenesis,20,-0.5576600377041717,-1.0052172898653826,0.46536412078152756,1,1,39,"tags=45%, list=26%, signal=38%",Akap13/Dock2/Prkca/Stim1/Ets1/Akt3/Pafah1b1/Ext1/Pde3b,CAST-biased
+GO:0050896,response to stimulus,102,-0.4423042199873206,-1.0012984263782847,0.4642857142857143,1,1,15,"tags=10%, list=10%, signal=28%",Pde7a/Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Apbb1ip/Serinc3,CAST-biased
+GO:0022409,positive regulation of cell-cell adhesion,10,0.6149625331119293,1.0000718991714952,0.5064377682403434,1,1,25,"tags=20%, list=17%, signal=18%",Il7r/Arid1b,BL6-biased
+GO:0050789,regulation of biological process,122,-0.44317583790662435,-0.9987375502149987,0.4814340588988476,1,1,12,"tags=9%, list=8%, signal=44%",Pde7a/Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Airn/Apbb1ip/Serinc3,CAST-biased
+GO:0050794,regulation of cellular process,122,-0.44317583790662435,-0.9987375502149987,0.4814340588988476,1,1,12,"tags=9%, list=8%, signal=44%",Pde7a/Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Airn/Apbb1ip/Serinc3,CAST-biased
+GO:0065007,biological regulation,122,-0.44317583790662435,-0.9987375502149987,0.4814340588988476,1,1,12,"tags=9%, list=8%, signal=44%",Pde7a/Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Airn/Apbb1ip/Serinc3,CAST-biased
+GO:0033043,regulation of organelle organization,14,0.5779736126054267,0.9947450971130158,0.4945054945054945,1,1,30,"tags=36%, list=20%, signal=32%",Eif4g3/Ripor2/Arid1b/Dlc1/Pan3,BL6-biased
+GO:0009891,positive regulation of biosynthetic process,45,0.44255374601821545,0.9904541131858074,0.47989276139410186,1,1,14,"tags=13%, list=9%, signal=17%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia,BL6-biased
+GO:0010557,positive regulation of macromolecule biosynthetic process,45,0.44255374601821545,0.9904541131858074,0.47989276139410186,1,1,14,"tags=13%, list=9%, signal=17%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia,BL6-biased
+GO:0031328,positive regulation of cellular biosynthetic process,45,0.44255374601821545,0.9904541131858074,0.47989276139410186,1,1,14,"tags=13%, list=9%, signal=17%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia,BL6-biased
+GO:0051254,positive regulation of RNA metabolic process,37,0.46053490086523374,0.9877600555163875,0.45169082125603865,1,1,34,"tags=27%, list=23%, signal=28%",Zeb1/Nr3c1/Smyd3/Nfia/Crebbp/Arid1b/Rora/Pan3/App/Stat4,BL6-biased
+GO:0032940,secretion by cell,10,-0.6231648163763062,-0.9874611600406665,0.503731343283582,1,1,18,"tags=30%, list=12%, signal=28%",Pafah1b1/Gnaq/Pde3b,CAST-biased
+GO:0046903,secretion,10,-0.6231648163763062,-0.9874611600406665,0.503731343283582,1,1,18,"tags=30%, list=12%, signal=28%",Pafah1b1/Gnaq/Pde3b,CAST-biased
+GO:0060322,head development,18,-0.5588338922182118,-0.9868466074533366,0.4816849816849817,1,1,26,"tags=28%, list=17%, signal=26%",Igf1r/Akt3/Pafah1b1/Ext1/Gnaq,CAST-biased
+GO:0006355,regulation of DNA-templated transcription,43,0.44321948125418587,0.9829904129180571,0.47692307692307695,1,1,27,"tags=21%, list=18%, signal=24%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:2001141,regulation of RNA biosynthetic process,43,0.44321948125418587,0.9829904129180571,0.47692307692307695,1,1,27,"tags=21%, list=18%, signal=24%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0045935,positive regulation of nucleobase-containing compound metabolic process,38,0.45734314868680626,0.9823355605265006,0.46454767726161367,1,1,34,"tags=26%, list=23%, signal=27%",Zeb1/Nr3c1/Smyd3/Nfia/Crebbp/Arid1b/Rora/Pan3/App/Stat4,BL6-biased
+GO:1901652,response to peptide,13,-0.5821501946567859,-0.981721294218653,0.4936247723132969,1,1,26,"tags=31%, list=17%, signal=28%",Prkca/Igf1r/Akt3/Pde3b,CAST-biased
+GO:0009968,negative regulation of signal transduction,28,-0.5216784097435663,-0.9806806331529779,0.4844827586206897,1,1,36,"tags=36%, list=24%, signal=33%",Prkca/Bcl2/Nlk/Pde4b/Ldlrad4/Igf1r/Pafah1b1/Cblb/Wwox/Pde3b,CAST-biased
+GO:0010648,negative regulation of cell communication,28,-0.5216784097435663,-0.9806806331529779,0.4844827586206897,1,1,36,"tags=36%, list=24%, signal=33%",Prkca/Bcl2/Nlk/Pde4b/Ldlrad4/Igf1r/Pafah1b1/Cblb/Wwox/Pde3b,CAST-biased
+GO:0023057,negative regulation of signaling,28,-0.5216784097435663,-0.9806806331529779,0.4844827586206897,1,1,36,"tags=36%, list=24%, signal=33%",Prkca/Bcl2/Nlk/Pde4b/Ldlrad4/Igf1r/Pafah1b1/Cblb/Wwox/Pde3b,CAST-biased
+GO:0044092,negative regulation of molecular function,17,-0.5588510851350329,-0.9799093006380193,0.4818181818181818,1,1,26,"tags=29%, list=17%, signal=27%",Igf1r/Peli1/Prkch/Cblb/Gnaq,CAST-biased
+GO:0048518,positive regulation of biological process,86,-0.44416779427847775,-0.9795736041506676,0.5211459754433834,1,1,14,"tags=8%, list=9%, signal=17%",Prkch/Cblb/Gnaq/Dennd1b/Wwox/Apbb1ip/Serinc3,CAST-biased
+GO:0045785,positive regulation of cell adhesion,15,-0.5742929442744727,-0.9795420002489497,0.4832089552238806,1,1,3,"tags=20%, list=2%, signal=22%",Prkca/Ets1/Apbb1ip,CAST-biased
+GO:0006351,DNA-templated transcription,44,0.438824648074301,0.9788897114776433,0.4961038961038961,1,1,27,"tags=20%, list=18%, signal=24%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0032774,RNA biosynthetic process,44,0.438824648074301,0.9788897114776433,0.4961038961038961,1,1,27,"tags=20%, list=18%, signal=24%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0033036,macromolecule localization,36,-0.5056967750195767,-0.978686513061619,0.5220338983050847,1,1,9,"tags=11%, list=6%, signal=14%",Pafah1b1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0018130,heterocycle biosynthetic process,45,0.4372073974004465,0.978488757504971,0.5067024128686327,1,1,27,"tags=20%, list=18%, signal=23%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0034654,nucleobase-containing compound biosynthetic process,45,0.4372073974004465,0.978488757504971,0.5067024128686327,1,1,27,"tags=20%, list=18%, signal=23%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0019438,aromatic compound biosynthetic process,46,0.434641708896011,0.97154537450910206,0.5177111716621253,1,1,27,"tags=20%, list=18%, signal=23%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:1901362,organic cyclic compound biosynthetic process,46,0.434641708896011,0.97154537450910206,0.5177111716621253,1,1,27,"tags=20%, list=18%, signal=23%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0051248,negative regulation of protein metabolic process,19,-0.5411530326449661,-0.9681641984520895,0.5071428571428571,1,1,14,"tags=16%, list=9%, signal=16%",Prkch/Cblb/Gnaq,CAST-biased
+GO:0030182,neuron differentiation,37,0.45105198722419004,0.9674210034989694,0.5048309178743962,1,1,27,"tags=27%, list=18%, signal=29%",Zeb1/Nr3c1/Nfia/Dock10/Fyn/Ripor2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0048699,generation of neurons,38,0.44970875081458195,0.9659375002633751,0.5134474327628362,1,1,27,"tags=26%, list=18%, signal=29%",Zeb1/Nr3c1/Nfia/Dock10/Fyn/Ripor2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:1901653,cellular response to peptide,10,-0.6088813320641285,-0.9648276839237985,0.5167910447761194,1,1,26,"tags=40%, list=17%, signal=35%",Prkca/Igf1r/Akt3/Pde3b,CAST-biased
+GO:0022603,regulation of anatomical structure morphogenesis,18,-0.5463323080471157,-0.96477001886622,0.5091575091575091,1,1,36,"tags=50%, list=24%, signal=43%",Foxp1/Jak1/Arhgap15/Prkca/Stim1/Ets1/Akt3/Pafah1b1/Pde3b,CAST-biased
+GO:0051336,regulation of hydrolase activity,19,-0.5364096943260592,-0.9596780031164266,0.5178571428571429,1,1,18,"tags=21%, list=12%, signal=21%",Pafah1b1/Cblb/Gnaq/Dennd1b,CAST-biased
+GO:0006950,response to stress,46,-0.47155910927328676,-0.9586860941655614,0.5590551181102362,1,1,24,"tags=22%, list=16%, signal=26%",Igf1r/Parp8/Akt3/Peli1/Dst/Pafah1b1/Prkch/Ext1/Gnaq/Serinc3,CAST-biased
+GO:0045595,regulation of cell differentiation,27,0.468827481364376,0.956472485143483,0.5223529411764706,1,1,27,"tags=26%, list=18%, signal=26%",Zeb1/Nr3c1/Il7r/Crim1/Ripor2/Arid1b/Rora,BL6-biased
+GO:0050863,regulation of T cell activation,10,0.5877095653487622,0.9557522442958551,0.555793991416309,1,1,25,"tags=40%, list=17%, signal=36%",Zeb1/Il7r/Ripor2/Arid1b,BL6-biased
+GO:0071702,organic substance transport,30,-0.5040388681238784,-0.9546849556905033,0.542608695652174,1,1,9,"tags=13%, list=6%, signal=16%",Pafah1b1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:2000026,regulation of multicellular organismal development,28,0.4643340699833913,0.954478306246595,0.5213270142180095,1,1,9,"tags=11%, list=6%, signal=12%",Zeb1/Nr3c1/Il7r,BL6-biased
+GO:0002694,regulation of leukocyte activation,13,0.56231705068446,0.9544639520322611,0.5584988962472406,1,1,27,"tags=38%, list=18%, signal=35%",Zeb1/Il7r/Ripor2/Arid1b/Rora,BL6-biased
+GO:0009792,embryo development ending in birth or egg hatching,11,0.5769700276908116,0.948789455865589,0.564935064935065,1,1,2,"tags=9%, list=1%, signal=10%",Zeb1,BL6-biased
+GO:0043009,chordate embryonic development,11,0.5769700276908116,0.948789455865589,0.564935064935065,1,1,2,"tags=9%, list=1%, signal=10%",Zeb1,BL6-biased
+GO:0051216,cartilage development,10,0.5827131085448461,0.9476268451439183,0.5622317596566524,1,1,14,"tags=20%, list=9%, signal=19%",Zeb1/Nfia,BL6-biased
+GO:0033993,response to lipid,13,0.5572175762308179,0.9458082220763825,0.5584988962472406,1,1,13,"tags=15%, list=9%, signal=15%",Nr3c1/Smyd3,BL6-biased
+GO:0006996,organelle organization,34,0.4445037287352488,0.9444205850197672,0.5071428571428571,1,1,30,"tags=26%, list=20%, signal=27%",Neat1/Eif4g3/Nfia/Elmo1/Ripor2/Vps13b/Arid1b/Dlc1/Pan3,BL6-biased
+GO:0009605,response to external stimulus,32,-0.4947695590660806,-0.942442820526052,0.5551724137931034,1,1,14,"tags=9%, list=9%, signal=11%",Prkch/Ext1/Serinc3,CAST-biased
+GO:0051252,regulation of RNA metabolic process,50,0.414860242096537,0.9419425335121269,0.5397260273972603,1,1,32,"tags=24%, list=21%, signal=28%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora/Pan3/Setd5/App,BL6-biased
+GO:0051249,regulation of lymphocyte activation,11,0.5723634162537834,0.941214184796111,0.5714285714285714,1,1,25,"tags=36%, list=17%, signal=33%",Zeb1/Il7r/Ripor2/Arid1b,BL6-biased
+GO:0007399,nervous system development,49,0.4179409271211613,0.9403325282103108,0.5543175487465181,1,1,33,"tags=31%, list=22%, signal=35%",Zeb1/Nr3c1/Nfia/Dock10/Fyn/Ripor2/Vps13b/Crebbp/Arid1b/Camk1d/Rora/Dlc1/Setd5/App/Emb,BL6-biased
+GO:0032501,multicellular organismal process,93,-0.42139520446438544,-0.9386695412553269,0.6413333333333333,1,1,14,"tags=14%, list=9%, signal=33%",Peli1/Dst/Pafah1b1/Ebf1/Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Airn/Apbb1ip,CAST-biased
+GO:0019219,regulation of nucleobase-containing compound metabolic process,52,0.4098315078461975,0.9370909102679842,0.5354107648725213,1,1,32,"tags=23%, list=21%, signal=28%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora/Pan3/Setd5/App,BL6-biased
+GO:0007507,heart development,10,-0.5895095616824528,-0.9341313571247905,0.5597014925373134,1,1,11,"tags=30%, list=7%, signal=30%",Akap13/Ext1/Gnaq,CAST-biased
+GO:0016070,RNA metabolic process,52,0.40810197834418216,0.9331362939333437,0.5382436260623229,1,1,32,"tags=23%, list=21%, signal=28%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora/Pan3/Setd5/App,BL6-biased
+GO:0043269,regulation of monoatomic ion transport,12,-0.5652541196055578,-0.9315877570745819,0.5461393596986818,1,1,36,"tags=50%, list=24%, signal=41%",Prkca/Bcl2/Stim1/Pde4b/Akt3/Gnaq,CAST-biased
+GO:0051345,positive regulation of hydrolase activity,13,-0.5481477315443646,-0.9243805213395364,0.5646630236794171,1,1,9,"tags=15%, list=6%, signal=16%",Gnaq/Dennd1b,CAST-biased
+GO:0098660,inorganic ion transmembrane transport,11,0.5586327423690749,0.918634990074541,0.5974025974025974,1,1,19,"tags=18%, list=13%, signal=17%",Kcnt2/Fyn,BL6-biased
+GO:0098662,inorganic cation transmembrane transport,11,0.5586327423690749,0.918634990074541,0.5974025974025974,1,1,19,"tags=18%, list=13%, signal=17%",Kcnt2/Fyn,BL6-biased
+GO:0051668,localization within membrane,10,-0.5781495759546014,-0.9161304296172019,0.582089552238806,1,1,8,"tags=20%, list=5%, signal=20%",Dock2/Dennd1b,CAST-biased
+GO:0090304,nucleic acid metabolic process,55,0.39745966394629295,0.915770176092218,0.6,1,1,32,"tags=22%, list=21%, signal=27%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora/Pan3/Setd5/App,BL6-biased
+GO:0001667,ameboidal-type cell migration,10,-0.5778814874842073,-0.9157056191256401,0.582089552238806,1,1,36,"tags=50%, list=24%, signal=41%",Foxp1/Prkca/Ets1/Akt3/Pafah1b1,CAST-biased
+GO:0006139,nucleobase-containing compound metabolic process,56,0.39522002228895814,0.9154015655537423,0.5964391691394659,1,1,32,"tags=21%, list=21%, signal=27%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora/Pan3/Setd5/App,BL6-biased
+GO:0046483,heterocycle metabolic process,56,0.39522002228895814,0.9154015655537423,0.5964391691394659,1,1,32,"tags=21%, list=21%, signal=27%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora/Pan3/Setd5/App,BL6-biased
+GO:0043933,protein-containing complex organization,23,-0.49603583407286245,-0.9130918483153148,0.5686619718309859,1,1,11,"tags=13%, list=7%, signal=14%",Igf1r/Ext1/Airn,CAST-biased
+GO:0031325,positive regulation of cellular metabolic process,56,0.39417528540605173,0.9129817646219336,0.599406528189911,1,1,28,"tags=20%, list=19%, signal=25%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia/Fyn/Crebbp/Arid1b/Rora/Dlc1,BL6-biased
+GO:0008015,blood circulation,10,-0.5757381817375791,-0.9123093568154629,0.5876865671641791,1,1,11,"tags=30%, list=7%, signal=30%",Pde4b/Ext1/Gnaq,CAST-biased
+GO:0097435,supramolecular fiber organization,11,-0.5592233579049077,-0.910361721572981,0.5833333333333334,1,1,18,"tags=36%, list=12%, signal=35%",Akap13/Bcl2/Pafah1b1/Ext1,CAST-biased
+GO:1901575,organic substance catabolic process,22,-0.49992019480446187,-0.909806134305171,0.5823008849557522,1,1,21,"tags=23%, list=14%, signal=23%",Peli1/Pafah1b1/Cblb/Ext1/Pde3b,CAST-biased
+GO:0006725,cellular aromatic compound metabolic process,58,0.38414199494948653,0.9054317753939999,0.6522988505747126,1,1,32,"tags=21%, list=21%, signal=27%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora/Pan3/Setd5/App,BL6-biased
+GO:1901360,organic cyclic compound metabolic process,58,0.38414199494948653,0.9054317753939999,0.6522988505747126,1,1,32,"tags=21%, list=21%, signal=27%",Zeb1/Nr3c1/Smyd3/Nfia/Bach2/Crebbp/Arid1b/Camk1d/Rora/Pan3/Setd5/App,BL6-biased
+GO:0022008,neurogenesis,42,0.4109221116135757,0.9049352576614345,0.6472081218274112,1,1,27,"tags=24%, list=18%, signal=27%",Zeb1/Nr3c1/Nfia/Dock10/Fyn/Ripor2/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0051173,positive regulation of nitrogen compound metabolic process,51,0.39498916972050035,0.9034130332193775,0.6408839779005525,1,1,30,"tags=22%, list=20%, signal=26%",Zeb1/Eif4g3/Nr3c1/Smyd3/Nfia/Fyn/Crebbp/Arid1b/Rora/Dlc1/Pan3,BL6-biased
+GO:0051726,regulation of cell cycle,15,0.5157891285298344,0.9031506582526923,0.6008583690987125,1,1,25,"tags=27%, list=17%, signal=25%",Eif4g3/Ripor2/Crebbp/Arid1b,BL6-biased
+GO:0007610,behavior,16,-0.5200634416661843,-0.902137200159584,0.6025641025641025,1,1,18,"tags=19%, list=12%, signal=18%",Pafah1b1/Ext1/Gnaq,CAST-biased
+GO:0098655,monoatomic cation transmembrane transport,12,0.5313311412208099,0.8988624460322886,0.6114649681528662,1,1,35,"tags=33%, list=23%, signal=28%",Kcnt2/Fyn/App/Slc8a1,BL6-biased
+GO:0001817,regulation of cytokine production,13,-0.5305802071804162,-0.894755155045601,0.5938069216757741,1,1,29,"tags=23%, list=19%, signal=20%",Pde4b/Peli1/Dennd1b,CAST-biased
+GO:0046631,alpha-beta T cell activation,12,-0.5415125778984464,-0.8924596396114941,0.6101694915254238,1,1,12,"tags=25%, list=8%, signal=25%",Dock2/Bcl2/Cblb,CAST-biased
+GO:0061448,connective tissue development,14,0.5166576778237185,0.8892148027038054,0.6197802197802198,1,1,23,"tags=21%, list=15%, signal=20%",Zeb1/Nfia/Vps13b,BL6-biased
+GO:0140352,export from cell,13,-0.5271449126899953,-0.8889619735194031,0.6083788706739527,1,1,18,"tags=23%, list=12%, signal=22%",Pafah1b1/Gnaq/Pde3b,CAST-biased
+GO:0007178,transmembrane receptor protein serine/threonine kinase signaling pathway,10,0.5436383276907379,0.884082176656992,0.6459227467811158,1,1,24,"tags=40%, list=16%, signal=36%",Zeb1/Nfia/Crim1/Crebbp,BL6-biased
+GO:0051172,negative regulation of nitrogen compound metabolic process,37,0.41213258125668806,0.8839462559241398,0.6763285024154589,1,1,19,"tags=14%, list=13%, signal=16%",Zeb1/Nr3c1/Smyd3/Bach2/Fyn,BL6-biased
+GO:0010605,negative regulation of macromolecule metabolic process,40,0.4054192897452937,0.882967656717319,0.7017543859649122,1,1,19,"tags=12%, list=13%, signal=15%",Zeb1/Nr3c1/Smyd3/Bach2/Fyn,BL6-biased
+GO:0055085,transmembrane transport,14,0.5097065144084287,0.8772512189418744,0.6395604395604395,1,1,35,"tags=36%, list=23%, signal=30%",Kcnt2/Fyn/App/Emb/Slc8a1,BL6-biased
+GO:0048585,negative regulation of response to stimulus,30,-0.46163254431857037,-0.8743644051866131,0.662608695652174,1,1,36,"tags=37%, list=24%, signal=35%",Prkca/Bcl2/Ets1/Nlk/Pde4b/Ldlrad4/Igf1r/Pafah1b1/Cblb/Wwox/Pde3b,CAST-biased
+GO:1903047,mitotic cell cycle process,13,0.5121726235620832,0.869349961579081,0.6335540838852097,1,1,32,"tags=38%, list=21%, signal=33%",Nfia/Ripor2/Crebbp/Arid1b/App,BL6-biased
+GO:0043085,positive regulation of catalytic activity,18,-0.4919473316112996,-0.8687314101857752,0.6556776556776557,1,1,9,"tags=28%, list=6%, signal=30%",Bcl2/Stim1/Igf1r/Gnaq/Dennd1b,CAST-biased
+GO:0050790,regulation of catalytic activity,30,-0.45860292250684176,-0.8686260890606069,0.6730434782608695,1,1,18,"tags=17%, list=12%, signal=18%",Pafah1b1/Prkch/Cblb/Gnaq/Dennd1b,CAST-biased
+GO:0009893,positive regulation of metabolic process,59,0.36859231465849573,0.8657771886485826,0.7631578947368421,1,1,28,"tags=20%, list=19%, signal=27%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia/Fyn/Crebbp/Arid1b/Camk1d/Rora/Dlc1,BL6-biased
+GO:0048468,cell development,61,0.3638218524787611,0.8633903140068806,0.788235294117647,1,1,37,"tags=33%, list=25%, signal=42%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Dock10/Fyn/Ripor2/Vps13b/Crebbp/Arid1b/Camk1d/Rora/Themis/App/Emb/Stat4/Slc8a1/Gab2/Cd44,BL6-biased
+GO:0001816,cytokine production,15,-0.5057731481342125,-0.8626713006573437,0.6455223880597015,1,1,11,"tags=27%, list=7%, signal=27%",Pde4b/Peli1/Ext1/Dennd1b,CAST-biased
+GO:0051641,cellular localization,43,-0.42986094456030216,-0.8617736612809006,0.7156862745098039,1,1,9,"tags=12%, list=6%, signal=15%",Dst/Pafah1b1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0050808,synapse organization,11,0.5238395043271022,0.8614197868485332,0.6645021645021645,1,1,32,"tags=45%, list=21%, signal=39%",Nfia/Dock10/Fyn/Setd5/App,BL6-biased
+GO:0050776,regulation of immune response,19,-0.47989231829069895,-0.8585640912153013,0.6464285714285715,1,1,21,"tags=21%, list=14%, signal=21%",Peli1/Prkch/Cblb/Dennd1b,CAST-biased
+GO:0001501,skeletal system development,19,-0.4794954174483148,-0.8578540052271407,0.6464285714285715,1,1,18,"tags=21%, list=12%, signal=21%",Pafah1b1/Ext1/Gnaq/Wwox,CAST-biased
+GO:0090066,regulation of anatomical structure size,10,-0.5400816846898044,-0.8558084039174411,0.6548507462686567,1,1,23,"tags=30%, list=15%, signal=27%",Akt3/Pafah1b1/Ext1,CAST-biased
+GO:0051649,establishment of localization in cell,24,-0.46236835446945235,-0.8546781473963462,0.6392294220665499,1,1,20,"tags=17%, list=13%, signal=17%",Dst/Pafah1b1/Dennd1b/Pde3b,CAST-biased
+GO:0043687,post-translational protein modification,18,0.46220988409843533,0.8530632793280372,0.6359649122807017,1,1,24,"tags=22%, list=16%, signal=21%",Fbxl17/Smyd3/Fyn/Crebbp,BL6-biased
+GO:0060429,epithelium development,20,0.45118797321451476,0.8522506274940965,0.6742596810933941,1,1,7,"tags=10%, list=5%, signal=11%",Zeb1/Nr3c1,BL6-biased
+GO:0031324,negative regulation of cellular metabolic process,40,0.390949009023801,0.8514526543879398,0.7669172932330827,1,1,19,"tags=12%, list=13%, signal=15%",Zeb1/Nr3c1/Smyd3/Bach2/Fyn,BL6-biased
+GO:0003013,circulatory system process,13,-0.5048995992024563,-0.8514481185937653,0.6539162112932605,1,1,11,"tags=23%, list=7%, signal=23%",Pde4b/Ext1/Gnaq,CAST-biased
+GO:0043087,regulation of GTPase activity,10,-0.5371800141402341,-0.851210443808595,0.6604477611940298,1,1,18,"tags=30%, list=12%, signal=28%",Pafah1b1/Cblb/Dennd1b,CAST-biased
+GO:0000165,MAPK cascade,12,-0.5148679085480397,-0.8485469162943066,0.6685499058380414,1,1,39,"tags=33%, list=26%, signal=27%",Akap13/Prkca/Igf1r/Pafah1b1,CAST-biased
+GO:0043408,regulation of MAPK cascade,12,-0.5148679085480397,-0.8485469162943066,0.6685499058380414,1,1,39,"tags=33%, list=26%, signal=27%",Akap13/Prkca/Igf1r/Pafah1b1,CAST-biased
+GO:0071824,protein-DNA complex organization,14,-0.4984936309230933,-0.8464201546979067,0.6617915904936015,1,1,4,"tags=14%, list=3%, signal=15%",Kansl1/Airn,CAST-biased
+GO:0070848,response to growth factor,18,0.4583500582427963,0.8459395119329086,0.6535087719298246,1,1,24,"tags=33%, list=16%, signal=32%",Zeb1/Nr3c1/Nfia/Crim1/Fyn/Crebbp,BL6-biased
+GO:0071363,cellular response to growth factor stimulus,18,0.4583500582427963,0.8459395119329086,0.6535087719298246,1,1,24,"tags=33%, list=16%, signal=32%",Zeb1/Nr3c1/Nfia/Crim1/Fyn/Crebbp,BL6-biased
+GO:0009888,tissue development,37,0.3932668574497221,0.8434828548661196,0.751207729468599,1,1,23,"tags=14%, list=15%, signal=15%",Zeb1/Nr3c1/Nfia/Ripor2/Vps13b,BL6-biased
+GO:0071559,response to transforming growth factor beta,11,0.5116743096155408,0.8414149201883423,0.6926406926406926,1,1,24,"tags=36%, list=16%, signal=33%",Zeb1/Nr3c1/Fyn/Crebbp,BL6-biased
+GO:0071560,cellular response to transforming growth factor beta stimulus,11,0.5116743096155408,0.8414149201883423,0.6926406926406926,1,1,24,"tags=36%, list=16%, signal=33%",Zeb1/Nr3c1/Fyn/Crebbp,BL6-biased
+GO:0006325,chromatin organization,13,-0.49860097313004903,-0.8408262972899889,0.6648451730418944,1,1,4,"tags=15%, list=3%, signal=16%",Kansl1/Airn,CAST-biased
+GO:0000278,mitotic cell cycle,15,0.4795168865612079,0.8396376887109717,0.7081545064377682,1,1,32,"tags=33%, list=21%, signal=29%",Nfia/Ripor2/Crebbp/Arid1b/App,BL6-biased
+GO:0050804,modulation of chemical synaptic transmission,13,0.49466280042546357,0.8396291928952554,0.6821192052980133,1,1,19,"tags=15%, list=13%, signal=15%",Nr3c1/Fyn,BL6-biased
+GO:0099177,regulation of trans-synaptic signaling,13,0.49466280042546357,0.8396291928952554,0.6821192052980133,1,1,19,"tags=15%, list=13%, signal=15%",Nr3c1/Fyn,BL6-biased
+GO:0010243,response to organonitrogen compound,25,-0.44989451552647086,-0.836517081727465,0.67130434782608694,1,1,11,"tags=36%, list=7%, signal=40%",Prkca/Bcl2/Stim1/Pde4b/Igf1r/Akt3/Ext1/Gnaq/Pde3b,CAST-biased
+GO:0006810,transport,45,-0.41161486581989337,-0.8342574726373891,0.7488076311605724,1,1,11,"tags=18%, list=7%, signal=24%",Igf1r/Akt3/Dst/Pafah1b1/Ext1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0010604,positive regulation of macromolecule metabolic process,57,0.356663584484862,0.832476953687122,0.8147058823529412,1,1,14,"tags=11%, list=9%, signal=15%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia,BL6-biased
+GO:0098609,cell-cell adhesion,20,-0.46127471089784333,-0.8314766765090352,0.6891651865008881,1,1,21,"tags=35%, list=14%, signal=35%",Prkca/Bcl2/Ets1/Peli1/Lpp/Cblb/Ext1,CAST-biased
+GO:0034220,monoatomic ion transmembrane transport,13,0.4879213618082407,0.8281864309566919,0.7041942604856513,1,1,35,"tags=31%, list=23%, signal=26%",Kcnt2/Fyn/App/Slc8a1,BL6-biased
+GO:0050793,regulation of developmental process,49,0.36738471489086755,0.826585230976921,0.8245125348189415,1,1,28,"tags=22%, list=19%, signal=27%",Zeb1/Nr3c1/Il7r/Crim1/Fyn/Ripor2/Crebbp/Arid1b/Camk1d/Rora/Dlc1,BL6-biased
+GO:0030154,cell differentiation,70,0.34052037601153184,0.8262811475360444,0.8857142857142857,1,1,27,"tags=21%, list=18%, signal=33%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia/Dock10/Crim1/Fyn/Ripor2/Vps13b/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0048869,cellular developmental process,70,0.34052037601153184,0.8262811475360444,0.8857142857142857,1,1,27,"tags=21%, list=18%, signal=33%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia/Dock10/Crim1/Fyn/Ripor2/Vps13b/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:1902532,negative regulation of intracellular signal transduction,15,-0.4833812025541737,-0.8244785083174575,0.707089552238806,1,1,36,"tags=47%, list=24%, signal=39%",Prkca/Bcl2/Nlk/Ldlrad4/Igf1r/Pafah1b1/Pde3b,CAST-biased
+GO:0009056,catabolic process,25,-0.44265479549602094,-0.8230558163343786,0.6921739130434783,1,1,21,"tags=20%, list=14%, signal=21%",Peli1/Pafah1b1/Cblb/Ext1/Pde3b,CAST-biased
+GO:0006338,chromatin remodeling,10,-0.5139632971059348,-0.8144214503793172,0.7220149253731343,1,1,4,"tags=20%, list=3%, signal=21%",Kansl1/Airn,CAST-biased
+GO:0032504,multicellular organism reproduction,13,-0.4827559429086784,-0.8141056954270478,0.6994535519125683,1,1,9,"tags=31%, list=6%, signal=32%",Igf1r/Pafah1b1/Gnaq/Airn,CAST-biased
+GO:0070647,protein modification by small protein conjugation or removal,12,0.48100488856923174,0.8137246194518638,0.7133757961783439,1,1,19,"tags=17%, list=13%, signal=16%",Fbxl17/Fyn,BL6-biased
+GO:0000003,reproduction,15,-0.4769308145872574,-0.8134764126196298,0.7182835820895522,1,1,9,"tags=20%, list=6%, signal=21%",Pafah1b1/Gnaq/Airn,CAST-biased
+GO:0022414,reproductive process,15,-0.4769308145872574,-0.8134764126196298,0.7182835820895522,1,1,9,"tags=20%, list=6%, signal=21%",Pafah1b1/Gnaq/Airn,CAST-biased
+GO:1901698,response to nitrogen compound,26,-0.43514292530668625,-0.8128958734564974,0.7235494880546075,1,1,11,"tags=38%, list=7%, signal=43%",Prkca/Bcl2/Stim1/Pde4b/Igf1r/Akt3/Peli1/Ext1/Gnaq/Pde3b,CAST-biased
+GO:0030099,myeloid cell differentiation,13,0.47861629175622306,0.8123922203330316,0.7218543046357616,1,1,7,"tags=8%, list=5%, signal=8%",Nr3c1,BL6-biased
+GO:0008283,cell population proliferation,55,0.3525632603335058,0.8123262516593099,0.861764705882353,1,1,28,"tags=22%, list=19%, signal=28%",Zeb1/Nr3c1/Il7r/Nfia/Dock10/Fyn/Ripor2/Crebbp/Arid1b/Camk1d/Rora/Dlc1,BL6-biased
+GO:0050877,nervous system process,13,0.4782292332326168,0.8117352361500706,0.7218543046357616,1,1,32,"tags=38%, list=21%, signal=33%",Fyn/Ripor2/Crebbp/Setd5/App,BL6-biased
+GO:0010628,positive regulation of gene expression,20,0.42746999269518665,0.8074496465714962,0.7425968109339408,1,1,9,"tags=15%, list=6%, signal=16%",Eif4g3/Nr3c1/Il7r,BL6-biased
+GO:0051240,positive regulation of multicellular organismal process,34,-0.41970040792372076,-0.8068055066643701,0.7680412371134021,1,1,36,"tags=35%, list=24%, signal=35%",Prkca/Bcl2/Stim1/Ets1/Pde4b/Igf1r/Akt3/Peli1/Pafah1b1/Prkch/Cblb/Dennd1b,CAST-biased
+GO:0008285,negative regulation of cell population proliferation,19,0.4339271958074076,0.8064509132242195,0.7307692307692307,1,1,22,"tags=16%, list=15%, signal=15%",Zeb1/Fyn/Ripor2,BL6-biased
+GO:0051171,regulation of nitrogen compound metabolic process,69,0.3342565774552973,0.8042977094625253,0.9166666666666666,1,1,32,"tags=22%, list=21%, signal=32%",Zeb1/Eif4g3/Nr3c1/Smyd3/Nfia/Bach2/Fyn/Crebbp/Arid1b/Camk1d/Rora/Dlc1/Pan3/Setd5/App,BL6-biased
+GO:0009628,response to abiotic stimulus,17,0.4419792137706168,0.8009339752056936,0.7278761061946902,1,1,27,"tags=29%, list=18%, signal=27%",Fbxl17/Fyn/Ripor2/Crebbp/Rora,BL6-biased
+GO:0042592,homeostatic process,28,-0.4259293893200129,-0.8006861993812135,0.7551724137931034,1,1,36,"tags=32%, list=24%, signal=30%",Prkca/Bcl2/Stim1/Ets1/Pde4b/Igf1r/Akt3/Ext1/Pde3b,CAST-biased
+GO:0065008,regulation of biological quality,38,-0.4099424585191732,-0.8005754100279119,0.7875210792580101,1,1,36,"tags=29%, list=24%, signal=29%",Prkca/Bcl2/Stim1/Nlk/Tnrc6b/Igf1r/Akt3/Pafah1b1/Ext1/Gnaq/Pde3b,CAST-biased
+GO:0016567,protein ubiquitination,10,0.49042479027301344,0.7975446063798592,0.7339055793991416,1,1,19,"tags=20%, list=13%, signal=19%",Fbxl17/Fyn,BL6-biased
+GO:0032446,protein modification by small protein conjugation,10,0.49042479027301344,0.7975446063798592,0.7339055793991416,1,1,19,"tags=20%, list=13%, signal=19%",Fbxl17/Fyn,BL6-biased
+GO:0040008,regulation of growth,11,0.48455586696430525,0.7968204157736761,0.7380952380952381,1,1,7,"tags=9%, list=5%, signal=9%",Nr3c1,BL6-biased
+GO:0019222,regulation of metabolic process,82,-0.3610411452907991,-0.7938924868076733,0.9128065395095368,1,1,14,"tags=9%, list=9%, signal=17%",Prkch/Cblb/Gnaq/Dennd1b/Wwox/Pde3b/Airn,CAST-biased
+GO:0007167,enzyme-linked receptor protein signaling pathway,19,0.427092981121693,0.7937495690178262,0.748868778280543,1,1,24,"tags=26%, list=16%, signal=25%",Zeb1/Nfia/Crim1/Fyn/Crebbp,BL6-biased
+GO:0007159,leukocyte cell-cell adhesion,12,-0.4774504912130678,-0.7868797710553932,0.7476459510357816,1,1,21,"tags=25%, list=14%, signal=23%",Peli1/Cblb/Ext1,CAST-biased
+GO:0051049,regulation of transport,25,-0.4231986253790252,-0.7868797393070409,0.7530434782608696,1,1,9,"tags=32%, list=6%, signal=36%",Dock2/Prkca/Bcl2/Stim1/Pde4b/Akt3/Gnaq/Pde3b,CAST-biased
+GO:0030030,cell projection organization,30,0.3753298489500613,0.7855839098044175,0.8032786885245902,1,1,26,"tags=23%, list=17%, signal=24%",Nr3c1/Dock10/Fyn/Ripor2/Crebbp/Arid1b/Camk1d,BL6-biased
+GO:0031175,neuron projection development,30,0.3753298489500613,0.7855839098044175,0.8032786885245902,1,1,26,"tags=23%, list=17%, signal=24%",Nr3c1/Dock10/Fyn/Ripor2/Crebbp/Arid1b/Camk1d,BL6-biased
+GO:0120036,plasma membrane bounded cell projection organization,30,0.3753298489500613,0.7855839098044175,0.8032786885245902,1,1,26,"tags=23%, list=17%, signal=24%",Nr3c1/Dock10/Fyn/Ripor2/Crebbp/Arid1b/Camk1d,BL6-biased
+GO:0003006,developmental process involved in reproduction,10,-0.49450007141259555,-0.7835802043458243,0.7555970149253731,1,1,4,"tags=30%, list=3%, signal=31%",Igf1r/Pafah1b1/Airn,CAST-biased
+GO:0044093,positive regulation of molecular function,25,-0.41905322664732847,-0.7791719395229565,0.7652173913043478,1,1,14,"tags=12%, list=9%, signal=13%",Prkch/Gnaq/Dennd1b,CAST-biased
+GO:0009059,macromolecule biosynthetic process,74,0.31888641389975103,0.7788652862645287,0.9554794520547946,1,1,27,"tags=19%, list=18%, signal=31%",Zeb1/Eif4g3/Nr3c1/Tnfaip8/Il7r/Smyd3/Nfia/Bach2/Fyn/St6galnac3/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0065009,regulation of molecular function,37,-0.399570176560051,-0.7775136650482323,0.8248299319727891,1,1,21,"tags=30%, list=14%, signal=34%",Prkca/Bcl2/Stim1/Pde4b/Igf1r/Peli1/Pafah1b1/Prkch/Cblb/Gnaq/Dennd1b,CAST-biased
+GO:0051234,establishment of localization,49,-0.3764087348446239,-0.7763720064849053,0.8227060653188181,1,1,11,"tags=12%, list=7%, signal=17%",Dst/Pafah1b1/Ext1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0051093,negative regulation of developmental process,17,0.42568226902180006,0.7714014172602162,0.7676991150442478,1,1,2,"tags=6%, list=1%, signal=7%",Zeb1,BL6-biased
+GO:0042127,regulation of cell population proliferation,39,0.3530060652082701,0.7708649236709962,0.8813559322033898,1,1,9,"tags=8%, list=6%, signal=10%",Zeb1/Nr3c1/Il7r,BL6-biased
+GO:0065003,protein-containing complex assembly,10,-0.4861105696242397,-0.7702862780034062,0.7705223880597015,1,1,11,"tags=20%, list=7%, signal=20%",Skap1/Ext1,CAST-biased
+GO:0048812,neuron projection morphogenesis,20,-0.42497416354026596,-0.7660426569123663,0.7673179396092362,1,1,26,"tags=30%, list=17%, signal=29%",Prkca/Bcl2/Igf1r/Dst/Pafah1b1/Ext1,CAST-biased
+GO:0001932,regulation of protein phosphorylation,19,-0.42763246890979884,-0.7650672203952487,0.7678571428571429,1,1,14,"tags=16%, list=9%, signal=16%",Prkch/Cblb/Gnaq,CAST-biased
+GO:0009058,biosynthetic process,76,0.3138927862809715,0.7641841359248304,0.965034965034965,1,1,27,"tags=18%, list=18%, signal=31%",Zeb1/Eif4g3/Nr3c1/Tnfaip8/Il7r/Smyd3/Nfia/Bach2/Fyn/St6galnac3/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0044249,cellular biosynthetic process,76,0.3138927862809715,0.7641841359248304,0.965034965034965,1,1,27,"tags=18%, list=18%, signal=31%",Zeb1/Eif4g3/Nr3c1/Tnfaip8/Il7r/Smyd3/Nfia/Bach2/Fyn/St6galnac3/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:1901576,organic substance biosynthetic process,76,0.3138927862809715,0.7641841359248304,0.965034965034965,1,1,27,"tags=18%, list=18%, signal=31%",Zeb1/Eif4g3/Nr3c1/Tnfaip8/Il7r/Smyd3/Nfia/Bach2/Fyn/St6galnac3/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0002682,regulation of immune system process,29,0.36450528985683717,0.7578695241152086,0.8679245283018868,1,1,29,"tags=28%, list=19%, signal=28%",Zeb1/Il7r/Fyn/Ripor2/Arid1b/Camk1d/Rora/Themis,BL6-biased
+GO:0035239,tube morphogenesis,21,0.3961503014728699,0.7572398441604563,0.8165137614678899,1,1,7,"tags=10%, list=5%, signal=11%",Zeb1/Nr3c1,BL6-biased
+GO:0008284,positive regulation of cell population proliferation,22,-0.4148556345175954,-0.7549969076220316,0.7982300884955752,1,1,36,"tags=41%, list=24%, signal=36%",Prkca/Bcl2/Ets1/Igf1r/Akt3/Peli1/Pafah1b1/Prkch/Gnaq,CAST-biased
+GO:0071495,cellular response to endogenous stimulus,35,-0.3913032870680163,-0.7548764446772059,0.8404802744425386,1,1,11,"tags=23%, list=7%, signal=28%",Pde4b/Ldlrad4/Igf1r/Akt3/Ext1/Gnaq/Wwox/Pde3b,CAST-biased
+GO:0051239,regulation of multicellular organismal process,51,-0.3658753105496462,-0.7544625852874993,0.878125,1,1,36,"tags=29%, list=24%, signal=34%",Prkca/Bcl2/Stim1/Ets1/Pde4b/Ldlrad4/Igf1r/Akt3/Peli1/Pafah1b1/Prkch/Cblb/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0035295,tube development,25,0.37870538950306176,0.7509369268920594,0.8243559718969555,1,1,14,"tags=12%, list=9%, signal=13%",Zeb1/Nr3c1/Nfia,BL6-biased
+GO:0009719,response to endogenous stimulus,39,-0.3832834894421467,-0.7505950512588199,0.8556876061120543,1,1,11,"tags=31%, list=7%, signal=39%",Prkca/Bcl2/Stim1/Nlk/Pde4b/Ldlrad4/Igf1r/Akt3/Ext1/Gnaq/Wwox/Pde3b,CAST-biased
+GO:0009987,cellular process,138,-0.3461888166795593,-0.7493268393264295,0.941025641025641,1,1,6,"tags=4%, list=4%, signal=43%",Wwox/Pde3b/Airn/Apbb1ip/Serinc3,CAST-biased
+GO:0032990,cell part morphogenesis,21,-0.4125310311197101,-0.748588732538001,0.7862190812720848,1,1,26,"tags=29%, list=17%, signal=27%",Prkca/Bcl2/Igf1r/Dst/Pafah1b1/Ext1,CAST-biased
+GO:0048858,cell projection morphogenesis,21,-0.4125310311197101,-0.748588732538001,0.7862190812720848,1,1,26,"tags=29%, list=17%, signal=27%",Prkca/Bcl2/Igf1r/Dst/Pafah1b1/Ext1,CAST-biased
+GO:0120039,plasma membrane bounded cell projection morphogenesis,21,-0.4125310311197101,-0.748588732538001,0.7862190812720848,1,1,26,"tags=29%, list=17%, signal=27%",Prkca/Bcl2/Igf1r/Dst/Pafah1b1/Ext1,CAST-biased
+GO:0001775,cell activation,31,-0.39416566083962157,-0.7478479846025012,0.837979094076655,1,1,12,"tags=13%, list=8%, signal=15%",Peli1/Cblb/Gnaq/Apbb1ip,CAST-biased
+GO:0007166,cell surface receptor signaling pathway,48,-0.36414878863665967,-0.7473475946207158,0.8829953198127926,1,1,14,"tags=17%, list=9%, signal=22%",Peli1/Pafah1b1/Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox,CAST-biased
+GO:0030855,epithelial cell differentiation,10,0.459293123845927,0.7469172866786716,0.7982832618025751,1,1,2,"tags=10%, list=1%, signal=11%",Zeb1,BL6-biased
+GO:0051179,localization,60,-0.35270489970747676,-0.7417054076621613,0.9397590361445783,1,1,11,"tags=10%, list=7%, signal=15%",Dst/Pafah1b1/Ext1/Gnaq/Dennd1b/Pde3b,CAST-biased
+GO:0034329,cell junction assembly,11,-0.454578631282645,-0.7400101936284416,0.8148148148148148,1,1,36,"tags=36%, list=24%, signal=30%",Prkca/Bcl2/Dst/Prkch,CAST-biased
+GO:0048513,animal organ development,49,-0.35821996297739744,-0.738856263615963,0.8973561430793157,1,1,14,"tags=20%, list=9%, signal=27%",Lncpint/Ldlrad4/Igf1r/Akt3/Pafah1b1/Prkch/Ext1/Gnaq/Wwox/Pde3b,CAST-biased
+GO:0031401,positive regulation of protein modification process,17,0.4064863826969033,0.7366155335290968,0.8252212389380531,1,1,19,"tags=18%, list=13%, signal=17%",Eif4g3/Smyd3/Fyn,BL6-biased
+GO:0009887,animal organ morphogenesis,23,0.377503270646503,0.736369186363368,0.8594470046082949,1,1,7,"tags=9%, list=5%, signal=10%",Zeb1/Nr3c1,BL6-biased
+GO:0010468,regulation of gene expression,69,0.30565123419894885,0.7354667167125104,0.9775641025641025,1,1,27,"tags=17%, list=18%, signal=26%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia/Bach2/Fyn/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0010556,regulation of macromolecule biosynthetic process,69,0.30565123419894885,0.7354667167125104,0.9775641025641025,1,1,27,"tags=17%, list=18%, signal=26%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia/Bach2/Fyn/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0042325,regulation of phosphorylation,21,-0.4040688358471929,-0.7332330294376819,0.8127208480565371,1,1,14,"tags=19%, list=9%, signal=20%",Igf1r/Prkch/Cblb/Gnaq,CAST-biased
+GO:0006807,nitrogen compound metabolic process,89,0.2936650713415802,0.7331403119190999,0.9844961240310077,1,1,32,"tags=19%, list=21%, signal=37%",Zeb1/Fbxl17/Eif4g3/Nr3c1/Smyd3/Nfia/Bach2/Fyn/St6galnac3/Crebbp/Arid1b/Camk1d/Rora/Dlc1/Pan3/Setd5/App,BL6-biased
+GO:0010467,gene expression,72,0.3015130204663884,0.7324270072925126,0.9935483870967742,1,1,27,"tags=18%, list=18%, signal=28%",Zeb1/Eif4g3/Nr3c1/Tnfaip8/Il7r/Smyd3/Nfia/Bach2/Fyn/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:1901701,cellular response to oxygen-containing compound,22,0.3791923281182687,0.7324218692986492,0.8466819221967964,1,1,19,"tags=18%, list=13%, signal=19%",Zeb1/Nr3c1/Smyd3/Fyn,BL6-biased
+GO:0009889,regulation of biosynthetic process,71,0.3005360555398911,0.7280657156712891,0.9936708860759493,1,1,27,"tags=17%, list=18%, signal=26%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia/Bach2/Fyn/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0031326,regulation of cellular biosynthetic process,71,0.3005360555398911,0.7280657156712891,0.9936708860759493,1,1,27,"tags=17%, list=18%, signal=26%",Zeb1/Eif4g3/Nr3c1/Il7r/Smyd3/Nfia/Bach2/Fyn/Crebbp/Arid1b/Camk1d/Rora,BL6-biased
+GO:0048731,system development,64,-0.3389671380458819,-0.7233890712199046,0.9633431085043989,1,1,14,"tags=12%, list=9%, signal=20%",Dst/Pafah1b1/Prkch/Cblb/Ext1/Gnaq/Wwox/Pde3b,CAST-biased
+GO:0007275,multicellular organism development,70,-0.33673734891562535,-0.7233227118702243,0.9577874818049491,1,1,20,"tags=13%, list=13%, signal=21%",Dst/Pafah1b1/Ebf1/Prkch/Cblb/Ext1/Gnaq/Wwox/Pde3b,CAST-biased
+GO:0002684,positive regulation of immune system process,26,-0.386758258205623,-0.7225078792192019,0.8617747440273038,1,1,14,"tags=15%, list=9%, signal=17%",Peli1/Prkch/Cblb/Dennd1b,CAST-biased
+GO:0048589,developmental growth,17,-0.4099932105444036,-0.7188966272004786,0.8436363636363636,1,1,28,"tags=35%, list=19%, signal=32%",Akap13/Bcl2/Lncpint/Igf1r/Pafah1b1/Ext1,CAST-biased
+GO:0030001,metal ion transport,13,-0.4256484943060144,-0.7178013415570204,0.8360655737704918,1,1,35,"tags=38%, list=23%, signal=32%",Bcl2/Stim1/Pde4b/Akt3/Gnaq,CAST-biased
+GO:0019220,regulation of phosphate metabolic process,24,-0.38730878388830653,-0.7159321149126344,0.8563922942206655,1,1,14,"tags=17%, list=9%, signal=18%",Igf1r/Prkch/Cblb/Gnaq,CAST-biased
+GO:0051174,regulation of phosphorus metabolic process,24,-0.38730878388830653,-0.7159321149126344,0.8563922942206655,1,1,14,"tags=17%, list=9%, signal=18%",Igf1r/Prkch/Cblb/Gnaq,CAST-biased
+GO:0099536,synaptic signaling,19,-0.40007720849346917,-0.7157687502680065,0.8589285714285714,1,1,18,"tags=21%, list=12%, signal=21%",Igf1r/Pafah1b1/Ext1/Gnaq,CAST-biased
+GO:0043066,negative regulation of apoptotic process,16,-0.412378260267868,-0.7153392054108777,0.8443223443223443,1,1,14,"tags=25%, list=9%, signal=25%",Igf1r/Prkch/Cblb/Gnaq,CAST-biased
+GO:0030334,regulation of cell migration,22,0.36986141013606044,0.7143989086952116,0.8764302059496567,1,1,36,"tags=32%, list=24%, signal=28%",Dock10/Ripor2/Camk1d/Dlc1/App/Slc8a1/Gab2,BL6-biased
+GO:2000145,regulation of cell motility,22,0.36986141013606044,0.7143989086952116,0.8764302059496567,1,1,36,"tags=32%, list=24%, signal=28%",Dock10/Ripor2/Camk1d/Dlc1/App/Slc8a1/Gab2,BL6-biased
+GO:0022607,cellular component assembly,27,-0.3811824650210714,-0.7135197172280291,0.8700173310225303,1,1,20,"tags=15%, list=13%, signal=16%",Dst/Pafah1b1/Prkch/Ext1,CAST-biased
+GO:0044085,cellular component biogenesis,27,-0.3811824650210714,-0.7135197172280291,0.8700173310225303,1,1,20,"tags=15%, list=13%, signal=16%",Dst/Pafah1b1/Prkch/Ext1,CAST-biased
+GO:0031344,regulation of cell projection organization,12,0.42077581917220575,0.7118340197101092,0.8598726114649682,1,1,37,"tags=42%, list=25%, signal=34%",Fyn/Ripor2/Camk1d/App/Cd44,BL6-biased
+GO:0120035,regulation of plasma membrane bounded cell projection organization,12,0.42077581917220575,0.7118340197101092,0.8598726114649682,1,1,37,"tags=42%, list=25%, signal=34%",Fyn/Ripor2/Camk1d/App/Cd44,BL6-biased
+GO:0003008,system process,26,-0.380041539510152,-0.7099602940622829,0.8754266211604096,1,1,18,"tags=12%, list=12%, signal=12%",Pafah1b1/Ext1/Gnaq,CAST-biased
+GO:0048856,anatomical structure development,86,-0.3219067704288008,-0.7099375041850516,0.9836289222373806,1,1,18,"tags=10%, list=12%, signal=22%",Pafah1b1/Ebf1/Prkch/Cblb/Ext1/Gnaq/Wwox/Pde3b/Airn,CAST-biased
+GO:0050865,regulation of cell activation,15,0.4054147377024322,0.7098842665896073,0.869098712446352,1,1,27,"tags=33%, list=18%, signal=30%",Zeb1/Il7r/Ripor2/Arid1b/Rora,BL6-biased
+GO:0071417,cellular response to organonitrogen compound,17,-0.40456003523144113,-0.7093699050328329,0.8636363636363636,1,1,9,"tags=41%, list=6%, signal=44%",Prkca/Stim1/Pde4b/Igf1r/Akt3/Gnaq/Pde3b,CAST-biased
+GO:1901699,cellular response to nitrogen compound,17,-0.40456003523144113,-0.7093699050328329,0.8636363636363636,1,1,9,"tags=41%, list=6%, signal=44%",Prkca/Stim1/Pde4b/Igf1r/Akt3/Gnaq/Pde3b,CAST-biased
+GO:0032879,regulation of localization,32,-0.3723679281538277,-0.7092907678984052,0.8844827586206897,1,1,9,"tags=25%, list=6%, signal=30%",Dock2/Prkca/Bcl2/Stim1/Pde4b/Akt3/Gnaq/Pde3b,CAST-biased
+GO:0045321,leukocyte activation,27,0.34758591462860167,0.7091230287912703,0.908235294117647,1,1,37,"tags=44%, list=25%, signal=41%",Zeb1/Il7r/Dock10/Fyn/Ripor2/Arid1b/Rora/Themis/App/Stat4/Gab2/Cd44,BL6-biased
+GO:0040007,growth,19,-0.39597436729172925,-0.7084284533023886,0.8714285714285714,1,1,28,"tags=32%, list=19%, signal=29%",Akap13/Bcl2/Lncpint/Igf1r/Pafah1b1/Ext1,CAST-biased
+GO:0046649,lymphocyte activation,23,0.362526066885678,0.7071542041236922,0.8940092165898618,1,1,29,"tags=35%, list=19%, signal=33%",Zeb1/Il7r/Dock10/Fyn/Ripor2/Arid1b/Rora/Themis,BL6-biased
+GO:0007417,central nervous system development,25,0.35594169846408086,0.7057986831085116,0.8946135831381733,1,1,7,"tags=8%, list=5%, signal=9%",Zeb1/Nr3c1,BL6-biased
+GO:0040012,regulation of locomotion,23,0.36047232256102746,0.7031481089321159,0.8986175115207373,1,1,36,"tags=30%, list=24%, signal=27%",Dock10/Ripor2/Camk1d/Dlc1/App/Slc8a1/Gab2,BL6-biased
+GO:0031399,regulation of protein modification process,24,-0.3800647351720551,-0.7025416437080059,0.8791593695271454,1,1,14,"tags=17%, list=9%, signal=18%",Peli1/Prkch/Cblb/Gnaq,CAST-biased
+GO:0071704,organic substance metabolic process,101,-0.3110521931662466,-0.7018619129025795,0.9933333333333333,1,1,12,"tags=8%, list=8%, signal=22%",Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Airn,CAST-biased
+GO:0006811,monoatomic ion transport,15,-0.41133579974122536,-0.7015943623711887,0.8675373134328358,1,1,36,"tags=40%, list=24%, signal=34%",Prkca/Bcl2/Stim1/Pde4b/Akt3/Gnaq,CAST-biased
+GO:0000902,cell morphogenesis,30,0.3313610337994427,0.6935550082605745,0.955503512880562,1,1,33,"tags=27%, list=22%, signal=26%",Il7r/Nfia/Dock10/Fyn/Ripor2/Dlc1/App/Emb,BL6-biased
+GO:0034330,cell junction organization,19,-0.3869752508889299,-0.6923283452122445,0.8875,1,1,26,"tags=26%, list=17%, signal=25%",Igf1r/Dst/Pafah1b1/Prkch/Ext1,CAST-biased
+GO:0009790,embryo development,18,-0.39011798371287437,-0.6889106299645436,0.8882783882783882,1,1,18,"tags=17%, list=12%, signal=17%",Pafah1b1/Ext1/Gnaq,CAST-biased
+GO:0009611,response to wounding,13,-0.4084350923751416,-0.6887731571183889,0.8670309653916212,1,1,11,"tags=31%, list=7%, signal=31%",Igf1r/Dst/Ext1/Gnaq,CAST-biased
+GO:0006629,lipid metabolic process,13,-0.40826033474998596,-0.6884784509007891,0.8670309653916212,1,1,18,"tags=23%, list=12%, signal=22%",Igf1r/Pafah1b1/Pde3b,CAST-biased
+GO:0043069,negative regulation of programmed cell death,17,-0.3918621786156338,-0.6871050331788379,0.8963636363636364,1,1,14,"tags=29%, list=9%, signal=30%",Igf1r/Peli1/Prkch/Cblb/Gnaq,CAST-biased
+GO:0006897,endocytosis,11,-0.42058369470321483,-0.6846697137436997,0.8907407407407407,1,1,8,"tags=27%, list=5%, signal=28%",Dock2/Prkca/Dennd1b,CAST-biased
+GO:0032502,developmental process,87,-0.3104059353012283,-0.6825244911639609,0.9931693989071039,1,1,18,"tags=10%, list=12%, signal=22%",Pafah1b1/Ebf1/Prkch/Cblb/Ext1/Gnaq/Wwox/Pde3b/Airn,CAST-biased
+GO:0006812,monoatomic cation transport,14,-0.4019458823554018,-0.6824863444964125,0.8775137111517367,1,1,35,"tags=36%, list=23%, signal=30%",Bcl2/Stim1/Pde4b/Akt3/Gnaq,CAST-biased
+GO:0048667,cell morphogenesis involved in neuron differentiation,22,-0.37437148291142747,-0.6813196890254938,0.8920353982300885,1,1,26,"tags=27%, list=17%, signal=26%",Prkca/Bcl2/Igf1r/Dst/Pafah1b1/Ext1,CAST-biased
+GO:0060255,regulation of macromolecule metabolic process,77,-0.31221252136782546,-0.679716997944466,0.994475138121547,1,1,14,"tags=8%, list=9%, signal=15%",Prkch/Cblb/Gnaq/Dennd1b/Wwox/Airn,CAST-biased
+GO:0032870,cellular response to hormone stimulus,14,-0.4002715012557125,-0.6796433193873497,0.8829981718464351,1,1,5,"tags=21%, list=3%, signal=23%",Igf1r/Akt3/Pde3b,CAST-biased
+GO:0008152,metabolic process,103,-0.29876098794627753,-0.6762093341413549,0.9934123847167325,1,1,12,"tags=8%, list=8%, signal=23%",Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Pde3b/Airn,CAST-biased
+GO:0071310,cellular response to organic substance,32,0.31842747888133893,0.6753915698788053,0.966824644549763,1,1,22,"tags=19%, list=15%, signal=20%",Zeb1/Nr3c1/Il7r/Smyd3/Fyn/Ripor2,BL6-biased
+GO:0009653,anatomical structure morphogenesis,55,-0.32247906132341286,-0.6741299692458365,0.9803625377643505,1,1,11,"tags=11%, list=7%, signal=16%",Dst/Pafah1b1/Ext1/Gnaq/Wwox/Pde3b,CAST-biased
+GO:0051246,regulation of protein metabolic process,29,-0.35585890071002835,-0.673545420348371,0.9204152249134948,1,1,14,"tags=14%, list=9%, signal=16%",Peli1/Prkch/Cblb/Gnaq,CAST-biased
+GO:0009725,response to hormone,18,-0.380986814622502,-0.6727858684488298,0.9047619047619048,1,1,5,"tags=33%, list=3%, signal=37%",Akap13/Prkca/Bcl2/Igf1r/Akt3/Pde3b,CAST-biased
+GO:0080090,regulation of primary metabolic process,70,0.2763512109403836,0.6705730751661766,1,1,1,32,"tags=21%, list=21%, signal=32%",Zeb1/Eif4g3/Nr3c1/Smyd3/Nfia/Bach2/Fyn/Crebbp/Arid1b/Camk1d/Rora/Dlc1/Pan3/Setd5/App,BL6-biased
+GO:0031323,regulation of cellular metabolic process,78,-0.3059280520867676,-0.6700424443541713,0.9904371584699454,1,1,14,"tags=8%, list=9%, signal=15%",Prkch/Cblb/Gnaq/Dennd1b/Wwox/Airn,CAST-biased
+GO:0010033,response to organic substance,39,0.3055122913481739,0.6671520190785205,0.9854721549636803,1,1,24,"tags=18%, list=16%, signal=20%",Zeb1/Nr3c1/Il7r/Smyd3/Fyn/Ripor2/Crebbp,BL6-biased
+GO:0002009,morphogenesis of an epithelium,11,-0.406974317468649,-0.6625149594515832,0.9185185185185185,1,1,26,"tags=36%, list=17%, signal=32%",Bcl2/Igf1r/Pafah1b1/Ext1,CAST-biased
+GO:0042221,response to chemical,47,0.2937483341853623,0.6607848746662106,0.9920212765957447,1,1,27,"tags=19%, list=18%, signal=23%",Zeb1/Nr3c1/Il7r/Smyd3/Fyn/Ripor2/Crebbp/Camk1d/Rora,BL6-biased
+GO:0002250,adaptive immune response,12,0.390389708347716,0.6604292896234185,0.9193205944798302,1,1,29,"tags=42%, list=19%, signal=37%",Il7r/Bach2/Fyn/Rora/Themis,BL6-biased
+GO:0044237,cellular metabolic process,93,-0.29645937639977316,-0.6603715084981091,0.996,1,1,14,"tags=8%, list=9%, signal=18%",Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Airn,CAST-biased
+GO:1901700,response to oxygen-containing compound,32,-0.34656974553458564,-0.6601500890781115,0.9379310344827586,1,1,11,"tags=31%, list=7%, signal=37%",Prkca/Bcl2/Stim1/Pde4b/Igf1r/Akt3/Peli1/Ext1/Gnaq/Pde3b,CAST-biased
+GO:0070887,cellular response to chemical stimulus,36,0.30760429615948104,0.6595314799464077,0.9854368932038835,1,1,27,"tags=22%, list=18%, signal=24%",Zeb1/Nr3c1/Il7r/Smyd3/Fyn/Ripor2/Camk1d/Rora,BL6-biased
+GO:0048729,tissue morphogenesis,12,-0.3978342543059071,-0.6556653154777551,0.9190207156308852,1,1,26,"tags=33%, list=17%, signal=30%",Bcl2/Igf1r/Pafah1b1/Ext1,CAST-biased
+GO:0032989,cellular component morphogenesis,23,-0.3551963720570249,-0.6538376657457431,0.926056338028169,1,1,26,"tags=30%, list=17%, signal=30%",Akap13/Prkca/Bcl2/Igf1r/Dst/Pafah1b1/Ext1,CAST-biased
+GO:0009892,negative regulation of metabolic process,47,-0.32199793805273386,-0.6527850274394862,0.9856230031948882,1,1,14,"tags=9%, list=9%, signal=11%",Prkch/Cblb/Gnaq/Pde3b,CAST-biased
+GO:0016477,cell migration,30,-0.3432777354773415,-0.6501920990806949,0.9426086956521739,1,1,38,"tags=33%, list=25%, signal=31%",Dock2/Prkca/Bcl2/Ets1/Pde4b/Ldlrad4/Igf1r/Akt3/Pafah1b1/Ext1,CAST-biased
+GO:1901565,organonitrogen compound catabolic process,14,-0.3816014066962418,-0.6479423239383432,0.9177330895795247,1,1,12,"tags=21%, list=8%, signal=22%",Peli1/Cblb/Ext1,CAST-biased
+GO:0042110,T cell activation,21,-0.3563070406240688,-0.6465633269118548,0.9328621908127208,1,1,12,"tags=14%, list=8%, signal=15%",Peli1/Cblb/Apbb1ip,CAST-biased
+GO:0051050,positive regulation of transport,17,0.3540829517914481,0.6416524969838849,0.9491150442477876,1,1,26,"tags=24%, list=17%, signal=22%",Nr3c1/Tbc1d5/Fyn/Camk1d,BL6-biased
+GO:1901566,organonitrogen compound biosynthetic process,13,-0.38036573114453265,-0.6414377960927855,0.930783242258652,1,1,14,"tags=38%, list=9%, signal=38%",Prkca/Bcl2/Tnrc6b/Prkch/Ext1,CAST-biased
+GO:0030163,protein catabolic process,12,-0.3888574319143307,-0.6408707345143096,0.9378531073446328,1,1,12,"tags=25%, list=8%, signal=25%",Peli1/Cblb/Ext1,CAST-biased
+GO:0051247,positive regulation of protein metabolic process,18,0.3458611908543795,0.6383279367511386,0.9451754385964912,1,1,19,"tags=17%, list=13%, signal=17%",Eif4g3/Smyd3/Fyn,BL6-biased
+GO:0048870,cell motility,32,-0.3309468104143037,-0.6303913402427014,0.9724137931034482,1,1,38,"tags=34%, list=25%, signal=33%",Dock2/Prkca/Bcl2/Ets1/Pde4b/Ldlrad4/Igf1r/Akt3/Dst/Pafah1b1/Ext1,CAST-biased
+GO:0006468,protein phosphorylation,29,-0.3328817381689801,-0.630055816544042,0.9653979238754326,1,1,14,"tags=28%, list=9%, signal=31%",Prkca/Bcl2/Nlk/Igf1r/Akt3/Prkch/Cblb/Gnaq,CAST-biased
+GO:0008150,biological_process,147,-0.3333333333333333,-0.625505801277743,0.9817739975698664,1,1,150,"tags=3%, list=100%, signal=0%",Wwox/Pde3b/Airn/Apbb1ip/Serinc3,CAST-biased
+GO:0009057,macromolecule catabolic process,17,-0.35512175310120797,-0.6226830688512832,0.9527272727272728,1,1,12,"tags=18%, list=8%, signal=18%",Peli1/Cblb/Ext1,CAST-biased
+GO:0016310,phosphorylation,30,-0.3282938097351642,-0.6218114931633659,0.9721739130434782,1,1,14,"tags=37%, list=9%, signal=42%",Camk4/Atxn1/Akap13/Prkca/Bcl2/Nlk/Igf1r/Akt3/Prkch/Cblb/Gnaq,CAST-biased
+GO:0044087,regulation of cellular component biogenesis,14,0.35875968098741184,0.6174580048651633,0.9582417582417583,1,1,32,"tags=36%, list=21%, signal=31%",Ripor2/Dlc1/Pan3/Setd5/App,BL6-biased
+GO:0016071,mRNA metabolic process,10,-0.3895136707962517,-0.6172197324181111,0.957089552238806,1,1,31,"tags=30%, list=21%, signal=26%",Zcchc7/Tnrc6b/Mbnl2,CAST-biased
+GO:0048666,neuron development,32,-0.3223832058000644,-0.6140792864014187,0.9758620689655172,1,1,20,"tags=12%, list=13%, signal=14%",Dst/Pafah1b1/Ext1/Gnaq,CAST-biased
+GO:0071407,cellular response to organic cyclic compound,13,0.36175732045955933,0.614038506109938,0.9602649006622517,1,1,13,"tags=15%, list=9%, signal=15%",Nr3c1/Smyd3,BL6-biased
+GO:0040011,locomotion,25,0.3090088048412849,0.612735199239161,0.9882903981264637,1,1,36,"tags=28%, list=24%, signal=26%",Dock10/Ripor2/Camk1d/Dlc1/App/Slc8a1/Gab2,BL6-biased
+GO:0018193,peptidyl-amino acid modification,19,-0.3419751237665938,-0.6118196732147949,0.9678571428571429,1,1,37,"tags=42%, list=25%, signal=36%",Kansl1/Prkca/Bcl2/Nlk/Igf1r/Akt3/Prkch/Cblb,CAST-biased
+GO:0044238,primary metabolic process,94,0.24257965632781672,0.6114996769510815,1,1,1,7,"tags=4%, list=5%, signal=11%",Zeb1/Fbxl17/Eif4g3/Nr3c1,BL6-biased
+GO:0032943,mononuclear cell proliferation,11,0.37096537828711196,0.6100282900633012,0.9458874458874459,1,1,22,"tags=27%, list=15%, signal=25%",Il7r/Fyn/Ripor2,BL6-biased
+GO:0046651,lymphocyte proliferation,11,0.37096537828711196,0.6100282900633012,0.9458874458874459,1,1,22,"tags=27%, list=15%, signal=25%",Il7r/Fyn/Ripor2,BL6-biased
+GO:0034097,response to cytokine,11,-0.37213388944436554,-0.6057981009938943,0.9611111111111111,1,1,18,"tags=36%, list=12%, signal=35%",Prkca/Bcl2/Pafah1b1/Ext1,CAST-biased
+GO:0043170,macromolecule metabolic process,95,-0.26954693181517103,-0.6039664191582722,1,1,1,14,"tags=7%, list=9%, signal=18%",Prkch/Cblb/Ext1/Gnaq/Dennd1b/Wwox/Airn,CAST-biased
+GO:0070661,leukocyte proliferation,12,0.3556504139077147,0.6016602005351531,0.9660297239915074,1,1,22,"tags=25%, list=15%, signal=23%",Il7r/Fyn/Ripor2,BL6-biased
+GO:0098657,import into cell,13,-0.3545868047937782,-0.5979649583733881,0.9562841530054644,1,1,8,"tags=23%, list=5%, signal=24%",Dock2/Prkca/Dennd1b,CAST-biased
+GO:0048871,multicellular organismal-level homeostasis,19,-0.3309222433678402,-0.5920452241286587,0.9803571428571428,1,1,36,"tags=37%, list=24%, signal=32%",Prkca/Bcl2/Ets1/Pde4b/Igf1r/Akt3/Ext1,CAST-biased
+GO:0016192,vesicle-mediated transport,16,-0.34117820024034146,-0.5918307684428046,0.9743589743589743,1,1,8,"tags=25%, list=5%, signal=26%",Dock2/Prkca/Igf1r/Dennd1b,CAST-biased
+GO:0046907,intracellular transport,18,-0.3347730724390937,-0.5911768691979189,0.9761904761904762,1,1,20,"tags=17%, list=13%, signal=16%",Dst/Pafah1b1/Dennd1b,CAST-biased
+GO:0006793,phosphorus metabolic process,39,-0.2991229695638709,-0.585781091169004,0.9898132427843803,1,1,14,"tags=26%, list=9%, signal=31%",Atxn1/Akap13/Prkca/Bcl2/Nlk/Igf1r/Akt3/Prkch/Cblb/Gnaq,CAST-biased
+GO:0006796,phosphate-containing compound metabolic process,39,-0.2991229695638709,-0.585781091169004,0.9898132427843803,1,1,14,"tags=26%, list=9%, signal=31%",Atxn1/Akap13/Prkca/Bcl2/Nlk/Igf1r/Akt3/Prkch/Cblb/Gnaq,CAST-biased
+GO:0048523,negative regulation of cellular process,68,-0.2717942993003212,-0.583861869122369,1,1,1,14,"tags=24%, list=9%, signal=39%",Prkca/Bcl2/Ets1/Nlk/Tnrc6b/Pde4b/Ldlrad4/Igf1r/Akt3/Peli1/Pafah1b1/Prkch/Cblb/Gnaq/Wwox/Pde3b,CAST-biased
+GO:0005975,carbohydrate metabolic process,10,-0.36777890102525024,-0.5827790188102849,0.9682835820895522,1,1,11,"tags=20%, list=7%, signal=20%",Ncor1/Ext1,CAST-biased
+GO:0048519,negative regulation of biological process,70,-0.2685739477868362,-0.5769055225874057,1,1,1,14,"tags=23%, list=9%, signal=39%",Prkca/Bcl2/Ets1/Nlk/Tnrc6b/Pde4b/Ldlrad4/Igf1r/Akt3/Peli1/Pafah1b1/Prkch/Cblb/Gnaq/Wwox/Pde3b,CAST-biased
+GO:0048872,homeostasis of number of cells,11,-0.35190959350085405,-0.572874896674043,0.9740740740740741,1,1,35,"tags=45%, list=23%, signal=38%",Bcl2/Ets1/Pde4b/Akt3/Ext1,CAST-biased
+GO:0014070,response to organic cyclic compound,18,0.30821685131717846,0.5688508337324939,0.9846491228070176,1,1,27,"tags=22%, list=18%, signal=21%",Nr3c1/Smyd3/Crebbp/Rora,BL6-biased
+GO:0030029,actin filament-based process,12,-0.342975516615408,-0.565253363351343,0.9736346516007532,1,1,39,"tags=42%, list=26%, signal=34%",Akap13/Dock2/Bcl2/Pde4b/Pafah1b1,CAST-biased
+GO:0036211,protein modification process,49,-0.2726006260117533,-0.5622597867532163,0.9984447900466563,1,1,26,"tags=16%, list=17%, signal=20%",Igf1r/Parp8/Akt3/Peli1/Prkch/Cblb/Ext1/Gnaq,CAST-biased
+GO:0043412,macromolecule modification,49,-0.2726006260117533,-0.5622597867532163,0.9984447900466563,1,1,26,"tags=16%, list=17%, signal=20%",Igf1r/Parp8/Akt3/Peli1/Prkch/Cblb/Ext1/Gnaq,CAST-biased
+GO:0010629,negative regulation of gene expression,17,0.3068665675311213,0.5560891827776882,0.9845132743362832,1,1,32,"tags=24%, list=21%, signal=21%",Fyn/Crebbp/Pan3/App,BL6-biased
+GO:0019538,protein metabolic process,53,-0.2622202323758133,-0.5469994648788034,1,1,1,14,"tags=15%, list=9%, signal=21%",Igf1r/Parp8/Akt3/Peli1/Prkch/Cblb/Ext1/Gnaq,CAST-biased
+GO:1903037,regulation of leukocyte cell-cell adhesion,11,0.32951279650749,0.5418622318222525,0.9761904761904762,1,1,25,"tags=27%, list=17%, signal=25%",Il7r/Ripor2/Arid1b,BL6-biased
+GO:0006954,inflammatory response,11,-0.32695596214433853,-0.532252790175627,0.987037037037037,1,1,11,"tags=27%, list=7%, signal=27%",Prkca/Ets1/Ext1,CAST-biased
+GO:0007268,chemical synaptic transmission,16,-0.3066987481419794,-0.5320203801574875,0.9871794871794872,1,1,18,"tags=19%, list=12%, signal=18%",Igf1r/Pafah1b1/Ext1,CAST-biased
+GO:0098916,anterograde trans-synaptic signaling,16,-0.3066987481419794,-0.5320203801574875,0.9871794871794872,1,1,18,"tags=19%, list=12%, signal=18%",Igf1r/Pafah1b1/Ext1,CAST-biased
+GO:0099537,trans-synaptic signaling,16,-0.3066987481419794,-0.5320203801574875,0.9871794871794872,1,1,18,"tags=19%, list=12%, signal=18%",Igf1r/Pafah1b1/Ext1,CAST-biased
+GO:1901564,organonitrogen compound metabolic process,55,-0.2542813471237535,-0.5315652929924984,1,1,1,14,"tags=15%, list=9%, signal=21%",Igf1r/Parp8/Akt3/Peli1/Prkch/Cblb/Ext1/Gnaq,CAST-biased
+GO:0007010,cytoskeleton organization,19,-0.2926634842758722,-0.5235973755616746,0.9964285714285714,1,1,39,"tags=32%, list=26%, signal=27%",Akap13/Dock2/Bcl2/Lrch3/Dst/Pafah1b1,CAST-biased
+GO:0022407,regulation of cell-cell adhesion,14,0.30343383821362935,0.5222372030109491,0.9846153846153847,1,1,25,"tags=21%, list=17%, signal=20%",Il7r/Ripor2/Arid1b,BL6-biased
+GO:0010720,positive regulation of cell development,11,0.31229200478774266,0.5135437667006821,0.9805194805194806,1,1,25,"tags=18%, list=17%, signal=16%",Il7r/Arid1b,BL6-biased
+GO:0031347,regulation of defense response,10,-0.31493037131791324,-0.49903573119223443,0.9888059701492538,1,1,46,"tags=50%, list=31%, signal=37%",Foxp1/Usp15/Prkca/Ets1/Peli1,CAST-biased
+GO:0032101,regulation of response to external stimulus,15,0.2795040847054254,0.48941376256909586,0.9935622317596566,1,1,37,"tags=33%, list=25%, signal=28%",Ripor2/Camk1d/Rora/App/Cd44,BL6-biased
+GO:0030335,positive regulation of cell migration,16,0.2728414432748384,0.4852024665742428,0.993421052631579,1,1,36,"tags=31%, list=24%, signal=27%",Ripor2/Camk1d/App/Slc8a1/Gab2,BL6-biased
+GO:0040017,positive regulation of locomotion,16,0.2728414432748384,0.4852024665742428,0.993421052631579,1,1,36,"tags=31%, list=24%, signal=27%",Ripor2/Camk1d/App/Slc8a1/Gab2,BL6-biased
+GO:2000147,positive regulation of cell motility,16,0.2728414432748384,0.4852024665742428,0.993421052631579,1,1,36,"tags=31%, list=24%, signal=27%",Ripor2/Camk1d/App/Slc8a1/Gab2,BL6-biased
+GO:0030036,actin cytoskeleton organization,10,0.293578001419235,0.4774260115467365,0.9957081545064378,1,1,28,"tags=20%, list=19%, signal=17%",Elmo1/Dlc1,BL6-biased
+GO:0018105,peptidyl-serine phosphorylation,11,-0.28965953939411476,-0.47153780904427567,0.9981481481481481,1,1,36,"tags=55%, list=24%, signal=45%",Camk4/Prkca/Bcl2/Nlk/Akt3/Prkch,CAST-biased
+GO:0018209,peptidyl-serine modification,11,-0.28965953939411476,-0.47153780904427567,0.9981481481481481,1,1,36,"tags=55%, list=24%, signal=45%",Camk4/Prkca/Bcl2/Nlk/Akt3/Prkch,CAST-biased

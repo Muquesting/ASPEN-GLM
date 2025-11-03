@@ -1,6 +1,0 @@
-"celltype","mode","n_rows_bb_mean","n_rows_group_mean","n_rows_group_var","sig_FDR_bb_mean","sig_FDR_group_mean","sig_FDR_group_var"
-"Cardiomyocyte","condition",7940,7940,7940,3121,4791,2792
-"Coronary_EC","condition",3009,3009,3009,204,1481,1382
-"Endocardial_EC","condition",3730,3730,3730,215,1927,1679
-"Fibroblast","condition",5344,5344,5344,656,2644,2054
-"Pericytes","condition",3279,3279,3279,320,1880,1392

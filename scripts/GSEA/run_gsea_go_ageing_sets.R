@@ -17,6 +17,11 @@ sets_dir <- if (length(args) >= 2) args[[2]] else file.path(base_dir, "ageing_se
 out_dir  <- if (length(args) >= 3) args[[3]] else "results/GSEA_ageing_sets"
 shared_out_dir <- if (length(args) >= 4) args[[4]] else "results/GSEA_celltype_shared"
 condition_out_dir <- if (length(args) >= 5) args[[5]] else "results/GSEA_celltype_condition_specific"
+overwrite <- suppressWarnings(as.integer(Sys.getenv("OVERWRITE_RESULTS", unset = "1")))
+if (!is.finite(overwrite)) overwrite <- 1L
+if (overwrite == 1L && dir.exists(out_dir)) unlink(out_dir, recursive = TRUE, force = TRUE)
+if (overwrite == 1L && dir.exists(shared_out_dir)) unlink(shared_out_dir, recursive = TRUE, force = TRUE)
+if (overwrite == 1L && dir.exists(condition_out_dir)) unlink(condition_out_dir, recursive = TRUE, force = TRUE)
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(shared_out_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(condition_out_dir, recursive = TRUE, showWarnings = FALSE)
@@ -26,6 +31,11 @@ score_fun <- function(mu, p) (mu - 0.5) * -log10(p + 1e-300)
 pick_column <- function(df, candidates) {
   for (nm in candidates) if (nm %in% names(df)) return(df[[nm]])
   NULL
+}
+
+if (!dir.exists(sets_dir)) {
+  message("Ageing gene sets directory not found: ", sets_dir, ". Nothing to run.")
+  quit(save = "no", status = 0)
 }
 
 cts <- list.dirs(sets_dir, full.names = FALSE, recursive = FALSE)

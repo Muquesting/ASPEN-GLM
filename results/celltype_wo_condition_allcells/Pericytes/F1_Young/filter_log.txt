@@ -1,10 +1,11 @@
 Cell type: Pericytes
 Condition: F1_Young
-Cells kept (F/M): 153
-Genes kept (after expression filter): 2023
+Cells kept (F/M): 792
+Genes kept (after expression filter): 1028
 Expression filter: rowSums(tot > 1) >= 10
 All-cells trend for shrinkage: tot_gene_mean computed across ALL cells (including zeros)
 Thresholds (est/test/glob): min_counts_est=0, min_cells_est=5, min_counts_test=0, min_cells_test=5, min_counts_glob=5
+bb_var permutations: 100
 Design columns:
  - (Intercept)
  - sexM

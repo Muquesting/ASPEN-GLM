@@ -1,0 +1,17 @@
+ID,Description,GeneRatio,BgRatio,pvalue,p.adjust,qvalue,geneID,Count
+GO:0034765,regulation of monoatomic ion transmembrane transport,13/121,112/4099,1.9404429199892958e-5,0.018015020946828438,0.0163341936336076,App/Cacna1c/Cacnb4/Kcnab1/Kcnc2/Nedd4/Ngf/Nr3c2/Prkca/Rgs7/Slc8a1/Stim1/Wnk1,13
+GO:1904062,regulation of monoatomic cation transmembrane transport,12/121,97/4099,2.1579282529868364e-5,0.018015020946828438,0.0163341936336076,App/Cacna1c/Cacnb4/Kcnab1/Kcnc2/Nedd4/Ngf/Nr3c2/Rgs7/Slc8a1/Stim1/Wnk1,12
+GO:0030198,extracellular matrix organization,13/121,120/4099,4.0943229424610085e-5,0.018015020946828438,0.0163341936336076,Adamtsl1/App/Ccdc80/Col14a1/Col4a1/Col4a2/Col4a3/Csgalnact1/Cst3/Ddr2/Dpt/Mmp16/Sulf1,13
+GO:0043062,extracellular structure organization,13/121,120/4099,4.0943229424610085e-5,0.018015020946828438,0.0163341936336076,Adamtsl1/App/Ccdc80/Col14a1/Col4a1/Col4a2/Col4a3/Csgalnact1/Cst3/Ddr2/Dpt/Mmp16/Sulf1,13
+GO:0045229,external encapsulating structure organization,13/121,120/4099,4.0943229424610085e-5,0.018015020946828438,0.0163341936336076,Adamtsl1/App/Ccdc80/Col14a1/Col4a1/Col4a2/Col4a3/Csgalnact1/Cst3/Ddr2/Dpt/Mmp16/Sulf1,13
+GO:1901379,regulation of potassium ion transmembrane transport,6/121,28/4099,1.2926513045118836e-4,0.043929110160690045,0.03983046112655868,Kcnab1/Kcnc2/Nedd4/Nr3c2/Rgs7/Wnk1,6
+GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,18/121,235/4099,1.4619709369982975e-4,0.043929110160690045,0.03983046112655868,Axl/Cadm1/Col4a1/Col4a2/Col4a3/Ddr2/Hspb1/Itga1/Lrp1/Nedd4/Ngf/Nrp2/Ntrk3/Prkca/Ptpn12/Rapgef1/Sulf1/Xdh,18
+GO:0050808,synapse organization,15/121,175/4099,1.5974221876614562e-4,0.043929110160690045,0.03983046112655868,App/Cacnb4/Cadm1/Col4a1/Dnm3/Dock10/Farp1/Malat1/Nedd4/Nrp2/Ntrk3/Pdlim5/Prkca/Rock2/Septin11,15
+GO:0099536,synaptic signaling,17/121,218/4099,1.8309868372679995e-4,0.04475423681820523,0.04057860228253536,Abi1/App/Arid1b/Atp2a2/Cacna1c/Cacnb4/Cadm1/Farp1/Gls/Nedd4/Ngf/Nr3c2/Prkca/Stim1/Ston2/Utrn/Wnk1,17
+GO:0043269,regulation of monoatomic ion transport,13/121,141/4099,2.1836996991827682e-4,0.04475423681820523,0.04057860228253536,App/Cacna1c/Cacnb4/Kcnab1/Kcnc2/Nedd4/Ngf/Nr3c2/Prkca/Rgs7/Slc8a1/Stim1/Wnk1,13
+GO:0007167,enzyme-linked receptor protein signaling pathway,23/121,360/4099,2.624890493742134e-4,0.04475423681820523,0.04057860228253536,Axl/Cadm1/Col4a1/Col4a2/Col4a3/Ddr2/Hspa5/Hspb1/Itga1/Lrp1/Ltbp1/Nedd4/Ngf/Nlk/Nrp2/Ntrk3/Pakap/Prkca/Ptpn12/Rapgef1/Sulf1/Wwtr1/Xdh,23
+GO:0050803,regulation of synapse structure or activity,11/121,107/4099,0.00026445685392575816,0.04475423681820523,0.04057860228253536,App/Dnm3/Farp1/Malat1/Nedd4/Nrp2/Ntrk3/Pdlim5/Prkca/Rock2/Septin11,11
+GO:0050807,regulation of synapse organization,11/121,107/4099,0.00026445685392575816,0.04475423681820523,0.04057860228253536,App/Dnm3/Farp1/Malat1/Nedd4/Nrp2/Ntrk3/Pdlim5/Prkca/Rock2/Septin11,11
+GO:0099054,presynapse assembly,4/121,12/4099,2.97723060437934e-4,0.04678505235453249,0.04241993981427707,App/Cadm1/Farp1/Ntrk3,4
+GO:0043266,regulation of potassium ion transport,6/121,33/4099,3.367485870870131e-4,0.0485058949320197,0.04398022530917576,Kcnab1/Kcnc2/Nedd4/Nr3c2/Rgs7/Wnk1,6
+GO:0051336,regulation of hydrolase activity,20/121,297/4099,3.5277014496014325e-4,0.0485058949320197,0.04398022530917576,Acer2/Agap1/App/Birc6/Col4a3/Cst3/Dock10/Dpep1/Hsp90b1/Iqgap2/Itga1/Lrp1/Ngf/Ntrk3/Ralgapa1/Rapgef1/Rgs7/Rock2/Wnk1/Xdh,20

@@ -1,2 +1,0 @@
-celltype,condition,group_id,gene,estimate,se,z,p,padj,HDR
-Pericytes,F1_Aged,Pericytes__F1_Aged,Col4a2,-1.18214436643663,0.257386574120625,-4.5928750187359,9.64943176342016e-6,0.02309109020986444,-5.0154982606745655

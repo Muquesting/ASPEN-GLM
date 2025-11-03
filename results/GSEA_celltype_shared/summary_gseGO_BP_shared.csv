@@ -1,9 +1,0 @@
-celltype,n_genes,n_terms,top,padj
-Cardiomyocyte,2019,2060,regulation of cell adhesion,0.40756843088242056
-Coronary_EC,56,50,animal organ development,0.4020713689090805
-Endocardial_EC,54,51,anatomical structure morphogenesis,0.23574435745082306
-Fibroblast,181,297,regulation of cell adhesion,0.4498540794282858
-M2,47,70,anatomical structure morphogenesis,0.7598371777476254
-MacFib,34,38,regulation of cell communication,0.8460061170780284
-Mesothelial,33,31,biological_process,0.9579617834394905
-Pericytes,97,116,striated muscle tissue development,0.040385558172116885

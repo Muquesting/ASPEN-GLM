@@ -1,0 +1,66 @@
+#PBS -P zk16
+#PBS -q normal
+#PBS -l walltime=04:00:00,mem=128GB
+#PBS -l ncpus=8
+#PBS -l storage=gdata/zk16+scratch/zk16
+#PBS -l wd
+#PBS -N go_gsea_allcells
+
+set -euo pipefail
+
+module purge
+module load gcc/14.2.0
+module load R/4.4.2
+
+cd /g/data/zk16/muqing/repos/ASPEN-GLM
+
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export OVERWRITE_RESULTS=1
+
+BASE="results/celltype_wo_condition_allcells"
+
+echo "[`date`] Preparing ageing gene sets (mean)…"
+Rscript scripts/analysis/prepare_shared_and_age_specific_all.R "$BASE" "$BASE/ageing_sets"
+
+echo "[`date`] Preparing ageing gene sets (variance)…"
+Rscript scripts/analysis/prepare_shared_and_age_specific_var.R "$BASE" "$BASE/ageing_sets_var"
+
+echo "[`date`] GO enrichment (mean)…"
+Rscript scripts/GO_term/run_go_enrichment_all_celltypes.R "$BASE" "results/GO_term_celltype_all_allcells"
+
+echo "[`date`] GO enrichment ageing sets (mean)…"
+Rscript scripts/GO_term/run_go_enrichment_ageing_sets.R "$BASE" "$BASE/ageing_sets" \
+  "results/GO_term_ageing_sets_allcells" \
+  "results/GO_term_celltype_shared_allcells" \
+  "results/GO_term_celltype_condition_specific_allcells"
+
+echo "[`date`] GO enrichment (variance)…"
+Rscript scripts/GO_term/run_go_enrichment_var_changes.R "$BASE" "results/GO_term_var_changes_allcells"
+
+echo "[`date`] GO enrichment ageing sets (variance)…"
+Rscript scripts/GO_term/run_go_enrichment_var_ageing_sets.R "$BASE" "$BASE/ageing_sets_var" \
+  "results/GO_term_var_ageing_sets_allcells" \
+  "results/GO_term_var_celltype_shared_allcells" \
+  "results/GO_term_var_celltype_condition_specific_allcells"
+
+echo "[`date`] GSEA (mean)…"
+Rscript scripts/GSEA/run_gsea_go_all_celltypes.R "$BASE" "results/GSEA_celltype_all_allcells"
+
+echo "[`date`] GSEA ageing sets (mean)…"
+Rscript scripts/GSEA/run_gsea_go_ageing_sets.R "$BASE" "$BASE/ageing_sets" \
+  "results/GSEA_ageing_sets_allcells" \
+  "results/GSEA_celltype_shared_allcells" \
+  "results/GSEA_celltype_condition_specific_allcells"
+
+echo "[`date`] GSEA (variance)…"
+Rscript scripts/GSEA/run_gsea_var_changes.R "$BASE" "results/GSEA_var_changes_allcells"
+
+echo "[`date`] GSEA ageing sets (variance)…"
+Rscript scripts/GSEA/run_gsea_var_ageing_sets.R "$BASE" "$BASE/ageing_sets_var" \
+  "results/GSEA_var_ageing_sets_allcells" \
+  "results/GSEA_var_celltype_shared_allcells" \
+  "results/GSEA_var_celltype_condition_specific_allcells"
+
+echo "[`date`] GO/GSEA allcells pipeline completed."

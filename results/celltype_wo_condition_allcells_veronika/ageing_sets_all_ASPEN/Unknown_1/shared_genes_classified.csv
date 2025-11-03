@@ -1,8 +1,0 @@
-gene,bb_mu_Aged,padj_Aged,bb_mu_Young,padj_Young,dir_Aged,dir_Young,consistency
-Abca8a,0.6841,1.2450571075953e-4,0.67,0.0144726048289544,above,above,consistent_above
-Acyp2,0.3372,0.00357564424330971,0.3346,0.0396564363901987,below,below,consistent_below
-Airn,0.3107,3.14287070770827e-5,0.7015,0.0174887315644935,below,above,discordant
-Clic4,0.2889,5.88857234329027e-5,0.2876,1.3804772903622e-4,below,below,consistent_below
-Malat1,0.4738,0.00181471668979869,0.4858,0.0484299429285099,below,below,consistent_below
-Prkg1,0.112,2.2040137567441398e-20,0.1232,1.1652796775816e-5,below,below,consistent_below
-Zeb1,0.7002,1.06833426434553e-8,0.6883,4.3069609900509e-4,above,above,consistent_above

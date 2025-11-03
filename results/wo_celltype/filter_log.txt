@@ -1,7 +1,0 @@
-Cells kept (F/M): 8522
-Genes kept (after coverage filter): 8000
-Thresholds: min_counts=1, min_cells=10
-Design columns:
- - (Intercept)
- - sexM
- - conditionF1_Young
