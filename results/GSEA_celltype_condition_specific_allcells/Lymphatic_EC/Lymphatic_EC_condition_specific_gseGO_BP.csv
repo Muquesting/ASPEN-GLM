@@ -1,4 +1,4 @@
 ID,Description,setSize,enrichmentScore,NES,pvalue,p.adjust,qvalue,rank,leading_edge,core_enrichment
-GO:0050789,regulation of biological process,10,1,1.2992616826034467,0.345679012345679,0.345679012345679,0.345679012345679,10,"tags=100%, list=91%, signal=100%",Zfp423/Igfbp5/Arhgef3/Zeb1/Clic4/Myzap/Airn/Serinc3/Flrt2/Kcnq1ot1
-GO:0050794,regulation of cellular process,10,1,1.2992616826034467,0.345679012345679,0.345679012345679,0.345679012345679,10,"tags=100%, list=91%, signal=100%",Zfp423/Igfbp5/Arhgef3/Zeb1/Clic4/Myzap/Airn/Serinc3/Flrt2/Kcnq1ot1
-GO:0065007,biological regulation,10,1,1.2992616826034467,0.345679012345679,0.345679012345679,0.345679012345679,10,"tags=100%, list=91%, signal=100%",Zfp423/Igfbp5/Arhgef3/Zeb1/Clic4/Myzap/Airn/Serinc3/Flrt2/Kcnq1ot1
+GO:0050789,regulation of biological process,10,1,1.2982247702051384,0.37037037037037035,0.37037037037037035,0.3703703703703704,10,"tags=100%, list=91%, signal=100%",Zfp423/Igfbp5/Arhgef3/Zeb1/Clic4/Myzap/Airn/Serinc3/Flrt2/Kcnq1ot1
+GO:0050794,regulation of cellular process,10,1,1.2982247702051384,0.37037037037037035,0.37037037037037035,0.3703703703703704,10,"tags=100%, list=91%, signal=100%",Zfp423/Igfbp5/Arhgef3/Zeb1/Clic4/Myzap/Airn/Serinc3/Flrt2/Kcnq1ot1
+GO:0065007,biological regulation,10,1,1.2982247702051384,0.37037037037037035,0.37037037037037035,0.3703703703703704,10,"tags=100%, list=91%, signal=100%",Zfp423/Igfbp5/Arhgef3/Zeb1/Clic4/Myzap/Airn/Serinc3/Flrt2/Kcnq1ot1

@@ -1,23 +1,23 @@
 celltype,subset,n_genes,n_terms,top,padj
 Cardiomyocyte,aged_only,503,763,regulation of vesicle-mediated transport,1
-Cardiomyocyte,young_only,780,1068,cell morphogenesis,0.022583279220930556
-Cardiomyocyte,condition_specific,1283,1560,response to hypoxia,0.1295261040938951
+Cardiomyocyte,young_only,780,1068,cell morphogenesis,0.029780770263192907
+Cardiomyocyte,condition_specific,1283,1560,response to hypoxia,0.08864694718642684
 Coronary_EC,aged_only,46,80,regulation of biosynthetic process,0.9715078051616944
 Coronary_EC,young_only,18,5,regulation of cellular process,0.29827315541601257
-Coronary_EC,condition_specific,64,122,apoptotic process,0.8233676191089584
-Endocardial_EC,aged_only,54,92,protein metabolic process,0.49534065023814455
-Endocardial_EC,young_only,39,120,homeostatic process,0.029293062313444578
-Endocardial_EC,condition_specific,93,233,negative regulation of cell communication,0.6979584329061278
-Fibroblast,aged_only,348,710,muscle organ development,0.8899942659920346
-Fibroblast,young_only,171,341,negative regulation of phosphorus metabolic process,0.9982931269913518
-Fibroblast,condition_specific,519,951,muscle organ development,0.9680093063835976
-Lymphatic_EC,condition_specific,11,3,regulation of biological process,0.345679012345679
+Coronary_EC,condition_specific,64,122,apoptotic process,0.7221727253652982
+Endocardial_EC,aged_only,54,92,protein metabolic process,0.47245564892623715
+Endocardial_EC,young_only,39,120,homeostatic process,0.012795218494056487
+Endocardial_EC,condition_specific,93,233,negative regulation of cell communication,0.8499572582967219
+Fibroblast,aged_only,348,710,muscle organ development,0.8937084633622724
+Fibroblast,young_only,171,341,negative regulation of phosphorus metabolic process,0.9983115957743424
+Fibroblast,condition_specific,519,951,muscle organ development,0.9765629719118091
+Lymphatic_EC,condition_specific,11,3,regulation of biological process,0.37037037037037035
 Mesothelial,aged_only,18,8,regulation of biological process,0.27559055118110237
-Mesothelial,young_only,37,89,positive regulation of signal transduction,0.8144557757183295
+Mesothelial,young_only,37,89,positive regulation of signal transduction,0.807603551453045
 Mesothelial,condition_specific,55,126,biological_process,1
-Myeloid,aged_only,106,262,organonitrogen compound catabolic process,0.2690106473931775
-Myeloid,young_only,42,114,regulation of biological quality,0.5826185958254269
-Myeloid,condition_specific,148,341,organonitrogen compound catabolic process,0.625907441016334
-Pericytes,aged_only,81,207,catabolic process,0.8290742934506685
-Pericytes,young_only,53,132,regulation of cell population proliferation,0.9984177215189873
-Pericytes,condition_specific,134,325,response to biotic stimulus,0.7300846725419043
+Myeloid,aged_only,106,262,organonitrogen compound catabolic process,0.29494866533299413
+Myeloid,young_only,42,114,regulation of biological quality,0.5822385973827976
+Myeloid,condition_specific,148,341,organonitrogen compound catabolic process,0.6254782143867851
+Pericytes,aged_only,81,207,catabolic process,0.8331376823746436
+Pericytes,young_only,53,132,localization,0.9984639016897081
+Pericytes,condition_specific,134,325,biological process involved in interspecies interaction between organisms,0.6514134681788244

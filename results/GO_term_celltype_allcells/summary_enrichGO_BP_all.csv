@@ -1,0 +1,17 @@
+celltype,condition,n_sig,n_bg,n_terms,top,padj
+Cardiomyocyte,F1_Aged,2220,6536,32,metal ion transport,0.007085547707018018
+Cardiomyocyte,F1_Young,2415,6169,11,muscle tissue development,0.0033469880862505704
+Coronary_EC,F1_Aged,101,1490,0,NA,NA
+Coronary_EC,F1_Young,52,1135,0,NA,NA
+Endocardial_EC,F1_Aged,121,1919,0,NA,NA
+Endocardial_EC,F1_Young,95,1546,0,NA,NA
+Fibroblast,F1_Aged,859,4128,15,response to xenobiotic stimulus,0.009125304078034401
+Fibroblast,F1_Young,554,3411,0,NA,NA
+Lymphatic_EC,F1_Aged,8,705,0,NA,NA
+Lymphatic_EC,F1_Young,10,558,0,NA,NA
+Mesothelial,F1_Aged,67,824,0,NA,NA
+Mesothelial,F1_Young,93,1064,0,NA,NA
+Myeloid,F1_Aged,262,2017,1,carbohydrate derivative catabolic process,0.047267978157815194
+Myeloid,F1_Young,149,1548,0,NA,NA
+Pericytes,F1_Aged,241,1505,0,NA,NA
+Pericytes,F1_Young,158,1028,6,lipid transport,0.007136523176942614
