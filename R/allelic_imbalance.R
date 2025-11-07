@@ -1409,7 +1409,7 @@ beta_binom_test_varupd <- function(a1_counts, tot_counts, estimates = NULL, esti
       df <- data.frame(y = y, n = n)
       df <- na.omit(df)
       # exclude cells with insufficient coverage
-      df <- df[df$n > 0 & df$n >= min_counts,]
+      # df <- df[df$n > 0 & df$n >= min_counts,]
 
       AR[k] = mean(y/n, na.rm = T)
       log2FC[k] = log2(mean(y)) - log2(mean(a2))
@@ -1631,7 +1631,7 @@ beta_binom_test_byrepl <- function(a1_counts, tot_counts, estimates, estimates_g
 
       df <- data.frame(y = y, n = n)
       df <- na.omit(df)
-      df <- df[df$n > 0 & df$n >= min_counts,]
+      # df <- df[df$n > 0 & df$n >= min_counts,]
 
       AR[k] = mean(y/n, na.rm = T)
       log2FC[k] = log2(mean(y)) - log2(mean(a2))
@@ -1930,7 +1930,7 @@ bb_mean <- function(a1_counts, tot_counts, estimates, estimates_group = NULL, gl
 
       df <- data.frame(y = y, n = n)
       df <- na.omit(df)
-      df <- df[df$n > 0 & df$n >= min_counts,]
+      # df <- df[df$n > 0 & df$n >= min_counts,]
 
       AR[k] = mean(y/n, na.rm = T)
       log2FC[k] = log2(mean(y)) - log2(mean(a2))
