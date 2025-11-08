@@ -1,0 +1,2 @@
+ID,Description,GeneRatio,BgRatio,RichFactor,FoldEnrichment,zScore,pvalue,p.adjust,qvalue,geneID,Count
+GO:0030199,collagen fibril organization,11/339,29/4116,0.3793103448275862,4.605431797375648,5.836671367480338,8.993093180553715e-6,0.028643001780063584,0.027604062857362773,Antxr2/Anxa2/Col1a2/Col6a1/Cyp1b1/Dpt/Mia3/Plod2/Pxdn/Rb1/Tgfb2,11

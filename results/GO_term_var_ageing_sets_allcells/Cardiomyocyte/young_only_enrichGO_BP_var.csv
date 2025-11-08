@@ -1,6 +1,0 @@
-ID,Description,GeneRatio,BgRatio,pvalue,p.adjust,qvalue,geneID,Count
-GO:0031062,positive regulation of histone methylation,6/323,10/6311,3.028054973640623e-6,0.009502036507284276,0.00882917081787845,Auts2/Baz2a/Kansl2/Kansl3/Phf20/Smarca5,6
-GO:0031060,regulation of histone methylation,6/323,11/6311,6.375567575734032e-6,0.010003265526326697,0.009294906413043827,Auts2/Baz2a/Kansl2/Kansl3/Phf20/Smarca5,6
-GO:0031056,regulation of histone modification,8/323,24/6311,1.5443740960729182e-5,0.016154153044922726,0.01501023244253328,Auts2/Baz1b/Baz2a/Kansl2/Kansl3/Phf20/Sf3b1/Smarca5,8
-GO:0010243,response to organonitrogen compound,41/323,420/6311,3.686479692106591e-5,0.028920433184576207,0.02687249670298752,Abcc1/Akap6/Appl1/Atf1/Atp2b1/Braf/Cd36/Chrm2/Cpeb4/Crebbp/Dennd4c/Erbin/Homer1/Hspa5/Itpr2/Lncbate10/Man1a/Man1a2/Map2k1/Myo5a/Ndufs4/Nploc4/Nt5e/Opa1/Pde3a/Pde3b/Pdk4/Phip/Pparg/Prkca/Ptpn11/Rapgef1/Rapgef2/Rnls/Rock2/Sik2/Sorl1/Sos1/Syk/Tcf12/Vim,41
-GO:1901698,response to nitrogen compound,42/323,442/6311,5.5559142901889237e-5,0.034868918085225686,0.0323997528080491,Abcc1/Akap6/Appl1/Atf1/Atp2b1/Braf/Cd36/Chrm2/Cpeb4/Crebbp/Ddi2/Dennd4c/Erbin/Homer1/Hspa5/Itpr2/Lncbate10/Man1a/Man1a2/Map2k1/Myo5a/Ndufs4/Nploc4/Nt5e/Opa1/Pde3a/Pde3b/Pdk4/Phip/Pparg/Prkca/Ptpn11/Rapgef1/Rapgef2/Rnls/Rock2/Sik2/Sorl1/Sos1/Syk/Tcf12/Vim,42

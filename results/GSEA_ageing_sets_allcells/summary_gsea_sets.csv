@@ -1,30 +1,30 @@
 celltype,subset,n_genes,n_terms,top,padj
-Cardiomyocyte,shared,1571,1797,regulation of cell adhesion,0.08249339378574842
-Cardiomyocyte,aged_only,503,763,regulation of vesicle-mediated transport,1
-Cardiomyocyte,young_only,780,1068,cell morphogenesis,0.029780770263192907
-Cardiomyocyte,condition_specific,1283,1560,response to hypoxia,0.08864694718642684
-Coronary_EC,shared,31,59,regulation of response to stimulus,0.9902777777777778
-Coronary_EC,aged_only,46,80,regulation of biosynthetic process,0.9715078051616944
-Coronary_EC,young_only,18,5,regulation of cellular process,0.29827315541601257
-Coronary_EC,condition_specific,64,122,apoptotic process,0.7221727253652982
-Endocardial_EC,shared,54,87,phosphorus metabolic process,0.015547844939127345
-Endocardial_EC,aged_only,54,92,protein metabolic process,0.47245564892623715
-Endocardial_EC,young_only,39,120,homeostatic process,0.012795218494056487
-Endocardial_EC,condition_specific,93,233,negative regulation of cell communication,0.8499572582967219
-Fibroblast,shared,376,716,developmental growth,1
-Fibroblast,aged_only,348,710,muscle organ development,0.8937084633622724
-Fibroblast,young_only,171,341,negative regulation of phosphorus metabolic process,0.9983115957743424
-Fibroblast,condition_specific,519,951,muscle organ development,0.9765629719118091
-Lymphatic_EC,condition_specific,11,3,regulation of biological process,0.37037037037037035
-Mesothelial,shared,47,105,negative regulation of response to stimulus,0.4258179922513134
-Mesothelial,aged_only,18,8,regulation of biological process,0.27559055118110237
-Mesothelial,young_only,37,89,positive regulation of signal transduction,0.807603551453045
-Mesothelial,condition_specific,55,126,biological_process,1
-Myeloid,shared,102,276,protein-containing complex organization,0.7138568748324845
-Myeloid,aged_only,106,262,organonitrogen compound catabolic process,0.29494866533299413
-Myeloid,young_only,42,114,regulation of biological quality,0.5822385973827976
-Myeloid,condition_specific,148,341,organonitrogen compound catabolic process,0.6254782143867851
-Pericytes,shared,102,257,regulation of response to stress,0.24508009402022138
-Pericytes,aged_only,81,207,catabolic process,0.8331376823746436
-Pericytes,young_only,53,132,localization,0.9984639016897081
-Pericytes,condition_specific,134,325,biological process involved in interspecies interaction between organisms,0.6514134681788244
+Cardiomyocyte,shared,1571,1771,regulation of cell adhesion,0.2312373109300674
+Cardiomyocyte,aged_only,503,740,response to wounding,1
+Cardiomyocyte,young_only,780,1043,cell morphogenesis,0.02838587938748599
+Cardiomyocyte,condition_specific,1283,1573,blood vessel endothelial cell migration,0.3370464492990262
+Coronary_EC,shared,31,47,regulation of response to stimulus,0.9894311737411927
+Coronary_EC,aged_only,46,60,regulation of biosynthetic process,0.9670671529714653
+Coronary_EC,young_only,18,6,regulation of cellular process,0.2662440570522979
+Coronary_EC,condition_specific,64,107,apoptotic process,0.6147885996693578
+Endocardial_EC,shared,54,78,phosphorus metabolic process,0.02153349414035085
+Endocardial_EC,aged_only,54,78,gene expression,0.6129468599033816
+Endocardial_EC,young_only,39,98,homeostatic process,0.009344781338759132
+Endocardial_EC,condition_specific,93,211,negative regulation of cell communication,0.9038210707298275
+Fibroblast,shared,376,681,developmental growth,0.8968107620540006
+Fibroblast,aged_only,348,684,muscle organ development,0.9134326311217332
+Fibroblast,young_only,171,312,negative regulation of protein metabolic process,0.9995933395614661
+Fibroblast,condition_specific,519,922,muscle organ development,0.9480162592367274
+Lymphatic_EC,condition_specific,11,3,regulation of biological process,0.30434782608695654
+Mesothelial,shared,47,93,negative regulation of response to stimulus,0.45203240295674874
+Mesothelial,aged_only,18,10,regulation of biological process,0.29850746268656714
+Mesothelial,young_only,37,66,intracellular signaling cassette,0.6557377049180327
+Mesothelial,condition_specific,55,107,cellular localization,1
+Myeloid,shared,102,242,protein-containing complex assembly,0.8074476800476652
+Myeloid,aged_only,106,231,organophosphate metabolic process,0.5547413793103448
+Myeloid,young_only,42,93,negative regulation of cellular process,0.5222222222222223
+Myeloid,condition_specific,148,325,nucleobase-containing compound catabolic process,0.6105846488325929
+Pericytes,shared,102,232,regulation of response to stress,0.3593652517423346
+Pericytes,aged_only,81,178,transmembrane transport,0.39060104699667925
+Pericytes,young_only,53,110,regulation of developmental process,0.8265027322404371
+Pericytes,condition_specific,134,309,transmembrane transport,0.19241461226097947

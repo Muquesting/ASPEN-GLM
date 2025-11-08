@@ -1,0 +1,18 @@
+celltype,condition,n_sig,n_bg,n_terms,top,padj
+Cardiomyocyte,F1_Aged,2382,6536,29,regulation of monoatomic ion transport,0.012629273372737367
+Cardiomyocyte,F1_Young,2558,6169,41,cardiac muscle tissue development,3.6698385480748714e-5
+Coronary_EC,F1_Aged,152,1490,0,NA,NA
+Coronary_EC,F1_Young,97,1135,0,NA,NA
+Endocardial_EC,F1_Aged,203,1919,0,NA,NA
+Endocardial_EC,F1_Young,179,1546,0,NA,NA
+Fibroblast,F1_Aged,1030,4128,4,extracellular matrix organization,0.023508100342930226
+Fibroblast,F1_Young,679,3411,0,NA,NA
+Lymphatic_EC,F1_Aged,38,705,0,NA,NA
+Lymphatic_EC,F1_Young,28,558,1,endothelium development,0.010349279649984425
+Mesothelial,F1_Aged,146,824,0,NA,NA
+Mesothelial,F1_Young,151,1064,0,NA,NA
+Myeloid,F1_Aged,404,2017,0,NA,NA
+Myeloid,F1_Young,230,1548,0,NA,NA
+Pericytes,F1_Aged,318,1505,0,NA,NA
+Pericytes,F1_Young,208,1028,3,lipid localization,0.028515425067712413
+T_cell,F1_Aged,5,150,0,NA,NA

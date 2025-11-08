@@ -9,5 +9,7 @@ data/aspensce_sexupdated.rds
 data/aspensce_sexupdated_F1.rds
 data/aspensce_sexupdated_F1_filtered.rds
 data/aspensce_F1_filtered.rds
+# ignore any additional large RDS files in data/
+data/*.rds
 
 gencode.vM33.annotation.gtf

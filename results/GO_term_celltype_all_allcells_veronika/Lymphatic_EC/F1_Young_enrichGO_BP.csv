@@ -1,0 +1,2 @@
+ID,Description,GeneRatio,BgRatio,RichFactor,FoldEnrichment,zScore,pvalue,p.adjust,qvalue,geneID,Count
+GO:0003158,endothelium development,6/26,14/548,0.42857142857142855,9.032967032967033,6.789135234977434,1.4597009379385648e-5,0.010349279649984425,0.010033523289198768,Clic4/Foxp1/Heg1/Prox1/Stard13/Zeb1,6

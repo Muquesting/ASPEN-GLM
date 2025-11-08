@@ -8,7 +8,7 @@ Coronary_EC,condition_specific,64,0,NA,NA
 Endocardial_EC,aged_only,54,0,NA,NA
 Endocardial_EC,young_only,39,0,NA,NA
 Endocardial_EC,condition_specific,93,0,NA,NA
-Fibroblast,aged_only,348,0,NA,NA
+Fibroblast,aged_only,348,1,collagen fibril organization,0.028643001780063584
 Fibroblast,young_only,171,0,NA,NA
 Fibroblast,condition_specific,519,0,NA,NA
 Lymphatic_EC,young_only,8,0,NA,NA

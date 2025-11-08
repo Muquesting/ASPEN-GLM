@@ -76,7 +76,13 @@ for (ct in cts) {
     scores <- score_fun(llr, pval)
     names(scores) <- as.character(genes)
     vec <- split(scores, names(scores))
-    s <- vapply(vec, function(x) x[which.max(abs(x))], numeric(1))
+    s <- vapply(vec, function(x) {
+      x <- x[is.finite(x)]
+      if (!length(x)) return(NA_real_)
+      x[which.max(abs(x))]
+    }, numeric(1))
+    s <- s[is.finite(s)]
+    if (!length(s)) return(NULL)
     sort(s, decreasing = TRUE)
   }
 

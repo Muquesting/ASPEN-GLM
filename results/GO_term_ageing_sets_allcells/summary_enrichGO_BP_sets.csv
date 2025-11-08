@@ -1,5 +1,5 @@
 celltype,subset,n_genes,n_terms,top,padj
-Cardiomyocyte,shared,1571,59,heart process,4.684819717924598e-4
+Cardiomyocyte,shared,1571,40,heart process,0.0017154930100845532
 Cardiomyocyte,aged_only,503,0,NA,NA
 Cardiomyocyte,young_only,780,0,NA,NA
 Cardiomyocyte,condition_specific,1283,0,NA,NA
@@ -11,8 +11,8 @@ Endocardial_EC,shared,54,0,NA,NA
 Endocardial_EC,aged_only,54,0,NA,NA
 Endocardial_EC,young_only,39,0,NA,NA
 Endocardial_EC,condition_specific,93,0,NA,NA
-Fibroblast,shared,376,1,cell adhesion,0.009548690344152453
-Fibroblast,aged_only,348,0,NA,NA
+Fibroblast,shared,376,1,cell adhesion,0.02759842255881293
+Fibroblast,aged_only,348,1,collagen fibril organization,0.028643001780063584
 Fibroblast,young_only,171,0,NA,NA
 Fibroblast,condition_specific,519,0,NA,NA
 Lymphatic_EC,young_only,8,0,NA,NA

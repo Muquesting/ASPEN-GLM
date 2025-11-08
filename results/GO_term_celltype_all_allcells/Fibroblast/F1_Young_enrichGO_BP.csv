@@ -1,0 +1,2 @@
+ID,Description,GeneRatio,BgRatio,RichFactor,FoldEnrichment,zScore,pvalue,p.adjust,qvalue,geneID,Count
+GO:0006805,xenobiotic metabolic process,8/532,10/3315,0.8,4.984962406015038,5.517139456568047,1.3983357418582205e-5,0.04208990582993244,0.04040454327790332,Aldh2/Aox1/Aox3/Cyp2d22/Fmo1/Fmo5/Gsta3/Rora,8
