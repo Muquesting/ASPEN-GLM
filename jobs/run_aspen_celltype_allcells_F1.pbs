@@ -14,8 +14,8 @@ module load R/4.4.2
 
 cd /g/data/zk16/muqing/repos/ASPEN-GLM
 
-export OMP_NUM_THREADS=1
-export MKL_NUM_THREADS=1
+export OMP_NUM_THREADS=16
+export MKL_NUM_THREADS=16
 export OPENBLAS_NUM_THREADS=1
 export BB_VAR_PERMUTATIONS=100
 export BB_VAR_CORES=16

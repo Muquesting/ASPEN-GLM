@@ -20,7 +20,7 @@ export OPENBLAS_NUM_THREADS=1
 export BB_VAR_PERMUTATIONS=100
 export VERONIKA_CORES=12
 
-INPUT_SCE=/g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered_with_XY.rds
+INPUT_SCE=/g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered.rds
 OUTPUT_ROOT=results/celltype_wo_condition_veronika
 
 echo "[`date`] Running Veronika all-cells ASPEN pipeline (sex included, no imprinted genes)…"

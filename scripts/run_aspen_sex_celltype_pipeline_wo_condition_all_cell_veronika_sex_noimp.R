@@ -87,7 +87,7 @@ if (!file.exists(input_rds)) {
 }
 
 # Write into a separate results folder
-root_out <- paste0(root_out_base, "_allcells_veronika_sex_noimp_pre")
+root_out <- paste0(root_out_base, "_allcells_veronika_nosex_noimp_pre")
 dir.create(root_out, recursive = TRUE, showWarnings = FALSE)
 
 message("Loading ", input_rds)

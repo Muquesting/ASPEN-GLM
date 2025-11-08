@@ -1,0 +1,15 @@
+[Sat Nov  8 17:41:30 AEDT 2025] Running ASPEN all-cell pipeline (sex included, no imprinted genes)…
+[Sat Nov  8 19:49:16 AEDT 2025] Completed ASPEN all-cell pipeline (sex included, no imprinted genes).
+
+======================================================================================
+                  Resource Usage on 2025-11-08 19:49:20:
+   Job Id:             154167051.gadi-pbs
+   Project:            zk16
+   Exit Status:        0
+   Service Units:      204.51
+   NCPUs Requested:    24                     NCPUs Used: 24              
+                                           CPU Time Used: 02:09:54        
+   Memory Requested:   192.0GB               Memory Used: 47.05GB         
+   Walltime requested: 08:00:00            Walltime Used: 02:07:49        
+   JobFS requested:    100.0MB                JobFS used: 0B              
+======================================================================================

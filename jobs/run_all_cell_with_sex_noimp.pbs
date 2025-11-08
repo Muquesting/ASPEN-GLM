@@ -35,14 +35,14 @@ PY
 export GLM_SHRINK_DELTA="$DELTA"
 export GLM_SHRINK_N="$N"
 export SHRINKAGE_SCOPE=global
-export OMP_NUM_THREADS=1
-export MKL_NUM_THREADS=1
-export OPENBLAS_NUM_THREADS=1
+export OMP_NUM_THREADS=16
+export MKL_NUM_THREADS=16
+export OPENBLAS_NUM_THREADS=16
 export BB_VAR_PERMUTATIONS=100
 export BB_VAR_CORES=$PBS_NCPUS
 
-INPUT_SCE=/g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered_with_XY.rds
-OUTPUT_ROOT=results/celltype_wo_condition_withsex_noimp_pre
+INPUT_SCE=/g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered.rds
+OUTPUT_ROOT=results/celltype_wo_condition_nosex_noimp_pre
 
 echo "[`date`] Running ASPEN all-cell pipeline (sex included, no imprinted genes)…"
 Rscript scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp.R \
