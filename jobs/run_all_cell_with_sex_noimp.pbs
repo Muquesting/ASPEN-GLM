@@ -42,7 +42,7 @@ export BB_VAR_PERMUTATIONS=100
 export BB_VAR_CORES=$PBS_NCPUS
 
 INPUT_SCE=/g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered_with_XY.rds
-OUTPUT_ROOT=results/celltype_wo_condition_withsex_noimp
+OUTPUT_ROOT=results/celltype_wo_condition_withsex_noimp_pre
 
 echo "[`date`] Running ASPEN all-cell pipeline (sex included, no imprinted genes)…"
 Rscript scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp.R \
