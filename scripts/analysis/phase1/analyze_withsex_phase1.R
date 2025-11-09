@@ -7,6 +7,7 @@ suppressPackageStartupMessages({
   library(stringr)
   library(purrr)
   library(data.table)
+  library(ggplot2)
 })
 
 # -------------------------------------------------------------------
@@ -200,8 +201,10 @@ for (ct in sort(cts)) {
 
 sex_sig_dir <- file.path(args$out_root, "sexsig_chromosome")
 underd_dir  <- file.path(args$out_root, "underdispersion_analysis")
+disp_plot_dir <- file.path(args$out_root, "dispersion_plots")
 dir.create(sex_sig_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(underd_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(disp_plot_dir, showWarnings = FALSE, recursive = TRUE)
 
 # -------------------------------------------------------------------
 # Sex-significant genes chromosome summaries -----------------------
@@ -238,6 +241,34 @@ if (length(underdisp_rows)) {
   underdisp_df <- bind_rows(underdisp_rows, .id = "group_id") %>%
     select(-group_id)
   underdisp_df <- annotate_chromosomes(underdisp_df, "gene", annot_tbl)
+
+  # Global dispersion scatter across all genes/conditions
+  if (nrow(underdisp_df)) {
+    disp_df <- underdisp_df %>%
+      mutate(
+        log_theta_glm = log10(theta_glm + theta_eps),
+        log_theta_asp = log10(theta_asp + theta_eps)
+      ) %>%
+      filter(is.finite(log_theta_glm), is.finite(log_theta_asp))
+
+    if (nrow(disp_df)) {
+      p_disp <- ggplot(disp_df, aes(x = log_theta_asp, y = log_theta_glm, color = celltype)) +
+        geom_point(alpha = 0.4, size = 0.9) +
+        geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey60") +
+        labs(
+          title = "Dispersion comparison (ASPEN vs GLM-ASPEN, all genes)",
+          x = "ASPEN log10(theta)",
+          y = "GLM-ASPEN log10(theta)",
+          color = "Cell type"
+        ) +
+        theme_classic(base_size = 13)
+
+      ggsave(file.path(disp_plot_dir, "dispersion_scatter_all_genes.png"), p_disp,
+             width = 8.5, height = 7, dpi = 300)
+      ggsave(file.path(disp_plot_dir, "dispersion_scatter_all_genes.pdf"), p_disp,
+             width = 8.5, height = 7)
+    }
+  }
 
   write_csv(underdisp_df,
             file.path(underd_dir, "underdispersion_genes_all.csv"))

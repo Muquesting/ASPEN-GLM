@@ -94,12 +94,14 @@ for (ct in sort(cts)) {
     theta_glm <- if (!is.null(glm_raw)) {
       extract_theta(glm_raw[common, , drop = FALSE], prefer_raw = TRUE)
     } else {
-      extract_theta(glm_shr, prefer_raw = FALSE)
+      # prefer bb_theta inside shrunk table if present
+      extract_theta(glm_shr, prefer_raw = TRUE)
     }
     theta_asp <- if (!is.null(asp_raw)) {
       extract_theta(asp_raw[common, , drop = FALSE], prefer_raw = TRUE)
     } else {
-      extract_theta(asp_shr, prefer_raw = FALSE)
+      # prefer bb_theta inside shrunk table if present
+      extract_theta(asp_shr, prefer_raw = TRUE)
     }
     phi_glm <- if (!is.null(glm_raw)) extract_phi(glm_raw[common, , drop = FALSE]) else extract_phi(glm_shr)
     df <- tibble(
