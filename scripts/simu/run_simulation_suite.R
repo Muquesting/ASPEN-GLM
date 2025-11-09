@@ -1,0 +1,137 @@
+#!/usr/bin/env Rscript
+suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(Matrix)
+  library(data.table)
+})
+
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) < 3) {
+  stop(paste(
+    "Usage:",
+    "Rscript scripts/simu/run_simulation_suite.R <sim_data_rds> <output_dir> <pipeline_specs> [max_genes=0] [min_counts_est=0] [min_cells_est=5] [min_counts_test=0] [min_cells_test=5] [min_counts_glob=5]",
+    "pipeline_specs format: name=script_path|suffix ; ...",
+    sep = "\n"
+  ), call. = FALSE)
+}
+
+sim_rds    <- args[[1]]
+output_dir <- args[[2]]
+pipeline_specs <- strsplit(args[[3]], ";")[[1]]
+max_genes <- if (length(args) >= 4) as.integer(args[[4]]) else 0L
+min_counts_est  <- if (length(args) >= 5) as.integer(args[[5]]) else 0L
+min_cells_est   <- if (length(args) >= 6) as.integer(args[[6]]) else 5L
+min_counts_test <- if (length(args) >= 7) as.integer(args[[7]]) else 0L
+min_cells_test  <- if (length(args) >= 8) as.integer(args[[8]]) else 5L
+min_counts_glob <- if (length(args) >= 9) as.integer(args[[9]]) else 5L
+
+if (!length(pipeline_specs)) stop("No pipeline specs provided.")
+
+parse_spec <- function(spec) {
+  spec <- trimws(spec)
+  if (!nzchar(spec)) return(NULL)
+  parts <- strsplit(spec, "=")[[1]]
+  if (length(parts) != 2) stop("Bad pipeline spec: ", spec)
+  name <- trimws(parts[1])
+  rest <- parts[2]
+  subparts <- strsplit(rest, "\\|")[[1]]
+  script <- normalizePath(trimws(subparts[1]), mustWork = TRUE)
+  suffix <- if (length(subparts) >= 2) trimws(subparts[2]) else ""
+  list(name = name, script = script, suffix = suffix)
+}
+pipelines <- lapply(pipeline_specs, parse_spec)
+pipelines <- pipelines[!vapply(pipelines, is.null, logical(1))]
+if (!length(pipelines)) stop("No valid pipeline specs parsed.")
+
+sim <- readRDS(sim_rds)
+required <- c("a1","tot","sex","truth")
+if (!all(required %in% names(sim))) stop("Simulation RDS must contain: ", paste(required, collapse=", "))
+
+Sys.setenv(VERONIKA_ASPEN_ROOT = file.path(getwd(), "R"))
+
+a1 <- as.matrix(sim$a1)
+tot<- as.matrix(sim$tot)
+gene_ids <- rownames(a1)
+gene_unique <- make.unique(gene_ids, sep = "_rep")
+rownames(a1) <- gene_unique
+rownames(tot) <- gene_unique
+sex_vec <- sim$sex
+truth_df <- sim$truth
+if (ncol(a1) != length(sex_vec)) stop("Mismatch between columns of counts and length of sex vector.")
+truth_df$gene_unique <- gene_unique
+
+sce <- SingleCellExperiment(assays = list(a1 = a1, tot = tot))
+meta <- data.frame(
+  predicted.id = rep("SimCell", ncol(a1)),
+  condition = rep("SimCondition", ncol(a1)),
+  pred.sex = sex_vec,
+  stringsAsFactors = FALSE
+)
+rownames(meta) <- colnames(a1)
+colData(sce) <- S4Vectors::DataFrame(meta)
+
+dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
+sce_path <- file.path(output_dir, "sim_sce.rds")
+saveRDS(sce, file = sce_path)
+
+threshold <- 0.1
+perf_list <- list()
+
+for (pipe in pipelines) {
+  message("\n=== Running pipeline: ", pipe$name, " ===")
+  base_out <- file.path(output_dir, pipe$name)
+  args_pipeline <- c(
+    pipe$script,
+    sce_path,
+    base_out,
+    max_genes,
+    min_counts_est,
+    min_cells_est,
+    min_counts_test,
+    min_cells_test,
+    min_counts_glob,
+    1L
+  )
+  status <- system2("Rscript", args_pipeline, stdout = TRUE, stderr = TRUE)
+  cat(status, sep = "\n")
+
+  result_root <- paste0(base_out, pipe$suffix)
+  res_csv <- file.path(result_root, "SimCell", "SimCondition", "bb_mean_results_norm.csv")
+  if (!file.exists(res_csv)) {
+    warning("Result file not found for pipeline ", pipe$name, ": ", res_csv)
+    next
+  }
+  res <- tryCatch(read.csv(res_csv, stringsAsFactors = FALSE), error = function(e) NULL)
+  if (is.null(res) || !"padj_mean" %in% names(res) || !"X" %in% names(res)) {
+    warning("Could not load bb_mean_results_norm for pipeline ", pipe$name)
+    next
+  }
+  res$gene <- res$X
+  merged <- merge(truth_df, res[, c("gene","padj_mean")], by.x = "gene_unique", by.y = "gene", all.x = TRUE)
+  merged$called <- is.finite(merged$padj_mean) & merged$padj_mean < threshold
+  tp <- sum(merged$imbalance & merged$called, na.rm = TRUE)
+  fp <- sum(!merged$imbalance & merged$called, na.rm = TRUE)
+  fn <- sum(merged$imbalance & !merged$called, na.rm = TRUE)
+  tn <- sum(!merged$imbalance & !merged$called, na.rm = TRUE)
+  tpr <- if ((tp + fn) > 0) tp / (tp + fn) else NA_real_
+  fpr <- if ((fp + tn) > 0) fp / (fp + tn) else NA_real_
+  perf_list[[pipe$name]] <- data.frame(
+    pipeline = pipe$name,
+    threshold = threshold,
+    TP = tp,
+    FP = fp,
+    FN = fn,
+    TN = tn,
+    TPR = tpr,
+    FPR = fpr,
+    stringsAsFactors = FALSE
+  )
+}
+
+if (length(perf_list)) {
+  perf <- do.call(rbind, perf_list)
+  write.csv(perf, file = file.path(output_dir, "simulation_performance.csv"), row.names = FALSE)
+  message("Saved performance summary to ", file.path(output_dir, "simulation_performance.csv"))
+} else {
+  warning("No performance summaries generated.")
+}

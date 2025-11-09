@@ -28,7 +28,8 @@ estim_glmparams <- function(a1_counts,
                             min_counts = 0,
                             min_cells = 5,
                             dispersion_method = c("deviance", "pearson"),
-                            use_effective_trials = TRUE) {
+                            use_effective_trials = TRUE,
+                            store_fitted = FALSE) {
 
   assert_that(are_equal(dim(a1_counts), dim(tot_counts)),
               msg = "allele 1 and total counts matrices must be equal")
@@ -54,6 +55,7 @@ estim_glmparams <- function(a1_counts,
   phi <- rep(NA_real_, len)
 
   min_theta <- 1e-06
+  fitted_vals <- if (isTRUE(store_fitted)) vector("list", len) else NULL
 
   for (k in seq_len(nrow(a1_counts))) {
     y <- as.numeric(a1_counts[k, ])
@@ -85,6 +87,14 @@ estim_glmparams <- function(a1_counts,
         p_hat <- stats::fitted(fit)
         # trials-weighted mean allelic ratio implied by the GLM for this gene
         bb_mu[k] <- sum(n_sub * p_hat) / sum(n_sub)
+        if (isTRUE(store_fitted)) {
+          fitted_vals[[k]] <- data.frame(
+            cell = colnames(tot_counts)[keep],
+            fitted = p_hat,
+            weight = n_sub,
+            stringsAsFactors = FALSE
+          )
+        }
 
         # quasi dispersion -> ICC rho -> theta mapping
         df_res <- max(fit$df.residual, 1)
@@ -143,6 +153,10 @@ estim_glmparams <- function(a1_counts,
     id = seq_len(len)
   )
   rownames(res) <- rownames(a1_counts)
+  if (isTRUE(store_fitted)) {
+    names(fitted_vals) <- rownames(a1_counts)
+    attr(res, "fitted_values") <- fitted_vals
+  }
   res
 }
 
