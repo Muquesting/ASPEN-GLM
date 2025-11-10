@@ -1,0 +1,41 @@
+#!/bin/bash
+#PBS -P zk16
+#PBS -q normal
+#PBS -l ncpus=16
+#PBS -l mem=128GB
+#PBS -l walltime=08:00:00
+#PBS -l storage=gdata/zk16+scratch/zk16
+#PBS -N zinb_mu_grid
+#PBS -j oe
+
+module load R/4.3.1
+
+export ZINB_CORES=${PBS_NCPUS:-1}
+export GLM_GENE_CORES=${PBS_NCPUS:-1}
+export GLMMTMB_CORES=${PBS_NCPUS:-1}
+
+cd /g/data/zk16/muqing/repos/ASPEN-GLM
+
+TOT_RDS="results/sim_runs/zinb_totals/cardiomyocyte_F1_Aged_totals.rds"
+CATALOG_RDS="results/sim_catalogs/cardiomyocyte_F1_Aged.rds"
+SIM_RDS="results/simulated_datasets/sim_cardiomyocyte_zinb_mu_grid.rds"
+
+Rscript scripts/simu/simulate_allelic_from_totals.R \
+  "$TOT_RDS" \
+  "$CATALOG_RDS" \
+  "$SIM_RDS" \
+  0.2 \
+  0.2 \
+  314 \
+  0.6 \
+  0.5 \
+  1 \
+  "0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9"
+
+spec='orig=scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp.R|_allcells_withsex_noimp|bb_mean;phi=scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp_directphi.R|_allcells_withsex_noimp_directphi|phi_glm;fixed=scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp_fixedmu.R|_allcells_withsex_noimp_fixedmu|fixed_mu;glmmtmb=scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp_glmmtmb.R|_allcells_withsex_noimp_glmmtmb|glmmtmb_mu;ver=scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_veronika_sex_noimp.R|_allcells_veronika_sex_noimp|bb_mean'
+
+Rscript scripts/simu/run_simulation_suite.R \
+  "$SIM_RDS" \
+  results/sim_runs/zinb_mu_grid \
+  "$spec" \
+  0 0 5 0 5 5
