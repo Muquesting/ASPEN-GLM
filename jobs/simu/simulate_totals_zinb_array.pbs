@@ -1,0 +1,55 @@
+#!/bin/bash
+#PBS -P zk16
+#PBS -q normal
+#PBS -l ncpus=12
+#PBS -l mem=120GB
+#PBS -l walltime=06:00:00
+#PBS -l storage=gdata/zk16+scratch/zk16
+#PBS -N zinb_totals_array
+#PBS -j oe
+
+# Usage:
+#   qsub -J 1-N -v COMBO_FILE=/path/to/combos.tsv,ZINB_SCE=/path/to/sce.rds \
+#        jobs/simu/simulate_totals_zinb_array.pbs
+# where combos.tsv is a tab-delimited file with columns:
+#   celltype condition max_genes seed output_rds
+
+if [[ -z "${COMBO_FILE}" ]]; then
+  echo "ERROR: COMBO_FILE environment variable is not set." >&2
+  exit 1
+fi
+
+if [[ -z "${ZINB_SCE}" ]]; then
+  echo "ERROR: ZINB_SCE environment variable is not set (path to SCE RDS)." >&2
+  exit 1
+fi
+
+module load R/4.3.1
+
+export ZINB_CORES=${PBS_NCPUS:-1}
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+
+cd /g/data/zk16/muqing/repos/ASPEN-GLM
+
+line=$(sed -n "${PBS_ARRAY_INDEX}p" "${COMBO_FILE}")
+if [[ -z "${line}" ]]; then
+  echo "ERROR: No line ${PBS_ARRAY_INDEX} in ${COMBO_FILE}" >&2
+  exit 1
+fi
+
+IFS=$'\t' read -r celltype condition max_genes seed output_rds <<< "${line}"
+if [[ -z "${celltype}" || -z "${condition}" || -z "${max_genes}" || -z "${seed}" || -z "${output_rds}" ]]; then
+  echo "ERROR: Missing fields in combo line: ${line}" >&2
+  exit 1
+fi
+
+echo "[$(date)] Running slice: celltype=${celltype}, condition=${condition}, max_genes=${max_genes}, seed=${seed}"
+
+Rscript scripts/simu/simulate_totals_zinb.R \
+  "${ZINB_SCE}" \
+  "${celltype}" \
+  "${condition}" \
+  "${max_genes}" \
+  "${output_rds}" \
+  "${seed}"

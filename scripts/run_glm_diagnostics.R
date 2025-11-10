@@ -19,6 +19,8 @@ max_genes     <- if (length(args) >= 3) as.integer(args[[3]]) else 20000L
 min_counts    <- if (length(args) >= 4) as.integer(args[[4]]) else 0L   # mirrors min_counts_est
 min_cells     <- if (length(args) >= 5) as.integer(args[[5]]) else 5L   # mirrors min_cells_est
 top_k         <- if (length(args) >= 6) as.integer(args[[6]]) else 10L
+ref_root      <- if (length(args) >= 7) args[[7]] else "results/GLM_aspen_sex_no_imprint"
+use_reference <- nzchar(ref_root) && dir.exists(ref_root)
 
 sce <- readRDS(input_rds)
 stopifnot(inherits(sce, "SingleCellExperiment"))
@@ -104,6 +106,38 @@ for (ct in ct_keep) {
     if (nrow(tots) == 0) {
       message("    No genes left after filtering; skipping.")
       next
+    }
+
+    if (use_reference) {
+      ref_dir <- file.path(ref_root, ct, cond_tag)
+      ref_genes <- character(0)
+      ref_file_rds <- file.path(ref_dir, "estimates_global_shrunk.rds")
+      ref_file_csv <- file.path(ref_dir, "estimates_global_shrunk.csv")
+      if (file.exists(ref_file_rds)) {
+        ref_tbl <- tryCatch(readRDS(ref_file_rds), error = function(e) NULL)
+      } else if (file.exists(ref_file_csv)) {
+        tmp <- tryCatch(read.csv(ref_file_csv, stringsAsFactors = FALSE), error = function(e) NULL)
+        if (!is.null(tmp)) {
+          if (!is.null(tmp$X)) rownames(tmp) <- tmp$X
+          ref_tbl <- tmp
+        } else {
+          ref_tbl <- NULL
+        }
+      } else {
+        ref_tbl <- NULL
+      }
+      if (!is.null(ref_tbl)) {
+        ref_genes <- rownames(ref_tbl)
+      }
+      if (length(ref_genes)) {
+        keep_ref <- rownames(tots) %in% ref_genes
+        if (!any(keep_ref)) {
+          message("    No genes intersect reference set for ", ct, " / ", cond_lbl, "; skipping.")
+          next
+        }
+        a1s <- a1s[keep_ref, , drop = FALSE]
+        tots <- tots[keep_ref, , drop = FALSE]
+      }
     }
 
     sex_sub <- sex_all[cells_ct]
