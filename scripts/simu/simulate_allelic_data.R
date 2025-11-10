@@ -6,7 +6,7 @@ suppressPackageStartupMessages({
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 8) {
-  stop("Usage: Rscript scripts/simu/simulate_allelic_data.R <catalog_rds> <output_rds> <n_genes> <n_cells_F> <n_cells_M> <prop_sex_bias> <prop_imbalance> <seed> [sex_logit_sd=0.6] [imbalance_logit_sd=0.5] [dispersion_scale=1]",
+  stop("Usage: Rscript scripts/simu/simulate_allelic_data.R <catalog_rds> <output_rds> <n_genes> <n_cells_F> <n_cells_M> <prop_sex_bias> <prop_imbalance> <seed> [sex_logit_sd=0.6] [imbalance_logit_sd=0.5] [dispersion_scale=1] [mu_grid=comma_separated_list]",
        call. = FALSE)
 }
 
@@ -21,6 +21,7 @@ seed        <- as.integer(args[[8]])
 sex_logit_sd <- if (length(args) >= 9) as.numeric(args[[9]]) else 0.6
 imbalance_logit_sd <- if (length(args) >= 10) as.numeric(args[[10]]) else 0.5
 dispersion_scale <- if (length(args) >= 11) as.numeric(args[[11]]) else 1
+mu_grid_str <- if (length(args) >= 12) args[[12]] else ""
 
 set.seed(seed)
 
@@ -42,9 +43,23 @@ if (!length(genes_catalog)) stop("Catalog has no genes.")
 
 sample_indices <- sample(seq_along(genes_catalog), n_genes, replace = length(genes_catalog) < n_genes)
 sel_genes <- genes_catalog[sample_indices]
-mu_base <- mu_catalog[sample_indices]
 theta_base <- theta_catalog[sample_indices] * dispersion_scale
 coverage_list <- coverage_catalog[sample_indices]
+
+mu_grid <- NULL
+if (nzchar(mu_grid_str)) {
+  mu_vals <- as.numeric(strsplit(mu_grid_str, ",")[[1]])
+  mu_vals <- mu_vals[is.finite(mu_vals) & mu_vals > 0 & mu_vals < 1]
+  if (length(mu_vals)) {
+    mu_grid <- mu_vals
+  }
+}
+
+if (!is.null(mu_grid)) {
+  mu_base <- rep(mu_grid, length.out = n_genes)
+} else {
+  mu_base <- mu_catalog[sample_indices]
+}
 
 logit <- function(p) log(p/(1-p))
 invlogit <- function(x) 1/(1+exp(-x))

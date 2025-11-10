@@ -5,18 +5,18 @@ suppressPackageStartupMessages({
   library(Matrix)
 })
 
+usage <- paste(
+  "Usage:",
+  "Rscript scripts/simu/run_pipeline_specific_tests.R",
+  "<pipeline_type> <sce_rds> <pipeline_root_dir> <celltype> <condition>",
+  "<output_csv> <min_counts_test> <min_cells_test>",
+  "",
+  "pipeline_type: one of bb_mean, phi_glm, fixed_mu, glmmtmb_mu, ver",
+  sep = "\n"
+)
+
 args <- commandArgs(trailingOnly = TRUE)
-if (length(args) < 8) {
-  stop(paste(
-    "Usage:",
-    "Rscript scripts/simu/run_pipeline_specific_tests.R",
-    "<pipeline_type> <sce_rds> <pipeline_root_dir> <celltype> <condition>",
-    "<output_csv> <min_counts_test> <min_cells_test>",
-    "",
-    "pipeline_type ∈ {bb_mean, ver, orig, phi_glm, fixed_mu, glmmtmb_mu}",
-    sep = "\n"
-  ), call. = FALSE)
-}
+if (length(args) < 8) stop(usage, call. = FALSE)
 
 pipeline_type <- args[[1]]
 sce_path      <- args[[2]]
@@ -28,34 +28,42 @@ min_counts    <- as.integer(args[[7]])
 min_cells     <- as.integer(args[[8]])
 
 valid_types <- c("bb_mean", "ver", "orig", "phi_glm", "fixed_mu", "glmmtmb_mu")
-if (!pipeline_type %in% valid_types) stop("Unsupported pipeline_type: ", pipeline_type)
+if (!pipeline_type %in% valid_types) {
+  stop("Unsupported pipeline_type: ", pipeline_type,
+       ". Expected one of: ", paste(valid_types, collapse = ", "))
+}
 
 slice_dir <- file.path(root_dir, celltype, condition)
 if (!dir.exists(slice_dir)) stop("Slice directory not found: ", slice_dir)
 
+if (!file.exists(sce_path)) stop("SCE file not found: ", sce_path)
 sce <- readRDS(sce_path)
 stopifnot(inherits(sce, "SingleCellExperiment"))
 
-a1_full  <- as.matrix(SummarizedExperiment::assay(sce, "a1"))
-tot_full <- as.matrix(SummarizedExperiment::assay(sce, "tot"))
-mode(a1_full) <- "integer"
-mode(tot_full) <- "integer"
+a1_full  <- SummarizedExperiment::assay(sce, "a1")
+tot_full <- SummarizedExperiment::assay(sce, "tot")
 
-meta <- as.data.frame(SummarizedExperiment::colData(sce))
 pick_col <- function(df, candidates) {
-  for (nm in candidates) if (!is.null(df[[nm]])) return(nm)
+  for (nm in candidates) {
+    if (!is.null(df[[nm]])) return(nm)
+  }
   NULL
 }
+
+meta <- as.data.frame(SummarizedExperiment::colData(sce))
 sex_col <- pick_col(meta, c("pred.sex", "sex", "sex_pred"))
-if (is.null(sex_col)) stop("Sex column not found in SCE metadata.")
+if (is.null(sex_col)) stop("No sex column found in SCE metadata (looked for pred.sex / sex / sex_pred).")
 sex_vec <- as.character(meta[[sex_col]])
 sex_vec[sex_vec %in% c("Female", "F")] <- "F"
-sex_vec[sex_vec %in% c("Male", "M")] <- "M"
-keep_cells <- which(sex_vec %in% c("F","M"))
-if (!length(keep_cells)) stop("No cells with usable sex labels.")
-sex_vec <- sex_vec[keep_cells]
-a1_full <- a1_full[, keep_cells, drop = FALSE]
-tot_full <- tot_full[, keep_cells, drop = FALSE]
+sex_vec[sex_vec %in% c("Male", "M")]   <- "M"
+
+valid_cells <- which(sex_vec %in% c("F","M"))
+if (!length(valid_cells)) stop("No cells with clear sex labels available.")
+sex_vec <- sex_vec[valid_cells]
+a1_full  <- as.matrix(a1_full[, valid_cells, drop = FALSE])
+tot_full <- as.matrix(tot_full[, valid_cells, drop = FALSE])
+mode(a1_full) <- "integer"
+mode(tot_full) <- "integer"
 
 slice_file <- function(fname) {
   path_rds <- file.path(slice_dir, paste0(fname, ".rds"))
@@ -67,54 +75,64 @@ slice_file <- function(fname) {
 
 load_table <- function(path) {
   if (!nzchar(path)) return(NULL)
-  if (grepl("\\.rds$", path)) readRDS(path) else read.csv(path, stringsAsFactors = FALSE)
+  if (grepl("\\.rds$", path)) {
+    readRDS(path)
+  } else {
+    utils::read.csv(path, stringsAsFactors = FALSE, row.names = 1)
+  }
 }
 
 estimates_path <- slice_file("estimates_global_shrunk")
 estimates <- load_table(estimates_path)
-if (is.null(estimates)) stop("Cannot load estimates_global_shrunk for pipeline.")
+if (is.null(estimates)) stop("Could not load estimates_global_shrunk.{rds,csv} from ", slice_dir)
 if (is.null(rownames(estimates))) {
-  if ("X" %in% names(estimates)) {
+  if ("X" %in% colnames(estimates)) {
     rownames(estimates) <- estimates$X
   } else {
-    stop("estimates table lacks gene identifiers.")
+    stop("estimates_global_shrunk lacks rownames; cannot map genes.")
   }
 }
 
-genes_overlap <- intersect(rownames(estimates), rownames(a1_full))
-if (!length(genes_overlap)) stop("No overlapping genes between SCE and estimates.")
+genes_available <- intersect(rownames(estimates), rownames(a1_full))
+if (!length(genes_available)) stop("No overlapping genes between SCE and estimates.")
 
 bb_mean_passthrough <- function(result_file) {
-  if (!file.exists(result_file)) stop("bb_mean file missing: ", result_file)
-  res <- read.csv(result_file, stringsAsFactors = FALSE)
-  gene_col <- if ("gene" %in% names(res)) "gene" else if ("X" %in% names(res)) "X" else stop("No gene column.")
-  padj_col <- if ("padj_mean" %in% names(res)) "padj_mean" else if ("padj" %in% names(res)) "padj" else stop("No padj column.")
-  stat_col <- if ("llr_mean" %in% names(res)) res$llr_mean else NA_real_
+  if (!file.exists(result_file)) {
+    stop("Result file not found for bb_mean passthrough: ", result_file)
+  }
+  res <- utils::read.csv(result_file, stringsAsFactors = FALSE)
+  if (!("padj_mean" %in% colnames(res))) {
+    stop("bb_mean_results file missing padj_mean column: ", result_file)
+  }
+  p_raw <- if ("pval_mean" %in% colnames(res)) res$pval_mean else res$padj_mean
+  stat_col <- if ("llr_mean" %in% colnames(res)) res$llr_mean else rep(NA_real_, nrow(res))
   data.frame(
-    gene = res[[gene_col]],
+    gene = res$X,
     statistic = stat_col,
     df = NA_real_,
-    pvalue = res[[padj_col]],
-    padj = res[[padj_col]],
+    pvalue = p_raw,
+    padj = res$padj_mean,
     stringsAsFactors = FALSE
   )
 }
 
-glm_phi_tests <- function() {
-  phi_col <- if ("phi_shrunk" %in% names(estimates)) "phi_shrunk" else if ("phi" %in% names(estimates)) "phi" else stop("phi column missing.")
-  phi_vec <- setNames(as.numeric(estimates[genes_overlap, phi_col]), genes_overlap)
-  out_list <- vector("list", length(genes_overlap))
-  design_sex <- factor(sex_vec, levels = c("F","M"))
-  for (idx in seq_along(genes_overlap)) {
-    g <- genes_overlap[idx]
-    y <- as.numeric(a1_full[g, ])
-    n <- as.numeric(tot_full[g, ])
-    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0)
-    if (sum(keep) < min_cells) next
-    df <- data.frame(sex = droplevels(design_sex[keep]))
-    if (nlevels(df$sex) < 1) next
+glm_phi_tests <- function(genes, a1, tot, sex, phi_shrunk_vec, min_counts, min_cells) {
+  res <- vector("list", length(genes))
+  names(res) <- genes
+  for (g in genes) {
+    y <- as.numeric(a1[g, ])
+    n <- as.numeric(tot[g, ])
+    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0) & sex %in% c("F","M")
+    if (sum(keep) < max(min_cells, 2L)) next
+    sex_sub <- droplevels(factor(sex[keep], levels = c("F","M")))
+    if (nlevels(sex_sub) < 1) next
+    df <- data.frame(
+      y = y[keep],
+      n = n[keep],
+      sex = sex_sub
+    )
     fit <- tryCatch(
-      stats::glm(cbind(y[keep], n[keep] - y[keep]) ~ sex, family = stats::quasibinomial(), data = df,
+      stats::glm(cbind(y, n - y) ~ sex, family = stats::quasibinomial(), data = df,
                  control = stats::glm.control(maxit = 100)),
       error = function(e) NULL
     )
@@ -123,11 +141,14 @@ glm_phi_tests <- function() {
     if (is.null(vc)) next
     se_raw <- sqrt(diag(vc))
     beta <- stats::coef(fit)
-    phi_hat <- max(summary(fit)$dispersion, 1e-6)
-    phi_use <- phi_vec[g]
-    scale_factor <- if (is.finite(phi_use) && phi_use > 0) sqrt(phi_use / phi_hat) else 1
+    sm <- summary(fit, dispersion = fit$dispersion)
+    phi_hat <- as.numeric(sm$dispersion)
+    phi_use <- phi_shrunk_vec[g]
+    if (!is.finite(phi_use) || phi_use <= 0) phi_use <- phi_hat
+    scale_factor <- if (is.finite(phi_hat) && phi_hat > 0) sqrt(phi_use / phi_hat) else 1
     se_adj <- se_raw * scale_factor
     df_res <- max(fit$df.residual, 1)
+
     get_p <- function(term) {
       if (!term %in% names(beta)) return(NA_real_)
       se <- se_adj[term]
@@ -135,22 +156,28 @@ glm_phi_tests <- function() {
       tval <- beta[term] / se
       2 * stats::pt(abs(tval), df = df_res, lower.tail = FALSE)
     }
+
     p_int <- get_p("(Intercept)")
     sex_term <- grep("^sex", names(beta), value = TRUE)
     p_sex <- if (length(sex_term)) get_p(sex_term[1]) else NA_real_
-    p_comb <- suppressWarnings(min(p_int, p_sex, na.rm = TRUE))
-    if (!is.finite(p_comb)) p_comb <- p_int
-    out_list[[idx]] <- data.frame(
+    p_any <- suppressWarnings(min(p_int, p_sex, na.rm = TRUE))
+    if (!is.finite(p_any)) p_any <- p_int
+
+    res[[g]] <- data.frame(
       gene = g,
       statistic = NA_real_,
       df = df_res,
-      pvalue = p_comb,
+      p_intercept = p_int,
+      p_sex = p_sex,
+      pvalue = p_any,
       phi_raw = phi_hat,
       phi_used = phi_use,
       stringsAsFactors = FALSE
     )
   }
-  out <- do.call(rbind, out_list[!sapply(out_list, is.null)])
+  keep <- vapply(res, function(x) !is.null(x), logical(1))
+  if (!any(keep)) return(NULL)
+  out <- do.call(rbind, res[keep])
   out$padj <- stats::p.adjust(out$pvalue, method = "BH")
   out
 }
@@ -163,20 +190,20 @@ bb_loglik <- function(k, n, mu, theta, eps = 1e-6) {
   sum(lchoose(n, k) + lbeta(k + alpha, n - k + beta) - lbeta(alpha, beta))
 }
 
-bb_lrt_tests <- function(theta_col, mu_lookup) {
-  theta_vec <- setNames(as.numeric(estimates[genes_overlap, theta_col]), genes_overlap)
-  res_list <- vector("list", length(genes_overlap))
-  for (idx in seq_along(genes_overlap)) {
-    g <- genes_overlap[idx]
+bb_lrt_tests <- function(genes, a1, tot, sex, theta_vec, mu_lookup, min_counts, min_cells) {
+  res <- vector("list", length(genes))
+  names(res) <- genes
+  for (g in genes) {
     theta <- theta_vec[g]
     mu_pair <- mu_lookup[[g]]
     if (!is.finite(theta) || theta <= 0 || is.null(mu_pair)) next
     if (!all(c("F","M") %in% names(mu_pair))) next
-    y <- as.numeric(a1_full[g, ])
-    n <- as.numeric(tot_full[g, ])
-    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0)
-    if (sum(keep) < min_cells) next
-    sex_sub <- sex_vec[keep]
+    y <- as.numeric(a1[g, ])
+    n <- as.numeric(tot[g, ])
+    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0) & sex %in% c("F","M")
+    if (sum(keep) < max(min_cells, 2L)) next
+    sex_sub <- sex[keep]
+    if (length(unique(sex_sub)) < 2) next
     k_vec <- y[keep]
     n_vec <- n[keep]
     mu_alt <- ifelse(sex_sub == "F", mu_pair["F"], mu_pair["M"])
@@ -187,52 +214,67 @@ bb_lrt_tests <- function(theta_col, mu_lookup) {
     if (!is.finite(lrt)) next
     if (lrt < 0 && abs(lrt) < 1e-6) lrt <- 0
     pval <- stats::pchisq(max(lrt, 0), df = 2, lower.tail = FALSE)
-    res_list[[idx]] <- data.frame(
+    res[[g]] <- data.frame(
       gene = g,
       statistic = lrt,
       df = 2,
+      logLik_alt = ll_alt,
+      logLik_null = ll_null,
       pvalue = pval,
       stringsAsFactors = FALSE
     )
   }
-  out <- do.call(rbind, res_list[!sapply(res_list, is.null)])
+  keep <- vapply(res, function(x) !is.null(x), logical(1))
+  if (!any(keep)) return(NULL)
+  out <- do.call(rbind, res[keep])
   out$padj <- stats::p.adjust(out$pvalue, method = "BH")
   out
 }
 
-load_mu_lookup <- function() {
-  by_sex <- load_table(slice_file("estimates_by_sex"))
-  if (is.null(by_sex) || !is.list(by_sex)) stop("estimates_by_sex must be a list per gene.")
-  lapply(by_sex, function(df) {
-    if (is.null(df) || !"bb_mu" %in% names(df)) return(NULL)
-    label_col <- if ("sex_group" %in% names(df)) "sex_group" else if ("group" %in% names(df)) "group" else return(NULL)
-    labs <- as.character(df[[label_col]])
-    vals <- as.numeric(df$bb_mu)
-    names(vals) <- labs
-    vals[c("F","M")]
-  })
-}
-
 result <- NULL
-bb_file <- file.path(slice_dir, "bb_mean_results_norm.csv")
+slice_results_dir <- file.path(slice_dir)
+bb_mean_file <- file.path(slice_results_dir, "bb_mean_results_norm.csv")
 
 if (pipeline_type %in% c("bb_mean", "ver", "orig")) {
-  result <- bb_mean_passthrough(bb_file)
+  result <- bb_mean_passthrough(bb_mean_file)
 } else if (pipeline_type == "phi_glm") {
-  result <- glm_phi_tests()
+  phi_col <- if ("phi_shrunk" %in% colnames(estimates)) "phi_shrunk" else if ("phi" %in% colnames(estimates)) "phi" else NA_character_
+  if (!nzchar(phi_col)) stop("phi_glm requires phi_shrunk column in estimates.")
+  phi_vec <- setNames(as.numeric(estimates[genes_available, phi_col]), genes_available)
+  result <- glm_phi_tests(genes_available, a1_full, tot_full, sex_vec, phi_vec, min_counts, min_cells)
 } else if (pipeline_type %in% c("fixed_mu", "glmmtmb_mu")) {
-  mu_lookup <- load_mu_lookup()
-  theta_col <- if ("thetaCorrected" %in% names(estimates)) "thetaCorrected" else if ("bb_theta" %in% names(estimates)) "bb_theta" else stop("theta column missing.")
-  result <- bb_lrt_tests(theta_col, mu_lookup)
+  theta_col <- if ("thetaCorrected" %in% colnames(estimates)) "thetaCorrected" else if ("bb_theta" %in% colnames(estimates)) "bb_theta" else NA_character_
+  if (!nzchar(theta_col)) stop(pipeline_type, " requires thetaCorrected or bb_theta column in estimates.")
+  theta_vec <- setNames(as.numeric(estimates[genes_available, theta_col]), genes_available)
+  by_sex_path <- slice_file("estimates_by_sex")
+  by_sex <- load_table(by_sex_path)
+  if (is.null(by_sex)) stop("Could not load estimates_by_sex for ", pipeline_type)
+  if (is.list(by_sex)) {
+    mu_lookup <- lapply(by_sex, function(df) {
+      if (is.null(df) || !"bb_mu" %in% colnames(df)) return(NULL)
+      label_col <- if ("sex_group" %in% colnames(df)) "sex_group" else if ("group" %in% colnames(df)) "group" else NULL
+      if (is.null(label_col)) return(NULL)
+      labs <- as.character(df[[label_col]])
+      vals <- as.numeric(df$bb_mu)
+      names(vals) <- labs
+      vals <- vals[c("F","M")]
+      if (any(!is.finite(vals))) return(NULL)
+      vals
+    })
+  } else {
+    stop("estimates_by_sex must be a list per gene; unexpected format.")
+  }
+  mu_lookup <- mu_lookup[genes_available]
+  result <- bb_lrt_tests(genes_available, a1_full, tot_full, sex_vec, theta_vec, mu_lookup, min_counts, min_cells)
 } else {
-  stop("Unhandled pipeline_type.")
+  stop("Unhandled pipeline_type: ", pipeline_type)
 }
 
 if (is.null(result) || !nrow(result)) {
-  warning("No test results produced for ", pipeline_type)
+  warning("No valid test results produced for ", pipeline_type)
   quit(save = "no", status = 0)
 }
 
 dir.create(dirname(output_csv), recursive = TRUE, showWarnings = FALSE)
-write.csv(result, file = output_csv, row.names = FALSE)
+utils::write.csv(result, file = output_csv, row.names = FALSE)
 message("Saved ", nrow(result), " test results to ", output_csv)
