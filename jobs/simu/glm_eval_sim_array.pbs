@@ -1,0 +1,47 @@
+#!/bin/bash
+#PBS -P zk16
+#PBS -q normal
+#PBS -l ncpus=4
+#PBS -l mem=32GB
+#PBS -l walltime=04:00:00
+#PBS -l storage=gdata/zk16+scratch/zk16
+#PBS -N glm_eval_sim
+#PBS -j oe
+
+# Usage:
+#   qsub -J 1-N -r y \
+#        -v COMBO_FILE=/path/to/combos_glm_eval_sim.tsv \
+#        jobs/simu/glm_eval_sim_array.pbs
+# combo file columns (tab-delimited, with header):
+#   sim_rds output_dir spec_string
+
+module load R/4.3.1
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+
+if [[ -z "${COMBO_FILE}" ]]; then
+  echo "ERROR: COMBO_FILE environment variable is not set." >&2
+  exit 1
+fi
+
+cd /g/data/zk16/muqing/repos/ASPEN-GLM || exit 1
+
+data_line=$(tail -n +2 "${COMBO_FILE}" | sed -n "${PBS_ARRAY_INDEX}p")
+if [[ -z "${data_line}" ]]; then
+  echo "ERROR: No data line ${PBS_ARRAY_INDEX} in ${COMBO_FILE}" >&2
+  exit 1
+fi
+
+IFS=$'\t' read -r SIM_RDS OUT_DIR SPEC_STRING <<< "${data_line}"
+if [[ -z "${SIM_RDS}" || -z "${OUT_DIR}" || -z "${SPEC_STRING}" ]]; then
+  echo "ERROR: Missing fields in line: ${data_line}" >&2
+  exit 1
+fi
+
+echo "[$(date)] Evaluating ${SIM_RDS} -> ${OUT_DIR}"
+
+Rscript scripts/simu/run_simulation_suite.R \
+  "${SIM_RDS}" \
+  "${OUT_DIR}" \
+  "${SPEC_STRING}" \
+  0 0 5 0 5 5
