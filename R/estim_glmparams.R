@@ -22,6 +22,13 @@
 #' @export
 #' @examples
 #' # estimates_glm <- estim_glmparams(a1_counts, tot_counts, design, min_counts = 5)
+glm_gene_core_count <- function() {
+  cores <- suppressWarnings(as.integer(Sys.getenv("GLM_GENE_CORES", Sys.getenv("PBS_NCPUS", "1"))))
+  if (!is.finite(cores) || cores < 1) cores <- 1L
+  if (.Platform$OS.type == "windows") cores <- 1L
+  cores
+}
+
 estim_glmparams <- function(a1_counts,
                             tot_counts,
                             design,
@@ -41,23 +48,22 @@ estim_glmparams <- function(a1_counts,
   tot_counts <- as.matrix(tot_counts)
   mode(tot_counts) <- "integer"
 
-  # design checks
   assert_that(!is.null(rownames(design)), msg = "design must have rownames matching cell barcodes")
   assert_that(are_equal(rownames(design), colnames(tot_counts)),
               msg = "rownames(design) must match colnames(count matrices)")
 
   dispersion_method <- match.arg(dispersion_method)
-
   len <- nrow(a1_counts)
-
-  # storage
-  N <- AR <- tot_gene_mean <- tot_gene_variance <- bb_mu <- bb_theta <- alpha <- beta <- rep(NA_real_, len)
-  phi <- rep(NA_real_, len)
-
+  gene_names <- rownames(a1_counts)
   min_theta <- 1e-06
-  fitted_vals <- if (isTRUE(store_fitted)) vector("list", len) else NULL
+  mc_cores <- glm_gene_core_count()
+  use_parallel <- mc_cores > 1 && len > mc_cores && .Platform$OS.type != "windows"
+  idx_seq <- seq_len(len)
 
-  for (k in seq_len(nrow(a1_counts))) {
+  compute_gene <- function(k) {
+    summary <- c(N = NA_real_, AR = NA_real_, tot_gene_mean = NA_real_, tot_gene_variance = NA_real_,
+                 alpha = NA_real_, beta = NA_real_, bb_mu = NA_real_, bb_theta = NA_real_, phi = NA_real_)
+    fitted_df <- NULL
     y <- as.numeric(a1_counts[k, ])
     n <- as.numeric(tot_counts[k, ])
     keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0)
@@ -66,17 +72,13 @@ estim_glmparams <- function(a1_counts,
       y_sub <- y[keep]
       n_sub <- n[keep]
       des_sub <- as.data.frame(design[keep, , drop = FALSE])
+      summary["N"] <- length(n_sub)
+      summary["AR"] <- mean(y_sub / n_sub, na.rm = TRUE)
+      summary["tot_gene_mean"] <- mean(n_sub)
+      summary["tot_gene_variance"] <- if (length(n_sub) > 1) stats::var(n_sub) else NA_real_
 
-      # raw summaries
-      N[k] <- length(n_sub)
-      AR[k] <- mean(y_sub / n_sub, na.rm = TRUE)
-      tot_gene_mean[k] <- mean(n_sub)
-      tot_gene_variance[k] <- stats::var(n_sub)
-
-      # GLM: model allelic ratio with covariates
       df_glm <- des_sub
       df_glm$resp <- y_sub / n_sub
-
       fit <- tryCatch(
         stats::glm(resp ~ ., family = stats::quasibinomial(), weights = n_sub, data = df_glm,
                    control = stats::glm.control(maxit = 100)),
@@ -85,18 +87,15 @@ estim_glmparams <- function(a1_counts,
 
       if (!is.null(fit) && is.finite(fit$deviance)) {
         p_hat <- stats::fitted(fit)
-        # trials-weighted mean allelic ratio implied by the GLM for this gene
-        bb_mu[k] <- sum(n_sub * p_hat) / sum(n_sub)
+        summary["bb_mu"] <- sum(n_sub * p_hat) / sum(n_sub)
         if (isTRUE(store_fitted)) {
-          fitted_vals[[k]] <- data.frame(
+          fitted_df <- data.frame(
             cell = colnames(tot_counts)[keep],
             fitted = p_hat,
             weight = n_sub,
             stringsAsFactors = FALSE
           )
         }
-
-        # quasi dispersion -> ICC rho -> theta mapping
         df_res <- max(fit$df.residual, 1)
         if (identical(dispersion_method, "pearson")) {
           pr <- stats::residuals(fit, type = "pearson")
@@ -104,7 +103,7 @@ estim_glmparams <- function(a1_counts,
         } else {
           phi_hat <- fit$deviance / df_res
         }
-        phi[k] <- phi_hat
+        summary["phi"] <- phi_hat
         if (isTRUE(use_effective_trials)) {
           denom <- sum(p_hat * (1 - p_hat))
           numer <- sum(n_sub * p_hat * (1 - p_hat))
@@ -116,45 +115,45 @@ estim_glmparams <- function(a1_counts,
         rho_hat <- (phi_hat - 1) / max(m_eff - 1, 1e-6)
         rho_hat <- max(0, min(0.999, rho_hat))
         theta_k <- rho_hat / max(1 - rho_hat, 1e-6)
-        bb_theta[k] <- max(min_theta, theta_k)
-
-        alpha[k] <- bb_mu[k] / bb_theta[k]
-        beta[k]  <- (1 - bb_mu[k]) / bb_theta[k]
+        theta_k <- max(min_theta, theta_k)
+        summary["bb_theta"] <- theta_k
       } else {
-        # fallback to empirical mean with minimal overdispersion
-        bb_mu[k] <- AR[k]
-        bb_theta[k] <- min_theta
-        alpha[k] <- bb_mu[k] / bb_theta[k]
-        beta[k]  <- (1 - bb_mu[k]) / bb_theta[k]
+        summary["bb_mu"] <- summary["AR"]
+        summary["bb_theta"] <- min_theta
+      }
+
+      if (is.finite(summary["bb_mu"]) && is.finite(summary["bb_theta"]) && summary["bb_theta"] > 0) {
+        summary["alpha"] <- summary["bb_mu"] / summary["bb_theta"]
+        summary["beta"] <- (1 - summary["bb_mu"]) / summary["bb_theta"]
       }
     } else {
-      # insufficient cells
-      N[k] <- sum(keep)
-      AR[k] <- if (sum(keep) > 0) mean(y[keep] / n[keep]) else NA_real_
-      tot_gene_mean[k] <- if (sum(keep) > 0) mean(n[keep]) else NA_real_
-      tot_gene_variance[k] <- if (sum(keep) > 1) stats::var(n[keep]) else NA_real_
-      bb_mu[k] <- NA_real_
-      bb_theta[k] <- NA_real_
-      alpha[k] <- NA_real_
-      beta[k] <- NA_real_
+      summary["N"] <- sum(keep)
+      if (summary["N"] > 0) {
+        summary["AR"] <- mean(y[keep] / n[keep])
+        summary["tot_gene_mean"] <- mean(n[keep])
+        summary["tot_gene_variance"] <- if (summary["N"] > 1) stats::var(n[keep]) else NA_real_
+      }
     }
+
+    list(summary = summary, fitted = fitted_df)
   }
 
-  res <- data.frame(
-    N = N,
-    AR = AR,
-    tot_gene_mean = tot_gene_mean,
-    tot_gene_variance = tot_gene_variance,
-    alpha = alpha,
-    beta = beta,
-    bb_mu = bb_mu,
-    bb_theta = bb_theta,
-    phi = phi,
-    id = seq_len(len)
-  )
-  rownames(res) <- rownames(a1_counts)
+  res_list <- if (use_parallel) {
+    parallel::mclapply(idx_seq, compute_gene, mc.cores = mc_cores)
+  } else {
+    lapply(idx_seq, compute_gene)
+  }
+
+  summary_mat <- do.call(rbind, lapply(res_list, `[[`, "summary"))
+  res <- as.data.frame(summary_mat, stringsAsFactors = FALSE)
+  colnames(res) <- c("N", "AR", "tot_gene_mean", "tot_gene_variance",
+                     "alpha", "beta", "bb_mu", "bb_theta", "phi")
+  res$id <- seq_len(len)
+  rownames(res) <- gene_names
+
   if (isTRUE(store_fitted)) {
-    names(fitted_vals) <- rownames(a1_counts)
+    fitted_vals <- lapply(res_list, `[[`, "fitted")
+    names(fitted_vals) <- gene_names
     attr(res, "fitted_values") <- fitted_vals
   }
   res

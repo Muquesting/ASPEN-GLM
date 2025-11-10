@@ -6,8 +6,12 @@ suppressPackageStartupMessages({
   library(BiocParallel)
 })
 
-# Ensure deterministic, single-core behaviour to avoid mc parallel bugs
-BiocParallel::register(BiocParallel::SerialParam())
+zinb_core_count <- function() {
+  cores <- suppressWarnings(as.integer(Sys.getenv("ZINB_CORES", Sys.getenv("PBS_NCPUS", "1"))))
+  if (!is.finite(cores) || cores < 1) cores <- 1L
+  if (.Platform$OS.type == "windows") cores <- 1L
+  cores
+}
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 6) {
@@ -51,10 +55,13 @@ counts <- as.matrix(tot[genes_use, , drop = FALSE])
 
 message("Fitting ZINB model on ", nrow(counts), " genes and ", ncol(counts), " cells …")
 set.seed(seed)
-zinb <- zinbFit(counts, K = 2, epsilon = 1e-3, verbose = TRUE)
+zinb_cores <- zinb_core_count()
+bp_param <- if (zinb_cores > 1) BiocParallel::MulticoreParam(zinb_cores) else BiocParallel::SerialParam()
+BiocParallel::register(bp_param, default = TRUE)
+zinb <- zinbFit(counts, K = 2, epsilon = 1e-3, verbose = TRUE, BPPARAM = bp_param)
 
 message("Simulating counts from fitted ZINB model …")
-sim_list <- zinbSim(zinb, seed = seed)
+sim_list <- zinbSim(zinb, seed = seed, BPPARAM = bp_param)
 counts_sim <- sim_list$counts
 rownames(counts_sim) <- genes_use
 colnames(counts_sim) <- colnames(counts)
