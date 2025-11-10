@@ -53,13 +53,54 @@ if (!isTRUE(max_genes > 0) || max_genes >= nrow(tot)) {
 
 counts <- as.matrix(tot[genes_use, , drop = FALSE])
 
+keep_genes <- rowSums(counts) > 0
+if (!any(keep_genes)) {
+  stop("All selected genes have zero counts after filtering.")
+}
+if (!all(keep_genes)) {
+  counts <- counts[keep_genes, , drop = FALSE]
+  genes_use <- rownames(counts)
+}
+
+keep_cells <- colSums(counts) > 0
+if (!any(keep_cells)) {
+  stop("All selected cells have zero counts after filtering.")
+}
+if (!all(keep_cells)) {
+  counts <- counts[, keep_cells, drop = FALSE]
+  sex_vec <- droplevels(sex_vec[keep_cells])
+}
+
 message("Fitting ZINB model on ", nrow(counts), " genes and ", ncol(counts), " cells …")
 set.seed(seed)
 zinb_cores <- zinb_core_count()
-message("Detected zinb_cores = ", zinb_cores)
-bp_param <- if (zinb_cores > 1) BiocParallel::MulticoreParam(zinb_cores) else BiocParallel::SerialParam()
-BiocParallel::register(bp_param, default = TRUE)
-zinb <- zinbFit(counts, K = 2, epsilon = 1e-3, verbose = TRUE, BPPARAM = bp_param)
+if (zinb_cores > ncol(counts)) {
+  zinb_cores <- ncol(counts)
+}
+if (zinb_cores < 1L) zinb_cores <- 1L
+message("Using zinb_cores = ", zinb_cores)
+bp_param <- if (zinb_cores > 1) {
+  BiocParallel::MulticoreParam(workers = zinb_cores, progressbar = TRUE)
+} else {
+  BiocParallel::SerialParam()
+}
+fit_once <- function(param) {
+  BiocParallel::register(param, default = TRUE)
+  zinbFit(counts, K = 2, epsilon = 1e-3, verbose = TRUE, BPPARAM = param)
+}
+zinb <- tryCatch(
+  fit_once(bp_param),
+  error = function(e) {
+    if (zinb_cores > 1) {
+      message("zinbFit failed under multicore (", conditionMessage(e), "); retrying with SerialParam …")
+      serial_param <- BiocParallel::SerialParam()
+      BiocParallel::register(serial_param, default = TRUE)
+      fit_once(serial_param)
+    } else {
+      stop(e)
+    }
+  }
+)
 
 message("Simulating counts from fitted ZINB model …")
 sim_list <- zinbSim(zinb, seed = seed)

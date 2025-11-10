@@ -1,8 +1,8 @@
 #!/bin/bash
 #PBS -P zk16
 #PBS -q normal
-#PBS -l ncpus=12
-#PBS -l mem=120GB
+#PBS -l ncpus=4
+#PBS -l mem=180GB
 #PBS -l walltime=06:00:00
 #PBS -l storage=gdata/zk16+scratch/zk16
 #PBS -N zinb_totals_array
@@ -12,7 +12,8 @@
 #   qsub -J 1-N -v COMBO_FILE=/path/to/combos.tsv,ZINB_SCE=/path/to/sce.rds \
 #        jobs/simu/simulate_totals_zinb_array.pbs
 # where combos.tsv is a tab-delimited file with columns:
-#   celltype condition max_genes seed output_rds
+#   celltype condition max_genes seed output_rds [zinb_cores]
+# The optional sixth column lets you request a smaller zinb core count per slice.
 
 if [[ -z "${COMBO_FILE}" ]]; then
   echo "ERROR: COMBO_FILE environment variable is not set." >&2
@@ -26,7 +27,16 @@ fi
 
 module load R/4.3.1
 
-export ZINB_CORES=${PBS_NCPUS:-1}
+default_cores=${DEFAULT_ZINB_CORES:-4}
+if [[ -n "${PBS_NCPUS}" ]]; then
+  if (( PBS_NCPUS < default_cores )); then
+    default_cores=${PBS_NCPUS}
+  fi
+fi
+if (( default_cores < 1 )); then
+  default_cores=1
+fi
+
 export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 
@@ -38,11 +48,28 @@ if [[ -z "${data_line}" ]]; then
   exit 1
 fi
 
-IFS=$'\t' read -r celltype condition max_genes seed output_rds <<< "${data_line}"
+IFS=$'\t' read -r celltype condition max_genes seed output_rds zinb_core_override _rest <<< "${data_line}"
 if [[ -z "${celltype}" || -z "${condition}" || -z "${max_genes}" || -z "${seed}" || -z "${output_rds}" ]]; then
   echo "ERROR: Missing fields in combo line: ${data_line}" >&2
   exit 1
 fi
+
+zinb_core_override=${zinb_core_override:-${ZINB_CORES}}
+if [[ -n "${zinb_core_override}" && "${zinb_core_override}" =~ ^[0-9]+$ ]]; then
+  if (( zinb_core_override > 0 )); then
+    export ZINB_CORES=${zinb_core_override}
+  else
+    export ZINB_CORES=${default_cores}
+  fi
+else
+  export ZINB_CORES=${default_cores}
+fi
+
+if [[ -n "${PBS_NCPUS}" && "${ZINB_CORES}" -gt "${PBS_NCPUS}" ]]; then
+  export ZINB_CORES=${PBS_NCPUS}
+fi
+
+echo "[$(date)] Requested zinb cores=${ZINB_CORES} (default cap=${default_cores}, PBS_NCPUS=${PBS_NCPUS})"
 
 echo "[$(date)] Running slice: celltype=${celltype}, condition=${condition}, max_genes=${max_genes}, seed=${seed}"
 
