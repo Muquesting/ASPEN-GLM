@@ -1,0 +1,5 @@
+celltype	condition	max_genes	seed	output_rds
+Cardiomyocyte	F1_Aged	2000	2001	results/sim_runs/zinb_totals/Cardiomyocyte/F1_Aged_totals.rds
+Cardiomyocyte	F1_Young	2000	2002	results/sim_runs/zinb_totals/Cardiomyocyte/F1_Young_totals.rds
+Fibroblast	F1_Aged	2000	2003	results/sim_runs/zinb_totals/Fibroblast/F1_Aged_totals.rds
+Fibroblast	F1_Young	2000	2004	results/sim_runs/zinb_totals/Fibroblast/F1_Young_totals.rds
