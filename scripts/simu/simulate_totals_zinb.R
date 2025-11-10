@@ -71,7 +71,11 @@ if (!all(keep_cells)) {
   sex_vec <- droplevels(sex_vec[keep_cells])
 }
 
-message("Fitting ZINB model on ", nrow(counts), " genes and ", ncol(counts), " cells …")
+# Keep a pristine copy so we can subset on retries
+counts_full <- counts
+genes_full <- rownames(counts_full)
+
+message("Fitting ZINB model on ", nrow(counts_full), " genes and ", ncol(counts_full), " cells …")
 set.seed(seed)
 zinb_cores <- zinb_core_count()
 if (zinb_cores > ncol(counts)) {
@@ -79,28 +83,43 @@ if (zinb_cores > ncol(counts)) {
 }
 if (zinb_cores < 1L) zinb_cores <- 1L
 message("Using zinb_cores = ", zinb_cores)
-bp_param <- if (zinb_cores > 1) {
+initial_param <- if (zinb_cores > 1) {
   BiocParallel::MulticoreParam(workers = zinb_cores, progressbar = TRUE)
 } else {
   BiocParallel::SerialParam()
 }
-fit_once <- function(param) {
+
+run_zinbfit <- function(genes_subset, param) {
+  counts_subset <- counts_full[genes_subset, , drop = FALSE]
   BiocParallel::register(param, default = TRUE)
-  zinbFit(counts, K = 2, epsilon = 1e-3, verbose = TRUE, BPPARAM = param)
+  message("[", Sys.time(), "] Attempting zinbFit on ", length(genes_subset),
+          " genes (", class(param)[1], ")")
+  fit <- zinbFit(counts_subset, K = 2, epsilon = 1e-3, verbose = TRUE, BPPARAM = param)
+  list(fit = fit, counts = counts_subset, genes = genes_subset)
 }
-zinb <- tryCatch(
-  fit_once(bp_param),
+
+fit_res <- tryCatch(
+  run_zinbfit(genes_full, initial_param),
   error = function(e) {
     if (zinb_cores > 1) {
-      message("zinbFit failed under multicore (", conditionMessage(e), "); retrying with SerialParam …")
-      serial_param <- BiocParallel::SerialParam()
-      BiocParallel::register(serial_param, default = TRUE)
-      fit_once(serial_param)
+      message("zinbFit failed under multicore: ", conditionMessage(e))
+      reduced_n <- min(length(genes_full), 1000L)
+      if (reduced_n < length(genes_full)) {
+        message("Retrying with SerialParam on ", reduced_n, " genes …")
+      } else {
+        message("Retrying with SerialParam …")
+      }
+      genes_reduced <- genes_full[seq_len(reduced_n)]
+      run_zinbfit(genes_reduced, BiocParallel::SerialParam())
     } else {
       stop(e)
     }
   }
 )
+
+zinb <- fit_res$fit
+counts <- fit_res$counts
+genes_use <- fit_res$genes
 
 message("Simulating counts from fitted ZINB model …")
 sim_list <- zinbSim(zinb, seed = seed)
