@@ -1,0 +1,48 @@
+#!/bin/bash
+#PBS -P zk16
+#PBS -q normal
+#PBS -l ncpus=1
+#PBS -l mem=16GB
+#PBS -l walltime=04:00:00
+#PBS -l storage=gdata/zk16+scratch/zk16
+#PBS -N zinb_sim_array
+#PBS -j oe
+
+# Usage:
+#   qsub -J 1-N -r y \
+#        -v COMBO_FILE=/path/to/combos.tsv \
+#        jobs/simu/simulate_zinb_from_totals_array.pbs
+# combos.tsv must be tab-delimited with header:
+# totals_rds glm_csv bb_csv output_rds seed
+
+if [[ -z "${COMBO_FILE}" ]]; then
+  echo "ERROR: COMBO_FILE environment variable is not set." >&2
+  exit 1
+fi
+
+module load R/4.3.1
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+
+cd /g/data/zk16/muqing/repos/ASPEN-GLM
+
+data_line=$(tail -n +2 "${COMBO_FILE}" | sed -n "${PBS_ARRAY_INDEX}p")
+if [[ -z "${data_line}" ]]; then
+  echo "ERROR: No data line ${PBS_ARRAY_INDEX} in ${COMBO_FILE}" >&2
+  exit 1
+fi
+
+IFS=$'\t' read -r totals_rds glm_csv bb_csv output_rds seed <<< "${data_line}"
+if [[ -z "${totals_rds}" || -z "${glm_csv}" || -z "${bb_csv}" || -z "${output_rds}" || -z "${seed}" ]]; then
+  echo "ERROR: Missing fields in combo line: ${data_line}" >&2
+  exit 1
+fi
+
+echo "[$(date)] Simulating from ${totals_rds} -> ${output_rds} (seed=${seed})"
+
+Rscript scripts/simu/simulate_zinb_totals_with_glm.R \
+  "${totals_rds}" \
+  "${glm_csv}" \
+  "${bb_csv}" \
+  "${output_rds}" \
+  "${seed}"
