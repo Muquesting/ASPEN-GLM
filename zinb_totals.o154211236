@@ -1,0 +1,15 @@
+/local/spool/pbs/mom_priv/jobs/154211236.gadi-pbs.SC: line 13: cd: /g/data/your_project/ASPEN-GLM: No such file or directory
+Fatal error: cannot open file 'scripts/simu/simulate_totals_zinb.R': No such file or directory
+
+======================================================================================
+                  Resource Usage on 2025-11-10 10:46:19:
+   Job Id:             154211236.gadi-pbs
+   Project:            zk16
+   Exit Status:        2
+   Service Units:      0.05
+   NCPUs Requested:    12                     NCPUs Used: 12              
+                                           CPU Time Used: 00:00:01        
+   Memory Requested:   120.0GB               Memory Used: 235.56MB        
+   Walltime requested: 04:00:00            Walltime Used: 00:00:03        
+   JobFS requested:    100.0MB                JobFS used: 0B              
+======================================================================================
