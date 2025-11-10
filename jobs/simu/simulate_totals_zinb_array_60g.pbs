@@ -1,8 +1,8 @@
 #!/bin/bash
 #PBS -P zk16
 #PBS -q normal
-#PBS -l ncpus=12
-#PBS -l mem=120GB
+#PBS -l ncpus=6
+#PBS -l mem=190GB
 #PBS -l walltime=06:00:00
 #PBS -l storage=gdata/zk16+scratch/zk16
 #PBS -N zinb_totals_array_120g
