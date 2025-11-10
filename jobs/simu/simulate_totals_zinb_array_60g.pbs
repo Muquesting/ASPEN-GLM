@@ -2,17 +2,16 @@
 #PBS -P zk16
 #PBS -q normal
 #PBS -l ncpus=12
-#PBS -l mem=120GB
+#PBS -l mem=60GB
 #PBS -l walltime=06:00:00
 #PBS -l storage=gdata/zk16+scratch/zk16
-#PBS -N zinb_totals_array
+#PBS -N zinb_totals_array_60g
 #PBS -j oe
 
-# Usage:
-#   qsub -J 1-N -v COMBO_FILE=/path/to/combos.tsv,ZINB_SCE=/path/to/sce.rds \
-#        jobs/simu/simulate_totals_zinb_array.pbs
-# where combos.tsv is a tab-delimited file with columns:
-#   celltype condition max_genes seed output_rds
+# Usage (headered combo file):
+#   qsub -J 1-N -r y \
+#        -v COMBO_FILE=/path/to/combos.tsv,ZINB_SCE=/path/to/sce.rds \
+#        jobs/simu/simulate_totals_zinb_array_60g.pbs
 
 if [[ -z "${COMBO_FILE}" ]]; then
   echo "ERROR: COMBO_FILE environment variable is not set." >&2

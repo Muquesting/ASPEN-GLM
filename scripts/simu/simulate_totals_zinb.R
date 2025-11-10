@@ -56,12 +56,13 @@ counts <- as.matrix(tot[genes_use, , drop = FALSE])
 message("Fitting ZINB model on ", nrow(counts), " genes and ", ncol(counts), " cells …")
 set.seed(seed)
 zinb_cores <- zinb_core_count()
+message("Detected zinb_cores = ", zinb_cores)
 bp_param <- if (zinb_cores > 1) BiocParallel::MulticoreParam(zinb_cores) else BiocParallel::SerialParam()
 BiocParallel::register(bp_param, default = TRUE)
 zinb <- zinbFit(counts, K = 2, epsilon = 1e-3, verbose = TRUE, BPPARAM = bp_param)
 
 message("Simulating counts from fitted ZINB model …")
-sim_list <- zinbSim(zinb, seed = seed, BPPARAM = bp_param)
+sim_list <- zinbSim(zinb, seed = seed)
 counts_sim <- sim_list$counts
 rownames(counts_sim) <- genes_use
 colnames(counts_sim) <- colnames(counts)
