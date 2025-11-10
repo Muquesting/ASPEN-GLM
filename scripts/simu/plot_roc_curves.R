@@ -9,7 +9,7 @@ if (length(args) < 4) {
   stop(paste(
     "Usage:",
     "Rscript scripts/simu/plot_roc_curves.R <sim_rds> <output_plot> <output_csv> <pipeline_specs>",
-    "pipeline_specs format: name=path_to_pipeline_root|celltype|condition;...",
+    "pipeline_specs format: name=path|celltype|condition[|result_file];...",
     sep = "\n"
   ), call. = FALSE)
 }
@@ -30,7 +30,8 @@ parse_spec <- function(spec) {
   list(name = name,
        path = normalizePath(trimws(rest[1]), mustWork = TRUE),
        celltype = trimws(rest[2]),
-       condition = trimws(rest[3]))
+       condition = trimws(rest[3]),
+       result_file = if (length(rest) >= 4) trimws(rest[4]) else "bb_mean_results_norm.csv")
 }
 pipelines <- lapply(pipeline_specs, parse_spec)
 pipelines <- pipelines[!vapply(pipelines, is.null, logical(1))]
@@ -76,20 +77,31 @@ compute_roc <- function(truth_table, padj_vec) {
 }
 
 for (pipe in pipelines) {
-  res_csv <- file.path(pipe$path, pipe$celltype, pipe$condition, "bb_mean_results_norm.csv")
+  res_csv <- file.path(pipe$path, pipe$celltype, pipe$condition, pipe$result_file)
   if (!file.exists(res_csv)) {
     warning("Missing result file for pipeline ", pipe$name, ": ", res_csv)
     next
   }
   res <- fread(res_csv, data.table = FALSE)
   if (colnames(res)[1] %in% c("", "V1")) colnames(res)[1] <- "gene"
-  if ("gene" %in% names(res) && !"X" %in% names(res)) res$X <- res$gene
-  if (!all(c("X","padj_mean") %in% names(res))) {
-    warning("Result file missing columns for pipeline ", pipe$name)
+  gene_col <- if ("X" %in% names(res)) {
+    "X"
+  } else if ("gene" %in% names(res)) {
+    "gene"
+  } else {
+    warning("Result file missing gene identifier column for pipeline ", pipe$name)
     next
   }
-  merged <- merge(truth_df, res[, c("X","padj_mean")], by.x = "gene_unique", by.y = "X", all.x = TRUE)
-  roc <- compute_roc(merged, merged$padj_mean)
+  padj_col <- if ("padj_mean" %in% names(res)) {
+    "padj_mean"
+  } else if ("padj" %in% names(res)) {
+    "padj"
+  } else {
+    warning("Result file missing adjusted p-value column for pipeline ", pipe$name)
+    next
+  }
+  merged <- merge(truth_df, res[, c(gene_col, padj_col)], by.x = "gene_unique", by.y = gene_col, all.x = TRUE)
+  roc <- compute_roc(merged, merged[[padj_col]])
   if (is.null(roc)) next
   roc$pipeline <- pipe$name
   roc_df_list[[pipe$name]] <- roc

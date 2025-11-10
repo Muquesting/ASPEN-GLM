@@ -10,7 +10,8 @@ if (length(args) < 3) {
   stop(paste(
     "Usage:",
     "Rscript scripts/simu/run_simulation_suite.R <sim_data_rds> <output_dir> <pipeline_specs> [max_genes=0] [min_counts_est=0] [min_cells_est=5] [min_counts_test=0] [min_cells_test=5] [min_counts_glob=5]",
-    "pipeline_specs format: name=script_path|suffix ; ...",
+    "pipeline_specs format: name=script_path|suffix|test_type ; ...",
+    "test_type options: bb_mean (default), phi_glm, fixed_mu, glmmtmb_mu, ver, orig",
     sep = "\n"
   ), call. = FALSE)
 }
@@ -37,11 +38,14 @@ parse_spec <- function(spec) {
   subparts <- strsplit(rest, "\\|")[[1]]
   script <- normalizePath(trimws(subparts[1]), mustWork = TRUE)
   suffix <- if (length(subparts) >= 2) trimws(subparts[2]) else ""
-  list(name = name, script = script, suffix = suffix)
+  test_type <- if (length(subparts) >= 3) trimws(subparts[3]) else "bb_mean"
+  list(name = name, script = script, suffix = suffix, test_type = test_type)
 }
 pipelines <- lapply(pipeline_specs, parse_spec)
 pipelines <- pipelines[!vapply(pipelines, is.null, logical(1))]
 if (!length(pipelines)) stop("No valid pipeline specs parsed.")
+
+skip_pipeline_runs <- tolower(Sys.getenv("SIM_SUITE_SKIP_PIPELINE", "0")) %in% c("1","true","yes")
 
 sim <- readRDS(sim_rds)
 required <- c("a1","tot","sex","truth")
@@ -78,7 +82,7 @@ threshold <- 0.1
 perf_list <- list()
 
 for (pipe in pipelines) {
-  message("\n=== Running pipeline: ", pipe$name, " ===")
+  message("\n=== Pipeline: ", pipe$name, " ===")
   base_out <- file.path(output_dir, pipe$name)
   args_pipeline <- c(
     pipe$script,
@@ -92,23 +96,67 @@ for (pipe in pipelines) {
     min_counts_glob,
     1L
   )
-  status <- system2("Rscript", args_pipeline, stdout = TRUE, stderr = TRUE)
-  cat(status, sep = "\n")
+  if (!skip_pipeline_runs) {
+    message("Running script for ", pipe$name, ": ", pipe$script)
+    status <- system2("Rscript", args_pipeline, stdout = TRUE, stderr = TRUE)
+    cat(status, sep = "\n")
+  } else {
+    message("SIM_SUITE_SKIP_PIPELINE=1 → skipping execution for ", pipe$name)
+  }
 
   result_root <- paste0(base_out, pipe$suffix)
-  res_csv <- file.path(result_root, "SimCell", "SimCondition", "bb_mean_results_norm.csv")
-  if (!file.exists(res_csv)) {
-    warning("Result file not found for pipeline ", pipe$name, ": ", res_csv)
+  slice_dir <- file.path(result_root, "SimCell", "SimCondition")
+  if (!dir.exists(slice_dir)) {
+    warning("Slice directory not found for pipeline ", pipe$name, ": ", slice_dir)
     next
   }
-  res <- tryCatch(read.csv(res_csv, stringsAsFactors = FALSE), error = function(e) NULL)
-  if (is.null(res) || !"padj_mean" %in% names(res) || !"X" %in% names(res)) {
-    warning("Could not load bb_mean_results_norm for pipeline ", pipe$name)
+
+  result_file <- file.path(slice_dir, "bb_mean_results_norm.csv")
+  test_type <- pipe$test_type
+  if (is.null(test_type) || !nzchar(test_type)) test_type <- "bb_mean"
+  test_type <- tolower(test_type)
+  if (!test_type %in% c("bb_mean", "ver", "orig")) {
+    test_out <- file.path(slice_dir, paste0("pipeline_test_", test_type, ".csv"))
+    test_script <- file.path("scripts", "simu", "run_pipeline_specific_tests.R")
+    if (!file.exists(test_script)) stop("Test helper script missing: ", test_script)
+    test_args <- c(
+      test_script,
+      test_type,
+      sce_path,
+      result_root,
+      "SimCell",
+      "SimCondition",
+      test_out,
+      min_counts_test,
+      min_cells_test
+    )
+    test_status <- system2("Rscript", test_args, stdout = TRUE, stderr = TRUE)
+    cat(test_status, sep = "\n")
+    if (!file.exists(test_out)) {
+      warning("Custom test output missing for pipeline ", pipe$name, ": ", test_out)
+      next
+    }
+    result_file <- test_out
+  } else if (!file.exists(result_file)) {
+    warning("bb_mean results missing for pipeline ", pipe$name, ": ", result_file)
     next
   }
-  res$gene <- res$X
-  merged <- merge(truth_df, res[, c("gene","padj_mean")], by.x = "gene_unique", by.y = "gene", all.x = TRUE)
-  merged$called <- is.finite(merged$padj_mean) & merged$padj_mean < threshold
+
+  res <- tryCatch(read.csv(result_file, stringsAsFactors = FALSE), error = function(e) NULL)
+  if (is.null(res)) {
+    warning("Could not read test results for pipeline ", pipe$name, " from ", result_file)
+    next
+  }
+  gene_col <- if ("gene" %in% names(res)) "gene" else if ("X" %in% names(res)) "X" else NULL
+  padj_col <- if ("padj" %in% names(res)) "padj" else if ("padj_mean" %in% names(res)) "padj_mean" else NULL
+  if (is.null(gene_col) || is.null(padj_col)) {
+    warning("Result file lacks gene/padj columns for pipeline ", pipe$name)
+    next
+  }
+  res$gene <- res[[gene_col]]
+  res$padj_generic <- res[[padj_col]]
+  merged <- merge(truth_df, res[, c("gene","padj_generic")], by.x = "gene_unique", by.y = "gene", all.x = TRUE)
+  merged$called <- is.finite(merged$padj_generic) & merged$padj_generic < threshold
   tp <- sum(merged$imbalance & merged$called, na.rm = TRUE)
   fp <- sum(!merged$imbalance & merged$called, na.rm = TRUE)
   fn <- sum(merged$imbalance & !merged$called, na.rm = TRUE)
