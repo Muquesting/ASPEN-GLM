@@ -1,16 +1,16 @@
 #!/bin/bash
-#PBS -P your_project
+#PBS -P zk16
 #PBS -q normal
 #PBS -l ncpus=16
 #PBS -l mem=128GB
 #PBS -l walltime=06:00:00
-#PBS -l storage=gdata/your_project+scratch/your_project
+#PBS -l storage=gdata/zk16+scratch/zk16
 #PBS -N sim_suite_mu
 #PBS -j oe
 
 module load R/4.3.1
 
-cd /g/data/your_project/ASPEN-GLM
+cd /g/data/zk16/muqing/repos/ASPEN-GLM
 
 spec='orig=scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp.R|_allcells_withsex_noimp|bb_mean;phi=scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp_directphi.R|_allcells_withsex_noimp_directphi|phi_glm;fixed=scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp_fixedmu.R|_allcells_withsex_noimp_fixedmu|fixed_mu;glmmtmb=scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp_glmmtmb.R|_allcells_withsex_noimp_glmmtmb|glmmtmb_mu;ver=scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_veronika_sex_noimp.R|_allcells_veronika_sex_noimp|bb_mean'
 
