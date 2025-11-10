@@ -1,0 +1,16 @@
+
+=== Pipeline: orig ===
+Running script for orig: /g/data/zk16/muqing/repos/ASPEN-GLM/scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_sex_noimp.R
+
+======================================================================================
+                  Resource Usage on 2025-11-10 11:49:10:
+   Job Id:             154212180.gadi-pbs
+   Project:            zk16
+   Exit Status:        271 (Linux Signal 15 SIGTERM Termination)
+   Service Units:      26.60
+   NCPUs Requested:    16                     NCPUs Used: 16              
+                                           CPU Time Used: 00:25:05        
+   Memory Requested:   128.0GB               Memory Used: 20.64GB         
+   Walltime requested: 06:00:00            Walltime Used: 00:24:56        
+   JobFS requested:    100.0MB                JobFS used: 0B              
+======================================================================================
