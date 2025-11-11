@@ -15,7 +15,7 @@ GLM-Mapping-BB,C1_balanced_no_sex,FPR,0.0595238095238095,84
 GLM-Mapping-BB,C2_balanced_sex_only,FPR,0.363636363636364,11
 GLM-Mapping-BB,C3_imbalanced_no_sex,TPR,0.623864324651726,1651
 GLM-Mapping-BB,C4_imbalanced_with_sex,TPR,0.641732283464567,254
-Shrinkage GLM Dispersion,C1_balanced_no_sex,FPR,0.130952380952381,84
-Shrinkage GLM Dispersion,C2_balanced_sex_only,FPR,0.727272727272727,11
-Shrinkage GLM Dispersion,C3_imbalanced_no_sex,TPR,0.737129012719564,1651
-Shrinkage GLM Dispersion,C4_imbalanced_with_sex,TPR,0.960629921259842,254
+Shrinkage GLM Dispersion,C1_balanced_no_sex,FPR,0.0833333333333333,84
+Shrinkage GLM Dispersion,C2_balanced_sex_only,FPR,0.0909090909090909,11
+Shrinkage GLM Dispersion,C3_imbalanced_no_sex,TPR,0.725015142337977,1651
+Shrinkage GLM Dispersion,C4_imbalanced_with_sex,TPR,0.771653543307087,254

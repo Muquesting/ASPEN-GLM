@@ -169,7 +169,7 @@ glm_phi_tests <- function(genes, a1, tot, sex, phi_shrunk_vec, min_counts, min_c
       df = df_res,
       p_intercept = p_int,
       p_sex = p_sex,
-      pvalue = p_any,
+      pvalue = p_int,
       phi_raw = phi_hat,
       phi_used = phi_use,
       stringsAsFactors = FALSE
@@ -178,7 +178,9 @@ glm_phi_tests <- function(genes, a1, tot, sex, phi_shrunk_vec, min_counts, min_c
   keep <- vapply(res, function(x) !is.null(x), logical(1))
   if (!any(keep)) return(NULL)
   out <- do.call(rbind, res[keep])
-  out$padj <- stats::p.adjust(out$pvalue, method = "BH")
+  out$padj_intercept <- stats::p.adjust(out$p_intercept, method = "BH")
+  out$padj_sex <- stats::p.adjust(out$p_sex, method = "BH")
+  out$padj <- out$padj_intercept
   out
 }
 

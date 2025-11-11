@@ -7,5 +7,5 @@ GLM-adjusted Beta-binomial,FALSE,no_sex_effect,0.903500043263823
 GLM-adjusted Beta-binomial,TRUE,sex_effect,0.726914817465999
 GLM-Mapping-BB,FALSE,no_sex_effect,0.823887398690548
 GLM-Mapping-BB,TRUE,sex_effect,0.739441660701503
-Shrinkage GLM Dispersion,FALSE,no_sex_effect,0.885769086556488
-Shrinkage GLM Dispersion,TRUE,sex_effect,0.703292770221904
+Shrinkage GLM Dispersion,FALSE,no_sex_effect,0.887615009662253
+Shrinkage GLM Dispersion,TRUE,sex_effect,0.910522548317824

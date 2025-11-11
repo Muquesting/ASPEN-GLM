@@ -1,6 +1,6 @@
 pipeline,auroc,positives,negatives,display_label
 GLM-Mapping-BB,0.792297278629645,1905,95,GLM-Mapping-BB (AUROC=0.792)
-Shrinkage GLM Dispersion,0.849874292029286,1905,95,Shrinkage GLM Dispersion (AUROC=0.850)
+Shrinkage GLM Dispersion,0.882287608785744,1905,95,Shrinkage GLM Dispersion (AUROC=0.882)
 GLM-adjusted Beta-binomial,0.826301975410969,1905,95,GLM-adjusted Beta-binomial (AUROC=0.826)
 Beta-Binomial Regression,0.826301975410969,1905,95,Beta-Binomial Regression (AUROC=0.826)
 ASPEN,0.583931482248929,1905,95,ASPEN (AUROC=0.584)
