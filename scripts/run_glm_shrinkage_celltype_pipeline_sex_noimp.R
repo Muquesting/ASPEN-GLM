@@ -83,15 +83,13 @@ glm_phi_tests <- function(genes, a1, tot, sex, phi_target, min_counts, min_cells
     p_int <- get_p("(Intercept)")
     sex_term <- grep("^sex", names(beta), value = TRUE)
     p_sex <- if (length(sex_term)) get_p(sex_term[1]) else NA_real_
-    p_any <- suppressWarnings(min(p_int, p_sex, na.rm = TRUE))
-    if (!is.finite(p_any)) p_any <- p_int
     res[[g]] <- data.frame(
       gene = g,
       statistic = NA_real_,
       df = df_res,
       p_intercept = p_int,
       p_sex = p_sex,
-      pvalue = p_any,
+      pvalue = p_int,
       phi_raw = phi_hat,
       phi_used = phi_use,
       stringsAsFactors = FALSE
@@ -100,7 +98,9 @@ glm_phi_tests <- function(genes, a1, tot, sex, phi_target, min_counts, min_cells
   keep <- vapply(res, function(x) !is.null(x), logical(1))
   if (!any(keep)) return(NULL)
   out <- do.call(rbind, res[keep])
-  out$padj <- stats::p.adjust(out$pvalue, method = "BH")
+  out$padj_intercept <- stats::p.adjust(out$p_intercept, method = "BH")
+  out$padj_sex <- stats::p.adjust(out$p_sex, method = "BH")
+  out$padj <- out$padj_intercept
   out
 }
 

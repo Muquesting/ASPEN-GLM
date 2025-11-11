@@ -160,8 +160,6 @@ glm_phi_tests <- function(genes, a1, tot, sex, phi_shrunk_vec, min_counts, min_c
     p_int <- get_p("(Intercept)")
     sex_term <- grep("^sex", names(beta), value = TRUE)
     p_sex <- if (length(sex_term)) get_p(sex_term[1]) else NA_real_
-    p_any <- suppressWarnings(min(p_int, p_sex, na.rm = TRUE))
-    if (!is.finite(p_any)) p_any <- p_int
 
     res[[g]] <- data.frame(
       gene = g,
