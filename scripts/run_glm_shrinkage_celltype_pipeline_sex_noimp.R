@@ -41,6 +41,115 @@ derive_shrinkage_params <- function(estimates, theta_filter = 1e-03, default_del
   list(delta = delta_est, N = N_est)
 }
 
+glm_phi_tests <- function(genes, a1, tot, sex, phi_target, min_counts, min_cells) {
+  res <- vector("list", length(genes))
+  names(res) <- genes
+  for (g in genes) {
+    y <- as.numeric(a1[g, ])
+    n <- as.numeric(tot[g, ])
+    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0)
+    if (sum(keep) < max(min_cells, 2L)) next
+    sex_sub <- droplevels(factor(sex[keep], levels = c("F","M")))
+    if (nlevels(sex_sub) < 1) next
+    df <- data.frame(
+      y = y[keep],
+      n = n[keep],
+      sex = sex_sub
+    )
+    fit <- tryCatch(
+      stats::glm(cbind(y, n - y) ~ sex, family = stats::quasibinomial(), data = df,
+                 control = stats::glm.control(maxit = 100)),
+      error = function(e) NULL
+    )
+    if (is.null(fit) || !is.finite(fit$deviance)) next
+    vc <- tryCatch(stats::vcov(fit), error = function(e) NULL)
+    if (is.null(vc)) next
+    se_raw <- sqrt(diag(vc))
+    beta <- stats::coef(fit)
+    sm <- summary(fit, dispersion = fit$dispersion)
+    phi_hat <- as.numeric(sm$dispersion)
+    phi_use <- phi_target[g]
+    if (!is.finite(phi_use) || phi_use <= 0) phi_use <- phi_hat
+    scale_factor <- if (is.finite(phi_hat) && phi_hat > 0) sqrt(phi_use / phi_hat) else 1
+    se_adj <- se_raw * scale_factor
+    df_res <- max(fit$df.residual, 1)
+    get_p <- function(term) {
+      if (!term %in% names(beta)) return(NA_real_)
+      se <- se_adj[term]
+      if (!is.finite(se) || se <= 0) return(NA_real_)
+      tval <- beta[term] / se
+      2 * stats::pt(abs(tval), df = df_res, lower.tail = FALSE)
+    }
+    p_int <- get_p("(Intercept)")
+    sex_term <- grep("^sex", names(beta), value = TRUE)
+    p_sex <- if (length(sex_term)) get_p(sex_term[1]) else NA_real_
+    p_any <- suppressWarnings(min(p_int, p_sex, na.rm = TRUE))
+    if (!is.finite(p_any)) p_any <- p_int
+    res[[g]] <- data.frame(
+      gene = g,
+      statistic = NA_real_,
+      df = df_res,
+      p_intercept = p_int,
+      p_sex = p_sex,
+      pvalue = p_any,
+      phi_raw = phi_hat,
+      phi_used = phi_use,
+      stringsAsFactors = FALSE
+    )
+  }
+  keep <- vapply(res, function(x) !is.null(x), logical(1))
+  if (!any(keep)) return(NULL)
+  out <- do.call(rbind, res[keep])
+  out$padj <- stats::p.adjust(out$pvalue, method = "BH")
+  out
+}
+
+compute_phi_trend <- function(phi_hat, mean_cov, span = 0.5) {
+  trend <- rep(NA_real_, length(phi_hat))
+  valid <- is.finite(phi_hat) & phi_hat > 0 & is.finite(mean_cov) & mean_cov > 0
+  if (sum(valid) >= 20) {
+    x <- log10(mean_cov[valid])
+    y <- log10(phi_hat[valid])
+    fit <- tryCatch(
+      locfit::locfit(y ~ locfit::lp(x, nn = span, deg = 1)),
+      error = function(e) NULL
+    )
+    if (!is.null(fit)) {
+      pred <- tryCatch(stats::predict(fit, log10(mean_cov[valid])), error = function(e) NULL)
+      if (!is.null(pred)) trend[valid] <- 10^pred
+    }
+  }
+  fallback <- exp(mean(log(pmax(phi_hat[valid], 1e-6)), na.rm = TRUE))
+  trend[!is.finite(trend)] <- fallback
+  trend
+}
+
+phi_variance_test <- function(genes, phi_hat, phi_trend, df_vec) {
+  valid <- is.finite(phi_hat) & is.finite(phi_trend) & is.finite(df_vec) &
+    phi_hat > 0 & phi_trend > 0 & df_vec > 0
+  stat <- df_vec * (phi_hat / phi_trend)
+  stat[!valid] <- NA_real_
+  p_over <- stats::pchisq(stat, df = df_vec, lower.tail = FALSE)
+  p_under <- stats::pchisq(stat, df = df_vec, lower.tail = TRUE)
+  p_over[!valid] <- NA_real_
+  p_under[!valid] <- NA_real_
+  p_two <- 2 * pmin(p_over, p_under, na.rm = FALSE)
+  out <- data.frame(
+    gene = genes,
+    phi_hat = phi_hat,
+    phi_trend = phi_trend,
+    df = df_vec,
+    statistic = stat,
+    p_over = p_over,
+    p_under = p_under,
+    p_two = p_two,
+    stringsAsFactors = FALSE
+  )
+  out$padj_over <- stats::p.adjust(out$p_over, method = "BH")
+  out$padj_two <- stats::p.adjust(out$p_two, method = "BH")
+  out
+}
+
 if (!exists("estim_glmparams")) {
   message("estim_glmparams() not found in session; sourcing local R/ functions…")
   rfiles <- list.files("R", full.names = TRUE, pattern = "\\.R$")
@@ -50,7 +159,7 @@ if (!exists("estim_glmparams")) {
 # Args (same interface as the original script)
 args <- commandArgs(trailingOnly = TRUE)
 input_rds       <- if (length(args) >= 1) args[[1]] else "/g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered_with_XY.rds"
-root_out_base   <- if (length(args) >= 2) args[[2]] else file.path("results", "GLM_aspen_phi_sex_noimp")
+root_out_base   <- if (length(args) >= 2) args[[2]] else file.path("results", "celltype_wo_condition")
 max_genes       <- if (length(args) >= 3) as.integer(args[[3]]) else 20000L
 min_counts_est  <- if (length(args) >= 4) as.integer(args[[4]]) else 0L
 min_cells_est   <- if (length(args) >= 5) as.integer(args[[5]]) else 5L
@@ -278,6 +387,37 @@ for (ct in ct_keep) {
                     shrinkAll = FALSE)
     )
 
+    if (!"phi" %in% colnames(estimates_shrunk)) {
+      estimates_shrunk$phi <- estimates[rownames(estimates_shrunk), "phi"]
+    }
+    phi_hat <- as.numeric(estimates_shrunk$phi)
+    mean_cov <- as.numeric(estimates_shrunk$tot_gene_mean)
+    phi_trend <- compute_phi_trend(phi_hat, mean_cov)
+    estimates_shrunk$phi_trend <- phi_trend
+    estimates_shrunk$phi_shrunk <- ifelse(is.finite(phi_trend), phi_trend, phi_hat)
+
+    design_rank <- ncol(design)
+    df_vec <- pmax(estimates_shrunk$N - design_rank, 1)
+
+    phi_var_df <- phi_variance_test(
+      genes = rownames(estimates_shrunk),
+      phi_hat = phi_hat,
+      phi_trend = estimates_shrunk$phi_shrunk,
+      df_vec = df_vec
+    )
+
+    genes_for_tests <- intersect(rownames(a1), rownames(estimates_shrunk))
+    phi_target <- setNames(estimates_shrunk[genes_for_tests, "phi_shrunk"], genes_for_tests)
+    phi_glm_df <- glm_phi_tests(
+      genes = genes_for_tests,
+      a1 = a1,
+      tot = tot,
+      sex = as.character(sex),
+      phi_target = phi_target,
+      min_counts = min_counts_test,
+      min_cells = min_cells_test
+    )
+
     # 4) Global params (use min_counts_glob, default 5 to mimic Veronika's glob_disp)
     glob_params <- tryCatch(
       glob_disp(a1, tot, genes.excl = genes_excl, min_counts = min_counts_glob),
@@ -288,84 +428,26 @@ for (ct in ct_keep) {
       utils::write.csv(gp_df, file = file.path(out_dir, "global_params.csv"), row.names = FALSE)
     }
 
-    # 5) Group-wise estimates + shrinkage (unchanged logic)
-    if (nlevels(sex_present) < 2) {
-      warning("Only one sex present in ", ct, " / ", cond_lbl, "; skipping group tests.")
-      out_group <- list(estimates_group = lapply(seq_len(nrow(a1)), function(i) NULL))
+    saveRDS(estimates,        file = file.path(out_dir, "estimates_global.rds"))
+    saveRDS(estimates_shrunk, file = file.path(out_dir, "estimates_global_shrunk.rds"))
+    if (!is.null(phi_glm_df)) {
+      saveRDS(phi_glm_df, file = file.path(out_dir, "phi_glm_results.rds"))
+      utils::write.csv(phi_glm_df, file = file.path(out_dir, "phi_glm_results.csv"), row.names = FALSE)
     } else {
-      out_group <- suppressWarnings(
-        estim_glmparams_bygroup(
-          a1_counts = a1,
-          tot_counts = tot,
-          design = design,
-          group = sex_present,
-          min_counts = min_counts_est,
-          min_cells = min_cells_est,
-          per_group_refit = FALSE,
-          dispersion_method = "deviance",
-          use_effective_trials = TRUE,
-          shrink = TRUE,
-          delta_set = shrink_vals$delta,
-          N_set = shrink_vals$N,
-          thetaFilter = 1e-3,
-          shrinkAll = FALSE,
-          split_var_name = "sex_group"
-        )
-      )
+      utils::write.csv(data.frame(), file = file.path(out_dir, "phi_glm_results.csv"), row.names = FALSE)
     }
-
-    out_group$estimates_group <- lapply(out_group$estimates_group, function(df) {
-      if (!is.null(df) && "sex_group" %in% colnames(df)) df$sex_group <- as.character(df$sex_group)
-      df
-    })
-
-    # 6) Group tests using our global shrunk estimates
-    res_group_mean <- if (nlevels(sex_present) < 2) NULL else group_mean(
-      a1_counts = a1,
-      tot_counts = tot,
-      metadata = within(meta, { sex_group <- sex_present }),
-      split.var = "sex_group",
-      min_counts = min_counts_test,
-      min_cells = min_cells_test,
-      estimates = estimates_shrunk,
-      estimates_group = out_group$estimates_group,
-      equalGroups = FALSE
-    )
-
-    mean_null_val <- if (!is.null(glob_params) && "mu" %in% names(glob_params)) as.numeric(glob_params[["mu"]]) else 0.5
-
-    res_group_var <- if (nlevels(sex_present) < 2) NULL else group_var(
-      a1_counts = a1,
-      tot_counts = tot,
-      metadata = within(meta, { sex_group <- sex_present }),
-      split.var = "sex_group",
-      min_counts = min_counts_test,
-      min_cells = min_cells_test,
-      mean_null = mean_null_val,
-      estimates = estimates_shrunk,
-      estimates_group = out_group$estimates_group,
-      equalGroups = FALSE
-    )
-
-    # Adjust p-values for group tests
-    if (!is.null(res_group_mean) && "pval" %in% colnames(res_group_mean)) res_group_mean$padj <- suppressWarnings(p.adjust(res_group_mean$pval, method = "BH"))
-    if (!is.null(res_group_var) && "pval_var" %in% colnames(res_group_var)) res_group_var$padj_var <- suppressWarnings(p.adjust(res_group_var$pval_var, method = "BH"))
-
-    # 7) Save shrinkage outputs under the allcells directory
-    saveRDS(estimates,             file = file.path(out_dir, "estimates_global.rds"))
-    saveRDS(estimates_shrunk,      file = file.path(out_dir, "estimates_global_shrunk.rds"))
-    saveRDS(out_group$estimates_group, file = file.path(out_dir, "estimates_by_sex.rds"))
-    saveRDS(res_group_mean,            file = file.path(out_dir, "group_mean_sex_results.rds"))
-    saveRDS(res_group_var,             file = file.path(out_dir, "group_var_sex_results.rds"))
-
+    if (!is.null(phi_var_df)) {
+      saveRDS(phi_var_df, file = file.path(out_dir, "phi_variance_results.rds"))
+      utils::write.csv(phi_var_df, file = file.path(out_dir, "phi_variance_results.csv"), row.names = FALSE)
+    } else {
+      utils::write.csv(data.frame(), file = file.path(out_dir, "phi_variance_results.csv"), row.names = FALSE)
+    }
     to_csv(estimates_shrunk, file.path(out_dir, "estimates_global_shrunk.csv"),
-           cols = c("AR","bb_mu","bb_theta","thetaCorrected","theta_common","tot_gene_mean","N"))
-    to_csv(res_group_mean, file.path(out_dir, "group_mean_sex_results.csv"),
-           cols = c("AR","N","log2FC","llr","pval","padj"))
-    to_csv(res_group_var, file.path(out_dir, "group_var_sex_results.csv"),
-           cols = c("AR","N","log2FC","llr_var","pval_var","padj_var"))
+           cols = c("AR","bb_mu","bb_theta","thetaCorrected","theta_common","tot_gene_mean","N","phi","phi_trend","phi_shrunk"))
 
-    # 9) Log
+    phi_glm_count <- if (!is.null(phi_glm_df)) nrow(phi_glm_df) else 0L
+    phi_var_count <- if (!is.null(phi_var_df)) sum(is.finite(phi_var_df$statistic)) else 0L
+
     log_path <- file.path(out_dir, "filter_log.txt")
     lines <- c(
       sprintf("Cell type: %s", ct),
@@ -376,6 +458,8 @@ for (ct in ct_keep) {
       sprintf("All-cells trend for shrinkage: tot_gene_mean computed across ALL cells (including zeros)"),
       sprintf("Thresholds (est/test/glob): min_counts_est=%d, min_cells_est=%d, min_counts_test=%d, min_cells_test=%d, min_counts_glob=%d",
               min_counts_est, min_cells_est, min_counts_test, min_cells_test, min_counts_glob),
+      sprintf("Phi GLM tests: %d genes", phi_glm_count),
+      sprintf("Phi variance tests: %d genes", phi_var_count),
       "Design columns:",
       paste0(" - ", colnames(design))
     )
