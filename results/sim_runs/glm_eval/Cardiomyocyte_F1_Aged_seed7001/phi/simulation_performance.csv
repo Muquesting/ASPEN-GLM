@@ -1,0 +1,2 @@
+"pipeline","effect_bin","threshold","n_genes","positives","negatives","TP","FP","FN","TN","calls","TPR","FPR"
+"phi",NA,0.1,2000,1905,95,1461,19,444,76,1480,0.766929133858268,0.2

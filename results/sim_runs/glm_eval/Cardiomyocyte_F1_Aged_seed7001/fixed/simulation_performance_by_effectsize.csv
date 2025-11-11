@@ -1,0 +1,6 @@
+"pipeline","effect_bin","threshold","n_genes","positives","negatives","TP","FP","FN","TN","calls","TPR","FPR"
+"fixed","balanced",0.1,95,0,95,0,15,0,80,15,NA,0.157894736842105
+"fixed","tiny",0.1,190,190,0,27,0,163,0,27,0.142105263157895,NA
+"fixed","small",0.1,665,665,0,392,0,273,0,392,0.589473684210526,NA
+"fixed","moderate",0.1,477,477,0,461,0,16,0,461,0.966457023060797,NA
+"fixed","large",0.1,573,573,0,573,0,0,0,573,1,NA

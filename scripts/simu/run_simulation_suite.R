@@ -63,6 +63,22 @@ sex_vec <- sim$sex
 truth_df <- sim$truth
 if (ncol(a1) != length(sex_vec)) stop("Mismatch between columns of counts and length of sex vector.")
 truth_df$gene_unique <- gene_unique
+if (!"mu_grid" %in% names(truth_df)) stop("truth table must include mu_grid column.")
+truth_df$imbalance <- truth_df$mu_grid != 0.5
+truth_df$effect_size <- abs(truth_df$mu_grid - 0.5)
+effect_breaks <- c(-Inf, 0, 0.02, 0.05, 0.1, Inf)
+effect_labels <- c("balanced", "tiny", "small", "moderate", "large")
+truth_df$effect_bin <- cut(
+  truth_df$effect_size,
+  breaks = effect_breaks,
+  labels = effect_labels,
+  right = TRUE,
+  include.lowest = TRUE
+)
+truth_df$effect_bin <- as.character(truth_df$effect_bin)
+truth_df$effect_bin[!truth_df$imbalance] <- "balanced"
+truth_df$effect_bin[is.na(truth_df$effect_bin)] <- "balanced"
+truth_df$effect_bin <- factor(truth_df$effect_bin, levels = effect_labels, ordered = TRUE)
 
 sce <- SingleCellExperiment(assays = list(a1 = a1, tot = tot))
 meta <- data.frame(
@@ -80,6 +96,33 @@ saveRDS(sce, file = sce_path)
 
 threshold <- 0.1
 perf_list <- list()
+band_perf_list <- list()
+
+calc_confusion <- function(df, pipeline, band = NA_character_) {
+  if (!nrow(df)) return(NULL)
+  tp <- sum(df$imbalance & df$called, na.rm = TRUE)
+  fp <- sum(!df$imbalance & df$called, na.rm = TRUE)
+  fn <- sum(df$imbalance & !df$called, na.rm = TRUE)
+  tn <- sum(!df$imbalance & !df$called, na.rm = TRUE)
+  tpr <- if ((tp + fn) > 0) tp / (tp + fn) else NA_real_
+  fpr <- if ((fp + tn) > 0) fp / (fp + tn) else NA_real_
+  data.frame(
+    pipeline = pipeline,
+    effect_bin = band,
+    threshold = threshold,
+    n_genes = nrow(df),
+    positives = sum(df$imbalance, na.rm = TRUE),
+    negatives = sum(!df$imbalance, na.rm = TRUE),
+    TP = tp,
+    FP = fp,
+    FN = fn,
+    TN = tn,
+    calls = sum(df$called, na.rm = TRUE),
+    TPR = tpr,
+    FPR = fpr,
+    stringsAsFactors = FALSE
+  )
+}
 
 for (pipe in pipelines) {
   message("\n=== Pipeline: ", pipe$name, " ===")
@@ -157,23 +200,16 @@ for (pipe in pipelines) {
   res$padj_generic <- res[[padj_col]]
   merged <- merge(truth_df, res[, c("gene","padj_generic")], by.x = "gene_unique", by.y = "gene", all.x = TRUE)
   merged$called <- is.finite(merged$padj_generic) & merged$padj_generic < threshold
-  tp <- sum(merged$imbalance & merged$called, na.rm = TRUE)
-  fp <- sum(!merged$imbalance & merged$called, na.rm = TRUE)
-  fn <- sum(merged$imbalance & !merged$called, na.rm = TRUE)
-  tn <- sum(!merged$imbalance & !merged$called, na.rm = TRUE)
-  tpr <- if ((tp + fn) > 0) tp / (tp + fn) else NA_real_
-  fpr <- if ((fp + tn) > 0) fp / (fp + tn) else NA_real_
-  perf_list[[pipe$name]] <- data.frame(
-    pipeline = pipe$name,
-    threshold = threshold,
-    TP = tp,
-    FP = fp,
-    FN = fn,
-    TN = tn,
-    TPR = tpr,
-    FPR = fpr,
-    stringsAsFactors = FALSE
-  )
+  perf_list[[pipe$name]] <- calc_confusion(merged, pipe$name, band = NA_character_)
+  merged$effect_bin <- factor(merged$effect_bin, levels = effect_labels, ordered = TRUE)
+  band_split <- split(merged, merged$effect_bin, drop = TRUE)
+  band_stats <- lapply(names(band_split), function(bin) {
+    calc_confusion(band_split[[bin]], pipe$name, band = bin)
+  })
+  band_stats <- band_stats[!vapply(band_stats, is.null, logical(1))]
+  if (length(band_stats)) {
+    band_perf_list[[pipe$name]] <- do.call(rbind, band_stats)
+  }
 }
 
 if (length(perf_list)) {
@@ -182,4 +218,12 @@ if (length(perf_list)) {
   message("Saved performance summary to ", file.path(output_dir, "simulation_performance.csv"))
 } else {
   warning("No performance summaries generated.")
+}
+
+if (length(band_perf_list)) {
+  perf_by_band <- do.call(rbind, band_perf_list)
+  write.csv(perf_by_band, file = file.path(output_dir, "simulation_performance_by_effectsize.csv"), row.names = FALSE)
+  message("Saved effect-size stratified summary to ", file.path(output_dir, "simulation_performance_by_effectsize.csv"))
+} else {
+  warning("No effect-size summaries generated.")
 }
