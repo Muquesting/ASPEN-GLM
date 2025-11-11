@@ -1,21 +1,21 @@
 pipeline,class,metric,call_rate,n_genes
 ASPEN,C1_balanced_no_sex,FPR,0.655540720961282,749
-ASPEN,C2_balanced_sex_only,FPR,0.666666666666667,99
+ASPEN,C2_balanced_sex_only,FPR,0.701298701298701,77
 ASPEN,C3_imbalanced_no_sex,TPR,0.771805273833672,986
-ASPEN,C4_imbalanced_with_sex,TPR,0.831325301204819,166
+ASPEN,C4_imbalanced_with_sex,TPR,0.797872340425532,188
 Beta-Binomial Regression,C1_balanced_no_sex,FPR,0.348464619492657,749
-Beta-Binomial Regression,C2_balanced_sex_only,FPR,0.868686868686869,99
+Beta-Binomial Regression,C2_balanced_sex_only,FPR,0.844155844155844,77
 Beta-Binomial Regression,C3_imbalanced_no_sex,TPR,0.968559837728195,986
-Beta-Binomial Regression,C4_imbalanced_with_sex,TPR,1,166
+Beta-Binomial Regression,C4_imbalanced_with_sex,TPR,0.99468085106383,188
 GLM-adjusted Beta-binomial,C1_balanced_no_sex,FPR,0.348464619492657,749
-GLM-adjusted Beta-binomial,C2_balanced_sex_only,FPR,0.868686868686869,99
+GLM-adjusted Beta-binomial,C2_balanced_sex_only,FPR,0.844155844155844,77
 GLM-adjusted Beta-binomial,C3_imbalanced_no_sex,TPR,0.968559837728195,986
-GLM-adjusted Beta-binomial,C4_imbalanced_with_sex,TPR,1,166
+GLM-adjusted Beta-binomial,C4_imbalanced_with_sex,TPR,0.99468085106383,188
 GLM-Mapping-BB,C1_balanced_no_sex,FPR,0.233644859813084,749
-GLM-Mapping-BB,C2_balanced_sex_only,FPR,0.252525252525253,99
+GLM-Mapping-BB,C2_balanced_sex_only,FPR,0.298701298701299,77
 GLM-Mapping-BB,C3_imbalanced_no_sex,TPR,0.872210953346856,986
-GLM-Mapping-BB,C4_imbalanced_with_sex,TPR,0.855421686746988,166
+GLM-Mapping-BB,C4_imbalanced_with_sex,TPR,0.765957446808511,188
 Shrinkage GLM Dispersion,C1_balanced_no_sex,FPR,0.453938584779706,749
-Shrinkage GLM Dispersion,C2_balanced_sex_only,FPR,0.696969696969697,99
+Shrinkage GLM Dispersion,C2_balanced_sex_only,FPR,0.558441558441558,77
 Shrinkage GLM Dispersion,C3_imbalanced_no_sex,TPR,0.979716024340771,986
-Shrinkage GLM Dispersion,C4_imbalanced_with_sex,TPR,0.969879518072289,166
+Shrinkage GLM Dispersion,C4_imbalanced_with_sex,TPR,0.99468085106383,188

@@ -39,7 +39,7 @@ if (!"p_M" %in% names(truth_df)) {
   shift <- if ("beta_sex" %in% names(truth_df)) truth_df$beta_sex else 0
   truth_df$p_M <- plogis(truth_df$eta_base + shift)
 }
-truth_df$mu_global <- (n_F * truth_df$p_F + n_M * truth_df$p_M) / total_cells
+truth_df$mu_global <- (truth_df$p_F + truth_df$p_M) / 2
 delta_env <- suppressWarnings(as.numeric(Sys.getenv("SIM_BALANCED_DELTA", NA)))
 delta <- if (is.finite(delta_env) && delta_env >= 0) delta_env else 0.05
 truth_df$positive <- abs(truth_df$mu_global - 0.5) > delta

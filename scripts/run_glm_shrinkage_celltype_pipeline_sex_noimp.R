@@ -398,6 +398,22 @@ for (ct in ct_keep) {
     estimates_shrunk$phi_trend <- phi_trend
     estimates_shrunk$phi_shrunk <- ifelse(is.finite(phi_trend), phi_trend, phi_hat)
 
+    # 4) Global params (use min_counts_glob, default 5 to mimic Veronika's glob_disp)
+    glob_params <- tryCatch(
+      glob_disp(a1, tot, genes.excl = genes_excl, min_counts = min_counts_glob),
+      error = function(e) NULL
+    )
+    if (!is.null(glob_params)) {
+      gp_df <- as.data.frame(t(glob_params))
+      utils::write.csv(gp_df, file = file.path(out_dir, "global_params.csv"), row.names = FALSE)
+    }
+    base_mu <- 0.5
+    if (!is.null(glob_params) && "mu" %in% names(glob_params)) {
+      candidate_mu <- as.numeric(glob_params[["mu"]])
+      if (is.finite(candidate_mu) && candidate_mu > 0 && candidate_mu < 1) base_mu <- candidate_mu
+    }
+    base_mu <- pmin(pmax(base_mu, 1e-6), 1 - 1e-6)
+
     design_rank <- ncol(design)
     df_vec <- pmax(estimates_shrunk$N - design_rank, 1)
 
@@ -420,22 +436,6 @@ for (ct in ct_keep) {
       min_cells = min_cells_test,
       base_mu = base_mu
     )
-
-    # 4) Global params (use min_counts_glob, default 5 to mimic Veronika's glob_disp)
-    glob_params <- tryCatch(
-      glob_disp(a1, tot, genes.excl = genes_excl, min_counts = min_counts_glob),
-      error = function(e) NULL
-    )
-    if (!is.null(glob_params)) {
-      gp_df <- as.data.frame(t(glob_params))
-      utils::write.csv(gp_df, file = file.path(out_dir, "global_params.csv"), row.names = FALSE)
-    }
-    base_mu <- 0.5
-    if (!is.null(glob_params) && "mu" %in% names(glob_params)) {
-      candidate_mu <- as.numeric(glob_params[["mu"]])
-      if (is.finite(candidate_mu) && candidate_mu > 0 && candidate_mu < 1) base_mu <- candidate_mu
-    }
-    base_mu <- pmin(pmax(base_mu, 1e-6), 1 - 1e-6)
 
     saveRDS(estimates,        file = file.path(out_dir, "estimates_global.rds"))
     saveRDS(estimates_shrunk, file = file.path(out_dir, "estimates_global_shrunk.rds"))

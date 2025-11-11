@@ -1,21 +1,21 @@
 pipeline,class,metric,call_rate,n_genes
 ASPEN,C1_balanced_no_sex,FPR,0.473965287049399,749
-ASPEN,C2_balanced_sex_only,FPR,0.484848484848485,99
+ASPEN,C2_balanced_sex_only,FPR,0.571428571428571,77
 ASPEN,C3_imbalanced_no_sex,TPR,0.725152129817444,986
-ASPEN,C4_imbalanced_with_sex,TPR,0.77710843373494,166
+ASPEN,C4_imbalanced_with_sex,TPR,0.707446808510638,188
 Beta-Binomial Regression,C1_balanced_no_sex,FPR,0.0680907877169557,749
-Beta-Binomial Regression,C2_balanced_sex_only,FPR,0.525252525252525,99
+Beta-Binomial Regression,C2_balanced_sex_only,FPR,0.441558441558442,77
 Beta-Binomial Regression,C3_imbalanced_no_sex,TPR,0.871196754563895,986
-Beta-Binomial Regression,C4_imbalanced_with_sex,TPR,0.945783132530121,166
+Beta-Binomial Regression,C4_imbalanced_with_sex,TPR,0.930851063829787,188
 GLM-adjusted Beta-binomial,C1_balanced_no_sex,FPR,0.0680907877169557,749
-GLM-adjusted Beta-binomial,C2_balanced_sex_only,FPR,0.525252525252525,99
+GLM-adjusted Beta-binomial,C2_balanced_sex_only,FPR,0.441558441558442,77
 GLM-adjusted Beta-binomial,C3_imbalanced_no_sex,TPR,0.871196754563895,986
-GLM-adjusted Beta-binomial,C4_imbalanced_with_sex,TPR,0.945783132530121,166
+GLM-adjusted Beta-binomial,C4_imbalanced_with_sex,TPR,0.930851063829787,188
 GLM-Mapping-BB,C1_balanced_no_sex,FPR,0.0894526034712949,749
-GLM-Mapping-BB,C2_balanced_sex_only,FPR,0.121212121212121,99
+GLM-Mapping-BB,C2_balanced_sex_only,FPR,0.142857142857143,77
 GLM-Mapping-BB,C3_imbalanced_no_sex,TPR,0.759634888438134,986
-GLM-Mapping-BB,C4_imbalanced_with_sex,TPR,0.72289156626506,166
+GLM-Mapping-BB,C4_imbalanced_with_sex,TPR,0.643617021276596,188
 Shrinkage GLM Dispersion,C1_balanced_no_sex,FPR,0.121495327102804,749
-Shrinkage GLM Dispersion,C2_balanced_sex_only,FPR,0.383838383838384,99
+Shrinkage GLM Dispersion,C2_balanced_sex_only,FPR,0.194805194805195,77
 Shrinkage GLM Dispersion,C3_imbalanced_no_sex,TPR,0.894523326572008,986
-Shrinkage GLM Dispersion,C4_imbalanced_with_sex,TPR,0.897590361445783,166
+Shrinkage GLM Dispersion,C4_imbalanced_with_sex,TPR,0.914893617021277,188
