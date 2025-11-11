@@ -1,0 +1,15 @@
+[Tue Nov 11 16:44:11 AEDT 2025] Running GLM shrinkage all-cell pipeline (sex included, no imprinted genes)…
+[Tue Nov 11 16:49:16 AEDT 2025] Completed GLM shrinkage all-cell pipeline (sex included, no imprinted genes).
+
+======================================================================================
+                  Resource Usage on 2025-11-11 16:49:20:
+   Job Id:             154293892.gadi-pbs
+   Project:            zk16
+   Exit Status:        0
+   Service Units:      8.21
+   NCPUs Requested:    24                     NCPUs Used: 24              
+                                           CPU Time Used: 00:08:53        
+   Memory Requested:   192.0GB               Memory Used: 19.45GB         
+   Walltime requested: 08:00:00            Walltime Used: 00:05:08        
+   JobFS requested:    100.0MB                JobFS used: 0B              
+======================================================================================
