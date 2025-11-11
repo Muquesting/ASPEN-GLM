@@ -41,23 +41,25 @@ derive_shrinkage_params <- function(estimates, theta_filter = 1e-03, default_del
   list(delta = delta_est, N = N_est)
 }
 
-glm_phi_tests <- function(genes, a1, tot, sex, phi_target, min_counts, min_cells) {
+glm_phi_tests <- function(genes, a1, tot, sex_centered, phi_target, min_counts, min_cells, base_mu = 0.5) {
   res <- vector("list", length(genes))
   names(res) <- genes
+  target_beta0 <- qlogis(pmin(pmax(base_mu, 1e-6), 1 - 1e-6))
   for (g in genes) {
     y <- as.numeric(a1[g, ])
     n <- as.numeric(tot[g, ])
-    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0)
+    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0) & is.finite(sex_centered)
     if (sum(keep) < max(min_cells, 2L)) next
-    sex_sub <- droplevels(factor(sex[keep], levels = c("F","M")))
-    if (nlevels(sex_sub) < 1) next
+    sex_num <- sex_centered[keep]
+    sex_fact <- factor(ifelse(sex_num > 0, "M", "F"), levels = c("F","M"))
+    if (nlevels(sex_fact) < 2) next
     df <- data.frame(
       y = y[keep],
       n = n[keep],
-      sex = sex_sub
+      sex_centered = sex_num
     )
     fit <- tryCatch(
-      stats::glm(cbind(y, n - y) ~ sex, family = stats::quasibinomial(), data = df,
+      stats::glm(cbind(y, n - y) ~ sex_centered, family = stats::quasibinomial(), data = df,
                  control = stats::glm.control(maxit = 100)),
       error = function(e) NULL
     )
@@ -73,16 +75,16 @@ glm_phi_tests <- function(genes, a1, tot, sex, phi_target, min_counts, min_cells
     scale_factor <- if (is.finite(phi_hat) && phi_hat > 0) sqrt(phi_use / phi_hat) else 1
     se_adj <- se_raw * scale_factor
     df_res <- max(fit$df.residual, 1)
-    get_p <- function(term) {
+    get_p <- function(term, target = 0) {
       if (!term %in% names(beta)) return(NA_real_)
       se <- se_adj[term]
       if (!is.finite(se) || se <= 0) return(NA_real_)
-      tval <- beta[term] / se
+      tval <- (beta[term] - target) / se
       2 * stats::pt(abs(tval), df = df_res, lower.tail = FALSE)
     }
-    p_int <- get_p("(Intercept)")
-    sex_term <- grep("^sex", names(beta), value = TRUE)
-    p_sex <- if (length(sex_term)) get_p(sex_term[1]) else NA_real_
+    p_int <- get_p("(Intercept)", target_beta0)
+    sex_term <- grep("^sex_centered", names(beta), value = TRUE)
+    p_sex <- if (length(sex_term)) get_p(sex_term[1], 0) else NA_real_
     res[[g]] <- data.frame(
       gene = g,
       statistic = NA_real_,
@@ -331,11 +333,11 @@ for (ct in ct_keep) {
     tot <- as.matrix(tots); mode(tot) <- "integer"
 
     # Build design: sex only (no condition term)
-    sex <- factor(sex_all[cells_ct], levels = c("F","M"))
-    sex_present <- droplevels(sex)
-    design_df <- data.frame(sex = sex)
+    sex_factor <- factor(sex_all[cells_ct], levels = c("F","M"))
+    sex_centered_vec <- ifelse(sex_factor == "M", 0.5, -0.5)
+    design_df <- data.frame(sex_centered = sex_centered_vec)
     rownames(design_df) <- colnames(tot)
-    design <- model.matrix(~ sex, data = design_df)
+    design <- model.matrix(~ sex_centered, data = design_df)
 
     message("Fitting GLM + shrink (all-cells tot_mean) on ", nrow(tot), " genes and ", ncol(tot), " cells (", ct, " / ", cond_lbl, ")…")
 
@@ -412,10 +414,11 @@ for (ct in ct_keep) {
       genes = genes_for_tests,
       a1 = a1,
       tot = tot,
-      sex = as.character(sex),
+      sex_centered = sex_centered_vec,
       phi_target = phi_target,
       min_counts = min_counts_test,
-      min_cells = min_cells_test
+      min_cells = min_cells_test,
+      base_mu = base_mu
     )
 
     # 4) Global params (use min_counts_glob, default 5 to mimic Veronika's glob_disp)
@@ -427,6 +430,12 @@ for (ct in ct_keep) {
       gp_df <- as.data.frame(t(glob_params))
       utils::write.csv(gp_df, file = file.path(out_dir, "global_params.csv"), row.names = FALSE)
     }
+    base_mu <- 0.5
+    if (!is.null(glob_params) && "mu" %in% names(glob_params)) {
+      candidate_mu <- as.numeric(glob_params[["mu"]])
+      if (is.finite(candidate_mu) && candidate_mu > 0 && candidate_mu < 1) base_mu <- candidate_mu
+    }
+    base_mu <- pmin(pmax(base_mu, 1e-6), 1 - 1e-6)
 
     saveRDS(estimates,        file = file.path(out_dir, "estimates_global.rds"))
     saveRDS(estimates_shrunk, file = file.path(out_dir, "estimates_global_shrunk.rds"))
@@ -458,6 +467,7 @@ for (ct in ct_keep) {
       sprintf("All-cells trend for shrinkage: tot_gene_mean computed across ALL cells (including zeros)"),
       sprintf("Thresholds (est/test/glob): min_counts_est=%d, min_cells_est=%d, min_counts_test=%d, min_cells_test=%d, min_counts_glob=%d",
               min_counts_est, min_cells_est, min_counts_test, min_cells_test, min_counts_glob),
+      sprintf("Base mean (mu) for intercept test: %.4f", base_mu),
       sprintf("Phi GLM tests: %d genes", phi_glm_count),
       sprintf("Phi variance tests: %d genes", phi_var_count),
       "Design columns:",

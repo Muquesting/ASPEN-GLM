@@ -96,6 +96,34 @@ if (is.null(rownames(estimates))) {
 genes_available <- intersect(rownames(estimates), rownames(a1_full))
 if (!length(genes_available)) stop("No overlapping genes between SCE and estimates.")
 
+extract_base_mu <- function(df_or_vec) {
+  mu_val <- NA_real_
+  if (is.data.frame(df_or_vec)) {
+    if ("mu" %in% colnames(df_or_vec)) {
+      mu_val <- df_or_vec$mu[1]
+    } else if ("mu" %in% rownames(df_or_vec)) {
+      mu_val <- df_or_vec["mu", 1]
+    }
+  } else if (is.numeric(df_or_vec) && "mu" %in% names(df_or_vec)) {
+    mu_val <- df_or_vec["mu"]
+  }
+  if (is.null(mu_val)) mu_val <- NA_real_
+  as.numeric(mu_val)
+}
+
+base_mu <- 0.5
+glob_csv <- file.path(slice_dir, "global_params.csv")
+glob_rds <- file.path(slice_dir, "global_params.rds")
+glob_obj <- NULL
+if (file.exists(glob_csv)) {
+  glob_obj <- utils::read.csv(glob_csv, stringsAsFactors = FALSE)
+} else if (file.exists(glob_rds)) {
+  glob_obj <- readRDS(glob_rds)
+}
+candidate_mu <- extract_base_mu(glob_obj)
+if (is.finite(candidate_mu) && candidate_mu > 0 && candidate_mu < 1) base_mu <- candidate_mu
+base_mu <- pmin(pmax(base_mu, 1e-6), 1 - 1e-6)
+
 bb_mean_passthrough <- function(result_file) {
   if (!file.exists(result_file)) {
     stop("Result file not found for bb_mean passthrough: ", result_file)
@@ -116,23 +144,26 @@ bb_mean_passthrough <- function(result_file) {
   )
 }
 
-glm_phi_tests <- function(genes, a1, tot, sex, phi_shrunk_vec, min_counts, min_cells) {
+glm_phi_tests <- function(genes, a1, tot, sex_labels, phi_shrunk_vec, min_counts, min_cells, base_mu = 0.5) {
   res <- vector("list", length(genes))
   names(res) <- genes
+  sex_centered_all <- ifelse(sex_labels == "M", 0.5, -0.5)
+  target_beta0 <- qlogis(pmin(pmax(base_mu, 1e-6), 1 - 1e-6))
   for (g in genes) {
     y <- as.numeric(a1[g, ])
     n <- as.numeric(tot[g, ])
-    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0) & sex %in% c("F","M")
+    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0) & is.finite(sex_centered_all)
     if (sum(keep) < max(min_cells, 2L)) next
-    sex_sub <- droplevels(factor(sex[keep], levels = c("F","M")))
-    if (nlevels(sex_sub) < 1) next
+    sex_num <- sex_centered_all[keep]
+    sex_sub <- factor(ifelse(sex_num > 0, "M", "F"), levels = c("F","M"))
+    if (nlevels(sex_sub) < 2) next
     df <- data.frame(
       y = y[keep],
       n = n[keep],
-      sex = sex_sub
+      sex_centered = sex_num
     )
     fit <- tryCatch(
-      stats::glm(cbind(y, n - y) ~ sex, family = stats::quasibinomial(), data = df,
+      stats::glm(cbind(y, n - y) ~ sex_centered, family = stats::quasibinomial(), data = df,
                  control = stats::glm.control(maxit = 100)),
       error = function(e) NULL
     )
@@ -149,17 +180,17 @@ glm_phi_tests <- function(genes, a1, tot, sex, phi_shrunk_vec, min_counts, min_c
     se_adj <- se_raw * scale_factor
     df_res <- max(fit$df.residual, 1)
 
-    get_p <- function(term) {
+    get_p <- function(term, target = 0) {
       if (!term %in% names(beta)) return(NA_real_)
       se <- se_adj[term]
       if (!is.finite(se) || se <= 0) return(NA_real_)
-      tval <- beta[term] / se
+      tval <- (beta[term] - target) / se
       2 * stats::pt(abs(tval), df = df_res, lower.tail = FALSE)
     }
 
-    p_int <- get_p("(Intercept)")
-    sex_term <- grep("^sex", names(beta), value = TRUE)
-    p_sex <- if (length(sex_term)) get_p(sex_term[1]) else NA_real_
+    p_int <- get_p("(Intercept)", target_beta0)
+    sex_term <- grep("^sex_centered", names(beta), value = TRUE)
+    p_sex <- if (length(sex_term)) get_p(sex_term[1], 0) else NA_real_
 
     res[[g]] <- data.frame(
       gene = g,
@@ -241,7 +272,7 @@ if (pipeline_type %in% c("bb_mean", "ver", "orig")) {
   phi_col <- if ("phi_shrunk" %in% colnames(estimates)) "phi_shrunk" else if ("phi" %in% colnames(estimates)) "phi" else NA_character_
   if (!nzchar(phi_col)) stop("phi_glm requires phi_shrunk column in estimates.")
   phi_vec <- setNames(as.numeric(estimates[genes_available, phi_col]), genes_available)
-  result <- glm_phi_tests(genes_available, a1_full, tot_full, sex_vec, phi_vec, min_counts, min_cells)
+  result <- glm_phi_tests(genes_available, a1_full, tot_full, sex_vec, phi_vec, min_counts, min_cells, base_mu = base_mu)
 } else if (pipeline_type %in% c("fixed_mu", "glmmtmb_mu")) {
   theta_col <- if ("thetaCorrected" %in% colnames(estimates)) "thetaCorrected" else if ("bb_theta" %in% colnames(estimates)) "bb_theta" else NA_character_
   if (!nzchar(theta_col)) stop(pipeline_type, " requires thetaCorrected or bb_theta column in estimates.")

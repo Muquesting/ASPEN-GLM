@@ -25,7 +25,24 @@ truth_df <- as.data.frame(sim$truth, stringsAsFactors = FALSE)
 if (!all(c("gene", "mu_grid") %in% names(truth_df))) {
   stop("Simulation truth must include 'gene' and 'mu_grid'.")
 }
-truth_df$positive <- truth_df$mu_grid != 0.5
+sex_vec <- sim$sex
+sex_vec[sex_vec %in% c("Female","F")] <- "F"
+sex_vec[sex_vec %in% c("Male","M")] <- "M"
+n_F <- sum(sex_vec == "F")
+n_M <- sum(sex_vec == "M")
+total_cells <- n_F + n_M
+if (total_cells == 0) stop("No cells with labeled sex to compute truth.")
+if (!"p_F" %in% names(truth_df)) {
+  truth_df$p_F <- plogis(truth_df$eta_base)
+}
+if (!"p_M" %in% names(truth_df)) {
+  shift <- if ("beta_sex" %in% names(truth_df)) truth_df$beta_sex else 0
+  truth_df$p_M <- plogis(truth_df$eta_base + shift)
+}
+truth_df$mu_global <- (n_F * truth_df$p_F + n_M * truth_df$p_M) / total_cells
+delta_env <- suppressWarnings(as.numeric(Sys.getenv("SIM_BALANCED_DELTA", NA)))
+delta <- if (is.finite(delta_env) && delta_env >= 0) delta_env else 0.05
+truth_df$positive <- abs(truth_df$mu_global - 0.5) > delta
 
 PIPELINES <- list(
   list(

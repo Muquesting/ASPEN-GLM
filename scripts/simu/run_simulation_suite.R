@@ -60,12 +60,28 @@ gene_unique <- make.unique(gene_ids, sep = "_rep")
 rownames(a1) <- gene_unique
 rownames(tot) <- gene_unique
 sex_vec <- sim$sex
+sex_vec[sex_vec %in% c("Female","F")] <- "F"
+sex_vec[sex_vec %in% c("Male","M")] <- "M"
 truth_df <- sim$truth
 if (ncol(a1) != length(sex_vec)) stop("Mismatch between columns of counts and length of sex vector.")
 truth_df$gene_unique <- gene_unique
 if (!"mu_grid" %in% names(truth_df)) stop("truth table must include mu_grid column.")
-truth_df$imbalance <- truth_df$mu_grid != 0.5
-truth_df$effect_size <- abs(truth_df$mu_grid - 0.5)
+n_F <- sum(sex_vec == "F")
+n_M <- sum(sex_vec == "M")
+total_cells <- n_F + n_M
+if (total_cells == 0) stop("No cells with labeled sex to compute global mean.")
+if (!"p_F" %in% names(truth_df)) {
+  truth_df$p_F <- plogis(truth_df$eta_base)
+}
+if (!"p_M" %in% names(truth_df)) {
+  shift <- if ("beta_sex" %in% names(truth_df)) truth_df$beta_sex else 0
+  truth_df$p_M <- plogis(truth_df$eta_base + shift)
+}
+truth_df$mu_global <- (n_F * truth_df$p_F + n_M * truth_df$p_M) / total_cells
+delta_env <- suppressWarnings(as.numeric(Sys.getenv("SIM_BALANCED_DELTA", NA)))
+delta <- if (is.finite(delta_env) && delta_env >= 0) delta_env else 0.05
+truth_df$effect_size <- abs(truth_df$mu_global - 0.5)
+truth_df$imbalance <- truth_df$effect_size > delta
 effect_breaks <- c(-Inf, 0, 0.02, 0.05, 0.1, Inf)
 effect_labels <- c("balanced", "tiny", "small", "moderate", "large")
 truth_df$effect_bin <- cut(
@@ -76,9 +92,18 @@ truth_df$effect_bin <- cut(
   include.lowest = TRUE
 )
 truth_df$effect_bin <- as.character(truth_df$effect_bin)
-truth_df$effect_bin[!truth_df$imbalance] <- "balanced"
-truth_df$effect_bin[is.na(truth_df$effect_bin)] <- "balanced"
+truth_df$effect_bin[!truth_df$imbalance | is.na(truth_df$effect_bin)] <- "balanced"
 truth_df$effect_bin <- factor(truth_df$effect_bin, levels = effect_labels, ordered = TRUE)
+truth_df$sex_flag <- as.logical(truth_df$sex_flag)
+truth_df$class <- ifelse(!truth_df$imbalance & !truth_df$sex_flag, "C1_balanced_no_sex",
+                    ifelse(!truth_df$imbalance & truth_df$sex_flag, "C2_balanced_sex_only",
+                    ifelse(truth_df$imbalance & !truth_df$sex_flag, "C3_imbalanced_no_sex",
+                           "C4_imbalanced_with_sex")))
+truth_df$sex_flag <- as.logical(truth_df$sex_flag)
+truth_df$class <- ifelse(!truth_df$imbalance & !truth_df$sex_flag, "C1_balanced_no_sex",
+                    ifelse(!truth_df$imbalance & truth_df$sex_flag, "C2_balanced_sex_only",
+                    ifelse(truth_df$imbalance & !truth_df$sex_flag, "C3_imbalanced_no_sex",
+                    "C4_imbalanced_with_sex")))
 
 sce <- SingleCellExperiment(assays = list(a1 = a1, tot = tot))
 meta <- data.frame(
