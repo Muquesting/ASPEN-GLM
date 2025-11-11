@@ -1,0 +1,21 @@
+pipeline,class,metric,call_rate,n_genes
+ASPEN,C1_balanced_no_sex,FPR,0.5,84
+ASPEN,C2_balanced_sex_only,FPR,0.636363636363636,11
+ASPEN,C3_imbalanced_no_sex,TPR,0.622652937613568,1651
+ASPEN,C4_imbalanced_with_sex,TPR,0.669291338582677,254
+Beta-Binomial Regression,C1_balanced_no_sex,FPR,0,84
+Beta-Binomial Regression,C2_balanced_sex_only,FPR,0.454545454545455,11
+Beta-Binomial Regression,C3_imbalanced_no_sex,TPR,0.551181102362205,1651
+Beta-Binomial Regression,C4_imbalanced_with_sex,TPR,0.803149606299213,254
+GLM-adjusted Beta-binomial,C1_balanced_no_sex,FPR,0,84
+GLM-adjusted Beta-binomial,C2_balanced_sex_only,FPR,0.454545454545455,11
+GLM-adjusted Beta-binomial,C3_imbalanced_no_sex,TPR,0.551181102362205,1651
+GLM-adjusted Beta-binomial,C4_imbalanced_with_sex,TPR,0.803149606299213,254
+GLM-Mapping-BB,C1_balanced_no_sex,FPR,0.0119047619047619,84
+GLM-Mapping-BB,C2_balanced_sex_only,FPR,0.181818181818182,11
+GLM-Mapping-BB,C3_imbalanced_no_sex,TPR,0.493640218049667,1651
+GLM-Mapping-BB,C4_imbalanced_with_sex,TPR,0.511811023622047,254
+Shrinkage GLM Dispersion,C1_balanced_no_sex,FPR,0,84
+Shrinkage GLM Dispersion,C2_balanced_sex_only,FPR,0.454545454545455,11
+Shrinkage GLM Dispersion,C3_imbalanced_no_sex,TPR,0.516656571774682,1651
+Shrinkage GLM Dispersion,C4_imbalanced_with_sex,TPR,0.779527559055118,254
