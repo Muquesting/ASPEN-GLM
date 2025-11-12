@@ -425,9 +425,18 @@ for (ct in ct_keep) {
     }
     phi_hat <- as.numeric(estimates_shrunk$phi)
     mean_cov <- as.numeric(estimates_shrunk$tot_gene_mean)
-    phi_trend <- compute_phi_trend(phi_hat, mean_cov)
-    estimates_shrunk$phi_trend <- phi_trend
-    estimates_shrunk$phi_shrunk <- ifelse(is.finite(phi_trend), phi_trend, phi_hat)
+    phi_trend_raw <- compute_phi_trend(phi_hat, mean_cov)
+    phi_hat_safe <- pmax(phi_hat, 1e-8)
+    phi_trend_safe <- phi_trend_raw
+    phi_trend_safe[!is.finite(phi_trend_safe) | phi_trend_safe <= 0] <- phi_hat_safe[!is.finite(phi_trend_safe) | phi_trend_safe <= 0]
+    shrink_delta <- if (is.null(shrink_vals$delta) || shrink_vals$delta < 0) 0 else shrink_vals$delta
+    w <- estimates_shrunk$N / (estimates_shrunk$N + shrink_delta)
+    w[!is.finite(w)] <- 0
+    w <- pmin(pmax(w, 0), 1)
+    log_phi_shrunk <- w * log(phi_hat_safe) + (1 - w) * log(phi_trend_safe)
+    phi_shrunk <- exp(log_phi_shrunk)
+    estimates_shrunk$phi_trend <- phi_trend_safe
+    estimates_shrunk$phi_shrunk <- phi_shrunk
 
     # 4) Global params (use min_counts_glob, default 5 to mimic Veronika's glob_disp)
     glob_params <- tryCatch(
