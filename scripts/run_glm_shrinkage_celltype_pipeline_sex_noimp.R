@@ -495,6 +495,16 @@ for (ct in ct_keep) {
     } else {
       utils::write.csv(data.frame(), file = file.path(out_dir, "phi_variance_results.csv"), row.names = FALSE)
     }
+    norm_sf <- Matrix::colSums(tot)
+    if (any(norm_sf == 0)) norm_sf[norm_sf == 0] <- 1
+    norm_sf <- norm_sf / exp(mean(log(norm_sf)))
+    tot_norm <- sweep(tot, 2, norm_sf, "/")
+    a1_norm  <- sweep(a1,  2, norm_sf, "/")
+    norm_meta <- meta
+    norm_meta$norm_size_factor <- norm_sf[colnames(a1)]
+    saveRDS(list(a1 = a1_norm, tot = tot_norm, meta = norm_meta),
+            file = file.path(out_dir, "normalized_counts.rds"))
+
     to_csv(estimates_shrunk, file.path(out_dir, "estimates_global_shrunk.csv"),
            cols = c("AR","bb_mu","bb_theta","thetaCorrected","theta_common","tot_gene_mean","N","phi","phi_trend","phi_shrunk"))
 
