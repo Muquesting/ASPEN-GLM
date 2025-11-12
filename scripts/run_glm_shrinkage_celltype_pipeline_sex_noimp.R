@@ -463,6 +463,11 @@ for (ct in ct_keep) {
       phi_trend = estimates_shrunk$phi_shrunk,
       df_vec   = df_vec
     )
+    if (!is.null(phi_var_df)) {
+      var_csv <- file.path(out_dir, "phi_variance_results.csv")
+      utils::write.csv(phi_var_df, var_csv, row.names = FALSE)
+      saveRDS(phi_var_df, file = sub("\\.csv$", ".rds", var_csv))
+    }
 
     genes_for_tests <- intersect(rownames(a1), rownames(estimates_shrunk))
 
@@ -471,29 +476,19 @@ for (ct in ct_keep) {
     sex_labels_ct  <- sex_all[cells_ct]
 
     phi_glm_df <- glm_phi_tests(
-      genes         = genes_for_tests,
-      a1            = a1,
-      tot           = tot,
-      sex_labels    = sex_labels_ct,
+      genes          = genes_for_tests,
+      a1             = a1,
+      tot            = tot,
+      sex_labels     = sex_labels_ct,
       phi_shrunk_vec = phi_shrunk_vec,
-      min_counts    = min_counts_test,
-      min_cells     = min_cells_test,
-      base_mu       = base_mu
+      min_counts     = min_counts_test,
+      min_cells      = min_cells_test,
+      base_mu        = base_mu
     )
-
-    saveRDS(estimates,        file = file.path(out_dir, "estimates_global.rds"))
-    saveRDS(estimates_shrunk, file = file.path(out_dir, "estimates_global_shrunk.rds"))
     if (!is.null(phi_glm_df)) {
-      saveRDS(phi_glm_df, file = file.path(out_dir, "phi_glm_results.rds"))
-      utils::write.csv(phi_glm_df, file = file.path(out_dir, "phi_glm_results.csv"), row.names = FALSE)
-    } else {
-      utils::write.csv(data.frame(), file = file.path(out_dir, "phi_glm_results.csv"), row.names = FALSE)
-    }
-    if (!is.null(phi_var_df)) {
-      saveRDS(phi_var_df, file = file.path(out_dir, "phi_variance_results.rds"))
-      utils::write.csv(phi_var_df, file = file.path(out_dir, "phi_variance_results.csv"), row.names = FALSE)
-    } else {
-      utils::write.csv(data.frame(), file = file.path(out_dir, "phi_variance_results.csv"), row.names = FALSE)
+      glm_csv <- file.path(out_dir, "phi_glm_results.csv")
+      utils::write.csv(phi_glm_df, glm_csv, row.names = FALSE)
+      saveRDS(phi_glm_df, file = sub("\\.csv$", ".rds", glm_csv))
     }
     norm_sf <- Matrix::colSums(tot)
     if (any(norm_sf == 0)) norm_sf[norm_sf == 0] <- 1
@@ -505,10 +500,68 @@ for (ct in ct_keep) {
     saveRDS(list(a1 = a1_norm, tot = tot_norm, meta = norm_meta),
             file = file.path(out_dir, "normalized_counts.rds"))
 
+    estimates_norm <- estim_glmparams(
+      a1_counts = a1_norm,
+      tot_counts = tot_norm,
+      design = design,
+      min_counts = min_counts_est,
+      min_cells = min_cells_est,
+      dispersion_method = "deviance",
+      use_effective_trials = TRUE
+    )
+    tm_norm <- rowMeans(tot_norm)
+    tv_norm <- apply(tot_norm, 1, stats::var)
+    estimates_norm$tot_gene_mean <- as.numeric(tm_norm[rownames(estimates_norm)])
+    estimates_norm$tot_gene_variance <- as.numeric(tv_norm[rownames(estimates_norm)])
+    estimates_norm_shrunk <- suppressWarnings(
+      correct_theta(estimates_norm,
+                    delta_set = shrink_vals$delta,
+                    N_set = shrink_vals$N,
+                    thetaFilter = 1e-3,
+                    shrinkAll = FALSE)
+    )
+    if (!"phi" %in% colnames(estimates_norm_shrunk)) {
+      estimates_norm_shrunk$phi <- estimates_norm[rownames(estimates_norm_shrunk), "phi"]
+    }
+    phi_hat_norm <- as.numeric(estimates_norm_shrunk$phi)
+    mean_cov_norm <- as.numeric(estimates_norm_shrunk$tot_gene_mean)
+    phi_trend_norm_raw <- compute_phi_trend(phi_hat_norm, mean_cov_norm)
+    phi_hat_norm_safe <- pmax(phi_hat_norm, 1e-8)
+    phi_trend_norm_safe <- phi_trend_norm_raw
+    bad_idx_norm <- !is.finite(phi_trend_norm_safe) | phi_trend_norm_safe <= 0
+    phi_trend_norm_safe[bad_idx_norm] <- phi_hat_norm_safe[bad_idx_norm]
+    w_norm <- estimates_norm_shrunk$N / (estimates_norm_shrunk$N + shrink_vals$delta)
+    w_norm[!is.finite(w_norm)] <- 0
+    w_norm <- pmin(pmax(w_norm, 0), 1)
+    log_phi_norm_shrunk <- w_norm * log(phi_hat_norm_safe) + (1 - w_norm) * log(phi_trend_norm_safe)
+    phi_norm_shrunk <- exp(log_phi_norm_shrunk)
+    estimates_norm_shrunk$phi_trend <- phi_trend_norm_safe
+    estimates_norm_shrunk$phi_shrunk <- phi_norm_shrunk
+    genes_norm <- intersect(rownames(a1_norm), rownames(estimates_norm_shrunk))
+    phi_shrunk_vec_norm <- setNames(estimates_norm_shrunk[genes_norm, "phi_shrunk"], genes_norm)
+    phi_glm_df_norm <- glm_phi_tests(
+      genes          = genes_norm,
+      a1             = a1_norm,
+      tot            = tot_norm,
+      sex_labels     = sex_labels_ct,
+      phi_shrunk_vec = phi_shrunk_vec_norm,
+      min_counts     = min_counts_test,
+      min_cells      = min_cells_test,
+      base_mu        = base_mu
+    )
+    if (!is.null(phi_glm_df_norm)) {
+      glm_norm_csv <- file.path(out_dir, "phi_glm_results_norm.csv")
+      utils::write.csv(phi_glm_df_norm, glm_norm_csv, row.names = FALSE)
+      saveRDS(phi_glm_df_norm, file = sub("\\.csv$", ".rds", glm_norm_csv))
+    }
+
     to_csv(estimates_shrunk, file.path(out_dir, "estimates_global_shrunk.csv"),
+           cols = c("AR","bb_mu","bb_theta","thetaCorrected","theta_common","tot_gene_mean","N","phi","phi_trend","phi_shrunk"))
+    to_csv(estimates_norm_shrunk, file.path(out_dir, "estimates_global_shrunk_norm.csv"),
            cols = c("AR","bb_mu","bb_theta","thetaCorrected","theta_common","tot_gene_mean","N","phi","phi_trend","phi_shrunk"))
 
     phi_glm_count <- if (!is.null(phi_glm_df)) nrow(phi_glm_df) else 0L
+    phi_glm_norm_count <- if (!is.null(phi_glm_df_norm)) nrow(phi_glm_df_norm) else 0L
     phi_var_count <- if (!is.null(phi_var_df)) sum(is.finite(phi_var_df$statistic)) else 0L
 
     log_path <- file.path(out_dir, "filter_log.txt")
@@ -522,7 +575,8 @@ for (ct in ct_keep) {
       sprintf("Thresholds (est/test/glob): min_counts_est=%d, min_cells_est=%d, min_counts_test=%d, min_cells_test=%d, min_counts_glob=%d",
               min_counts_est, min_cells_est, min_counts_test, min_cells_test, min_counts_glob),
       sprintf("Base mean (mu) for intercept test: %.4f", base_mu),
-      sprintf("Phi GLM tests: %d genes", phi_glm_count),
+      sprintf("Phi GLM tests (raw counts): %d genes", phi_glm_count),
+      sprintf("Phi GLM tests (normalized counts): %d genes", phi_glm_norm_count),
       sprintf("Phi variance tests: %d genes", phi_var_count),
       "Design columns:",
       paste0(" - ", colnames(design))
