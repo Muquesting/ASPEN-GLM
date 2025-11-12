@@ -1,0 +1,24 @@
+=== ERROR ===
+The use of the 'python' command to launch a python script
+has been deprecated. Please run either
+
+python3 -
+
+or
+
+python2 -
+
+depending on which version of python you require
+Alternatively, if you are unable to modify this script
+You can load the python2-as-python or python3-as-python
+modules depending on which version of python you require
+Sourcing ASPEN-GLM helper functions from local R/ directory …
+Loading /g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered_with_XY.rds
+Top 10 cell types: Cardiomyocyte, Fibroblast, Coronary_EC, Pericytes, Myeloid, Endocardial_EC, Mesothelial, Lymphatic_EC, T_cell, Smooth_Muscle
+
+=== Processing cell type (all cells): Cardiomyocyte ===
+Fitting GLM + shrink (all-cells tot_mean) on 6712 genes and 5825 cells (Cardiomyocyte / F1_Aged)…
+Computed global shrinkage once = (72, 118) and will reuse.
+Error: object 'base_mu' not found
+In addition: There were 50 or more warnings (use warnings() to see the first 50)
+Execution halted

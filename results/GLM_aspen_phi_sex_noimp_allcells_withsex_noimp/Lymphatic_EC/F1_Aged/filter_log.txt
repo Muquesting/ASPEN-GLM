@@ -2,11 +2,12 @@ Cell type: Lymphatic_EC
 Condition: F1_Aged
 Cells kept (F/M): 121
 Genes kept (after expression filter): 717
-Expression filter: rowSums(tot > 1) >= 10
+Expression filter: rowSums(tots > 1) >= 10
 All-cells trend for shrinkage: tot_gene_mean computed across ALL cells (including zeros)
 Thresholds (est/test/glob): min_counts_est=0, min_cells_est=5, min_counts_test=0, min_cells_test=5, min_counts_glob=5
+Base mean (mu) for intercept test: 0.5000
 Phi GLM tests: 717 genes
 Phi variance tests: 717 genes
 Design columns:
  - (Intercept)
- - sexM
+ - sex_centered
