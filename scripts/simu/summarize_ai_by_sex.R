@@ -51,6 +51,7 @@ truth_df$class <- with(truth_df,
          "C4_imbalanced_with_sex"))))
 truth_df$gene_unique <- make.unique(truth_df$gene, sep = "_rep")
 
+aspen_rel_root <- Sys.getenv("SIM_ASPEN_REL_PATH", "ver")
 PIPELINES <- list(
   list(
     name = "GLM-Mapping-BB",
@@ -74,7 +75,7 @@ PIPELINES <- list(
   ),
   list(
     name = "ASPEN",
-    rel_path = file.path("ver", "ver_allcells_veronika_sex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
+    rel_path = file.path(aspen_rel_root, "ver_allcells_veronika_sex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
     padj_col = "padj_mean"
   )
 )

@@ -1,0 +1,5 @@
+pipeline,auroc,positives,negatives,label
+ASPEN,0.49223602484472,23,84,ASPEN (AUROC=0.492)
+Shrinkage GLM Dispersion,0.877329192546585,23,84,Shrinkage GLM Dispersion (AUROC=0.877)
+GLM-adjusted Beta-binomial,0.87888198757764,23,84,GLM-adjusted Beta-binomial (AUROC=0.879)
+Beta-Binomial Regression,0.87888198757764,23,84,Beta-Binomial Regression (AUROC=0.879)

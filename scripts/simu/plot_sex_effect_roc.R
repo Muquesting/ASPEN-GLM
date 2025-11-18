@@ -29,6 +29,12 @@ if (!all(c("gene", "sex_flag") %in% names(truth_df))) {
 }
 truth_df$gene_unique <- make.unique(truth_df$gene, sep = "_rep")
 truth_df$sex_effect <- as.logical(truth_df$sex_flag)
+truth_df$p_F <- if (!"p_F" %in% names(truth_df)) plogis(truth_df$eta_base) else truth_df$p_F
+truth_df$p_M <- if (!"p_M" %in% names(truth_df)) plogis(truth_df$eta_base + ifelse("beta_sex" %in% names(truth_df), truth_df$beta_sex, 0)) else truth_df$p_M
+truth_df$mu_global <- (truth_df$p_F + truth_df$p_M) / 2
+truth_df$effect_size <- abs(truth_df$mu_global - 0.5)
+sex_roc_delta <- suppressWarnings(as.numeric(Sys.getenv("SEX_ROC_MAX_DELTA",
+                                                       Sys.getenv("SIM_BALANCED_DELTA", unset = NA_character_))))
 
 sce_path <- file.path(pipeline_dir, "orig", "sim_sce.rds")
 if (!file.exists(sce_path)) stop("SCE file not found at ", sce_path)
@@ -193,7 +199,13 @@ roc_from_pvalues <- function(df) {
 }
 
 pval_df <- collect_pvalues()
-merged <- merge(truth_df[, c("gene_unique","sex_effect")], pval_df, by.x = "gene_unique", by.y = "gene", all.x = FALSE)
+merged <- merge(truth_df[, c("gene_unique","sex_effect","effect_size")], pval_df,
+                by.x = "gene_unique", by.y = "gene", all.x = FALSE)
+if (is.finite(sex_roc_delta) && sex_roc_delta >= 0) {
+  keep_idx <- merged$effect_size <= sex_roc_delta
+  merged <- merged[keep_idx, , drop = FALSE]
+  if (!nrow(merged)) stop("No genes remain after applying effect-size filter (SEX_ROC_MAX_DELTA/SIM_BALANCED_DELTA).")
+}
 
 curve_list <- list()
 summary_list <- list()

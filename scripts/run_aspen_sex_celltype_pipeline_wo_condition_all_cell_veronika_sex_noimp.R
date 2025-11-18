@@ -69,6 +69,64 @@ bb_var_cores <- suppressWarnings(as.integer(Sys.getenv("BB_VAR_CORES", veronika_
 if (!is.finite(bb_var_cores) || bb_var_cores < 1L) bb_var_cores <- veronika_cores
 bb_var_cores <- min(bb_var_cores, veronika_cores)
 
+forced_delta_env <- suppressWarnings(as.numeric(Sys.getenv("VER_SHRINK_DELTA", unset = NA)))
+forced_N_env     <- suppressWarnings(as.numeric(Sys.getenv("VER_SHRINK_N", unset = NA)))
+shrink_theta_subset <- function(estimates, shrink_vals, theta_filter = 1e-3) {
+  if (is.null(estimates) || !nrow(estimates)) return(estimates)
+  out <- estimates
+  ensure_cols <- c("theta_smoothed","ci_upper","ci_lower","thetaCorrected",
+                   "alphaCorrected","betaCorrected","alphaSmoothed","betaSmoothed",
+                   "n","delta","theta_common")
+  for (col in ensure_cols) {
+    if (!col %in% names(out)) out[[col]] <- NA_real_
+  }
+  keep <- which(is.finite(estimates$theta_reestim) & estimates$theta_reestim >= theta_filter)
+  if (!length(keep)) {
+    out$theta_smoothed <- out$theta_reestim
+    out$thetaCorrected <- out$theta_reestim
+    out$theta_common   <- out$theta_reestim
+    return(out)
+  }
+  est_sub <- estimates[keep, , drop = FALSE]
+  shrink_fun <- function(fn, ...) {
+    tryCatch(fn(est_sub, delta_set = shrink_vals$delta, N_set = shrink_vals$N, ...),
+             error = function(e) NULL)
+  }
+  est_sub_shrunk <- shrink_fun(correct_theta_sc)
+  if (!is.null(est_sub_shrunk)) {
+    tc <- est_sub_shrunk$thetaCorrected
+    if (!is.numeric(tc) || sum(is.finite(tc))/length(tc) < 0.9) est_sub_shrunk <- NULL
+  }
+  if (is.null(est_sub_shrunk)) {
+    est_sub_shrunk <- shrink_fun(correct_theta_sc_mod, thetaFilter = theta_filter)
+  }
+  if (is.null(est_sub_shrunk)) {
+    stop("Unable to obtain shrunk dispersions for subset (theta_filter = ", theta_filter, ")")
+  }
+  if (!is.null(rownames(est_sub))) {
+    ord <- match(rownames(est_sub), rownames(est_sub_shrunk))
+    est_sub_shrunk <- est_sub_shrunk[ord, , drop = FALSE]
+  }
+  cols_to_copy <- unique(c(colnames(est_sub_shrunk), ensure_cols))
+  for (col in cols_to_copy) {
+    if (!col %in% names(out)) out[[col]] <- NA_real_
+    if (col %in% colnames(est_sub_shrunk)) {
+      out[keep, col] <- est_sub_shrunk[, col]
+    }
+  }
+  drop_idx <- setdiff(seq_len(nrow(out)), keep)
+  if (length(drop_idx)) {
+    out$theta_smoothed[drop_idx] <- out$theta_reestim[drop_idx]
+    out$thetaCorrected[drop_idx] <- out$theta_reestim[drop_idx]
+    out$theta_common[drop_idx]   <- out$theta_reestim[drop_idx]
+  }
+  out
+}
+
+# Optional: force a specific global null mean (e.g., simulations where true AR=0.5)
+forced_null_mu_env <- suppressWarnings(as.numeric(Sys.getenv("SIM_FORCE_NULL_MU", unset = NA)))
+forced_null_mu <- if (is.finite(forced_null_mu_env)) forced_null_mu_env else NA_real_
+
 # Auto-discover default input if relative path missing
 if (!file.exists(input_rds)) {
   alt_paths <- c(
@@ -192,10 +250,17 @@ for (ct in ct_keep) {
     cores <- veronika_cores
     est <- estim_params_multicore(a1, tot, min_counts = min_counts_est, min_cells = min_cells_est, cores = cores)
     if (is.null(est) || !nrow(est)) { message("No estimates returned for ", ct, " / ", cond_lbl); next }
+    saveRDS(est, file = file.path(out_dir, "estimates_global.rds"))
+    utils::write.csv(est, file = file.path(out_dir, "estimates_global.csv"))
 
-    # Use fixed shrinkage parameters per Veronika's baseline
-    shrink_vals <- list(delta = 50, N = 30)
-    message("Using fixed shrinkage parameters (delta, N) = (50, 30).")
+    # Estimate shrinkage hyper-parameters (delta / N) from the current slice
+    if (!("bb_theta" %in% colnames(est)) && "theta_reestim" %in% colnames(est)) {
+      est$bb_theta <- est$theta_reestim
+    }
+    shrink_vals <- derive_shrinkage_params(est, theta_filter = 1e-3, default_delta = 50, default_N = 30)
+    if (is.finite(forced_delta_env)) shrink_vals$delta <- forced_delta_env
+    if (is.finite(forced_N_env))     shrink_vals$N     <- forced_N_env
+    message("Using shrinkage parameters (delta, N) = (", shrink_vals$delta, ", ", shrink_vals$N, ").")
     est_shrunk <- tryCatch(
       correct_theta_sc(est, delta_set = shrink_vals$delta, N_set = shrink_vals$N),
       error = function(e) NULL
@@ -207,7 +272,7 @@ for (ct in ct_keep) {
       }
     }
     if (is.null(est_shrunk)) {
-      message("correct_theta_sc unstable; retrying with correct_theta_sc_mod (delta=50, N=30).")
+      message("correct_theta_sc unstable; retrying with correct_theta_sc_mod (delta=", shrink_vals$delta, ", N=", shrink_vals$N, ").")
       est_shrunk <- tryCatch(
         correct_theta_sc_mod(est, delta_set = shrink_vals$delta, N_set = shrink_vals$N, thetaFilter = 0),
         error = function(e) NULL
@@ -244,18 +309,8 @@ for (ct in ct_keep) {
     # Global null (use min_counts_glob=5 as Veronika did)
     glob_params <- tryCatch(glob_disp(a1, tot, genes.excl = genes_excl, min_counts = min_counts_glob), error=function(e) NULL)
     if (is.null(glob_params)) {
-      message("glob_disp failed; using empirical global mean")
-      idx <- which(tot >= min_counts_glob & tot > 0)
-      if (length(idx)) {
-        gene_ids <- rep(rownames(a1), ncol(a1))[idx]
-        keep <- !(gene_ids %in% genes_excl)
-        y_vec <- as.vector(a1)[idx][keep]
-        n_vec <- as.vector(tot)[idx][keep]
-        mu_emp <- if (length(n_vec) && sum(n_vec) > 0) sum(y_vec)/sum(n_vec) else 0.5
-      } else {
-        mu_emp <- 0.5
-      }
-      mu_emp <- min(max(mu_emp, 1e-3), 1 - 1e-3)
+      message("glob_disp failed; forcing global null mean to 0.5")
+      mu_emp <- min(max(0.5, 1e-3), 1 - 1e-3)
 
       theta_candidates <- numeric(0)
       if (!is.null(est_shrunk)) {
@@ -279,6 +334,24 @@ for (ct in ct_keep) {
 
       glob_params <- c(mu = mu_emp, theta = theta_emp, alpha = alpha_emp, beta = beta_emp)
     }
+
+    # If requested (e.g. in simulations), override the global null mean with a fixed value
+    if (is.finite(forced_null_mu)) {
+      mu_forced <- min(max(forced_null_mu, 1e-3), 1 - 1e-3)
+      theta_cur <- if (!is.null(glob_params[["theta"]]) && is.finite(glob_params[["theta"]]) && glob_params[["theta"]] > 0) {
+        glob_params[["theta"]]
+      } else {
+        0.1
+      }
+      alpha_forced <- mu_forced / theta_cur
+      beta_forced  <- (1 - mu_forced) / theta_cur
+      glob_params[["mu"]]    <- mu_forced
+      glob_params[["theta"]] <- theta_cur
+      glob_params[["alpha"]] <- alpha_forced
+      glob_params[["beta"]]  <- beta_forced
+      message("Overriding global null mean with SIM_FORCE_NULL_MU = ", mu_forced)
+    }
+
     write.csv(as.data.frame(t(glob_params)), file = file.path(out_dir, "global_params.csv"), row.names = FALSE)
 
     meta_subset <- meta
@@ -303,9 +376,12 @@ for (ct in ct_keep) {
                                         cores = max(1L, cores %/% max(1L, length(levels(sex_vec)))))
         if (is.null(est_g) || !nrow(est_g)) next
         est_g <- est_g[!duplicated(rownames(est_g)), , drop = FALSE]
-        # Fixed per-batch shrinkage as well for consistency
-        shrink_vals_g <- list(delta = 50, N = 30)
-        message("  Using fixed shrinkage parameters for ", lvl, ": (50, 30).")
+        # Estimate per-group shrinkage parameters (falling back to global defaults if needed)
+        shrink_vals_g <- derive_shrinkage_params(est_g, theta_filter = 1e-3,
+                                                 default_delta = shrink_vals$delta, default_N = shrink_vals$N)
+        if (is.finite(forced_delta_env)) shrink_vals_g$delta <- forced_delta_env
+        if (is.finite(forced_N_env))     shrink_vals_g$N     <- forced_N_env
+        message("  Using shrinkage parameters for ", lvl, " = (", shrink_vals_g$delta, ", ", shrink_vals_g$N, ").")
         est_g_shrunk <- tryCatch(
           correct_theta_sc(est_g, delta_set = shrink_vals_g$delta, N_set = shrink_vals_g$N),
           error = function(e) NULL
