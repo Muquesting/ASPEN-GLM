@@ -1,0 +1,4 @@
+comparison,p_value
+ASPEN_only vs Overlap,5.48493640297487e-07
+ASPEN_only vs GLM_only,0.635903812250156
+Overlap vs GLM_only,0.0234138563425419

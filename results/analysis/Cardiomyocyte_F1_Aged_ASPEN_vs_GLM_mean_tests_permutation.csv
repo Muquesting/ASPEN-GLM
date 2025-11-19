@@ -1,0 +1,4 @@
+group,n,observed_mean_abs_diff,p_value
+ASPEN_only,1390,0.0213864782509691,1
+Overlap,1047,0.0177241743552327,1
+GLM_only,100,0.02858083470561,1
