@@ -119,54 +119,47 @@ fit_gene_gamlss <- function(i) {
   if (nlevels(droplevels(df$Sex)) < 2) return(NULL)
   
   tryCatch({
-    # Fit GAMLSS
-    m <- gamlss(y ~ Sex, 
+    # Fit Full Model (mu ~ Sex, sigma ~ Sex)
+    m_full <- gamlss(y ~ Sex, 
                 sigma.formula = ~ Sex, 
                 family = BB, 
                 data = df, 
                 bd = df$bd, 
                 trace = FALSE)
     
-    # Extract Coefficients
-    mu_coef <- coef(m, what = "mu")
-    sigma_coef <- coef(m, what = "sigma")
+    # Fit Null Model (mu ~ 1, sigma ~ Sex)
+    # Testing for Mean Imbalance while controlling for Dispersion Imbalance
+    m_null <- gamlss(y ~ 1, 
+                sigma.formula = ~ Sex, 
+                family = BB, 
+                data = df, 
+                bd = df$bd, 
+                trace = FALSE)
+    
+    # Likelihood Ratio Test
+    # LR = -2 * (logLik_null - logLik_full)
+    # df = df_full - df_null = 1 (Sex parameter in mu)
+    lik_full <- logLik(m_full)
+    lik_null <- logLik(m_null)
+    lr_stat <- -2 * (as.numeric(lik_null) - as.numeric(lik_full))
+    p_val <- pchisq(lr_stat, df = 1, lower.tail = FALSE)
+    
+    # Extract Coefficients from Full Model
+    mu_coef <- coef(m_full, what = "mu")
+    sigma_coef <- coef(m_full, what = "sigma")
     
     # Get fitted values (average for each group)
-    # We need a representative mu and sigma for the "gene" to do shrinkage?
-    # Or do we shrink the sigma coefficients?
-    # ASPEN shrinkage works on 'bb_theta' which is a single value per gene.
-    # But here sigma varies by Sex.
-    # User asked: "for the shriankge part you still use the ASPEN shrinkage for the theta to be theta_Corrected right?"
-    # If sigma varies, we have two sigmas (Male and Female).
-    # We should probably shrink the "Intercept" sigma (Female) and "SexM" sigma?
-    # OR, more likely, ASPEN shrinkage is designed for a single dispersion per gene.
-    # If we use GAMLSS, we are explicitly modeling heterogeneity.
-    # However, to comply with the user request, maybe we calculate a "weighted average" sigma
-    # or just use the global sigma if the Sex effect is small?
-    # Let's extract the fitted sigma for each cell, and take the mean?
-    # Or better: Extract the sigma for the reference group (Female) and the sigma for Male.
-    # But correct_theta expects a single 'bb_theta' column.
-    # Let's assume we want to shrink the *average* dispersion, or maybe we apply shrinkage to the *estimates*?
-    # Actually, correct_theta uses 'tot_gene_mean' to shrink 'bb_theta'.
-    # Let's calculate the average sigma across all cells and use that as 'bb_theta' for shrinkage purposes,
-    # just to see the "corrected" global trend.
-    # But this might defeat the purpose of GAMLSS (sex-specific dispersion).
-    # A better approach might be to shrink the sigma_intercept (baseline dispersion).
-    
-    # Let's calculate the average fitted sigma
-    fitted_sigma <- predict(m, what = "sigma", type = "response")
+    fitted_sigma <- predict(m_full, what = "sigma", type = "response")
     avg_sigma <- mean(fitted_sigma)
     
     # Convert to ASPEN theta: theta = sigma / (1 - sigma)
-    # (Assuming GAMLSS sigma = rho)
     aspen_theta <- avg_sigma / (1 - avg_sigma)
     
     # Also get average mu
-    fitted_mu <- predict(m, what = "mu", type = "response")
+    fitted_mu <- predict(m_full, what = "mu", type = "response")
     avg_mu <- mean(fitted_mu)
     
     # Calculate alpha/beta for ASPEN format
-    # theta = 1/(alpha+beta) => alpha+beta = 1/theta
     sum_ab <- 1/aspen_theta
     alpha_val <- avg_mu * sum_ab
     beta_val <- (1 - avg_mu) * sum_ab
@@ -177,13 +170,15 @@ fit_gene_gamlss <- function(i) {
       mu_sexM = mu_coef["SexM"],
       sigma_intercept = sigma_coef["(Intercept)"],
       sigma_sexM = sigma_coef["SexM"],
+      lrt_stat = lr_stat,
+      lrt_pval = p_val,
       bb_theta = aspen_theta, # For shrinkage
       bb_mu = avg_mu,
       alpha = alpha_val,
       beta = beta_val,
       tot_gene_mean = mean(bd_vec), # For shrinkage
-      aic = AIC(m),
-      converged = m$converged
+      aic = AIC(m_full),
+      converged = m_full$converged
     )
   }, error = function(e) {
     return(NULL)
