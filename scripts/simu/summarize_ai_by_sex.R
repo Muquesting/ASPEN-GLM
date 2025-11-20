@@ -55,27 +55,32 @@ aspen_rel_root <- Sys.getenv("SIM_ASPEN_REL_PATH", "ver")
 PIPELINES <- list(
   list(
     name = "GLM-Mapping-BB",
-    rel_path = file.path("orig", "orig_allcells_withsex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
+    rel_path = file.path("orig_allcells_withsex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
     padj_col = "padj_mean"
   ),
   list(
     name = "Shrinkage GLM Dispersion",
-    rel_path = file.path("phi", "phi_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_phi_glm.csv"),
+    rel_path = file.path("phi_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_phi_glm.csv"),
     padj_col = "padj"
   ),
   list(
-    name = "GLM-adjusted Beta-binomial",
-    rel_path = file.path("fixed", "fixed_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_fixed_mu.csv"),
+    name = "GLM Dispersion (Raw)",
+    rel_path = file.path("glmmtmb_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_glmmtmb_mu.csv"),
     padj_col = "padj"
   ),
   list(
-    name = "Beta-Binomial Regression",
-    rel_path = file.path("glmmtmb", "glmmtmb_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_glmmtmb_mu.csv"),
+    name = "Beta-Binomial Regression (glmmTMB)",
+    rel_path = file.path("glmmtmb_true", "SimCell", "SimCondition", "glmmtmb_true_results_norm.csv"),
+    padj_col = "padj"
+  ),
+  list(
+    name = "GAMLSS Beta-Binomial",
+    rel_path = file.path("gamlss_bb_test", "SimCell", "SimCondition", "gamlss_bb_results.csv"),
     padj_col = "padj"
   ),
   list(
     name = "ASPEN",
-    rel_path = file.path(aspen_rel_root, "ver_allcells_veronika_sex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
+    rel_path = file.path("ver_allcells_veronika_sex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
     padj_col = "padj_mean"
   )
 )

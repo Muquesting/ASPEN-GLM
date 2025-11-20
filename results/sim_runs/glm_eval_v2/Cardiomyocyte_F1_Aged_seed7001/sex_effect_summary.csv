@@ -1,0 +1,5 @@
+pipeline,auroc,positives,negatives,label
+Shrinkage GLM Dispersion,0.909420289855073,23,84,Shrinkage GLM Dispersion (AUROC=0.909)
+Beta-Binomial Regression (glmmTMB),0.869565217391303,23,83,Beta-Binomial Regression (glmmTMB) (AUROC=0.870)
+GAMLSS Beta-Binomial,0.872708224201152,23,83,GAMLSS Beta-Binomial (AUROC=0.873)
+ASPEN,0.405797101449275,23,84,ASPEN (AUROC=0.406)

@@ -6,23 +6,23 @@ suppressPackageStartupMessages({
 })
 
 args <- commandArgs(trailingOnly = TRUE)
-if (length(args) < 4) {
+if (length(args) < 3) {
   stop(paste(
     "Usage:",
-    "Rscript scripts/simu/plot_ai_class_comparison.R <class_summary_csv> <pipeline1> <pipeline2> <output_png>",
-    "Example pipeline names: ASPEN, Shrinkage GLM Dispersion, GLM-adjusted Beta-binomial, Beta-Binomial Regression, GLM-Mapping-BB",
+    "Rscript scripts/simu/plot_ai_class_comparison.R <class_summary_csv> <pipelines_comma_sep> <output_png>",
+    "Example pipelines: 'ASPEN,Shrinkage GLM Dispersion,Beta-Binomial Regression'",
     sep = "\n"
   ), call. = FALSE)
 }
 
 class_csv <- normalizePath(args[[1]], mustWork = TRUE)
-pipeline_a <- args[[2]]
-pipeline_b <- args[[3]]
-out_png <- args[[4]]
+pipelines_arg <- args[[2]]
+pipelines <- trimws(strsplit(pipelines_arg, ",")[[1]])
+out_png <- args[[3]]
 dir.create(dirname(out_png), recursive = TRUE, showWarnings = FALSE)
 
 dat <- fread(class_csv, data.table = FALSE)
-subset_df <- dat[dat$pipeline %in% c(pipeline_a, pipeline_b), ]
+subset_df <- dat[dat$pipeline %in% pipelines, ]
 if (!nrow(subset_df)) stop("No rows found for the specified pipelines.")
 
 subset_df$class <- factor(subset_df$class, levels = c(
@@ -48,7 +48,7 @@ p <- ggplot(subset_df, aes(x = class_label, y = call_rate, fill = pipeline)) +
   facet_wrap(~ metric, nrow = 1, scales = "free_y") +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.15))) +
   labs(
-    title = sprintf("%s vs %s: AI calls by gene class (padj < 0.1)", pipeline_a, pipeline_b),
+    title = "AI calls by gene class comparison",
     x = NULL,
     y = "Call rate",
     fill = "Pipeline"

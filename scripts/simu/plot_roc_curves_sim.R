@@ -48,31 +48,37 @@ PIPELINES <- list(
   list(
     name = "orig",
     label = "GLM-Mapping-BB",
-    rel_path = file.path("orig", "orig_allcells_withsex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
+    rel_path = file.path("orig_allcells_withsex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
     padj_col = "padj_mean"
   ),
   list(
     name = "phi",
     label = "Shrinkage GLM Dispersion",
-    rel_path = file.path("phi", "phi_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_phi_glm.csv"),
+    rel_path = file.path("phi_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_phi_glm.csv"),
     padj_col = "padj"
   ),
   list(
-    name = "fixed",
-    label = "GLM-adjusted Beta-binomial",
-    rel_path = file.path("fixed", "fixed_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_fixed_mu.csv"),
-    padj_col = "padj"
+    name = "glmmtmb_quasibin",
+    label = "GLM Dispersion (Raw)",
+    rel_path = file.path("glmmtmb_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_glmmtmb_mu.csv"),
+    padj_col = "padj_intercept"
   ),
   list(
-    name = "glmmtmb",
-    label = "Beta-Binomial Regression",
-    rel_path = file.path("glmmtmb", "glmmtmb_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_glmmtmb_mu.csv"),
-    padj_col = "padj_intercept"  # Use Wald test for intercept (overall imbalance)
+    name = "glmmtmb_true",
+    label = "Beta-Binomial Regression (glmmTMB)",
+    rel_path = file.path("glmmtmb_true", "SimCell", "SimCondition", "glmmtmb_true_results_norm.csv"),
+    padj_col = "padj_intercept"
+  ),
+  list(
+    name = "gamlss_bb",
+    label = "GAMLSS Beta-Binomial",
+    rel_path = file.path("gamlss_bb_test", "SimCell", "SimCondition", "gamlss_bb_results.csv"),
+    padj_col = "padj_intercept"
   ),
   list(
     name = "ver",
     label = "ASPEN",
-    rel_path = file.path("ver", "ver_allcells_veronika_sex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
+    rel_path = file.path("ver_allcells_veronika_sex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
     padj_col = "padj_mean"
   )
 )

@@ -27,7 +27,7 @@ output_csv    <- args[[6]]
 min_counts    <- as.integer(args[[7]])
 min_cells     <- as.integer(args[[8]])
 
-valid_types <- c("bb_mean", "ver", "orig", "phi_glm", "fixed_mu", "glmmtmb_mu")
+valid_types <- c("bb_mean", "ver", "orig", "phi_glm", "fixed_mu", "glmmtmb_mu", "glmmtmb_true", "gamlss_bb", "gamlss_sexdisp")
 if (!pipeline_type %in% valid_types) {
   stop("Unsupported pipeline_type: ", pipeline_type,
        ". Expected one of: ", paste(valid_types, collapse = ", "))
@@ -320,6 +320,498 @@ if (pipeline_type %in% c("bb_mean", "ver", "orig")) {
   }
   mu_lookup <- mu_lookup[genes_available]
   result <- bb_lrt_tests(genes_available, a1_full, tot_full, sex_vec, theta_vec, mu_lookup, min_counts, min_cells)
+} else if (pipeline_type == "glmmtmb_true") {
+  # Formal Beta-Binomial Regression using glmmTMB
+  # Estimate theta, shrink it, and perform Wald tests
+  suppressPackageStartupMessages(library(glmmTMB))
+  
+  # Try to load normalized counts (same as other pipelines)
+  norm_path <- file.path(slice_dir, "normalized_counts.rds")
+  if (file.exists(norm_path)) {
+    message("Loading normalized counts from: ", norm_path)
+    norm_data <- readRDS(norm_path)
+    # Subset to same cells as SCE (valid_cells)
+    # Need to match cell names from SCE to normalized data
+    sce_cell_names <- colnames(a1_full)  # Already subset to valid_cells
+    norm_cell_names <- colnames(norm_data$a1)
+    cell_match <- match(sce_cell_names, norm_cell_names)
+    if (any(is.na(cell_match))) {
+      stop("Cell name mismatch between SCE and normalized data")
+    }
+    a1_use <- as.matrix(norm_data$a1[, cell_match, drop=FALSE])
+    tot_use <- as.matrix(norm_data$tot[, cell_match, drop=FALSE])
+    all_genes <- rownames(a1_use)
+    message("Using normalized data: ", nrow(a1_use), " genes x ", ncol(a1_use), " cells")
+  } else {
+    message("Normalized counts not found, using raw SCE data")
+    a1_use <- a1_full
+    tot_use <- tot_full
+    all_genes <- rownames(a1_full)
+  }
+  
+  sex_centered_all <- ifelse(sex_vec == "M", 0.5, -0.5)
+  target_beta0 <- 0  # qlogis(0.5) = 0
+  
+  # Step 1: Fit glmmTMB for all genes and collect raw theta
+  theta_raw_vec <- rep(NA_real_, length(all_genes))
+  names(theta_raw_vec) <- all_genes
+  fit_list <- vector("list", length(all_genes))
+  names(fit_list) <- all_genes
+  n_avg_vec <- rep(NA_real_, length(all_genes))
+  names(n_avg_vec) <- all_genes
+  
+  message("Fitting glmmTMB models for ", length(all_genes), " genes...")
+  n_tried <- 0
+  n_skip_cells <- 0
+  n_skip_sex <- 0
+  n_skip_error <- 0
+  n_skip_loglik <- 0
+  
+  for (i in seq_along(all_genes)) {
+    if (i %% 200 == 0) message("Progress: ", i, "/", length(all_genes), " genes processed...")
+    g <- all_genes[i]
+    y <- as.numeric(a1_use[g, ])
+    n <- as.numeric(tot_use[g, ])
+    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0) & is.finite(sex_centered_all)
+    if (sum(keep) < max(min_cells, 2L)) {
+      n_skip_cells <- n_skip_cells + 1
+      next
+    }
+    sex_num <- sex_centered_all[keep]
+    sex_sub <- factor(ifelse(sex_num > 0, "M", "F"), levels = c("F","M"))
+    if (nlevels(sex_sub) < 2) {
+      n_skip_sex <- n_skip_sex + 1
+      next
+    }
+    
+    df <- data.frame(
+      y = y[keep],
+      n = n[keep],
+      sex_centered = sex_num
+    )
+    n_avg_vec[g] <- mean(df$n, na.rm = TRUE)
+    
+    fit <- tryCatch(
+      suppressWarnings({
+        glmmTMB(cbind(y, n - y) ~ sex_centered, family = betabinomial(), data = df,
+                control = glmmTMBControl(optCtrl = list(iter.max = 100, eval.max = 100)))
+      }),
+      error = function(e) NULL
+    )
+    if (is.null(fit)) {
+      n_skip_error <- n_skip_error + 1
+      next
+    }
+    
+    # Check if fit is valid (even with convergence warnings)
+    ll <- tryCatch(logLik(fit), error = function(e) -Inf)
+    if (!is.finite(ll)) {
+      n_skip_loglik <- n_skip_loglik + 1
+      next
+    }
+    
+    # Extract theta (dispersion parameter)
+    theta_raw_vec[g] <- sigma(fit)
+    fit_list[[g]] <- fit
+    n_tried <- n_tried + 1
+  }
+  
+  message("Fit attempts summary:")
+  message("  Skipped (insufficient cells): ", n_skip_cells)
+  message("  Skipped (one sex only): ", n_skip_sex)
+  message("  Skipped (fit error): ", n_skip_error)
+  message("  Skipped (non-finite logLik): ", n_skip_loglik)
+  message("  Successfully fitted: ", n_tried)
+  
+  valid_genes <- names(theta_raw_vec)[is.finite(theta_raw_vec)]
+  if (length(valid_genes) == 0) {
+    stop("No genes with valid glmmTMB fits.")
+  }
+  message("Successfully fitted ", length(valid_genes), " genes.")
+  
+  # Step 2: Shrink theta
+  # Simple log-space shrinkage towards median
+  log_theta_raw <- log(theta_raw_vec[valid_genes])
+  prior_mean_log_theta <- median(log_theta_raw, na.rm = TRUE)
+  shrinkage_factor <- 0.4  # 40% weight on prior, 60% on data
+  log_theta_shrunk <- shrinkage_factor * prior_mean_log_theta + (1 - shrinkage_factor) * log_theta_raw
+  theta_shrunk_vec <- exp(log_theta_shrunk)
+  names(theta_shrunk_vec) <- valid_genes
+  
+  message("Applied shrinkage to theta estimates (shrinkage_factor = ", shrinkage_factor, ")")
+  
+  # Step 3: Perform Wald tests with adjusted SE
+  res <- vector("list", length(valid_genes))
+  names(res) <- valid_genes
+  
+  for (g in valid_genes) {
+    fit <- fit_list[[g]]
+    if (is.null(fit)) next
+    
+    # Get coefficients and SE from original fit
+    sm <- summary(fit)
+    beta <- fixef(fit)$cond
+    vc <- vcov(fit)$cond
+    if (is.null(vc) || nrow(vc) < 2) next
+    se_raw <- sqrt(diag(vc))
+    
+    # Convert theta to equivalent phi for scaling
+    # phi ~ 1 + (n_avg - 1) / (1 + theta)
+    theta_raw <- theta_raw_vec[g]
+    theta_shrunk <- theta_shrunk_vec[g]
+    n_avg <- n_avg_vec[g]
+    if (!is.finite(n_avg) || n_avg <= 1) n_avg <- 10  # default if missing
+    
+    phi_raw <- 1 + (n_avg - 1) / (1 + theta_raw)
+    phi_shrunk <- 1 + (n_avg - 1) / (1 + theta_shrunk)
+    
+    scale_factor <- if (is.finite(phi_raw) && phi_raw > 0) sqrt(phi_shrunk / phi_raw) else 1
+    se_adj <- se_raw * scale_factor
+    
+    df_res <- nrow(fit$frame) - length(beta)
+    if (df_res < 1) df_res <- 1
+    
+    get_p <- function(term, target = 0) {
+      if (!term %in% names(beta)) return(NA_real_)
+      se <- se_adj[term]
+      if (!is.finite(se) || se <= 0) return(NA_real_)
+      tval <- (beta[term] - target) / se
+      2 * stats::pt(abs(tval), df = df_res, lower.tail = FALSE)
+    }
+    
+    p_int <- get_p("(Intercept)", target_beta0)
+    sex_term <- grep("^sex_centered", names(beta), value = TRUE)
+    p_sex <- if (length(sex_term)) get_p(sex_term[1], 0) else NA_real_
+    
+    res[[g]] <- data.frame(
+      gene = g,
+      statistic = NA_real_,
+      df = df_res,
+      p_intercept = p_int,
+      p_sex = p_sex,
+      pvalue = p_int,
+      theta_raw = theta_raw,
+      theta_shrunk = theta_shrunk,
+      phi_raw = phi_raw,
+      phi_shrunk = phi_shrunk,
+      stringsAsFactors = FALSE
+    )
+  }
+  
+  keep <- vapply(res, function(x) !is.null(x), logical(1))
+  if (!any(keep)) {
+    stop("No valid test results from glmmtmb_true pipeline.")
+  }
+  out <- do.call(rbind, res[keep])
+  out$padj_intercept <- stats::p.adjust(out$p_intercept, method = "BH")
+  out$padj_sex <- stats::p.adjust(out$p_sex, method = "BH")
+  out$padj <- out$padj_intercept
+  result <- out
+} else if (pipeline_type == "gamlss_bb") {
+  # GAMLSS Beta-Binomial with proper LRT-based testing
+  suppressPackageStartupMessages({
+    library(gamlss)
+    library(gamlss.dist)
+  })
+  
+  # Load normalized data (same as glmmTMB)
+  norm_path <- file.path(slice_dir, "normalized_counts.rds")
+  if (file.exists(norm_path)) {
+    message("Loading normalized counts from: ", norm_path)
+    norm_data <- readRDS(norm_path)
+    sce_cell_names <- colnames(a1_full)
+    norm_cell_names <- colnames(norm_data$a1)
+    cell_match <- match(sce_cell_names, norm_cell_names)
+    if (any(is.na(cell_match))) {
+      stop("Cell name mismatch between SCE and normalized data")
+    }
+    a1_use <- as.matrix(norm_data$a1[, cell_match, drop=FALSE])
+    tot_use <- as.matrix(norm_data$tot[, cell_match, drop=FALSE])
+    all_genes <- rownames(a1_use)
+    message("Using normalized data: ", nrow(a1_use), " genes x ", ncol(a1_use), " cells")
+  } else {
+    message("Normalized counts not found, using raw SCE data")
+    a1_use <- a1_full
+    tot_use <- tot_full
+    all_genes <- rownames(a1_full)
+  }
+  
+  sex_centered_all <- ifelse(sex_vec == "M", 0.5, -0.5)
+  
+  message("Fitting GAMLSS Beta-Binomial models for ", length(all_genes), " genes...")
+  
+  res <- vector("list", length(all_genes))
+  names(res) <- all_genes
+  n_success <- 0
+  n_fail_cells <- 0
+  n_fail_sex <- 0
+  n_fail_fit <- 0
+  
+  for (i in seq_along(all_genes)) {
+    if (i %% 200 == 0) message("Progress: ", i, "/", length(all_genes), " genes...")
+    g <- all_genes[i]
+    
+    y <- as.numeric(a1_use[g, ])
+    n <- as.numeric(tot_use[g, ])
+    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0) & is.finite(sex_centered_all)
+    
+    if (sum(keep) < max(min_cells, 2L)) {
+      n_fail_cells <- n_fail_cells + 1
+      next
+    }
+    
+    sex_num <- sex_centered_all[keep]
+    sex_sub <- factor(ifelse(sex_num > 0, "M", "F"), levels = c("F","M"))
+    
+    if (nlevels(sex_sub) < 2) {
+      n_fail_sex <- n_fail_sex + 1
+      next
+    }
+    
+    df <- data.frame(
+      y = y[keep],
+      n = n[keep],
+      sex_centered = sex_num
+    )
+    
+    # Fit GAMLSS model
+    fit_result <- tryCatch({
+      # Model: mu ~ sex_centered, sigma ~ 1 (constant dispersion)
+      mod <- gamlss(cbind(y, n - y) ~ sex_centered,
+                    sigma.formula = ~ 1,  # Constant dispersion (no sex effect)
+                    family = BB(mu.link = "logit", sigma.link = "log"),
+                    data = df,
+                    trace = FALSE,
+                    control = gamlss.control(n.cyc = 100))
+      
+      # Extract coefficients and SEs for Wald tests
+      coefs <- coef(mod)
+      vcov_mat <- vcov(mod)
+      
+      # Wald test for intercept (overall imbalance: is mu != 0.5?)
+      intercept <- coefs[1]
+      se_intercept <- sqrt(vcov_mat[1,1])
+      z_intercept <- intercept / se_intercept
+      p_intercept <- 2 * pnorm(abs(z_intercept), lower.tail = FALSE)
+      
+      # Wald test for sex coefficient (sex difference)
+      if (length(coefs) >= 2) {
+        sex_coef <- coefs[2]
+        se_sex <- sqrt(vcov_mat[2,2])
+        z_sex <- sex_coef / se_sex
+        p_sex <- 2 * pnorm(abs(z_sex), lower.tail = FALSE)
+      } else {
+        p_sex <- NA_real_
+      }
+      
+      # Extract dispersion parameter (sigma)
+      sigma_param <- exp(coef(mod, what = "sigma"))
+      
+      list(
+        p_intercept = p_intercept,
+        p_sex = p_sex,
+        intercept = intercept,
+        sex_coef = if(length(coefs) >= 2) sex_coef else NA_real_,
+        sigma = sigma_param,
+        deviance = deviance(mod),
+        df_residual = mod$df.res
+      )
+    }, error = function(e) NULL)
+    
+    if (is.null(fit_result)) {
+      n_fail_fit <- n_fail_fit + 1
+      next
+    }
+    
+    res[[g]] <- data.frame(
+      gene = g,
+      p_intercept = fit_result$p_intercept,
+      p_sex = fit_result$p_sex,
+      pvalue = fit_result$p_intercept,  # Primary test: overall imbalance
+      intercept_coef = fit_result$intercept,
+      sex_coef = fit_result$sex_coef,
+      sigma = fit_result$sigma,
+      deviance = fit_result$deviance,
+      df_residual = fit_result$df_residual,
+      stringsAsFactors = FALSE
+    )
+    n_success <- n_success + 1
+  }
+  
+  message("GAMLSS fit summary:")
+  message("  Successfully fitted: ", n_success)
+  message("  Failed (insufficient cells): ", n_fail_cells)
+  message("  Failed (one sex only): ", n_fail_sex)
+  message("  Failed (fit error): ", n_fail_fit)
+  
+  keep <- vapply(res, function(x) !is.null(x), logical(1))
+  if (!any(keep)) {
+    stop("No valid test results from gamlss_bb pipeline.")
+  }
+  
+  out <- do.call(rbind, res[keep])
+  out$padj_intercept <- stats::p.adjust(out$p_intercept, method = "BH")
+  out$padj_sex <- stats::p.adjust(out$p_sex, method = "BH")
+  out$padj <- out$padj_intercept  # Primary: overall imbalance
+  result <- out
+} else if (pipeline_type == "gamlss_sexdisp") {
+  # GAMLSS Beta-Binomial with SEX-SPECIFIC DISPERSION
+  suppressPackageStartupMessages({
+    library(gamlss)
+    library(gamlss.dist)
+  })
+  
+  # Load normalized data (same as gamlss_bb)
+  norm_path <- file.path(slice_dir, "normalized_counts.rds")
+  if (file.exists(norm_path)) {
+    message("Loading normalized counts from: ", norm_path)
+    norm_data <- readRDS(norm_path)
+    sce_cell_names <- colnames(a1_full)
+    norm_cell_names <- colnames(norm_data$a1)
+    cell_match <- match(sce_cell_names, norm_cell_names)
+    if (any(is.na(cell_match))) {
+      stop("Cell name mismatch between SCE and normalized data")
+    }
+    a1_use <- as.matrix(norm_data$a1[, cell_match, drop=FALSE])
+    tot_use <- as.matrix(norm_data$tot[, cell_match, drop=FALSE])
+    all_genes <- rownames(a1_use)
+    message("Using normalized data: ", nrow(a1_use), " genes x ", ncol(a1_use), " cells")
+  } else {
+    message("Normalized counts not found, using raw SCE data")
+    a1_use <- a1_full
+    tot_use <- tot_full
+    all_genes <- rownames(a1_full)
+  }
+  
+  sex_centered_all <- ifelse(sex_vec == "M", 0.5, -0.5)
+  
+  message("Fitting GAMLSS with SEX-SPECIFIC DISPERSION for ", length(all_genes), " genes...")
+  
+  res <- vector("list", length(all_genes))
+  names(res) <- all_genes
+  n_success <- 0
+  n_fail_cells <- 0
+  n_fail_sex <- 0
+  n_fail_fit <- 0
+  
+  for (i in seq_along(all_genes)) {
+    if (i %% 200 == 0) message("Progress: ", i, "/", length(all_genes), " genes...")
+    g <- all_genes[i]
+    
+    y <- as.numeric(a1_use[g, ])
+    n <- as.numeric(tot_use[g, ])
+    keep <- is.finite(y) & is.finite(n) & (n >= min_counts) & (n > 0) & is.finite(sex_centered_all)
+    
+    if (sum(keep) < max(min_cells, 2L)) {
+      n_fail_cells <- n_fail_cells + 1
+      next
+    }
+    
+    sex_num <- sex_centered_all[keep]
+    sex_sub <- factor(ifelse(sex_num > 0, "M", "F"), levels = c("F","M"))
+    
+    if (nlevels(sex_sub) < 2) {
+      n_fail_sex <- n_fail_sex + 1
+      next
+    }
+    
+    df <- data.frame(
+      y = y[keep],
+      n = n[keep],
+      sex_centered = sex_num
+    )
+    
+    # Fit GAMLSS model with sex-specific dispersion
+    fit_result <- tryCatch({
+      # Model: mu ~ sex_centered, sigma ~ sex_centered (SEX-SPECIFIC DISPERSION)
+      mod <- gamlss(cbind(y, n - y) ~ sex_centered,
+                    sigma.formula = ~ sex_centered,  # Sex-specific dispersion!
+                    family = BB(mu.link = "logit", sigma.link = "log"),
+                    data = df,
+                    trace = FALSE,
+                    control = gamlss.control(n.cyc = 100))
+      
+      # Extract coefficients for mu
+      coefs_mu <- coef(mod, what = "mu")
+      vcov_mu <- vcov(mod, what = "mu")
+      
+      # Wald test for intercept (overall imbalance)
+      intercept <- coefs_mu[1]
+      se_intercept <- sqrt(vcov_mu[1,1])
+      z_intercept <- intercept / se_intercept
+      p_intercept <- 2 * pnorm(abs(z_intercept), lower.tail = FALSE)
+      
+      # Wald test for sex coefficient (sex difference in mean)
+      if (length(coefs_mu) >= 2) {
+        sex_coef <- coefs_mu[2]
+        se_sex <- sqrt(vcov_mu[2,2])
+        z_sex <- sex_coef / se_sex
+        p_sex <- 2 * pnorm(abs(z_sex), lower.tail = FALSE)
+      } else {
+        p_sex <- NA_real_
+        sex_coef <- NA_real_
+      }
+      
+      # Extract dispersion parameters (sigma) for both sexes
+      coefs_sigma <- coef(mod, what = "sigma")
+      sigma_intercept <- coefs_sigma[1]
+      sigma_sex_coef <- if(length(coefs_sigma) >= 2) coefs_sigma[2] else NA_real_
+      
+      # Compute sex-specific sigma values
+      sigma_F <- exp(sigma_intercept - 0.5 * sigma_sex_coef)  # Female
+      sigma_M <- exp(sigma_intercept + 0.5 * sigma_sex_coef)  # Male
+      
+      list(
+        p_intercept = p_intercept,
+        p_sex = p_sex,
+        intercept = intercept,
+        sex_coef = sex_coef,
+        sigma_F = sigma_F,
+        sigma_M = sigma_M,
+        sigma_sex_coef = sigma_sex_coef,
+        deviance = deviance(mod),
+        df_residual = mod$df.res
+      )
+    }, error = function(e) NULL)
+    
+    if (is.null(fit_result)) {
+      n_fail_fit <- n_fail_fit + 1
+      next
+    }
+    
+    res[[g]] <- data.frame(
+      gene = g,
+      p_intercept = fit_result$p_intercept,
+      p_sex = fit_result$p_sex,
+      pvalue = fit_result$p_intercept,  # Primary: overall imbalance
+      intercept_coef = fit_result$intercept,
+      sex_coef = fit_result$sex_coef,
+      sigma_F = fit_result$sigma_F,
+      sigma_M = fit_result$sigma_M,
+      sigma_sex_coef = fit_result$sigma_sex_coef,
+      deviance = fit_result$deviance,
+      df_residual = fit_result$df_residual,
+      stringsAsFactors = FALSE
+    )
+    n_success <- n_success + 1
+  }
+  
+  message("GAMLSS (sex-specific dispersion) fit summary:")
+  message("  Successfully fitted: ", n_success)
+  message("  Failed (insufficient cells): ", n_fail_cells)
+  message("  Failed (one sex only): ", n_fail_sex)
+  message("  Failed (fit error): ", n_fail_fit)
+  
+  keep <- vapply(res, function(x) !is.null(x), logical(1))
+  if (!any(keep)) {
+    stop("No valid test results from gamlss_sexdisp pipeline.")
+  }
+  
+  out <- do.call(rbind, res[keep])
+  out$padj_intercept <- stats::p.adjust(out$p_intercept, method = "BH")
+  out$padj_sex <- stats::p.adjust(out$p_sex, method = "BH")
+  out$padj <- out$padj_intercept  # Primary: overall imbalance
+  result <- out
 } else {
   stop("Unhandled pipeline_type: ", pipeline_type)
 }

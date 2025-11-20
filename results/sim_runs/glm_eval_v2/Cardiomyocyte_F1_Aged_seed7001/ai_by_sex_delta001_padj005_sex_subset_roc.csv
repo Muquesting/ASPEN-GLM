@@ -1,0 +1,13 @@
+pipeline,sex_flag,subset,auroc
+ASPEN,FALSE,no_sex_effect,0.80632949727438
+ASPEN,TRUE,sex_effect,0.768595041322314
+Beta-Binomial Regression (glmmTMB),FALSE,no_sex_effect,0.893778898387939
+Beta-Binomial Regression (glmmTMB),TRUE,sex_effect,0.952191953815623
+GAMLSS Beta-Binomial,FALSE,no_sex_effect,0.892822369056733
+GAMLSS Beta-Binomial,TRUE,sex_effect,0.952898550724638
+GLM Dispersion (Raw),FALSE,no_sex_effect,0.908360012690721
+GLM Dispersion (Raw),TRUE,sex_effect,0.963169241825368
+GLM-Mapping-BB,FALSE,no_sex_effect,0.817296876351994
+GLM-Mapping-BB,TRUE,sex_effect,0.818541142651815
+Shrinkage GLM Dispersion,FALSE,no_sex_effect,0.908259063770875
+Shrinkage GLM Dispersion,TRUE,sex_effect,0.963169241825368
