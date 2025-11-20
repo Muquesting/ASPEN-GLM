@@ -36,7 +36,8 @@ Imports: doParallel,
          dplyr, 
          data.table, 
          VGAM,
-         tidyverse
+         tidyverse,
+         gamlss
 Depends: doParallel, 
          locfit, 
          ggplot2, 
