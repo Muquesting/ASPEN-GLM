@@ -116,35 +116,42 @@ fit_gene_gamlss <- function(i) {
     Sex = sex_sub[valid_cells]
   )
   
-  if (nlevels(droplevels(df$Sex)) < 2) return(NULL)
+  # Center Sex: Female = -0.5, Male = 0.5
+  df$SexCentered <- ifelse(df$Sex == "M", 0.5, -0.5)
   
   tryCatch({
-    # Fit Full Model (mu ~ Sex, sigma ~ Sex)
-    m_full <- gamlss(y ~ Sex, 
-                sigma.formula = ~ Sex, 
+    # Fit Full Model (mu ~ SexCentered, sigma ~ SexCentered)
+    m_full <- gamlss(y ~ SexCentered, 
+                sigma.formula = ~ SexCentered, 
                 family = BB, 
                 data = df, 
                 bd = df$bd, 
                 trace = FALSE)
     
-    # Fit Null Model (mu ~ 1, sigma ~ Sex)
-    # Testing for Mean Imbalance while controlling for Dispersion Imbalance
+    # Fit Null Model (mu ~ 1, sigma ~ SexCentered)
+    # Testing for Mean Imbalance between Sexes (Differential Abundance)
     m_null <- gamlss(y ~ 1, 
-                sigma.formula = ~ Sex, 
+                sigma.formula = ~ SexCentered, 
                 family = BB, 
                 data = df, 
                 bd = df$bd, 
                 trace = FALSE)
     
-    # Likelihood Ratio Test
-    # LR = -2 * (logLik_null - logLik_full)
-    # df = df_full - df_null = 1 (Sex parameter in mu)
+    # Likelihood Ratio Test for Sex Effect (Differential Imbalance)
     lik_full <- logLik(m_full)
     lik_null <- logLik(m_null)
     lr_stat <- -2 * (as.numeric(lik_null) - as.numeric(lik_full))
-    p_val <- pchisq(lr_stat, df = 1, lower.tail = FALSE)
+    p_val_sex <- pchisq(lr_stat, df = 1, lower.tail = FALSE)
     
-    # Extract Coefficients from Full Model
+    # Wald Test for Intercept (Overall Imbalance vs 0.5)
+    # H0: Intercept = 0 (i.e., mu = 0.5 at SexCentered=0)
+    summ <- summary(m_full, save = TRUE)
+    # coef table: Estimate, Std. Error, t value, Pr(>|t|)
+    # Row 1 is usually (Intercept) for mu
+    mu_intercept_pval <- summ$coef.table[1, 4] 
+    mu_intercept_est <- summ$coef.table[1, 1]
+    
+    # Extract Coefficients
     mu_coef <- coef(m_full, what = "mu")
     sigma_coef <- coef(m_full, what = "sigma")
     
@@ -166,17 +173,17 @@ fit_gene_gamlss <- function(i) {
     
     list(
       gene = g_name,
-      mu_intercept = mu_coef["(Intercept)"],
-      mu_sexM = mu_coef["SexM"],
+      mu_intercept = mu_intercept_est,
+      mu_sex_coeff = mu_coef["SexCentered"],
       sigma_intercept = sigma_coef["(Intercept)"],
-      sigma_sexM = sigma_coef["SexM"],
-      lrt_stat = lr_stat,
-      lrt_pval = p_val,
-      bb_theta = aspen_theta, # For shrinkage
+      sigma_sex_coeff = sigma_coef["SexCentered"],
+      pval_imbalance = mu_intercept_pval, # Test vs 0.5
+      pval_sex_diff = p_val_sex,          # Test Sex Effect
+      bb_theta = aspen_theta, 
       bb_mu = avg_mu,
       alpha = alpha_val,
       beta = beta_val,
-      tot_gene_mean = mean(bd_vec), # For shrinkage
+      tot_gene_mean = mean(bd_vec), 
       aic = AIC(m_full),
       converged = m_full$converged
     )
