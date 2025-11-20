@@ -157,14 +157,12 @@ collect_pvalues <- function() {
   bb_fixed <- compute_bb_sex_tests(theta_fixed, "GLM-adjusted Beta-binomial")
   results[["fixed"]] <- bb_fixed
 
-  # Beta-Binomial Regression
-  glm_est <- file.path(pipeline_dir, "glmmtmb", "glmmtmb_allcells_withsex_noimp", "SimCell", "SimCondition", "estimates_global_shrunk.csv")
-  est_glm <- fread(glm_est, data.table = FALSE)
-  theta_col2 <- if ("thetaCorrected" %in% names(est_glm)) "thetaCorrected" else if ("bb_theta" %in% names(est_glm)) "bb_theta" else stop("theta column missing for glmmtmb pipeline.")
-  gene_col_glm <- if ("V1" %in% names(est_glm)) "V1" else if ("X" %in% names(est_glm)) "X" else stop("Gene column missing in glmmtmb estimates.")
-  theta_glm <- setNames(est_glm[[theta_col2]], est_glm[[gene_col_glm]])
-  bb_glm <- compute_bb_sex_tests(theta_glm, "Beta-Binomial Regression")
-  results[["glmmtmb"]] <- bb_glm
+  # Beta-Binomial Regression - use Wald test for sex coefficient
+  glm_path <- file.path(pipeline_dir, "glmmtmb", "glmmtmb_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_glmmtmb_mu.csv")
+  glm_test <- read_pipeline_file(glm_path, c("gene","X"), "p_sex")
+  glm_test$statistic <- NA_real_
+  glm_test$pipeline <- "Beta-Binomial Regression"
+  results[["glmmtmb"]] <- glm_test
 
   results <- results[!vapply(results, is.null, logical(1))]
   if (!length(results)) stop("No p-values collected for any pipeline.")

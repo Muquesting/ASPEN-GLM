@@ -67,7 +67,7 @@ PIPELINES <- list(
     name = "glmmtmb",
     label = "Beta-Binomial Regression",
     rel_path = file.path("glmmtmb", "glmmtmb_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_glmmtmb_mu.csv"),
-    padj_col = "padj"
+    padj_col = "padj_intercept"  # Use Wald test for intercept (overall imbalance)
   ),
   list(
     name = "ver",

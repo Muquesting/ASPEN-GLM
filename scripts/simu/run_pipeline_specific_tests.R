@@ -237,6 +237,8 @@ bb_lrt_tests <- function(genes, a1, tot, sex, theta_vec, mu_lookup, min_counts, 
     if (length(unique(sex_sub)) < 2) next
     k_vec <- y[keep]
     n_vec <- n[keep]
+    
+    # LRT (original)
     mu_alt <- ifelse(sex_sub == "F", mu_pair["F"], mu_pair["M"])
     ll_alt <- bb_loglik(k_vec, n_vec, mu_alt, theta)
     ll_null <- bb_loglik(k_vec, n_vec, rep(0.5, length(k_vec)), theta)
@@ -244,14 +246,70 @@ bb_lrt_tests <- function(genes, a1, tot, sex, theta_vec, mu_lookup, min_counts, 
     lrt <- 2 * (ll_alt - ll_null)
     if (!is.finite(lrt)) next
     if (lrt < 0 && abs(lrt) < 1e-6) lrt <- 0
-    pval <- stats::pchisq(max(lrt, 0), df = 2, lower.tail = FALSE)
+    pval_lrt <- stats::pchisq(max(lrt, 0), df = 2, lower.tail = FALSE)
+    
+    # Wald tests using GLM on the same data
+    # Fit Beta-Binomial GLM to get standard errors
+    sex_centered <- ifelse(sex_sub == "M", 0.5, -0.5)
+    df_fit <- data.frame(y = k_vec, n = n_vec, sex_centered = sex_centered)
+    
+    # Use quasi-binomial to get coefficients and SE
+    fit <- tryCatch({
+      stats::glm(cbind(y, n - y) ~ sex_centered, 
+                 family = stats::quasibinomial(), 
+                 data = df_fit,
+                 control = stats::glm.control(maxit = 100))
+    }, error = function(e) NULL)
+    
+    pval_intercept <- NA_real_
+    pval_sex <- NA_real_
+    
+    if (!is.null(fit) && is.finite(fit$deviance)) {
+      # Get standard errors
+      vc <- tryCatch(stats::vcov(fit), error = function(e) NULL)
+      if (!is.null(vc)) {
+        coefs <- stats::coef(fit)
+        se <- sqrt(diag(vc))
+        
+        # Adjust SE for Beta-Binomial overdispersion
+        # phi from quasi-binomial, but we want to use our theta
+        phi_glm <- summary(fit)$dispersion
+        # Convert theta to phi: phi ≈ 1 + theta for small theta
+        # More accurate: var = mu(1-mu) * [1 + (n-1)*theta] / n for BB
+        # For GLM: var = phi * mu(1-mu)
+        # Approximate scaling
+        phi_bb <- 1 + theta  # Simplified conversion
+        if (is.finite(phi_glm) && phi_glm > 0) {
+          scale_factor <- sqrt(phi_bb / phi_glm)
+          se <- se * scale_factor
+        }
+        
+        df_resid <- max(fit$df.residual, 1)
+        
+        # Wald test for intercept (H0: intercept = logit(0.5) = 0)
+        if ("(Intercept)" %in% names(coefs)) {
+          t_int <- coefs["(Intercept)"] / se["(Intercept)"]
+          pval_intercept <- 2 * stats::pt(abs(t_int), df = df_resid, lower.tail = FALSE)
+        }
+        
+        # Wald test for sex (H0: sex_coef = 0)
+        sex_term <- grep("sex_centered", names(coefs), value = TRUE)
+        if (length(sex_term) > 0) {
+          t_sex <- coefs[sex_term[1]] / se[sex_term[1]]
+          pval_sex <- 2 * stats::pt(abs(t_sex), df = df_resid, lower.tail = FALSE)
+        }
+      }
+    }
+    
     res[[g]] <- data.frame(
       gene = g,
       statistic = lrt,
       df = 2,
       logLik_alt = ll_alt,
       logLik_null = ll_null,
-      pvalue = pval,
+      pvalue = pval_lrt,  # Keep LRT as main p-value for compatibility
+      p_intercept = pval_intercept,  # NEW: for overall imbalance
+      p_sex = pval_sex,               # NEW: for sex-specific effect
       stringsAsFactors = FALSE
     )
   }
@@ -259,6 +317,8 @@ bb_lrt_tests <- function(genes, a1, tot, sex, theta_vec, mu_lookup, min_counts, 
   if (!any(keep)) return(NULL)
   out <- do.call(rbind, res[keep])
   out$padj <- stats::p.adjust(out$pvalue, method = "BH")
+  out$padj_intercept <- stats::p.adjust(out$p_intercept, method = "BH")
+  out$padj_sex <- stats::p.adjust(out$p_sex, method = "BH")
   out
 }
 
