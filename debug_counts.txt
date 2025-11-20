@@ -1,0 +1,16 @@
+Table of Cell Types in F1_Aged:
+
+          B_cell Cardiac_Neuronal    Cardiomyocyte      Coronary_EC 
+              22               14             5825             1114 
+  Endocardial_EC       Fibroblast     Lymphatic_EC      Mesothelial 
+             431             2905              121              121 
+         Myeloid        Pericytes    Smooth_Muscle           T_cell 
+             766              945               32               63 
+       Unknown_2        Unknown_3 
+               2                9 
+
+Total cells for Cardiomyocyte in F1_Aged (F/M): 5825
+Total genes in object: 48433
+Genes passing rowSums(tot > 0) >= 10: 14019
+Genes passing rowSums(tot > 1) >= 10: 6712
+Genes passing valid_cells >= 5 after normalization & rounding: 6712

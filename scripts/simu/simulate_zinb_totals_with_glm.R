@@ -29,7 +29,7 @@ seed            <- as.integer(args[[5]])
 mu_grid_str     <- if (length(args) >= 6) args[[6]] else "0.10,0.30,0.35,0.40,0.42,0.45,0.46,0.47,0.48,0.49,0.50,0.51,0.52,0.53,0.54,0.55,0.57,0.60,0.65,0.70,0.90"
 sex_prob_arg    <- if (length(args) >= 7) args[[7]] else "auto"
 sex_p_cut       <- if (length(args) >= 8) as.numeric(args[[8]]) else 0.05
-theta_col       <- if (length(args) >= 9) args[[9]] else "thetaCorrected"
+theta_col       <- if (length(args) >= 9) args[[9]] else "bb_theta"
 
 set.seed(seed)
 

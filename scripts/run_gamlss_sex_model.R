@@ -160,23 +160,34 @@ fit_gene_gamlss <- function(i) {
   # Center Sex: Female = -0.5, Male = 0.5
   df$SexCentered <- ifelse(df$Sex == "M", 0.5, -0.5)
   
+  # Calculate reasonable starting values to help the optimizer
+  # This prevents it from getting lost in the flat likelihood surface
+  mu_start_guess <- sum(df$y * df$bd) / sum(df$bd)  # Weighted mean
+  mu_start_guess <- max(0.01, min(0.99, mu_start_guess))  # Clamp away from boundaries
+  
   tryCatch({
-    # Fit Full Model (mu ~ SexCentered, sigma ~ 1)
-    # Using CONSTANT dispersion to avoid numerical instability
+    # Fit Full Model with explicit starting values
     m_full <- gamlss(y ~ SexCentered, 
-                sigma.formula = ~ 1,  # Constant dispersion
-                family = BB, 
+                sigma.formula = ~ 1,
+                family = BB(mu.link = "logit", sigma.link = "log"), 
                 data = df, 
-                bd = df$bd, 
+                bd = df$bd,
+                # Help the optimizer with reasonable starting values
+                mu.start = rep(qlogis(mu_start_guess), nrow(df)),
+                sigma.start = rep(-2, nrow(df)),  # log(0.135) ≈ -2
+                # Loosen convergence criteria
+                control = gamlss.control(n.cyc = 50, trace = FALSE, c.crit = 0.01),
                 trace = FALSE)
     
-    # Fit Null Model (mu ~ 1, sigma ~ 1)
-    # Testing for Mean Imbalance
+    # Fit Null Model with starting values
     m_null <- gamlss(y ~ 1, 
-                sigma.formula = ~ 1,  # Constant dispersion
-                family = BB, 
+                sigma.formula = ~ 1,
+                family = BB(mu.link = "logit", sigma.link = "log"),
                 data = df, 
-                bd = df$bd, 
+                bd = df$bd,
+                mu.start = rep(qlogis(mu_start_guess), nrow(df)),
+                sigma.start = rep(-2, nrow(df)),
+                control = gamlss.control(n.cyc = 50, trace = FALSE, c.crit = 0.01),
                 trace = FALSE)
     
     # Likelihood Ratio Test for Sex Effect (Differential Imbalance)

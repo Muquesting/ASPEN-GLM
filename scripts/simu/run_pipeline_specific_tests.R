@@ -144,7 +144,7 @@ bb_mean_passthrough <- function(result_file) {
   )
 }
 
-glm_phi_tests <- function(genes, a1, tot, sex_labels, phi_shrunk_vec, min_counts, min_cells, base_mu = 0.5) {
+glm_phi_tests <- function(genes, a1, tot, sex_labels, phi_shrunk_vec, min_counts, min_cells, base_mu = 0.5, use_shrunken = TRUE) {
   res <- vector("list", length(genes))
   names(res) <- genes
   sex_centered_all <- ifelse(sex_labels == "M", 0.5, -0.5)
@@ -175,8 +175,15 @@ glm_phi_tests <- function(genes, a1, tot, sex_labels, phi_shrunk_vec, min_counts
     beta <- stats::coef(fit)
     sm <- summary(fit, dispersion = fit$dispersion)
     phi_hat <- as.numeric(sm$dispersion)
-    phi_use <- phi_shrunk_vec[g]
-    if (!is.finite(phi_use) || phi_use <= 0) phi_use <- phi_hat
+    
+    # Decide which phi to use for scaling
+    if (use_shrunken) {
+      phi_use <- phi_shrunk_vec[g]
+      if (!is.finite(phi_use) || phi_use <= 0) phi_use <- phi_hat
+    } else {
+      phi_use <- phi_hat
+    }
+    
     scale_factor <- if (is.finite(phi_hat) && phi_hat > 0) sqrt(phi_use / phi_hat) else 1
     se_adj <- se_raw * scale_factor
     df_res <- max(fit$df.residual, 1)
@@ -222,6 +229,7 @@ bb_loglik <- function(k, n, mu, theta, eps = 1e-6) {
   sum(lchoose(n, k) + lbeta(k + alpha, n - k + beta) - lbeta(alpha, beta))
 }
 
+# bb_lrt_tests is kept for fixed_mu if needed, but glmmtmb_mu is now routed to glm_phi_tests
 bb_lrt_tests <- function(genes, a1, tot, sex, theta_vec, mu_lookup, min_counts, min_cells) {
   res <- vector("list", length(genes))
   names(res) <- genes
@@ -249,68 +257,15 @@ bb_lrt_tests <- function(genes, a1, tot, sex, theta_vec, mu_lookup, min_counts, 
     if (lrt < 0 && abs(lrt) < 1e-6) lrt <- 0
     pval_lrt <- stats::pchisq(max(lrt, 0), df = 2, lower.tail = FALSE)
     
-    # Wald tests using GLM on the same data
-    # Fit Beta-Binomial GLM to get standard errors
-    sex_centered <- ifelse(sex_sub == "M", 0.5, -0.5)
-    df_fit <- data.frame(y = k_vec, n = n_vec, sex_centered = sex_centered)
-    
-    # Use quasi-binomial to get coefficients and SE
-    fit <- tryCatch({
-      stats::glm(cbind(y, n - y) ~ sex_centered, 
-                 family = stats::quasibinomial(), 
-                 data = df_fit,
-                 control = stats::glm.control(maxit = 100))
-    }, error = function(e) NULL)
-    
-    pval_intercept <- NA_real_
-    pval_sex <- NA_real_
-    
-    if (!is.null(fit) && is.finite(fit$deviance)) {
-      # Get standard errors
-      vc <- tryCatch(stats::vcov(fit), error = function(e) NULL)
-      if (!is.null(vc)) {
-        coefs <- stats::coef(fit)
-        se <- sqrt(diag(vc))
-        
-        # Adjust SE for Beta-Binomial overdispersion
-        # phi from quasi-binomial, but we want to use our theta
-        phi_glm <- summary(fit)$dispersion
-        # Convert theta to phi: phi ≈ 1 + theta for small theta
-        # More accurate: var = mu(1-mu) * [1 + (n-1)*theta] / n for BB
-        # For GLM: var = phi * mu(1-mu)
-        # Approximate scaling
-        phi_bb <- 1 + theta  # Simplified conversion
-        if (is.finite(phi_glm) && phi_glm > 0) {
-          scale_factor <- sqrt(phi_bb / phi_glm)
-          se <- se * scale_factor
-        }
-        
-        df_resid <- max(fit$df.residual, 1)
-        
-        # Wald test for intercept (H0: intercept = logit(0.5) = 0)
-        if ("(Intercept)" %in% names(coefs)) {
-          t_int <- coefs["(Intercept)"] / se["(Intercept)"]
-          pval_intercept <- 2 * stats::pt(abs(t_int), df = df_resid, lower.tail = FALSE)
-        }
-        
-        # Wald test for sex (H0: sex_coef = 0)
-        sex_term <- grep("sex_centered", names(coefs), value = TRUE)
-        if (length(sex_term) > 0) {
-          t_sex <- coefs[sex_term[1]] / se[sex_term[1]]
-          pval_sex <- 2 * stats::pt(abs(t_sex), df = df_resid, lower.tail = FALSE)
-        }
-      }
-    }
-    
     res[[g]] <- data.frame(
       gene = g,
       statistic = lrt,
       df = 2,
       logLik_alt = ll_alt,
       logLik_null = ll_null,
-      pvalue = pval_lrt,  # Keep LRT as main p-value for compatibility
-      p_intercept = pval_intercept,  # NEW: for overall imbalance
-      p_sex = pval_sex,               # NEW: for sex-specific effect
+      pvalue = pval_lrt,
+      p_intercept = NA_real_, 
+      p_sex = NA_real_,
       stringsAsFactors = FALSE
     )
   }
@@ -318,8 +273,8 @@ bb_lrt_tests <- function(genes, a1, tot, sex, theta_vec, mu_lookup, min_counts, 
   if (!any(keep)) return(NULL)
   out <- do.call(rbind, res[keep])
   out$padj <- stats::p.adjust(out$pvalue, method = "BH")
-  out$padj_intercept <- stats::p.adjust(out$p_intercept, method = "BH")
-  out$padj_sex <- stats::p.adjust(out$p_sex, method = "BH")
+  out$padj_intercept <- rep(NA_real_, nrow(out))
+  out$padj_sex <- rep(NA_real_, nrow(out))
   out
 }
 
@@ -333,8 +288,15 @@ if (pipeline_type %in% c("bb_mean", "ver", "orig")) {
   phi_col <- if ("phi_shrunk" %in% colnames(estimates)) "phi_shrunk" else if ("phi" %in% colnames(estimates)) "phi" else NA_character_
   if (!nzchar(phi_col)) stop("phi_glm requires phi_shrunk column in estimates.")
   phi_vec <- setNames(as.numeric(estimates[genes_available, phi_col]), genes_available)
-  result <- glm_phi_tests(genes_available, a1_full, tot_full, sex_vec, phi_vec, min_counts, min_cells, base_mu = base_mu)
-} else if (pipeline_type %in% c("fixed_mu", "glmmtmb_mu")) {
+  # Use shrunken dispersion
+  result <- glm_phi_tests(genes_available, a1_full, tot_full, sex_vec, phi_vec, min_counts, min_cells, base_mu = base_mu, use_shrunken = TRUE)
+} else if (pipeline_type == "glmmtmb_mu") {
+  # Standard Beta-Binomial Regression: Use GLM with RAW dispersion (phi_hat)
+  # We pass dummy phi_vec because use_shrunken=FALSE will ignore it
+  phi_vec <- rep(1, length(genes_available)) 
+  names(phi_vec) <- genes_available
+  result <- glm_phi_tests(genes_available, a1_full, tot_full, sex_vec, phi_vec, min_counts, min_cells, base_mu = base_mu, use_shrunken = FALSE)
+} else if (pipeline_type == "fixed_mu") {
   theta_col <- if ("thetaCorrected" %in% colnames(estimates)) "thetaCorrected" else if ("bb_theta" %in% colnames(estimates)) "bb_theta" else NA_character_
   if (!nzchar(theta_col)) stop(pipeline_type, " requires thetaCorrected or bb_theta column in estimates.")
   theta_vec <- setNames(as.numeric(estimates[genes_available, theta_col]), genes_available)
