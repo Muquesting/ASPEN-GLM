@@ -86,8 +86,8 @@ tot_sub <- assay(sce, "tot")[, cells_idx, drop = FALSE]
 sex_sub <- factor(sex_all[cells_idx], levels = c("F", "M"))
 
 # Filter Genes
-# Keep genes with some coverage
-keep_genes <- rowSums(tot_sub > 0) >= 10
+# Reference uses: rowSums(tots > 1) >= 10
+keep_genes <- rowSums(tot_sub > 1) >= 10
 a1_sub <- a1_sub[keep_genes, , drop = FALSE]
 tot_sub <- tot_sub[keep_genes, , drop = FALSE]
 
@@ -98,21 +98,62 @@ if (nrow(a1_sub) > max_genes) {
   tot_sub <- tot_sub[ord[1:max_genes], , drop = FALSE]
 }
 
+# Normalization (Size Factors)
+# Based on reference: run_glm_shrinkage_celltype_pipeline_sex_noimp.R
+norm_sf <- colSums(tot_sub)
+if (any(norm_sf == 0)) norm_sf[norm_sf == 0] <- 1
+norm_sf <- norm_sf / exp(mean(log(norm_sf)))
+
+# Apply normalization
+# Note: GAMLSS BB needs integer counts for 'y' and 'bd' if we use the raw counts.
+# But if we use normalized counts, they become non-integers.
+# The Beta-Binomial distribution is defined for integers (k successes in n trials).
+# Standard GLM approaches for "normalized" data often use weights or offsets.
+# However, the reference script creates 'a1_norm' and 'tot_norm' and passes them to 'estim_glmparams'.
+# Let's check if 'estim_glmparams' handles non-integers.
+# It uses 'glm' with 'quasibinomial' or custom fitting.
+# GAMLSS 'BB' family strictly requires integer response variables (0, 1, ..., n).
+# If we pass non-integers to BB, it might fail or warn.
+# 
+# Alternative: Use an offset? 
+# GAMLSS allows offsets. log(mu) = ... + offset.
+# But for BB, mu is a probability (0,1). Offset is usually for count data (Poisson/NB).
+#
+# Let's look at how the reference does it.
+# It passes 'a1_norm' and 'tot_norm' to 'estim_glmparams'.
+# In 'estim_glmparams', it likely uses 'glm(cbind(y, n-y), family=quasibinomial)'.
+# Quasibinomial *can* handle non-integers (it just warns).
+#
+# BUT GAMLSS BB implementation:
+# The dBB function uses lchoose(n, y). If n, y are non-integers, lchoose works (using gamma functions).
+# So it *might* work.
+# Let's try using the normalized values directly, as requested.
+# "please use noramlised edition as well"
+
+a1_norm <- sweep(a1_sub, 2, norm_sf, "/")
+tot_norm <- sweep(tot_sub, 2, norm_sf, "/")
+
 gene_names <- rownames(a1_sub)
-message("Fitting GAMLSS for ", length(gene_names), " genes...")
+message("Fitting GAMLSS for ", length(gene_names), " genes (Normalized)...")
 
 # Function to fit GAMLSS for one gene
 fit_gene_gamlss <- function(i) {
   g_name <- gene_names[i]
+  # Use RAW Counts (not normalized)
+  # The Beta-Binomial model inherently accounts for different library sizes
+  # through the 'bd' (binomial denominator) parameter.
+  # Normalization+rounding causes too many genes to become all-zero.
   y_vec <- as.numeric(a1_sub[i, ])
   bd_vec <- as.numeric(tot_sub[i, ])
   
   valid_cells <- bd_vec > 0
   if (sum(valid_cells) < 5) return(NULL)
   
+  # GAMLSS BB family requires y to be a PROPORTION (0-1), not a count!
+  # bd is the binomial denominator (total trials)
   df <- data.frame(
-    y = y_vec[valid_cells],
-    bd = bd_vec[valid_cells],
+    y = y_vec[valid_cells] / bd_vec[valid_cells],  # Proportion
+    bd = bd_vec[valid_cells],                       # Total trials
     Sex = sex_sub[valid_cells]
   )
   
@@ -120,18 +161,19 @@ fit_gene_gamlss <- function(i) {
   df$SexCentered <- ifelse(df$Sex == "M", 0.5, -0.5)
   
   tryCatch({
-    # Fit Full Model (mu ~ SexCentered, sigma ~ SexCentered)
+    # Fit Full Model (mu ~ SexCentered, sigma ~ 1)
+    # Using CONSTANT dispersion to avoid numerical instability
     m_full <- gamlss(y ~ SexCentered, 
-                sigma.formula = ~ SexCentered, 
+                sigma.formula = ~ 1,  # Constant dispersion
                 family = BB, 
                 data = df, 
                 bd = df$bd, 
                 trace = FALSE)
     
-    # Fit Null Model (mu ~ 1, sigma ~ SexCentered)
-    # Testing for Mean Imbalance between Sexes (Differential Abundance)
+    # Fit Null Model (mu ~ 1, sigma ~ 1)
+    # Testing for Mean Imbalance
     m_null <- gamlss(y ~ 1, 
-                sigma.formula = ~ SexCentered, 
+                sigma.formula = ~ 1,  # Constant dispersion
                 family = BB, 
                 data = df, 
                 bd = df$bd, 
@@ -176,7 +218,6 @@ fit_gene_gamlss <- function(i) {
       mu_intercept = mu_intercept_est,
       mu_sex_coeff = mu_coef["SexCentered"],
       sigma_intercept = sigma_coef["(Intercept)"],
-      sigma_sex_coeff = sigma_coef["SexCentered"],
       pval_imbalance = mu_intercept_pval, # Test vs 0.5
       pval_sex_diff = p_val_sex,          # Test Sex Effect
       bb_theta = aspen_theta, 
