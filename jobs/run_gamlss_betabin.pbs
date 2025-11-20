@@ -22,7 +22,7 @@ export OPENBLAS_NUM_THREADS=16
 INPUT_SCE=/g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered_with_XY.rds
 OUTPUT_ROOT=results/GLM_gamlss_betabin_sex_noimp
 
-echo "[`date`] Running GAMLSS Beta-Binomial pipeline…"
+echo "[`date`] Running GAMLSS Beta-Binomial pipeline (FIXED standalone)…"
 Rscript scripts/run_gamlss_betabin_sex_noimp.R \
   "$INPUT_SCE" \
   "$OUTPUT_ROOT" \

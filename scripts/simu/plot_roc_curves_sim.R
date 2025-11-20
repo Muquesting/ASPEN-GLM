@@ -58,23 +58,18 @@ PIPELINES <- list(
     padj_col = "padj"
   ),
   list(
-    name = "glmmtmb_quasibin",
-    label = "GLM Dispersion (Raw)",
-    rel_path = file.path("glmmtmb_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_glmmtmb_mu.csv"),
-    padj_col = "padj_intercept"
-  ),
-  list(
     name = "glmmtmb_true",
     label = "Beta-Binomial Regression (glmmTMB)",
     rel_path = file.path("glmmtmb_true", "SimCell", "SimCondition", "glmmtmb_true_results_norm.csv"),
     padj_col = "padj_intercept"
   ),
-  list(
-    name = "gamlss_bb",
-    label = "GAMLSS Beta-Binomial",
-    rel_path = file.path("gamlss_bb_test", "SimCell", "SimCondition", "gamlss_bb_results.csv"),
-    padj_col = "padj_intercept"
-  ),
+  # GAMLSS simulation results not generated separately - using from pipeline tests
+  #list(
+  #  name = "gamlss_bb",
+  #  label = "GAMLSS Beta-Binomial",
+  #  rel_path = file.path("gamlss_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_gamlss_mu.csv"),
+  #  padj_col = "padj_intercept"
+  #),
   list(
     name = "ver",
     label = "ASPEN",
