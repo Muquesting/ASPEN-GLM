@@ -148,7 +148,8 @@ glm_phi_tests <- function(genes, a1, tot, sex_labels, phi_shrunk_vec, min_counts
   res <- vector("list", length(genes))
   names(res) <- genes
   sex_centered_all <- ifelse(sex_labels == "M", 0.5, -0.5)
-  target_beta0 <- qlogis(pmin(pmax(base_mu, 1e-6), 1 - 1e-6))
+  # Test against mu = 0.5 (balanced) for imbalance test
+  target_beta0 <- 0  # qlogis(0.5) = 0
   for (g in genes) {
     y <- as.numeric(a1[g, ])
     n <- as.numeric(tot[g, ])
