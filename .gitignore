@@ -13,3 +13,6 @@ data/aspensce_F1_filtered.rds
 data/*.rds
 
 gencode.vM33.annotation.gtf
+
+# Ignore simulation results
+results/sim_runs/

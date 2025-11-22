@@ -1,8 +1,0 @@
-pipeline,auroc,positives,negatives,display_label
-Beta-Binomial Regression (glmmTMB),0.936520513344556,1174,826,Beta-Binomial Regression (glmmTMB) (AUROC=0.937)
-GAMLSS Beta-Binomial,0.936940618958997,1174,826,GAMLSS Beta-Binomial (AUROC=0.937)
-GLM Dispersion (Raw),0.918399462115,1174,826,GLM Dispersion (Raw) (AUROC=0.918)
-Shrinkage GLM Dispersion,0.918987258230183,1174,826,Shrinkage GLM Dispersion (AUROC=0.919)
-GLM-Mapping-BB,0.811208137573168,1174,826,GLM-Mapping-BB (AUROC=0.811)
-ASPEN,0.824516047865167,1174,826,ASPEN (AUROC=0.825)
-scDALI,0.957849862435083,1174,826,scDALI (AUROC=0.958)
