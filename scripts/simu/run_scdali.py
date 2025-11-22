@@ -1,0 +1,97 @@
+
+import sys
+import os
+import pandas as pd
+import numpy as np
+from statsmodels.stats.multitest import multipletests
+from scdali.run_scdali_tests import run_tests
+
+def main():
+    if len(sys.argv) < 4:
+        print("Usage: python run_scdali.py <a1_csv> <tot_csv> <output_csv>")
+        sys.exit(1)
+
+    a1_path = sys.argv[1]
+    tot_path = sys.argv[2]
+    out_path = sys.argv[3]
+
+    print(f"Loading data from {a1_path} and {tot_path}...")
+    # Read with index_col=0 to get gene names from the first column
+    A_df = pd.read_csv(a1_path, index_col=0)
+    D_df = pd.read_csv(tot_path, index_col=0)
+    
+    A = A_df.values
+    D = D_df.values
+    genes = A_df.index.values
+
+    print(f"Data shape: {A.shape} (cells x genes)")
+
+    # Run scDALI-Hom
+    # base_rate = 0.5 (null hypothesis)
+    print("Running scDALI-Hom...")
+    results = run_tests(
+        A=A,
+        D=D,
+        model='scDALI-Hom',
+        base_rate=0.5,
+        n_cores=4
+    )
+
+    # Use returned IDs to align results
+    if 'ids' in results:
+        res_genes = results['ids']
+        res_pvals = results['pvalues'].flatten()
+        
+        # Create DataFrame from results
+        res_df = pd.DataFrame({
+            'gene': res_genes,
+            'pvalue': res_pvals
+        })
+        
+        # Merge with original genes to ensure all are present
+        # (scDALI might filter some out)
+        all_genes_df = pd.DataFrame({'gene': genes})
+        final_df = pd.merge(all_genes_df, res_df, on='gene', how='left')
+        
+        # Fill NA p-values with 1.0 (or keep NA)
+        # Usually better to keep NA for "not tested"
+        
+        pvalues = final_df['pvalue'].values
+        
+        # Calculate padj (BH) - only for tested genes
+        mask = ~np.isnan(pvalues)
+        padj = np.full_like(pvalues, np.nan)
+        if np.sum(mask) > 0:
+            reject, p_corrected, _, _ = multipletests(pvalues[mask], method='fdr_bh')
+            padj[mask] = p_corrected
+            
+        final_df['padj'] = padj
+        final_df['p_intercept'] = final_df['pvalue']
+        final_df['padj_intercept'] = final_df['padj']
+        
+        df = final_df
+    else:
+        # Fallback if no IDs (should not happen based on debug)
+        print("Warning: No IDs returned by scDALI. Assuming order is preserved but length mismatch might occur.")
+        pvalues = results['pvalues'].flatten()
+        if len(pvalues) != len(genes):
+             print(f"Error: Length mismatch. Genes: {len(genes)}, P-values: {len(pvalues)}")
+             # Try to pad or truncate? No, safer to fail or use what we have if possible.
+             # But we know 'ids' exists now.
+             sys.exit(1)
+             
+        reject, padj, _, _ = multipletests(pvalues, method='fdr_bh')
+        df = pd.DataFrame({
+            'gene': genes,
+            'p_intercept': pvalues,
+            'pvalue': pvalues,
+            'padj': padj,
+            'padj_intercept': padj
+        })
+
+    # Save results
+    df.to_csv(out_path, index=False)
+    print(f"Saved results to {out_path}")
+
+if __name__ == "__main__":
+    main()

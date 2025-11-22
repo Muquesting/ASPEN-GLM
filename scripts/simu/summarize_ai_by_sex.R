@@ -41,7 +41,7 @@ if (!"p_M" %in% names(truth_df)) {
 }
 truth_df$mu_global <- (truth_df$p_F + truth_df$p_M) / 2
 delta_env <- suppressWarnings(as.numeric(Sys.getenv("SIM_BALANCED_DELTA", NA)))
-delta <- if (is.finite(delta_env) && delta_env >= 0) delta_env else 0.05
+delta <- if (is.finite(delta_env) && delta_env >= 0) delta_env else 0.01
 truth_df$positive <- abs(truth_df$mu_global - 0.5) > delta
 truth_df$sex_flag <- as.logical(truth_df$sex_flag)
 truth_df$class <- with(truth_df,
@@ -54,34 +54,39 @@ truth_df$gene_unique <- make.unique(truth_df$gene, sep = "_rep")
 aspen_rel_root <- Sys.getenv("SIM_ASPEN_REL_PATH", "ver")
 PIPELINES <- list(
   list(
-    name = "GLM-Mapping-BB",
-    rel_path = file.path("orig_allcells_withsex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
-    padj_col = "padj_mean"
-  ),
-  list(
-    name = "Shrinkage GLM Dispersion",
-    rel_path = file.path("phi_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_phi_glm.csv"),
-    padj_col = "padj"
-  ),
-  list(
-    name = "GLM Dispersion (Raw)",
-    rel_path = file.path("glmmtmb_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_glmmtmb_mu.csv"),
-    padj_col = "padj"
-  ),
-  list(
     name = "Beta-Binomial Regression (glmmTMB)",
-    rel_path = file.path("glmmtmb_true", "SimCell", "SimCondition", "glmmtmb_true_results_norm.csv"),
-    padj_col = "padj"
+    rel_path = file.path("glmmtmb_glmmtmb_betabin", "SimCell", "SimCondition", "phi_glm_results_norm.csv"),
+    padj_col = "padj_intercept"
   ),
   list(
     name = "GAMLSS Beta-Binomial",
-    rel_path = file.path("gamlss_bb_test", "SimCell", "SimCondition", "gamlss_bb_results.csv"),
-    padj_col = "padj"
+    rel_path = file.path("gamlss_gamlss_betabin", "SimCell", "SimCondition", "phi_glm_results_norm.csv"),
+    padj_col = "padj_intercept"
+  ),
+  list(
+    name = "GLM Dispersion (Raw)",
+    rel_path = file.path("glm_raw_rawdisp", "SimCell", "SimCondition", "phi_glm_results_norm.csv"),
+    padj_col = "padj_intercept"
+  ),
+  list(
+    name = "Shrinkage GLM Dispersion",
+    rel_path = file.path("glm_shrink_allcells_withsex_noimp", "SimCell", "SimCondition", "phi_glm_results_norm.csv"),
+    padj_col = "padj_intercept"
+  ),
+  list(
+    name = "GLM-Mapping-BB",
+    rel_path = file.path("glmmtmb_v_allcells_withsex_noimp", "SimCell", "SimCondition", "phi_glm_results_norm.csv"),
+    padj_col = "padj_intercept"
   ),
   list(
     name = "ASPEN",
-    rel_path = file.path("ver_allcells_veronika_sex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
+    rel_path = file.path("aspen_allcells_withsex_noimp", "SimCell", "SimCondition", "bb_mean_results_norm.csv"),
     padj_col = "padj_mean"
+  ),
+  list(
+    name = "scDALI",
+    rel_path = file.path("scdali_results", "scdali_results.csv"),
+    padj_col = "padj"
   )
 )
 
