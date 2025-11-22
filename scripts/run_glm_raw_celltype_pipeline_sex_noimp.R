@@ -447,12 +447,8 @@ for (ct in ct_keep) {
       gp_df <- as.data.frame(t(glob_params))
       utils::write.csv(gp_df, file = file.path(out_dir, "global_params.csv"), row.names = FALSE)
     }
+    # Use fixed base_mu = 0.5 for intercept test (not glob_disp estimate)
     base_mu <- 0.5
-    if (!is.null(glob_params) && "mu" %in% names(glob_params)) {
-      candidate_mu <- as.numeric(glob_params[["mu"]])
-      if (is.finite(candidate_mu) && candidate_mu > 0 && candidate_mu < 1) base_mu <- candidate_mu
-    }
-    base_mu <- pmin(pmax(base_mu, 1e-6), 1 - 1e-6)
 
     design_rank <- ncol(design)
     df_vec <- pmax(estimates_shrunk$N - design_rank, 1)

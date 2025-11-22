@@ -135,59 +135,61 @@ collect_pvalues <- function() {
   results <- list()
 
   # ASPEN baseline (group mean sex test)
-  aspen_path <- file.path(pipeline_dir, "orig_allcells_withsex_noimp", "SimCell", "SimCondition", "group_mean_sex_results.csv")
+  aspen_path <- file.path(pipeline_dir, "aspen_allcells_withsex_noimp", "SimCell", "SimCondition", "group_mean_sex_results.csv")
   asp <- read_pipeline_file(aspen_path, c("gene","X"), "pval")
   asp$statistic <- NA_real_
   asp$pipeline <- "ASPEN"
   results[["ASPEN"]] <- asp
 
   # Shrinkage GLM Dispersion
-  phi_path <- file.path(pipeline_dir, "phi_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_phi_glm.csv")
+  phi_path <- file.path(pipeline_dir, "glm_shrink_allcells_withsex_noimp", "SimCell", "SimCondition", "phi_glm_results_norm.csv")
   phi <- read_pipeline_file(phi_path, c("gene","X"), "p_sex")
   phi$statistic <- NA_real_
   phi$pipeline <- "Shrinkage GLM Dispersion"
   results[["phi"]] <- phi
 
-  # GLM-adjusted Beta-binomial
-  fixed_est <- file.path(pipeline_dir, "fixed_allcells_withsex_noimp", "SimCell", "SimCondition", "estimates_global_shrunk.csv")
-  if (file.exists(fixed_est)) {
-    est_fixed <- fread(fixed_est, data.table = FALSE)
-    theta_col <- if ("thetaCorrected" %in% names(est_fixed)) "thetaCorrected" else if ("bb_theta" %in% names(est_fixed)) "bb_theta" else stop("theta column missing for fixed pipeline.")
-    gene_col_fixed <- if ("V1" %in% names(est_fixed)) "V1" else if ("X" %in% names(est_fixed)) "X" else stop("Gene column missing in fixed estimates.")
-    theta_fixed <- setNames(est_fixed[[theta_col]], est_fixed[[gene_col_fixed]])
-    bb_fixed <- compute_bb_sex_tests(theta_fixed, "GLM-adjusted Beta-binomial")
-    results[["fixed"]] <- bb_fixed
+  # GLM Raw Dispersion
+  glm_raw_path <- file.path(pipeline_dir, "glm_raw_rawdisp", "SimCell", "SimCondition", "phi_glm_results_norm.csv")
+  if (file.exists(glm_raw_path)) {
+    glm_raw <- read_pipeline_file(glm_raw_path, c("gene","X"), "p_sex")
+    glm_raw$statistic <- NA_real_
+    glm_raw$pipeline <- "GLM Dispersion (Raw)"
+    results[["glm_raw"]] <- glm_raw
   } else {
-    warning("Skipping fixed: Missing result file: ", fixed_est)
+    warning("Skipping glm_raw: Missing result file: ", glm_raw_path)
   }
 
-  # Beta-Binomial Regression (Quasibinomial) - use Wald test for sex coefficient
-  glm_path <- file.path(pipeline_dir, "glmmtmb_allcells_withsex_noimp", "SimCell", "SimCondition", "pipeline_test_glmmtmb_mu.csv")
-  glm_test <- read_pipeline_file(glm_path, c("gene","X"), "p_sex")
-  glm_test$statistic <- NA_real_
-  glm_test$pipeline <- "Beta-Binomial Regression (Quasibin)"
-  results[["glmmtmb"]] <- glm_test
+  # GLM-Mapping-BB
+  glm_mapping_path <- file.path(pipeline_dir, "glmmtmb_v_allcells_withsex_noimp", "SimCell", "SimCondition", "phi_glm_results_norm.csv")
+  if (file.exists(glm_mapping_path)) {
+    glm_mapping <- read_pipeline_file(glm_mapping_path, c("gene","X"), "p_sex")
+    glm_mapping$statistic <- NA_real_
+    glm_mapping$pipeline <- "GLM-Mapping-BB"
+    results[["glm_mapping"]] <- glm_mapping
+  } else {
+    warning("Skipping GLM-Mapping-BB: Missing result file: ", glm_mapping_path)
+  }
   
   # Beta-Binomial Regression (glmmTMB) - use Wald test for sex coefficient  
-  glmmtmb_true_path <- file.path(pipeline_dir, "glmmtmb_true", "SimCell", "SimCondition", "glmmtmb_true_results_norm.csv")
+  glmmtmb_true_path <- file.path(pipeline_dir, "glmmtmb_glmmtmb_betabin", "SimCell", "SimCondition", "phi_glm_results_norm.csv")
   if (file.exists(glmmtmb_true_path)) {
     glmmtmb_true_test <- read_pipeline_file(glmmtmb_true_path, c("gene","X"), "p_sex")
     glmmtmb_true_test$statistic <- NA_real_
     glmmtmb_true_test$pipeline <- "Beta-Binomial Regression (glmmTMB)"
     results[["glmmtmb_true"]] <- glmmtmb_true_test
   } else {
-    warning("Skipping glmmtmb_true: Missing result file: ", glmmtmb_true_path)
+    warning("Skipping glmmTMB: Missing result file: ", glmmtmb_true_path)
   }
   
   # GAMLSS Beta-Binomial
-  gamlss_path <- file.path(pipeline_dir, "gamlss_bb_test", "SimCell", "SimCondition", "gamlss_bb_results.csv")
+  gamlss_path <- file.path(pipeline_dir, "gamlss_gamlss_betabin", "SimCell", "SimCondition", "phi_glm_results_norm.csv")
   if (file.exists(gamlss_path)) {
     gamlss_test <- read_pipeline_file(gamlss_path, c("gene","X"), "p_sex")
     gamlss_test$statistic <- NA_real_
     gamlss_test$pipeline <- "GAMLSS Beta-Binomial"
     results[["gamlss_bb"]] <- gamlss_test
   } else {
-    warning("Skipping gamlss_bb: Missing result file: ", gamlss_path)
+    warning("Skipping gamlss: Missing result file: ", gamlss_path)
   }
 
   results <- results[!vapply(results, is.null, logical(1))]

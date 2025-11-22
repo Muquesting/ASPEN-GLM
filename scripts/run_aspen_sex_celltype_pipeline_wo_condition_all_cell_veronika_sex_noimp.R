@@ -55,7 +55,7 @@ min_cells_test  <- if (length(args) >= 7) as.integer(args[[7]]) else 5L
 min_counts_glob <- if (length(args) >= 8) as.integer(args[[8]]) else 5L
 top_k           <- if (length(args) >= 9) as.integer(args[[9]]) else 10L
 bb_var_perms    <- suppressWarnings(as.integer(Sys.getenv("BB_VAR_PERMUTATIONS", unset = "500")))
-if (!is.finite(bb_var_perms) || bb_var_perms <= 0) bb_var_perms <- 500L
+if (!is.finite(bb_var_perms) || bb_var_perms < 0) bb_var_perms <- 500L
 veronika_cores  <- suppressWarnings(as.integer(Sys.getenv(
   "VERONIKA_CORES",
   unset = Sys.getenv("BB_VAR_CORES", Sys.getenv("PBS_NCPUS", "4")))
@@ -513,17 +513,20 @@ for (ct in ct_keep) {
     var_min_counts <- if (min_counts_test > 0) min_counts_test else 5L
     bb_var_batch <- if (!is.null(estimates_group_list)) "sex_group" else NULL
     bb_var_meta  <- if (!is.null(estimates_group_list)) meta_subset else NULL
-    bb_var_raw <- tryCatch(
-      bb_var(a1_counts = a1,
-             tot_counts = tot,
-             estimates = est_shrunk,
-             estimates_group = estimates_group_list,
-             min_cells = max(var_min_counts, min_cells_test),
-             min_counts = var_min_counts,
-             batch = bb_var_batch,
-             metadata = bb_var_meta),
-      error = function(e) e
-    )
+    bb_var_raw <- NULL
+    if (bb_var_perms > 0) {
+      bb_var_raw <- tryCatch(
+        bb_var(a1_counts = a1,
+               tot_counts = tot,
+               estimates = est_shrunk,
+               estimates_group = estimates_group_list,
+               min_cells = max(var_min_counts, min_cells_test),
+               min_counts = var_min_counts,
+               batch = bb_var_batch,
+               metadata = bb_var_meta),
+        error = function(e) e
+      )
+    }
     if (inherits(bb_var_raw, "error")) {
       msg <- conditionMessage(bb_var_raw)
       message("bb_var failed for ", ct, " / ", cond_lbl, ": ", msg)

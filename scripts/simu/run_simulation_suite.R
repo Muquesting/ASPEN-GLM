@@ -78,7 +78,7 @@ if (!"p_M" %in% names(truth_df)) {
 }
 truth_df$mu_global <- (truth_df$p_F + truth_df$p_M) / 2
 delta_env <- suppressWarnings(as.numeric(Sys.getenv("SIM_BALANCED_DELTA", NA)))
-delta <- if (is.finite(delta_env) && delta_env >= 0) delta_env else 0.05
+delta <- if (is.finite(delta_env) && delta_env >= 0) delta_env else 0.01
 truth_df$effect_size <- abs(truth_df$mu_global - 0.5)
 truth_df$imbalance <- truth_df$effect_size > delta
 effect_breaks <- c(-Inf, 0, 0.02, 0.05, 0.1, Inf)
@@ -103,6 +103,14 @@ truth_df$class <- ifelse(!truth_df$imbalance & !truth_df$sex_flag, "C1_balanced_
                     ifelse(!truth_df$imbalance & truth_df$sex_flag, "C2_balanced_sex_only",
                     ifelse(truth_df$imbalance & !truth_df$sex_flag, "C3_imbalanced_no_sex",
                     "C4_imbalanced_with_sex")))
+
+# Apply same gene filter as real data pipelines: rowSums(tot > 1) >= 10
+message("Genes before filtering: ", nrow(a1))
+keep_expr <- Matrix::rowSums(tot > 1) >= 10
+a1 <- a1[keep_expr, , drop = FALSE]
+tot <- tot[keep_expr, , drop = FALSE]
+truth_df <- truth_df[keep_expr, ]
+message("Genes after filtering (rowSums(tot > 1) >= 10): ", nrow(a1))
 
 sce <- SingleCellExperiment(assays = list(a1 = a1, tot = tot))
 meta <- data.frame(
@@ -182,7 +190,7 @@ for (pipe in pipelines) {
   test_type <- pipe$test_type
   if (is.null(test_type) || !nzchar(test_type)) test_type <- "bb_mean"
   test_type <- tolower(test_type)
-  if (!test_type %in% c("bb_mean", "ver", "orig")) {
+  if (!test_type %in% c("bb_mean", "ver", "orig", "glmmtmb", "gamlss", "phi_glm")) {
     test_out <- file.path(slice_dir, paste0("pipeline_test_", test_type, ".csv"))
     test_script <- file.path("scripts", "simu", "run_pipeline_specific_tests.R")
     if (!file.exists(test_script)) stop("Test helper script missing: ", test_script)
@@ -204,9 +212,18 @@ for (pipe in pipelines) {
       next
     }
     result_file <- test_out
-  } else if (!file.exists(result_file)) {
-    warning("bb_mean results missing for pipeline ", pipe$name, ": ", result_file)
-    next
+  } else {
+    # Determine filename based on type
+    if (test_type %in% c("glmmtmb", "gamlss", "phi_glm")) {
+      result_file <- file.path(slice_dir, "phi_glm_results_norm.csv")
+    } else {
+      result_file <- file.path(slice_dir, "bb_mean_results_norm.csv")
+    }
+    
+    if (!file.exists(result_file)) {
+      warning("Results missing for pipeline ", pipe$name, " (type ", test_type, "): ", result_file)
+      next
+    }
   }
 
   res <- tryCatch(read.csv(result_file, stringsAsFactors = FALSE), error = function(e) NULL)
@@ -215,7 +232,7 @@ for (pipe in pipelines) {
     next
   }
   gene_col <- if ("gene" %in% names(res)) "gene" else if ("X" %in% names(res)) "X" else NULL
-  padj_col <- if ("padj" %in% names(res)) "padj" else if ("padj_mean" %in% names(res)) "padj_mean" else NULL
+  padj_col <- if ("padj_intercept" %in% names(res)) "padj_intercept" else if ("padj" %in% names(res)) "padj" else if ("padj_mean" %in% names(res)) "padj_mean" else NULL
   if (is.null(gene_col) || is.null(padj_col)) {
     warning("Result file lacks gene/padj columns for pipeline ", pipe$name)
     next

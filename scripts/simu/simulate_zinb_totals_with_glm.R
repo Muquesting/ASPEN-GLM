@@ -55,6 +55,8 @@ if (!"p_sexM" %in% names(glm_diag)) stop("glm_diagnostics file missing 'p_sexM'.
 if (!("gene" %in% names(glm_diag))) {
   if ("X" %in% names(glm_diag)) {
     glm_diag$gene <- glm_diag$X
+  } else if ("" %in% names(glm_diag)) {
+    glm_diag$gene <- glm_diag[[which(names(glm_diag) == "")[1]]]
   } else {
     glm_diag$gene <- rownames(glm_diag)
   }
@@ -65,6 +67,8 @@ if (!theta_col %in% names(bb_res)) stop("BB results missing column ", theta_col)
 if (!("gene" %in% names(bb_res))) {
   if ("X" %in% names(bb_res)) {
     bb_res$gene <- bb_res$X
+  } else if ("" %in% names(bb_res)) {
+    bb_res$gene <- bb_res[[which(names(bb_res) == "")[1]]]
   } else {
     bb_res$gene <- rownames(bb_res)
   }

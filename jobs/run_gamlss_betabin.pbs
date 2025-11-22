@@ -4,8 +4,17 @@
 #PBS -l walltime=12:00:00,mem=192GB
 #PBS -l ncpus=24
 #PBS -l storage=gdata/zk16+scratch/zk16
-#PBS -l wd
+#PBS -o GAMLSS_debug.o
+#PBS -e GAMLSS_debug.e
 #PBS -N GAMLSS_betabin
+
+set -e
+echo "Starting job on host $HOSTNAME"
+echo "Working directory: $PBS_O_WORKDIR"
+cd $PBS_O_WORKDIR
+
+echo "Checking input file..."
+ls -l /g/data/zk16/muqing/Projects/Multiome/QC/GEX/allelic_VP/aspensce_F1_filtered_with_XY.rds
 
 set -euo pipefail
 

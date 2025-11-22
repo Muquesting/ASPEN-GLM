@@ -1,8 +1,8 @@
 #!/bin/bash
 #PBS -P zk16
 #PBS -q normal
-#PBS -l ncpus=4
-#PBS -l mem=32GB
+#PBS -l ncpus=24
+#PBS -l mem=64GB
 #PBS -l walltime=04:00:00
 #PBS -l storage=gdata/zk16+scratch/zk16
 #PBS -N glm_eval_sim
@@ -16,8 +16,9 @@
 #   sim_rds output_dir spec_string
 
 module load R/4.3.1
-export OMP_NUM_THREADS=1
+export OMP_NUM_THREADS=$PBS_NCPUS
 export MKL_NUM_THREADS=1
+export BB_VAR_PERMUTATIONS=0
 
 if [[ -z "${COMBO_FILE}" ]]; then
   echo "ERROR: COMBO_FILE environment variable is not set." >&2

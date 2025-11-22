@@ -1,0 +1,26 @@
+Loading data from results/sim_runs/glm_eval_v2/Cardiomyocyte_F1_Aged_seed7002/scdali_results/a1.csv and results/sim_runs/glm_eval_v2/Cardiomyocyte_F1_Aged_seed7002/scdali_results/tot.csv...
+Data shape: (5825, 2000) (cells x genes)
+Running scDALI-Hom...
+[scdali] Processing 2000 regions on 4 core(s) ... 
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:08<00:24,  8.25s/it] 50%|█████     | 2/4 [00:08<00:07,  3.58s/it] 75%|███████▌  | 3/4 [00:09<00:02,  2.45s/it]100%|██████████| 4/4 [01:34<00:00, 34.78s/it]100%|██████████| 4/4 [01:34<00:00, 23.53s/it]
+Results keys: dict_keys(['pvalues'])
+P-values shape: (2000,)
+Traceback (most recent call last):
+  File "/Users/z5345125/repos/ASPEN-GLM/scripts/simu/run_scdali.py", line 76, in <module>
+    pvalues = results['pvalues'].flatten()
+^^^^^^
+  File "/Users/z5345125/repos/ASPEN-GLM/scripts/simu/run_scdali.py", line 62, in main
+    mask = ~np.isnan(pvalues)
+     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/z5345125/.pyenv/versions/3.11.11/lib/python3.11/site-packages/pandas/core/frame.py", line 778, in __init__
+    mgr = dict_to_mgr(data, index, columns, dtype=dtype, copy=copy, typ=manager)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/z5345125/.pyenv/versions/3.11.11/lib/python3.11/site-packages/pandas/core/internals/construction.py", line 503, in dict_to_mgr
+    return arrays_to_mgr(arrays, columns, index, dtype=dtype, typ=typ, consolidate=copy)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/z5345125/.pyenv/versions/3.11.11/lib/python3.11/site-packages/pandas/core/internals/construction.py", line 114, in arrays_to_mgr
+    index = _extract_index(arrays)
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/z5345125/.pyenv/versions/3.11.11/lib/python3.11/site-packages/pandas/core/internals/construction.py", line 677, in _extract_index
+    raise ValueError("All arrays must be of the same length")
+ValueError: All arrays must be of the same length

@@ -71,23 +71,33 @@ def main():
         
         df = final_df
     else:
-        # Fallback if no IDs (should not happen based on debug)
-        print("Warning: No IDs returned by scDALI. Assuming order is preserved but length mismatch might occur.")
+        # Fallback if no IDs
+        print("Warning: No IDs returned by scDALI.")
         pvalues = results['pvalues'].flatten()
-        if len(pvalues) != len(genes):
+        
+        if len(pvalues) == len(genes):
+            print("Length matches input genes. Assuming order is preserved.")
+            reject, padj, _, _ = multipletests(pvalues, method='fdr_bh')
+            df = pd.DataFrame({
+                'gene': genes,
+                'p_intercept': pvalues,
+                'pvalue': pvalues,
+                'padj': padj,
+                'padj_intercept': padj
+            })
+        else:
              print(f"Error: Length mismatch. Genes: {len(genes)}, P-values: {len(pvalues)}")
-             # Try to pad or truncate? No, safer to fail or use what we have if possible.
-             # But we know 'ids' exists now.
+             print(f"Results keys available: {results.keys()}")
+             # If we can't align, we can't save valid results.
+             # But let's try to save what we have for debugging
+             df = pd.DataFrame({
+                 'pvalue': pvalues
+             })
+             # Save to a debug file
+             debug_out = out_path + ".debug_mismatch.csv"
+             df.to_csv(debug_out, index=False)
+             print(f"Saved mismatched results to {debug_out} for inspection.")
              sys.exit(1)
-             
-        reject, padj, _, _ = multipletests(pvalues, method='fdr_bh')
-        df = pd.DataFrame({
-            'gene': genes,
-            'p_intercept': pvalues,
-            'pvalue': pvalues,
-            'padj': padj,
-            'padj_intercept': padj
-        })
 
     # Save results
     df.to_csv(out_path, index=False)

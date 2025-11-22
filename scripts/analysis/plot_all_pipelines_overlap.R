@@ -49,7 +49,7 @@ for (i in seq_along(pipelines)) {
       file_path <- file.path(ct_dir, cond, pipe$file)
       if (!file.exists(file_path)) next
       
-      res <- suppressMessages(read_csv(file_path, show_col_types = FALSE))
+      res <- read.csv(file_path, stringsAsFactors = FALSE)
       
       # Get padj column
       padj_vals <- if (pipe$padj_col %in% names(res)) res[[pipe$padj_col]] else NA
@@ -65,6 +65,9 @@ for (i in seq_along(pipelines)) {
   
   sig_genes_per_pipeline[[pipe$name]] <- unique(all_sig)
   message(pipe$name, ": ", length(unique(all_sig)), " significant gene-celltype-condition combinations")
+  if (length(unique(all_sig)) > 0) {
+    message("Sample IDs: ", paste(head(unique(all_sig), 3), collapse=", "))
+  }
 }
 
 # Create pairwise Venn diagrams for key comparisons

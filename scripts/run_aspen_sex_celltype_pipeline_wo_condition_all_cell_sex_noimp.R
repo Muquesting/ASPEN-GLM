@@ -59,7 +59,7 @@ min_cells_test  <- if (length(args) >= 7) as.integer(args[[7]]) else 5L
 min_counts_glob <- if (length(args) >= 8) as.integer(args[[8]]) else 5L  # use coverage for global (as in Veronika)
 top_k           <- if (length(args) >= 9) as.integer(args[[9]]) else 10L
 bb_var_perms    <- suppressWarnings(as.integer(Sys.getenv("BB_VAR_PERMUTATIONS", unset = "500")))
-if (!is.finite(bb_var_perms) || bb_var_perms <= 0) bb_var_perms <- 500L
+if (!is.finite(bb_var_perms) || bb_var_perms < 0) bb_var_perms <- 500L
 bb_var_cores    <- suppressWarnings(as.integer(Sys.getenv("BB_VAR_CORES", Sys.getenv("PBS_NCPUS", "1"))))
 if (!is.finite(bb_var_cores) || bb_var_cores < 1) bb_var_cores <- 1L
 
@@ -383,18 +383,21 @@ for (ct in ct_keep) {
 
     # Allelic variance (permutation-based)
     var_min_counts <- if (min_counts_test > 0) min_counts_test else 5L
-    bb_var_raw <- tryCatch(
-      bb_var(a1_counts = a1,
-             tot_counts = tot,
-             estimates = estimates_shrunk,
-             estimates_group = out_group$estimates_group,
-             min_cells = max(var_min_counts, min_cells_test),
-             min_counts = var_min_counts,
-             n_pmt = bb_var_perms,
-             n_sim = bb_var_perms,
-             cores = bb_var_cores),
-      error = function(e) NULL
-    )
+    bb_var_raw <- NULL
+    if (bb_var_perms > 0) {
+      bb_var_raw <- tryCatch(
+        bb_var(a1_counts = a1,
+               tot_counts = tot,
+               estimates = estimates_shrunk,
+               estimates_group = out_group$estimates_group,
+               min_cells = max(var_min_counts, min_cells_test),
+               min_counts = var_min_counts,
+               n_pmt = bb_var_perms,
+               n_sim = bb_var_perms,
+               cores = bb_var_cores),
+        error = function(e) NULL
+      )
+    }
     if (!is.null(bb_var_raw) && nrow(bb_var_raw) && "pval_disp" %in% colnames(bb_var_raw)) {
       bb_var_raw$padj_disp <- suppressWarnings(p.adjust(bb_var_raw$pval_disp, method = "BH"))
     }
