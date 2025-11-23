@@ -54,29 +54,36 @@ export VERONIKA_CORES=24
 echo "Processing $FILE"
 echo "Output to $OUT_DIR"
 
+# 0. Convert simulation list to SCE format
+SCE_FILE="\${OUT_DIR}/sim_sce.rds"
+if [ ! -f "\$SCE_FILE" ]; then
+  echo "Converting simulation to SCE format..."
+  Rscript scripts/simu/convert_sim_to_sce.R "$FILE" "\$SCE_FILE"
+fi
+
 # 1. ASPEN
 echo "Running ASPEN..."
-Rscript scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_veronika_sex_noimp.R "$FILE" "$OUT_DIR/aspen_allcells_withsex_noimp"
+Rscript scripts/run_aspen_sex_celltype_pipeline_wo_condition_all_cell_veronika_sex_noimp.R "\$SCE_FILE" "$OUT_DIR/aspen_allcells_withsex_noimp"
 
 # 2. glmmTMB Beta-Binomial
 echo "Running glmmTMB..."
-Rscript scripts/run_glmmtmb_betabin_sex_noimp.R "$FILE" "$OUT_DIR/glmmtmb_glmmtmb_betabin"
+Rscript scripts/run_glmmtmb_betabin_sex_noimp.R "\$SCE_FILE" "$OUT_DIR/glmmtmb_glmmtmb_betabin"
 
 # 3. GAMLSS Beta-Binomial
 echo "Running GAMLSS..."
-Rscript scripts/run_gamlss_betabin_sex_noimp.R "$FILE" "$OUT_DIR/gamlss_gamlss_betabin"
+Rscript scripts/run_gamlss_betabin_sex_noimp.R "\$SCE_FILE" "$OUT_DIR/gamlss_gamlss_betabin"
 
 # 4. GLM Raw
 echo "Running GLM Raw..."
-Rscript scripts/run_glm_raw_celltype_pipeline_sex_noimp.R "$FILE" "$OUT_DIR/glm_raw_rawdisp"
+Rscript scripts/run_glm_raw_celltype_pipeline_sex_noimp.R "\$SCE_FILE" "$OUT_DIR/glm_raw_rawdisp"
 
 # 5. GLM Shrink
 echo "Running GLM Shrink..."
-Rscript scripts/run_glm_shrinkage_celltype_pipeline_sex_noimp.R "$FILE" "$OUT_DIR/glm_shrink_allcells_withsex_noimp"
+Rscript scripts/run_glm_shrinkage_celltype_pipeline_sex_noimp.R "\$SCE_FILE" "$OUT_DIR/glm_shrink_allcells_withsex_noimp"
 
 # 6. GLM Mapping
 echo "Running GLM Mapping..."
-Rscript scripts/run_glmmtmb_celltype_pipeline_sex_noimp.R "$FILE" "$OUT_DIR/glmmtmb_v_allcells_withsex_noimp"
+Rscript scripts/run_glmmtmb_celltype_pipeline_sex_noimp.R "\$SCE_FILE" "$OUT_DIR/glmmtmb_v_allcells_withsex_noimp"
 
 echo "Done."
 EOF
