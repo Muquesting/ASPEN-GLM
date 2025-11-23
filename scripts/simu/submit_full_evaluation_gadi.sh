@@ -6,7 +6,7 @@ SIM_ROOT="results/sim_runs/zinb_simulations"
 OUT_ROOT="results/sim_runs/glm_eval_v2"
 
 # Top 4 cell types
-CELL_TYPES=("Cardiomyocyte" "Coronary_EC" "Endocardial_EC" "Fibroblast")
+CELL_TYPES=("Cardiomyocyte")
 
 # Create output directory
 mkdir -p "$OUT_ROOT"
