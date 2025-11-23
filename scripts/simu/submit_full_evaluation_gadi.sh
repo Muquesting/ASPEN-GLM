@@ -54,6 +54,9 @@ export VERONIKA_CORES=24
 echo "Processing $FILE"
 echo "Output to $OUT_DIR"
 
+# Define output directory
+OUT_DIR="$OUT_DIR"
+
 # 0. Convert simulation list to SCE format
 SCE_FILE="\${OUT_DIR}/sim_sce.rds"
 if [ ! -f "\$SCE_FILE" ]; then
