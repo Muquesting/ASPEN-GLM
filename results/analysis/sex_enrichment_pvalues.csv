@@ -1,0 +1,7 @@
+"Method_Only","Comparison","P_value","Significance"
+"scDALI_only","scDALI_only vs Both",0.00331674262781476,"**"
+"scDALI_only","scDALI_only vs Both",0.00230761146365353,"**"
+"ASPEN_only","ASPEN_only vs Both",0.0771152251042403,"ns"
+"ASPEN_only","ASPEN_only vs Both",0.0544868126154464,"ns"
+"glmmTMB_only","glmmTMB_only vs Both",2.4864941164664e-06,"***"
+"GAMLSS_only","GAMLSS_only vs Both",2.38949356831854e-05,"***"

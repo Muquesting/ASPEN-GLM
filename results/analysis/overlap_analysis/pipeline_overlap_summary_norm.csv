@@ -1,7 +1,0 @@
-"Pipeline","Total_Significant","Overlap_with_GLM_Raw","Overlap_with_glmmTMB","Overlap_with_GAMLSS","Overlap_with_GLM-Mapping","Overlap_with_ASPEN","Overlap_with_Shrinkage_GLM"
-"Shrinkage GLM",4917,0.88,0.907,0.841,0.86,0.931,NA
-"GLM Raw",4533,NA,0.912,0.844,0.898,0.953,0.954
-"glmmTMB",7679,0.538,NA,0.944,0.763,0.878,0.581
-"GAMLSS",7280,0.526,0.996,NA,0.76,0.876,0.568
-"GLM-Mapping",7694,0.529,0.762,0.719,NA,0.95,0.55
-"ASPEN",9222,0.468,0.731,0.692,0.793,NA,0.497

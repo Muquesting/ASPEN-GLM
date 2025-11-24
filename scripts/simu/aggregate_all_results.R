@@ -11,15 +11,66 @@ res_root <- "results/sim_runs/glm_eval_v2"
 out_prefix <- file.path(res_root, "overall_evaluation")
 dir.create(dirname(out_prefix), recursive = TRUE, showWarnings = FALSE)
 
-# Pipelines Definition
+# Helper function to find correct result file
+find_result_file <- function(base_dir, pipe_subdir, filename, padj_col, ct=NA, cond=NA) {
+  # For simulation results, we ONLY want SimCell/SimCondition (the actual simulation)
+  # NOT the cell-type-specific subdirectories from Gadi processing
+  
+  # Try SimCell/SimCondition first (this is the correct simulation result)
+  path1 <- file.path(base_dir, pipe_subdir, "SimCell", "SimCondition", filename)
+  if (file.exists(path1)) {
+    dt <- fread(path1, data.table = FALSE)
+    gene_col <- names(dt)[1]
+    if ("gene" %in% names(dt)) gene_col <- "gene"
+    if ("X" %in% names(dt)) gene_col <- "X"
+    return(dt[, c(gene_col, padj_col)])
+  }
+  
+  # Try scDALI path (no subdirectories)
+  if (pipe_subdir == "scdali_results") {
+    path_scdali <- file.path(base_dir, pipe_subdir, filename)
+    if (file.exists(path_scdali)) {
+      dt <- fread(path_scdali, data.table = FALSE)
+      gene_col <- names(dt)[1]
+      if ("gene" %in% names(dt)) gene_col <- "gene"
+      if ("X" %in% names(dt)) gene_col <- "X"
+      return(dt[, c(gene_col, padj_col)])
+    }
+  }
+  
+  # Try flat path (Gadi structure)
+  path_flat <- file.path(base_dir, pipe_subdir, filename)
+  if (file.exists(path_flat)) {
+    dt <- fread(path_flat, data.table = FALSE)
+    gene_col <- names(dt)[1]
+    if ("gene" %in% names(dt)) gene_col <- "gene"
+    if ("X" %in% names(dt)) gene_col <- "X"
+    return(dt[, c(gene_col, padj_col)])
+  }
+  
+  # Try nested path (Gadi structure with cell type/condition subdirs)
+  if (!is.na(ct) && !is.na(cond)) {
+    path_nested <- file.path(base_dir, pipe_subdir, ct, cond, filename)
+    if (file.exists(path_nested)) {
+      dt <- fread(path_nested, data.table = FALSE)
+      gene_col <- names(dt)[1]
+      if ("gene" %in% names(dt)) gene_col <- "gene"
+      if ("X" %in% names(dt)) gene_col <- "X"
+      return(dt[, c(gene_col, padj_col)])
+    }
+  }
+  
+  return(NULL)
+}
+
 PIPELINES <- list(
-  list(name = "glmmTMB", label = "Beta-Binomial Regression (glmmTMB)", path = "glmmtmb_glmmtmb_betabin/SimCell/SimCondition/phi_glm_results_norm.csv", padj = "padj_intercept"),
-  list(name = "scDALI", label = "scDALI", path = "scdali_results/scdali_results.csv", padj = "padj"),
-  list(name = "ASPEN", label = "ASPEN", path = "aspen_allcells_withsex_noimp/SimCell/SimCondition/bb_mean_results_norm.csv", padj = "padj_mean"),
-  list(name = "GAMLSS", label = "GAMLSS Beta-Binomial", path = "gamlss_gamlss_betabin/SimCell/SimCondition/phi_glm_results_norm.csv", padj = "padj_intercept"),
-  list(name = "GLM_Raw", label = "GLM Dispersion (Raw)", path = "glm_raw_rawdisp/SimCell/SimCondition/phi_glm_results_norm.csv", padj = "padj_intercept"),
-  list(name = "GLM_Shrink", label = "Shrinkage GLM Dispersion", path = "glm_shrink_allcells_withsex_noimp/SimCell/SimCondition/phi_glm_results_norm.csv", padj = "padj_intercept"),
-  list(name = "GLM_Mapping", label = "GLM-Mapping-BB", path = "glmmtmb_v_allcells_withsex_noimp/SimCell/SimCondition/phi_glm_results_norm.csv", padj = "padj_intercept")
+  list(name = "glmmTMB", label = "Beta-Binomial Regression (glmmTMB)", subdir = "glmmtmb_glmmtmb_betabin", file = "phi_glm_results_norm.csv", padj = "padj_intercept"),
+  list(name = "scDALI", label = "scDALI", subdir = "scdali_results", file = "scdali_results.csv", padj = "padj"),
+  list(name = "ASPEN", label = "ASPEN", subdir = "aspen_allcells_withsex_noimp", file = "bb_mean_results_norm.csv", padj = "padj_mean"),
+  list(name = "GAMLSS", label = "GAMLSS Beta-Binomial", subdir = "gamlss_gamlss_betabin", file = "phi_glm_results_norm.csv", padj = "padj_intercept"),
+  list(name = "GLM_Raw", label = "GLM Dispersion (Raw)", subdir = "glm_raw_rawdisp", file = "phi_glm_results_norm.csv", padj = "padj_intercept"),
+  list(name = "GLM_Shrink", label = "Shrinkage GLM Dispersion", subdir = "glm_shrink_allcells_withsex_noimp", file = "phi_glm_results_norm.csv", padj = "padj_intercept"),
+  list(name = "GLM_Mapping", label = "GLM-Mapping-BB", subdir = "glmmtmb_v_allcells_withsex_noimp", file = "phi_glm_results_norm.csv", padj = "padj_intercept")
 )
 
 # Find all result directories
@@ -43,6 +94,12 @@ for (d in res_dirs) {
     if (startsWith(dirname, paste0(c, "_"))) {
       ct <- c
       rep <- substring(dirname, nchar(c) + 2)
+      
+      # Extract condition
+      if (grepl("F1_Aged", rep)) cond <- "F1_Aged"
+      else if (grepl("F1_Young", rep)) cond <- "F1_Young"
+      else cond <- NA
+      
       break
     }
   }
@@ -86,19 +143,12 @@ for (d in res_dirs) {
   
   # Load Pipeline Results
   for (pipe in PIPELINES) {
-    res_path <- file.path(d, pipe$path)
-    if (file.exists(res_path)) {
-      dt <- fread(res_path, data.table = FALSE)
-      
-      # Handle gene column
-      gene_col <- names(dt)[1]
-      if ("gene" %in% names(dt)) gene_col <- "gene"
-      if ("X" %in% names(dt)) gene_col <- "X"
-      
-      dt <- dt[, c(gene_col, pipe$padj)]
+    dt <- find_result_file(d, pipe$subdir, pipe$file, pipe$padj, ct, cond)
+    if (!is.null(dt) && nrow(dt) > 0) {
+      # Standardize column names
       names(dt) <- c("gene", "padj")
       
-      merged <- merge(truth_df[, c("gene_unique", "class", "positive")], dt, by.x = "gene_unique", by.y = "gene")
+      merged <- merge(truth_df[, c("gene_unique", "class", "positive")], dt, by.x = "gene_unique", by.y = "gene", all.x = FALSE)
       merged$pipeline <- pipe$label
       merged$cell_type <- ct
       merged$replicate <- rep

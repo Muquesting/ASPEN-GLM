@@ -22,9 +22,46 @@ def main():
     
     A = A_df.values
     D = D_df.values
-    genes = A_df.index.values
+    genes = A_df.columns.values
 
     print(f"Data shape: {A.shape} (cells x genes)")
+    
+    # Filter genes to avoid kernel issues and speed up
+    # Keep genes with > 10 counts total
+    gene_sums = D.sum(axis=0)
+    mask = gene_sums > 10
+    if mask.sum() < 100:
+         print("Warning: Too few genes after filtering. Keeping all.")
+    else:
+         print(f"Filtering genes: {mask.sum()} / {len(genes)} retained.")
+         A = A[:, mask]
+         D = D[:, mask]
+         genes = genes[mask]
+         
+    # If still too many, keep top 2000 by variance
+    if A.shape[1] > 2000:
+        vars = A.var(axis=0)
+        top_idx = np.argsort(vars)[-2000:]
+        top_idx = np.sort(top_idx) # Keep original order
+        print(f"Subsampling to top 2000 variable genes.")
+        A = A[:, top_idx]
+        D = D[:, top_idx]
+        genes = genes[top_idx]
+
+    # Compute cell_state for kernel
+    # Use PCA to reduce noise and ensure robust kernel
+    from sklearn.decomposition import PCA
+    
+    try:
+        norm_A = np.log1p(A)
+        # PCA
+        n_comp = min(10, norm_A.shape[0] - 1)
+        pca = PCA(n_components=n_comp)
+        cell_state = pca.fit_transform(norm_A)
+        print(f"Computed cell_state using PCA ({n_comp} components).")
+    except Exception as e:
+        print(f"cell_state computation failed: {e}")
+        cell_state = None
 
     # Run scDALI-Hom
     # base_rate = 0.5 (null hypothesis)
@@ -32,6 +69,7 @@ def main():
     results = run_tests(
         A=A,
         D=D,
+        cell_state=cell_state, # Pass normalized data as state
         model='scDALI-Hom',
         base_rate=0.5,
         n_cores=4
