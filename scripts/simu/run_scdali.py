@@ -26,27 +26,11 @@ def main():
 
     print(f"Data shape: {A.shape} (cells x genes)")
     
-    # Filter genes to avoid kernel issues and speed up
-    # Keep genes with > 10 counts total
-    gene_sums = D.sum(axis=0)
-    mask = gene_sums > 10
-    if mask.sum() < 100:
-         print("Warning: Too few genes after filtering. Keeping all.")
-    else:
-         print(f"Filtering genes: {mask.sum()} / {len(genes)} retained.")
-         A = A[:, mask]
-         D = D[:, mask]
-         genes = genes[mask]
-         
-    # If still too many, keep top 2000 by variance
-    if A.shape[1] > 2000:
-        vars = A.var(axis=0)
-        top_idx = np.argsort(vars)[-2000:]
-        top_idx = np.sort(top_idx) # Keep original order
-        print(f"Subsampling to top 2000 variable genes.")
-        A = A[:, top_idx]
-        D = D[:, top_idx]
-        genes = genes[top_idx]
+    print(f"Data shape: {A.shape} (cells x genes)")
+    
+    # No internal filtering or subsampling - rely on input CSVs being pre-filtered
+    # This ensures consistency with other methods run in R
+    print("Using all genes from input files.")
 
     # Compute cell_state for kernel
     # Use PCA to reduce noise and ensure robust kernel

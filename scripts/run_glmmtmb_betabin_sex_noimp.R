@@ -85,7 +85,12 @@ glm_phi_tests <- function(genes, a1, tot, sex_labels, phi_raw_vec,
                 data = df,
                 control = glmmTMBControl(optimizer = nlminb))
       )
-    }, error = function(e) NULL)
+    }, error = function(e) {
+      # Only print error if it's not a simple convergence issue (though glmmTMB usually warns for that)
+      # Print first few errors to avoid log spam
+      if (runif(1) < 0.01) message("Error in glmmTMB for gene ", g, ": ", e$message)
+      NULL
+    })
     
     if (is.null(fit) || !is.finite(logLik(fit))) return(NULL)
 

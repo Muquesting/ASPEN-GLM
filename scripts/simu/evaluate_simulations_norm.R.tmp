@@ -3,9 +3,9 @@ library(dplyr)
 library(pROC)
 library(gridExtra)
 
-# Parameters
+# Parameters - RAW COUNTS ONLY
 sim_dir <- "results/sim_runs/glm_eval_v2"
-out_dir <- "results/sim_runs/glm_eval_v2"
+out_dir <- "results/sim_runs/glm_eval_v2_raw"
 delta_threshold <- 0.01  # New delta threshold for imbalance classification
 padj_cutoff <- 0.1       # Significance threshold
 
@@ -15,31 +15,25 @@ if (!dir.exists(file.path(out_dir, "plots"))) {
 }
 
 # Method configurations
-# Method configurations - Raw and Normalized variants
+# Method configurations - RAW COUNTS ONLY
 methods <- list(
   # ASPEN
-  list(name = "ASPEN-Raw", dir_pattern = "aspen_allcells_withsex_noimp", padj_col = "padj_mean", file = "bb_mean_results.csv"),
-  list(name = "ASPEN-Norm", dir_pattern = "aspen_allcells_withsex_noimp", padj_col = "padj_mean", file = "bb_mean_results_norm.csv"),
+  list(name = "ASPEN", dir_pattern = "aspen_allcells_withsex_noimp", padj_col = "padj_mean", file = "bb_mean_results.csv"),
   
   # glmmTMB
-  list(name = "glmmTMB-Raw", dir_pattern = "glmmtmb_glmmtmb_betabin", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
-  list(name = "glmmTMB-Norm", dir_pattern = "glmmtmb_glmmtmb_betabin", padj_col = "padj_intercept", file = "phi_glm_results_norm.csv"),
+  list(name = "glmmTMB", dir_pattern = "glmmtmb_glmmtmb_betabin", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
   
   # GAMLSS
-  list(name = "GAMLSS-Raw", dir_pattern = "gamlss_gamlss_betabin", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
-  list(name = "GAMLSS-Norm", dir_pattern = "gamlss_gamlss_betabin", padj_col = "padj_intercept", file = "phi_glm_results_norm.csv"),
+  list(name = "GAMLSS", dir_pattern = "gamlss_gamlss_betabin", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
   
   # GLM Raw
-  list(name = "GLM-Raw-Raw", dir_pattern = "glm_raw_rawdisp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
-  list(name = "GLM-Raw-Norm", dir_pattern = "glm_raw_rawdisp", padj_col = "padj_intercept", file = "phi_glm_results_norm.csv"),
+  list(name = "GLM-Raw", dir_pattern = "glm_raw_rawdisp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
   
   # GLM Shrink
-  list(name = "GLM-Shrink-Raw", dir_pattern = "glm_shrink_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
-  list(name = "GLM-Shrink-Norm", dir_pattern = "glm_shrink_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results_norm.csv"),
+  list(name = "GLM-Shrink", dir_pattern = "glm_shrink_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
   
   # GLM Mapping (glmmTMB-V)
-  list(name = "GLM-Map-Raw", dir_pattern = "glmmtmb_v_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
-  list(name = "GLM-Map-Norm", dir_pattern = "glmmtmb_v_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results_norm.csv"),
+  list(name = "GLM-Map", dir_pattern = "glmmtmb_v_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
   
   # scDALI (Local)
   list(name = "scDALI", dir_pattern = "scdali", padj_col = "padj", file = "scdali_hom_results.csv")
@@ -207,7 +201,9 @@ perf_by_category <- combined_df %>%
   mutate(
     precision = tp / (tp + fp),
     recall = tp / (tp + fn),
-    f1 = 2 * precision * recall / (precision + recall)
+    f1 = 2 * precision * recall / (precision + recall),
+    fpr = fp / (fp + tn),  # False Positive Rate
+    specificity = tn / (tn + fp)  # 1 - FPR
   )
 
 # Save results
@@ -239,12 +235,31 @@ p_f1 <- ggplot(perf_by_category, aes(x = category, y = f1, fill = method)) +
 
 ggsave(file.path(out_dir, "plots", "f1_by_category.png"), p_f1, width = 12, height = 6)
 
-# Plot recall by category
-p_recall <- ggplot(perf_by_category, aes(x = category, y = recall, fill = method)) +
+# Plot FPR for balanced categories (C1 and C3) - where we want LOW FPR
+perf_balanced <- perf_by_category %>% filter(category %in% c("C1", "C3"))
+p_fpr <- ggplot(perf_balanced, aes(x = category, y = fpr, fill = method)) +
   geom_bar(stat = "identity", position = "dodge", alpha = 0.8) +
-  labs(title = sprintf("Recall (Sensitivity) by Category (delta=%.2f, padj<%.1f)", delta_threshold, padj_cutoff),
-       subtitle = "C1=Balanced/NoSex, C2=Imbalanced/NoSex, C3=Balanced/Sex, C4=Imbalanced/Sex",
-       x = "Category", y = "Recall") +
+  geom_text(aes(label = sprintf("%.1f%%", fpr*100)), 
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  labs(title = sprintf("False Positive Rate for Balanced Categories (delta=%.2f, padj<%.1f)", delta_threshold, padj_cutoff),
+       subtitle = "C1=Balanced/NoSex, C3=Balanced/Sex (LOWER is better)",
+       x = "Category", y = "False Positive Rate") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 0)) +
+  scale_fill_brewer(palette = "Set2") +
+  coord_cartesian(ylim = c(0, max(perf_balanced$fpr, na.rm = TRUE) * 1.2))
+
+ggsave(file.path(out_dir, "plots", "fpr_balanced_categories.png"), p_fpr, width = 12, height = 6)
+
+# Plot recall by category (for imbalanced categories C2 and C4)
+perf_imbalanced <- perf_by_category %>% filter(category %in% c("C2", "C4"))
+p_recall <- ggplot(perf_imbalanced, aes(x = category, y = recall, fill = method)) +
+  geom_bar(stat = "identity", position = "dodge", alpha = 0.8) +
+  geom_text(aes(label = sprintf("%.1f%%", recall*100)), 
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  labs(title = sprintf("Recall for Imbalanced Categories (delta=%.2f, padj<%.1f)", delta_threshold, padj_cutoff),
+       subtitle = "C2=Imbalanced/NoSex, C4=Imbalanced/Sex (HIGHER is better)",
+       x = "Category", y = "Recall (Sensitivity)") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 0)) +
   scale_fill_brewer(palette = "Set2")
@@ -254,4 +269,5 @@ ggsave(file.path(out_dir, "plots", "recall_by_category.png"), p_recall, width = 
 message("\nPlots saved to: ", file.path(out_dir, "plots/"))
 message("- roc_auc_barplot.png")
 message("- f1_by_category.png")
-message("- recall_by_category.png")
+message("- fpr_balanced_categories.png (NEW - FPR for C1/C3)")
+message("- recall_by_category.png (C2/C4 only)")

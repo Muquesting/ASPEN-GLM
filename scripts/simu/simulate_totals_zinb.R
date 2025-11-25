@@ -4,6 +4,8 @@ suppressPackageStartupMessages({
   library(Matrix)
   library(zinbwave)
   library(BiocParallel)
+  library(scuttle)  # For logNormCounts
+  library(scran)    # For getTopHVGs
 })
 
 zinb_core_count <- function() {
@@ -47,8 +49,19 @@ if (ncol(tot) != length(sex_vec)) stop("Sex vector length mismatch.")
 if (!isTRUE(max_genes > 0) || max_genes >= nrow(tot)) {
   genes_use <- rownames(tot)
 } else {
-  avg <- rowMeans(tot)
-  genes_use <- names(sort(avg, decreasing = TRUE))[seq_len(max_genes)]
+  # Use Veronika's approach: select highly variable genes (HVGs)
+  message("Selecting top ", max_genes, " highly variable genes using logNormCounts + getTopHVGs...")
+  
+  # Create temporary SCE for HVG selection
+  temp_sce <- SingleCellExperiment(assays = list(counts = tot))
+  
+  # Log-normalize counts (required for variance modeling)
+  temp_sce <- logNormCounts(temp_sce)
+  
+  # Select top HVGs
+  genes_use <- getTopHVGs(temp_sce, n = max_genes)
+  
+  message("Selected ", length(genes_use), " HVGs")
 }
 
 counts <- as.matrix(tot[genes_use, , drop = FALSE])

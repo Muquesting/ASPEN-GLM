@@ -21,6 +21,28 @@ a1_mat <- sim$a1
 tot_mat <- sim$tot
 truth_df <- sim$truth
 
+# Parse metadata from filename
+# Expected format: .../Cardiomyocyte/F1_Aged_seed7001.rds
+# or .../Cardiomyocyte_F1_Aged_seed7001.rds
+fname <- basename(input_rds)
+
+# Default values
+celltype_val <- "SimCell"
+condition_val <- "SimCondition"
+
+# Try to extract from filename
+if (grepl("Cardiomyocyte", fname, ignore.case = TRUE)) {
+  celltype_val <- "Cardiomyocyte"
+}
+
+if (grepl("F1_Aged", fname, ignore.case = TRUE)) {
+  condition_val <- "F1_Aged"
+} else if (grepl("F1_Young", fname, ignore.case = TRUE)) {
+  condition_val <- "F1_Young"
+}
+
+cat("Inferred metadata - Celltype:", celltype_val, ", Condition:", condition_val, "\n")
+
 # Create SCE
 sce <- SingleCellExperiment(
   assays = list(
@@ -33,9 +55,16 @@ sce <- SingleCellExperiment(
 rowData(sce) <- truth_df
 
 # Add sample metadata
-colData(sce)$sex <- rep(c("F", "M"), each = ncol(a1_mat) / 2)
-colData(sce)$celltype <- "SimCell"
-colData(sce)$condition <- "SimCondition"
+if (!is.null(sim$sex)) {
+  colData(sce)$sex <- sim$sex
+} else {
+  # Fallback if sex not in object (should not happen for these sims)
+  warning("sim$sex not found, using 50/50 split fallback")
+  colData(sce)$sex <- rep(c("F", "M"), length.out = ncol(a1_mat))
+}
+
+colData(sce)$celltype <- celltype_val
+colData(sce)$condition <- condition_val
 
 cat("Saving SCE to", output_rds, "\n")
 saveRDS(sce, output_rds)

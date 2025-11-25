@@ -3,10 +3,10 @@ library(dplyr)
 library(pROC)
 library(gridExtra)
 
-# Parameters
+# Parameters - RAW COUNTS, F1_AGED ONLY
 sim_dir <- "results/sim_runs/glm_eval_v2"
-out_dir <- "results/sim_runs/glm_eval_v2"
-delta_threshold <- 0.01  # New delta threshold for imbalance classification
+out_dir <- "results/sim_runs/glm_eval_v2_aged_raw"
+delta_threshold <- 0.01  # Reverted to 0.01 as requested, but using mu_global
 padj_cutoff <- 0.1       # Significance threshold
 
 # Create output directory
@@ -15,31 +15,25 @@ if (!dir.exists(file.path(out_dir, "plots"))) {
 }
 
 # Method configurations
-# Method configurations - Raw and Normalized variants
+# Method configurations - RAW COUNTS ONLY
 methods <- list(
   # ASPEN
-  list(name = "ASPEN-Raw", dir_pattern = "aspen_allcells_withsex_noimp", padj_col = "padj_mean", file = "bb_mean_results.csv"),
-  list(name = "ASPEN-Norm", dir_pattern = "aspen_allcells_withsex_noimp", padj_col = "padj_mean", file = "bb_mean_results_norm.csv"),
+  list(name = "ASPEN", dir_pattern = "aspen_allcells_withsex_noimp", padj_col = "padj_mean", file = "bb_mean_results.csv"),
   
   # glmmTMB
-  list(name = "glmmTMB-Raw", dir_pattern = "glmmtmb_glmmtmb_betabin", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
-  list(name = "glmmTMB-Norm", dir_pattern = "glmmtmb_glmmtmb_betabin", padj_col = "padj_intercept", file = "phi_glm_results_norm.csv"),
+  list(name = "glmmTMB", dir_pattern = "glmmtmb_glmmtmb_betabin", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
   
   # GAMLSS
-  list(name = "GAMLSS-Raw", dir_pattern = "gamlss_gamlss_betabin", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
-  list(name = "GAMLSS-Norm", dir_pattern = "gamlss_gamlss_betabin", padj_col = "padj_intercept", file = "phi_glm_results_norm.csv"),
+  list(name = "GAMLSS", dir_pattern = "gamlss_gamlss_betabin", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
   
   # GLM Raw
-  list(name = "GLM-Raw-Raw", dir_pattern = "glm_raw_rawdisp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
-  list(name = "GLM-Raw-Norm", dir_pattern = "glm_raw_rawdisp", padj_col = "padj_intercept", file = "phi_glm_results_norm.csv"),
+  list(name = "GLM-Raw", dir_pattern = "glm_raw_rawdisp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
   
   # GLM Shrink
-  list(name = "GLM-Shrink-Raw", dir_pattern = "glm_shrink_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
-  list(name = "GLM-Shrink-Norm", dir_pattern = "glm_shrink_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results_norm.csv"),
+  list(name = "GLM-Shrink", dir_pattern = "glm_shrink_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
   
   # GLM Mapping (glmmTMB-V)
-  list(name = "GLM-Map-Raw", dir_pattern = "glmmtmb_v_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
-  list(name = "GLM-Map-Norm", dir_pattern = "glmmtmb_v_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results_norm.csv"),
+  list(name = "GLM-Map", dir_pattern = "glmmtmb_v_allcells_withsex_noimp", padj_col = "padj_intercept", file = "phi_glm_results.csv"),
   
   # scDALI (Local)
   list(name = "scDALI", dir_pattern = "scdali", padj_col = "padj", file = "scdali_hom_results.csv")
@@ -59,18 +53,30 @@ load_ground_truth <- function(sim_path) {
     return(NULL)
   }
   
-  # Classify genes using new delta threshold (0.01 as requested)
-  # True Imbalanced: |delta - 0.5| > 0.01
-  gene_info$true_imbalanced <- abs(gene_info$delta_true - 0.5) > delta_threshold
+  # Calculate effective delta (population average) using mu_global
+  # Logic matches plot_roc_curves_sim.R: mu_global = (p_F + p_M) / 2
+  gene_info$eta_base <- qlogis(gene_info$delta_true)
+  gene_info$p_F <- plogis(gene_info$eta_base)
+  gene_info$p_M <- plogis(gene_info$eta_base + gene_info$beta_sex)
+  gene_info$mu_global <- (gene_info$p_F + gene_info$p_M) / 2
   
-  # True Sex Effect: |beta_sex| > 0.01 (assuming small effect is negligible)
+  # Classify genes using delta threshold (0.01)
+  # True Imbalanced: |mu_global - 0.5| > delta_threshold
+  gene_info$true_imbalanced <- abs(gene_info$mu_global - 0.5) > delta_threshold
+  
+  # True Sex Effect: |beta_sex| > 0.01
   gene_info$has_sex_effect <- abs(gene_info$beta_sex) > 0.01
   
   # Create C1-C4 categories
-  gene_info$category <- "C1"  # Balanced, no sex
-  gene_info$category[gene_info$true_imbalanced & !gene_info$has_sex_effect] <- "C2"  # Imbalanced, no sex
-  gene_info$category[!gene_info$true_imbalanced & gene_info$has_sex_effect] <- "C3"  # Balanced, with sex
-  gene_info$category[gene_info$true_imbalanced & gene_info$has_sex_effect] <- "C4"  # Imbalanced, with sex
+  # C1: Balanced, No Sex (Truly Null)
+  # C2: Imbalanced, No Sex
+  # C3: Balanced (Global Mean), Has Sex -> Small sex effects that don't shift mean > 0.01
+  # C4: Imbalanced, Has Sex
+  
+  gene_info$category <- "C1"
+  gene_info$category[gene_info$true_imbalanced & !gene_info$has_sex_effect] <- "C2"
+  gene_info$category[!gene_info$true_imbalanced & gene_info$has_sex_effect] <- "C3"
+  gene_info$category[gene_info$true_imbalanced & gene_info$has_sex_effect] <- "C4"
   
   return(gene_info)
 }
@@ -120,8 +126,10 @@ all_results <- list()
 
 sim_dirs <- list.dirs(sim_dir, recursive = FALSE, full.names = TRUE)
 sim_dirs <- sim_dirs[grepl("seed7", sim_dirs)]
+# FILTER: Only F1_Aged seeds  
+sim_dirs <- sim_dirs[grepl("F1_Aged", sim_dirs)]
 
-message(sprintf("Found %d simulation directories", length(sim_dirs)))
+message(sprintf("Found %d F1_Aged simulation directories", length(sim_dirs)))
 
 for (sim_path in sim_dirs) {
   sim_name <- basename(sim_path)
