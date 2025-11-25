@@ -1,0 +1,22 @@
+celltype	condition	max_genes	seed	output_rds
+Cardiomyocyte	F1_Aged	2000	1001	results/sim_runs/zinb_totals_hvg/Cardiomyocyte/F1_Aged_totals.rds
+Cardiomyocyte	F1_Young	2000	1002	results/sim_runs/zinb_totals_hvg/Cardiomyocyte/F1_Young_totals.rds
+Fibroblast	F1_Aged	2000	1003	results/sim_runs/zinb_totals_hvg/Fibroblast/F1_Aged_totals.rds
+Fibroblast	F1_Young	2000	1004	results/sim_runs/zinb_totals_hvg/Fibroblast/F1_Young_totals.rds
+Coronary_EC	F1_Aged	2000	1005	results/sim_runs/zinb_totals_hvg/Coronary_EC/F1_Aged_totals.rds
+Coronary_EC	F1_Young	2000	1006	results/sim_runs/zinb_totals_hvg/Coronary_EC/F1_Young_totals.rds
+Pericytes	F1_Aged	2000	1007	results/sim_runs/zinb_totals_hvg/Pericytes/F1_Aged_totals.rds
+Pericytes	F1_Young	2000	1008	results/sim_runs/zinb_totals_hvg/Pericytes/F1_Young_totals.rds
+Myeloid	F1_Aged	2000	1009	results/sim_runs/zinb_totals_hvg/Myeloid/F1_Aged_totals.rds
+Myeloid	F1_Young	2000	1010	results/sim_runs/zinb_totals_hvg/Myeloid/F1_Young_totals.rds
+Endocardial_EC	F1_Aged	2000	1011	results/sim_runs/zinb_totals_hvg/Endocardial_EC/F1_Aged_totals.rds
+Endocardial_EC	F1_Young	2000	1012	results/sim_runs/zinb_totals_hvg/Endocardial_EC/F1_Young_totals.rds
+Mesothelial	F1_Aged	2000	1013	results/sim_runs/zinb_totals_hvg/Mesothelial/F1_Aged_totals.rds
+Mesothelial	F1_Young	2000	1014	results/sim_runs/zinb_totals_hvg/Mesothelial/F1_Young_totals.rds
+Lymphatic_EC	F1_Aged	2000	1015	results/sim_runs/zinb_totals_hvg/Lymphatic_EC/F1_Aged_totals.rds
+Lymphatic_EC	F1_Young	2000	1016	results/sim_runs/zinb_totals_hvg/Lymphatic_EC/F1_Young_totals.rds
+T_cell	F1_Aged	2000	1017	results/sim_runs/zinb_totals_hvg/T_cell/F1_Aged_totals.rds
+T_cell	F1_Young	2000	1018	results/sim_runs/zinb_totals_hvg/T_cell/F1_Young_totals.rds
+Smooth_Muscle	F1_Aged	2000	1019	results/sim_runs/zinb_totals_hvg/Smooth_Muscle/F1_Aged_totals.rds
+Smooth_Muscle	F1_Young	2000	1020	results/sim_runs/zinb_totals_hvg/Smooth_Muscle/F1_Young_totals.rds
+

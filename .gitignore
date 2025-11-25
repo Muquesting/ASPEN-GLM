@@ -16,3 +16,5 @@ gencode.vM33.annotation.gtf
 
 # Ignore simulation results
 results/sim_runs/
+# Large scDALI data files
+results/scdali_real_data/**/*.csv

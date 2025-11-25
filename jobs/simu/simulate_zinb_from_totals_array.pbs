@@ -40,7 +40,7 @@ fi
 
 echo "[$(date)] Simulating from ${totals_rds} -> ${output_rds} (seed=${seed})"
 
-Rscript scripts/simu/simulate_zinb_totals_with_glm.R \
+Rscript scripts/simu/simulate_zinb_centered.R \
   "${totals_rds}" \
   "${glm_csv}" \
   "${bb_csv}" \
