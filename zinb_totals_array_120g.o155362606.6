@@ -1,0 +1,121 @@
+[Tue Nov 25 18:35:33 AEDT 2025] Running slice: celltype=Coronary_EC, condition=F1_Young, max_genes=2000, seed=1006
+Selecting top 2000 highly variable genes using logNormCounts + getTopHVGs...
+Selected 2000 HVGs
+Fitting ZINB model on 2000 genes and 713 cells …
+Using zinb_cores = 1
+[2025-11-25 18:35:49.740964] Attempting zinbFit on 2000 genes (SerialParam)
+Create model:
+ok
+Initialize parameters:
+ok
+Optimize parameters:
+Iteration 1
+penalized log-likelihood = -354810.153130669
+After dispersion optimization = -336504.175074077
+   user  system elapsed 
+ 58.590   0.369  59.139 
+After right optimization = -310040.191405296
+After orthogonalization = -310039.733377047
+   user  system elapsed 
+ 31.920   0.189  32.206 
+After left optimization = -301158.305951729
+After orthogonalization = -301158.305696239
+Iteration 2
+penalized log-likelihood = -301158.305696239
+After dispersion optimization = -311442.303224319
+   user  system elapsed 
+ 50.382   0.139  50.676 
+After right optimization = -307893.346209927
+After orthogonalization = -307893.308200676
+   user  system elapsed 
+ 56.217   0.259  56.648 
+After left optimization = -306860.339205379
+After orthogonalization = -306860.339203425
+Iteration 3
+penalized log-likelihood = -306860.339203425
+After dispersion optimization = -306444.982651834
+   user  system elapsed 
+ 51.755   0.100  52.010 
+After right optimization = -305492.190134374
+After orthogonalization = -305492.174534466
+   user  system elapsed 
+ 21.017   0.159  21.241 
+After left optimization = -305041.254827739
+After orthogonalization = -305041.254819056
+Iteration 4
+penalized log-likelihood = -305041.254819056
+After dispersion optimization = -304964.456240998
+   user  system elapsed 
+ 49.539   0.030  49.719 
+After right optimization = -304602.027527634
+After orthogonalization = -304602.026019759
+   user  system elapsed 
+ 18.902   0.050  19.012 
+After left optimization = -304410.836767855
+After orthogonalization = -304410.836765771
+Iteration 5
+penalized log-likelihood = -304410.836765771
+After dispersion optimization = -304380.339638741
+   user  system elapsed 
+ 45.476   0.240  45.850 
+After right optimization = -304207.118427155
+After orthogonalization = -304207.118140417
+   user  system elapsed 
+ 18.706   0.000  18.763 
+After left optimization = -304086.135018566
+After orthogonalization = -304086.13501653
+Iteration 6
+penalized log-likelihood = -304086.13501653
+After dispersion optimization = -304068.898502718
+   user  system elapsed 
+ 42.287   0.060  42.478 
+After right optimization = -303947.022473536
+After orthogonalization = -303947.022192809
+   user  system elapsed 
+ 18.454   0.120  18.627 
+After left optimization = -303863.537384418
+After orthogonalization = -303863.537383748
+Iteration 7
+penalized log-likelihood = -303863.537383748
+After dispersion optimization = -303851.638935566
+   user  system elapsed 
+ 41.512   0.109  41.745 
+After right optimization = -303752.835814117
+After orthogonalization = -303752.835449218
+   user  system elapsed 
+ 18.151   0.070  18.276 
+After left optimization = -303677.894818863
+After orthogonalization = -303677.89481863
+Iteration 8
+penalized log-likelihood = -303677.89481863
+After dispersion optimization = -303668.638941916
+   user  system elapsed 
+ 39.833   0.040  39.994 
+After right optimization = -303589.190791945
+After orthogonalization = -303589.19072314
+   user  system elapsed 
+ 18.328   0.220  18.602 
+After left optimization = -303532.667352388
+After orthogonalization = NaN
+Iteration 9
+penalized log-likelihood = NaN
+Error in if (abs((total.lik[iter] - total.lik[iter - 1])/total.lik[iter -  : 
+  missing value where TRUE/FALSE needed
+Calls: tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
+In addition: Warning message:
+In simpute.als(x, J, thresh, lambda, maxit, trace.it, warm.start,  :
+  Convergence not achieved by 100 iterations
+Execution halted
+
+======================================================================================
+                  Resource Usage on 2025-11-25 18:47:13:
+   Job Id:             155362606[6].gadi-pbs
+   Project:            zk16
+   Exit Status:        1
+   Service Units:      18.42
+   NCPUs Requested:    1                      NCPUs Used: 1               
+                                           CPU Time Used: 00:11:34        
+   Memory Requested:   190.0GB               Memory Used: 2.07GB          
+   Walltime requested: 06:00:00            Walltime Used: 00:11:38        
+   JobFS requested:    100.0MB                JobFS used: 0B              
+======================================================================================

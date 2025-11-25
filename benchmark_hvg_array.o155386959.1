@@ -1,0 +1,53 @@
+Loading python3/3.11.7
+  Loading requirement: intel-mkl/2023.2.0
+[Wed Nov 26 07:27:13 AEDT 2025] Processing results/sim_runs/zinb_simulations_hvg/Cardiomyocyte/F1_Aged_seed7001.rds -> results/sim_runs/glm_eval_all/Cardiomyocyte_F1_Aged_seed7001
+  SCE already exists, skipping conversion.
+  Running Benchmark Methods...
+Warning message:
+In check_dep_version() : ABI version mismatch: 
+lme4 was built with Matrix ABI version 1
+Current Matrix ABI version is 2
+Please re-install lme4 from source or restore original 'Matrix' package
+Filter mode: strict
+Loading results/sim_runs/glm_eval_all/Cardiomyocyte_F1_Aged_seed7001/simulation_sce.rds
+Applying strict filtering (rowSums(tot > 1) >= 10)
+Genes kept: 1580
+Cells: 5825
+
+--- Running ASPEN ---
+Loading required package: doParallel
+Loading required package: foreach
+Loading required package: iterators
+ASPEN Shrinkage: delta=50, N=30
+Warning message:
+In parallel::mclapply(index_chunks, make_chunk, mc.cores = cores,  :
+  8 function calls resulted in an error
+  Running ASPEN on normalized counts...
+Warning messages:
+1: closing unused connection 11 (<-localhost:11252) 
+2: closing unused connection 10 (<-localhost:11252) 
+3: closing unused connection 9 (<-localhost:11252) 
+4: closing unused connection 8 (<-localhost:11252) 
+5: closing unused connection 7 (<-localhost:11252) 
+6: closing unused connection 6 (<-localhost:11252) 
+7: closing unused connection 5 (<-localhost:11252) 
+8: closing unused connection 4 (<-localhost:11252) 
+
+--- Running glmmTMB ---
+Error: unexpected ')' in:
+"    n <- as.numeric(tot[g, ])
+    df <- data.frame(y=y, n=n, sex=sex_centered)[g, ])"
+Execution halted
+
+======================================================================================
+                  Resource Usage on 2025-11-26 07:29:39:
+   Job Id:             155386959[1].gadi-pbs
+   Project:            zk16
+   Exit Status:        1
+   Service Units:      0.66
+   NCPUs Requested:    8                      NCPUs Used: 8               
+                                           CPU Time Used: 00:13:47        
+   Memory Requested:   32.0GB                Memory Used: 4.93GB          
+   Walltime requested: 04:00:00            Walltime Used: 00:02:28        
+   JobFS requested:    100.0MB                JobFS used: 0B              
+======================================================================================

@@ -107,7 +107,7 @@ run_zinbfit <- function(genes_subset, param) {
   BiocParallel::register(param, default = TRUE)
   message("[", Sys.time(), "] Attempting zinbFit on ", length(genes_subset),
           " genes (", class(param)[1], ")")
-  fit <- zinbFit(counts_subset, K = 2, epsilon = 1e-3, verbose = TRUE, BPPARAM = param)
+  fit <- zinbFit(counts_subset, K = 2, epsilon = 1e-3, maxiter = 500, verbose = TRUE, BPPARAM = param)
   list(fit = fit, counts = counts_subset, genes = genes_subset)
 }
 

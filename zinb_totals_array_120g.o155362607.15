@@ -1,0 +1,102 @@
+[Tue Nov 25 18:35:34 AEDT 2025] Running slice: celltype=Lymphatic_EC, condition=F1_Aged, max_genes=2000, seed=1015
+Selecting top 2000 highly variable genes using logNormCounts + getTopHVGs...
+Selected 2000 HVGs
+Fitting ZINB model on 2000 genes and 121 cells …
+Using zinb_cores = 1
+[2025-11-25 18:35:52.725584] Attempting zinbFit on 2000 genes (SerialParam)
+Create model:
+ok
+Initialize parameters:
+ok
+Optimize parameters:
+Iteration 1
+penalized log-likelihood = -103917.098212671
+After dispersion optimization = -98897.1003431251
+   user  system elapsed 
+ 31.777   0.331  32.304 
+After right optimization = -81838.5975708321
+After orthogonalization = -81837.7148330698
+   user  system elapsed 
+  7.756   0.040   7.817 
+After left optimization = -78181.7485007593
+After orthogonalization = -78181.7484854646
+Iteration 2
+penalized log-likelihood = -78181.7484854646
+After dispersion optimization = -89317.2265128084
+   user  system elapsed 
+ 21.706   0.222  21.990 
+After right optimization = -88124.1452469188
+After orthogonalization = -88124.1082839485
+   user  system elapsed 
+  7.524   0.040   7.589 
+After left optimization = -87976.1724062531
+After orthogonalization = -87976.1724061097
+Iteration 3
+penalized log-likelihood = -87976.1724061097
+After dispersion optimization = -88423.19862883
+   user  system elapsed 
+ 21.881   0.080  22.023 
+After right optimization = -87985.3239771057
+After orthogonalization = -87985.3065164164
+   user  system elapsed 
+ 10.971   0.040  11.042 
+After left optimization = -87845.899382209
+After orthogonalization = -87845.8993819088
+Iteration 4
+penalized log-likelihood = -87845.8993819088
+After dispersion optimization = -87371.8679322863
+   user  system elapsed 
+ 24.793   0.119  24.983 
+After right optimization = -87104.2421273704
+After orthogonalization = -87104.2379077019
+   user  system elapsed 
+  4.028   0.000   4.040 
+After left optimization = -87035.5858902118
+After orthogonalization = -87035.5858901537
+Iteration 5
+penalized log-likelihood = -87035.5858901537
+After dispersion optimization = -87011.5128457632
+   user  system elapsed 
+ 22.203   0.239  22.510 
+After right optimization = -86922.2930143492
+After orthogonalization = -86922.2926757477
+   user  system elapsed 
+  3.651   0.000   3.660 
+After left optimization = -86884.6112226945
+After orthogonalization = -86884.6112226549
+Iteration 6
+penalized log-likelihood = -86884.6112226549
+After dispersion optimization = -86878.4437010743
+   user  system elapsed 
+ 20.177   0.009  20.245 
+After right optimization = -86814.7878276208
+After orthogonalization = -86814.7877439495
+   user  system elapsed 
+  3.536   0.000   3.546 
+After left optimization = -86788.274068975
+After orthogonalization = -86788.2740689399
+Iteration 7
+penalized log-likelihood = -86788.2740689399
+After dispersion optimization = -86785.7157764048
+Error: BiocParallel errors
+  1 remote errors, element index: 1536
+  464 unevaluated and other errors
+  first remote error:
+Error in optim(fn = zinb.loglik.regression, gr = zinb.loglik.regression.gradient, : initial value in 'vmmin' is not finite
+In addition: Warning message:
+In simpute.als(x, J, thresh, lambda, maxit, trace.it, warm.start,  :
+  Convergence not achieved by 100 iterations
+Execution halted
+
+======================================================================================
+                  Resource Usage on 2025-11-25 18:39:30:
+   Job Id:             155362607[15].gadi-pbs
+   Project:            zk16
+   Exit Status:        1
+   Service Units:      6.17
+   NCPUs Requested:    1                      NCPUs Used: 1               
+                                           CPU Time Used: 00:03:50        
+   Memory Requested:   190.0GB               Memory Used: 2.45GB          
+   Walltime requested: 06:00:00            Walltime Used: 00:03:54        
+   JobFS requested:    100.0MB                JobFS used: 0B              
+======================================================================================

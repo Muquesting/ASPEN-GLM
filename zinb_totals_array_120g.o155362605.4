@@ -1,0 +1,128 @@
+[Tue Nov 25 18:35:33 AEDT 2025] Running slice: celltype=Fibroblast, condition=F1_Young, max_genes=2000, seed=1004
+Selecting top 2000 highly variable genes using logNormCounts + getTopHVGs...
+Selected 2000 HVGs
+Fitting ZINB model on 2000 genes and 2292 cells …
+Using zinb_cores = 1
+[2025-11-25 18:35:52.787361] Attempting zinbFit on 2000 genes (SerialParam)
+Create model:
+ok
+Initialize parameters:
+ok
+Optimize parameters:
+Iteration 1
+penalized log-likelihood = -1546050.42677225
+After dispersion optimization = -1475899.4774516
+   user  system elapsed 
+ 84.951   0.357  85.567 
+After right optimization = -1389739.15905339
+After orthogonalization = -1389739.10248013
+   user  system elapsed 
+120.043   0.558 120.981 
+After left optimization = -1362752.64741451
+After orthogonalization = -1362752.64728492
+Iteration 2
+penalized log-likelihood = -1362752.64728492
+After dispersion optimization = -1363200.64728492
+   user  system elapsed 
+ 80.847   0.498  81.586 
+After right optimization = -1354341.07606552
+After orthogonalization = -1354341.07252635
+   user  system elapsed 
+108.318   0.778 109.423 
+After left optimization = -1331977.78381038
+After orthogonalization = -1331977.78378817
+Iteration 3
+penalized log-likelihood = -1331977.78378817
+After dispersion optimization = -1373850.64133211
+   user  system elapsed 
+ 80.202   0.270  80.700 
+After right optimization = -1371931.45626001
+After orthogonalization = -1371931.45594259
+   user  system elapsed 
+108.711   0.638 109.682 
+After left optimization = -1368235.4799342
+After orthogonalization = -1368235.47993204
+Iteration 4
+penalized log-likelihood = -1368235.47993204
+After dispersion optimization = -1370584.07649352
+   user  system elapsed 
+ 79.024   0.189  79.440 
+After right optimization = -1369875.89145337
+After orthogonalization = -1369875.8906828
+   user  system elapsed 
+119.615   0.718 120.699 
+After left optimization = -1368814.66748685
+After orthogonalization = -1368814.66748461
+Iteration 5
+penalized log-likelihood = -1368814.66748461
+After dispersion optimization = -1368208.25001743
+   user  system elapsed 
+ 79.897   0.319  80.449 
+After right optimization = -1367481.85298623
+After orthogonalization = -1367481.85287147
+   user  system elapsed 
+137.337   0.598 138.356 
+After left optimization = -1357593.8267799
+After orthogonalization = -1357593.82677957
+Iteration 6
+penalized log-likelihood = -1357593.82677957
+After dispersion optimization = -1357593.95177957
+   user  system elapsed 
+ 79.351   0.469  80.056 
+After right optimization = -1357309.5994169
+After orthogonalization = -1357309.59938787
+   user  system elapsed 
+ 79.621   0.378  80.248 
+After left optimization = -1355757.13776881
+After orthogonalization = -1355757.13776851
+Iteration 7
+penalized log-likelihood = -1355757.13776851
+After dispersion optimization = -1355759.13776851
+   user  system elapsed 
+ 78.334   0.389  78.958 
+After right optimization = -1355696.8447971
+After orthogonalization = -1355696.8447137
+   user  system elapsed 
+ 52.548   0.150  52.860 
+After left optimization = -1355213.73036636
+After orthogonalization = -1355213.73036627
+Iteration 8
+penalized log-likelihood = -1355213.73036627
+After dispersion optimization = -1355213.73036627
+   user  system elapsed 
+ 77.871   0.370  78.468 
+After right optimization = -1355193.23763244
+After orthogonalization = -1355193.23758943
+   user  system elapsed 
+ 43.405   0.299  43.837 
+After left optimization = -1355054.06924614
+After orthogonalization = -1355054.06924606
+Iteration 9
+penalized log-likelihood = -1355054.06924606
+After dispersion optimization = -1355054.07315231
+   user  system elapsed 
+ 74.311   0.380  74.914 
+After right optimization = -1355044.92210058
+After orthogonalization = -1355044.92208236
+   user  system elapsed 
+ 38.442   0.110  38.673 
+After left optimization = -1354958.17439714
+After orthogonalization = -1354958.17439712
+Iteration 10
+penalized log-likelihood = -1354958.17439712
+ok
+Simulating counts from fitted ZINB model …
+Saved simulated totals to results/sim_runs/zinb_totals_hvg/Fibroblast/F1_Young_totals.rds
+
+======================================================================================
+                  Resource Usage on 2025-11-25 19:07:45:
+   Job Id:             155362605[4].gadi-pbs
+   Project:            zk16
+   Exit Status:        0
+   Service Units:      50.93
+   NCPUs Requested:    1                      NCPUs Used: 1               
+                                           CPU Time Used: 00:32:02        
+   Memory Requested:   190.0GB               Memory Used: 3.52GB          
+   Walltime requested: 06:00:00            Walltime Used: 00:32:10        
+   JobFS requested:    100.0MB                JobFS used: 0B              
+======================================================================================

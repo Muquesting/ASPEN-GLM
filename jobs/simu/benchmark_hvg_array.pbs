@@ -1,0 +1,57 @@
+#!/bin/bash
+#PBS -P zk16
+#PBS -q normal
+#PBS -l ncpus=8
+#PBS -l mem=32GB
+#PBS -l walltime=04:00:00
+#PBS -l storage=gdata/zk16+scratch/zk16
+#PBS -N benchmark_hvg_array
+#PBS -j oe
+
+# Usage:
+#   qsub -J 1-6 -r y \
+#        -v COMBO_FILE=jobs/simu/combos_benchmark_hvg.tsv \
+#        jobs/simu/benchmark_hvg_array.pbs
+
+if [[ -z "${COMBO_FILE}" ]]; then
+  echo "ERROR: COMBO_FILE environment variable is not set." >&2
+  exit 1
+fi
+
+module purge
+module load gcc/14.2.0
+module load R/4.4.2
+export R_LIBS_USER=/g/data/zk16/muqing/R/4.4
+export OMP_NUM_THREADS=$PBS_NCPUS
+module load python3/3.11.7
+
+cd /g/data/zk16/muqing/repos/ASPEN-GLM || exit 1
+
+data_line=$(tail -n +2 "${COMBO_FILE}" | sed -n "${PBS_ARRAY_INDEX}p")
+if [[ -z "${data_line}" ]]; then
+  echo "ERROR: No data line ${PBS_ARRAY_INDEX} in ${COMBO_FILE}" >&2
+  exit 1
+fi
+
+IFS=$'\t' read -r SIM_RDS OUT_DIR <<< "${data_line}"
+if [[ -z "${SIM_RDS}" || -z "${OUT_DIR}" ]]; then
+  echo "ERROR: Missing fields in line: ${data_line}" >&2
+  exit 1
+fi
+
+echo "[$(date)] Processing ${SIM_RDS} -> ${OUT_DIR}"
+
+mkdir -p "${OUT_DIR}"
+SCE_RDS="${OUT_DIR}/simulation_sce.rds"
+
+# 1. Convert to SCE
+if [ ! -f "${SCE_RDS}" ]; then
+    echo "  Converting to SCE..."
+    Rscript scripts/simu/convert_sim_to_sce.R "${SIM_RDS}" "${SCE_RDS}"
+else
+    echo "  SCE already exists, skipping conversion."
+fi
+
+# 2. Run Benchmark
+echo "  Running Benchmark Methods..."
+Rscript scripts/simu/run_simple_simulation_methods.R "${SCE_RDS}" "${OUT_DIR}" 8 "strict"

@@ -86,13 +86,26 @@ grid_vals <- as.numeric(strsplit(mu_grid_str, ",")[[1]])
 grid_vals <- grid_vals[is.finite(grid_vals) & grid_vals > 0 & grid_vals < 1]
 if (!length(grid_vals)) stop("No usable grid values.")
 
+# Handle column name mismatches
+if (!"p_sexM" %in% names(glm_diag) && "p_sex" %in% names(glm_diag)) {
+  glm_diag$p_sexM <- glm_diag$p_sex
+}
+
+# If coef_sexM is missing, simulate it or use a default distribution
+if (!"coef_sexM" %in% names(glm_diag)) {
+  message("Warning: 'coef_sexM' not found in GLM file. Simulating coefficients from N(0, 0.5).")
+  # Simulate coefficients for all genes, we'll filter by significance later
+  glm_diag$coef_sexM <- rnorm(nrow(glm_diag), mean = 0, sd = 0.5)
+}
+
+sig_flags <- with(glm_diag, p_sexM < sex_p_cut & is.finite(p_sexM))
 sex_prob <- NA_real_
 if (!is.na(suppressWarnings(as.numeric(sex_prob_arg)))) {
   sex_prob <- as.numeric(sex_prob_arg)
 } else {
-  sig_flags <- with(glm_diag, p_sexM < sex_p_cut & is.finite(p_sexM))
   sex_prob <- mean(sig_flags, na.rm = TRUE)
 }
+
 if (!is.finite(sex_prob) || sex_prob < 0 || sex_prob > 1) sex_prob <- 0
 
 sig_idx <- which(glm_diag$p_sexM < sex_p_cut & is.finite(glm_diag$coef_sexM))

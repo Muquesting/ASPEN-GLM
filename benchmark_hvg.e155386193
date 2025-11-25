@@ -1,0 +1,110 @@
+Loading python3/3.11.7
+  Loading requirement: intel-mkl/2023.2.0
+Warning message:
+In check_dep_version() : ABI version mismatch: 
+lme4 was built with Matrix ABI version 1
+Current Matrix ABI version is 2
+Please re-install lme4 from source or restore original 'Matrix' package
+Filter mode: strict
+Loading results/sim_runs/glm_eval_all/Cardiomyocyte_F1_Aged_seed7001/simulation_sce.rds
+Applying strict filtering (rowSums(tot > 1) >= 10)
+Genes kept: 1580
+Cells: 5825
+
+--- Running ASPEN ---
+Loading required package: doParallel
+Loading required package: foreach
+Loading required package: iterators
+ASPEN Shrinkage: delta=50, N=30
+Warning message:
+In parallel::mclapply(index_chunks, make_chunk, mc.cores = cores,  :
+  8 function calls resulted in an error
+  Running ASPEN on normalized counts...
+Warning messages:
+1: closing unused connection 11 (<-localhost:11812) 
+2: closing unused connection 10 (<-localhost:11812) 
+3: closing unused connection 9 (<-localhost:11812) 
+4: closing unused connection 8 (<-localhost:11812) 
+5: closing unused connection 7 (<-localhost:11812) 
+6: closing unused connection 6 (<-localhost:11812) 
+7: closing unused connection 5 (<-localhost:11812) 
+8: closing unused connection 4 (<-localhost:11812) 
+
+--- Running glmmTMB ---
+dropping columns from rank-deficient conditional model: sex
+  Running glmmTMB on normalized counts...
+dropping columns from rank-deficient conditional model: sex
+
+--- Running GAMLSS ---
+  Running glmmTMB on normalized counts...
+dropping columns from rank-deficient conditional model: sex
+  Running GAMLSS on normalized counts...
+
+--- Running GLM Raw ---
+Warning message:
+In mclapply(genes, function(g) { :
+  scheduled core 8 encountered error in user code, all values of the job will be affected
+Warning message:
+In p.adjust(glm_raw_res$p_intercept, method = "BH") :
+  NAs introduced by coercion
+
+--- Running GLM Shrink ---
+There were 50 or more warnings (use warnings() to see the first 50)
+Warning message:
+In mclapply(genes, function(g) { :
+  scheduled core 8 encountered error in user code, all values of the job will be affected
+Warning message:
+In p.adjust(glm_shrink_res$p_intercept, method = "BH") :
+  NAs introduced by coercion
+  Running GLM Raw on normalized counts...
+Warning message:
+In mclapply(genes, function(g) { :
+  scheduled core 8 encountered error in user code, all values of the job will be affected
+Warning message:
+In p.adjust(glm_raw_norm_res$p_intercept, method = "BH") :
+  NAs introduced by coercion
+  Running GLM Shrink on normalized counts...
+There were 50 or more warnings (use warnings() to see the first 50)
+Warning message:
+In mclapply(genes, function(g) { :
+  scheduled core 8 encountered error in user code, all values of the job will be affected
+Warning message:
+In p.adjust(glm_shrink_norm_res$p_intercept, method = "BH") :
+  NAs introduced by coercion
+
+Done.
+
+--- Running GLM Mapping (glmmTMB-V) ---
+  Running GLM Mapping on normalized counts...
+
+--- Running scDALI (Python) ---
+Running: python3 scripts/simu/run_scdali.py results/sim_runs/glm_eval_all/Cardiomyocyte_F1_Aged_seed7001/scdali/a1.csv results/sim_runs/glm_eval_all/Cardiomyocyte_F1_Aged_seed7001/scdali/tot.csv results/sim_runs/glm_eval_all/Cardiomyocyte_F1_Aged_seed7001/scdali/scdali_hom_results.csv
+/g/data/zk16/muqing/repos/ASPEN-GLM/scripts/simu/run_scdali.py:4: DeprecationWarning: 
+Pyarrow will become a required dependency of pandas in the next major release of pandas (pandas 3.0),
+(to allow more performant data types, such as the Arrow string type, and better interoperability with other libraries)
+but was not found to be installed on your system.
+If this would cause problems for you,
+please provide us feedback at https://github.com/pandas-dev/pandas/issues/54466
+        
+  import pandas as pd
+Traceback (most recent call last):
+  File "/g/data/zk16/muqing/repos/ASPEN-GLM/scripts/simu/run_scdali.py", line 6, in <module>
+    from statsmodels.stats.multitest import multipletests
+ModuleNotFoundError: No module named 'statsmodels'
+
+All pipelines completed.
+Warning message:
+In check_dep_version() : ABI version mismatch: 
+lme4 was built with Matrix ABI version 1
+Current Matrix ABI version is 2
+Please re-install lme4 from source or restore original 'Matrix' package
+Filter mode: strict
+Loading results/sim_runs/glm_eval_all/Cardiomyocyte_F1_Aged_seed7002/simulation_sce.rds
+Applying strict filtering (rowSums(tot > 1) >= 10)
+Genes kept: 1580
+Cells: 5825
+
+--- Running ASPEN ---
+Loading required package: doParallel
+Loading required package: foreach
+Loading required package: iterators

@@ -1,0 +1,236 @@
+[Tue Nov 25 18:35:35 AEDT 2025] Running slice: celltype=Smooth_Muscle, condition=F1_Aged, max_genes=2000, seed=1019
+Selecting top 2000 highly variable genes using logNormCounts + getTopHVGs...
+Selected 1777 HVGs
+Warning message:
+In regularize.values(x, y, ties, missing(ties), na.rm = na.rm) :
+  collapsing to unique 'x' values
+Fitting ZINB model on 1777 genes and 32 cells …
+Using zinb_cores = 1
+[2025-11-25 18:35:53.373397] Attempting zinbFit on 1777 genes (SerialParam)
+Create model:
+ok
+Initialize parameters:
+ok
+Optimize parameters:
+Iteration 1
+penalized log-likelihood = -20638.5647534118
+After dispersion optimization = -19372.7191109095
+   user  system elapsed 
+ 26.248   0.288  26.610 
+After right optimization = -5620.20940355694
+After orthogonalization = -5618.46205479278
+   user  system elapsed 
+  3.494   0.040   3.544 
+After left optimization = -4686.32900890925
+After orthogonalization = -4686.32900649781
+Iteration 2
+penalized log-likelihood = -4686.32900649781
+After dispersion optimization = -14136.6368427795
+   user  system elapsed 
+ 22.608   0.161  22.831 
+After right optimization = -12899.8716665036
+After orthogonalization = -12899.7539527931
+   user  system elapsed 
+  3.362   0.069   3.441 
+After left optimization = -12788.4524814931
+After orthogonalization = -12788.4524814529
+Iteration 3
+penalized log-likelihood = -12788.4524814529
+After dispersion optimization = -12770.7233072893
+   user  system elapsed 
+ 22.169   0.169  22.402 
+After right optimization = -12678.4981573038
+After orthogonalization = -12678.4929461959
+   user  system elapsed 
+  0.945   0.071   1.019 
+After left optimization = -12653.7668861275
+After orthogonalization = -12653.7668861209
+Iteration 4
+penalized log-likelihood = -12653.7668861209
+After dispersion optimization = -12653.4881301359
+   user  system elapsed 
+ 17.495   0.069  17.609 
+After right optimization = -12619.4267250172
+After orthogonalization = -12619.4259021867
+   user  system elapsed 
+  1.130   0.030   1.162 
+After left optimization = -12607.919811003
+After orthogonalization = -12607.9198110001
+Iteration 5
+penalized log-likelihood = -12607.9198110001
+After dispersion optimization = -12607.8956841829
+   user  system elapsed 
+ 14.688   0.010  14.740 
+After right optimization = -12585.4929613024
+After orthogonalization = -12585.492608122
+   user  system elapsed 
+  0.889   0.000   0.892 
+After left optimization = -12578.519304156
+After orthogonalization = -12578.5193041545
+Iteration 6
+penalized log-likelihood = -12578.5193041545
+After dispersion optimization = -12578.5189227549
+   user  system elapsed 
+ 13.353   0.079  13.471 
+After right optimization = -12563.4547437759
+After orthogonalization = -12563.454615593
+   user  system elapsed 
+  1.027   0.000   1.031 
+After left optimization = -12556.4171667127
+After orthogonalization = -12556.4171667121
+Iteration 7
+penalized log-likelihood = -12556.4171667121
+After dispersion optimization = -12556.4156375426
+   user  system elapsed 
+ 12.860   0.000  12.893 
+After right optimization = -12544.5732483992
+After orthogonalization = -12544.5731898493
+   user  system elapsed 
+  0.885   0.020   0.907 
+After left optimization = -12538.9090871817
+After orthogonalization = -12538.909087181
+Iteration 8
+penalized log-likelihood = -12538.909087181
+After dispersion optimization = -12538.908853484
+   user  system elapsed 
+ 12.102   0.010  12.148 
+After right optimization = -12526.2883156728
+After orthogonalization = -12526.2881375009
+   user  system elapsed 
+  0.963   0.000   0.966 
+After left optimization = -12521.0084883717
+After orthogonalization = -12521.0084883712
+Iteration 9
+penalized log-likelihood = -12521.0084883712
+After dispersion optimization = -12521.0080854743
+   user  system elapsed 
+ 13.035   0.130  13.199 
+After right optimization = -12514.1396485451
+After orthogonalization = -12514.1396086568
+   user  system elapsed 
+  0.983   0.010   0.996 
+After left optimization = -12510.2713161556
+After orthogonalization = -12510.2713161553
+Iteration 10
+penalized log-likelihood = -12510.2713161553
+After dispersion optimization = -12538.7059283528
+   user  system elapsed 
+  9.341   0.009   9.377 
+After right optimization = -12531.9565432582
+After orthogonalization = -12531.956539817
+   user  system elapsed 
+  2.332   0.050   2.389 
+After left optimization = -12522.7900034924
+After orthogonalization = -12522.7900034925
+Iteration 11
+penalized log-likelihood = -12522.7900034925
+After dispersion optimization = -12521.3474679368
+   user  system elapsed 
+  9.929   0.000   9.958 
+After right optimization = -12500.4779333925
+After orthogonalization = -12500.4779321637
+   user  system elapsed 
+  2.577   0.000   2.584 
+After left optimization = -12496.0710396904
+After orthogonalization = -12496.0710396905
+Iteration 12
+penalized log-likelihood = -12496.0710396905
+After dispersion optimization = -12508.0778535184
+   user  system elapsed 
+  9.275   0.000   9.302 
+After right optimization = -12504.9713757129
+After orthogonalization = -12504.9713681373
+   user  system elapsed 
+  1.952   0.000   1.957 
+After left optimization = -12502.3657541093
+After orthogonalization = -12502.3657541091
+Iteration 13
+penalized log-likelihood = -12502.3657541091
+After dispersion optimization = -11732.0581193476
+   user  system elapsed 
+  9.968   0.000   9.994 
+After right optimization = -10975.706966519
+After orthogonalization = -10975.7069336617
+   user  system elapsed 
+  2.885   0.010   2.903 
+After left optimization = -10176.1328095028
+After orthogonalization = -10176.1328094125
+Iteration 14
+penalized log-likelihood = -10176.1328094125
+After dispersion optimization = -12602.9514634147
+   user  system elapsed 
+ 11.601   0.079  11.714 
+After right optimization = -12491.9688576329
+After orthogonalization = -12491.9688565107
+   user  system elapsed 
+  2.568   0.010   2.585 
+After left optimization = -12483.0030967248
+After orthogonalization = -12483.0030967244
+Iteration 15
+penalized log-likelihood = -12483.0030967244
+After dispersion optimization = -12480.1114053067
+   user  system elapsed 
+ 10.488   0.010  10.525 
+After right optimization = -12453.8522603441
+After orthogonalization = -12453.8522601379
+   user  system elapsed 
+  2.508   0.030   2.545 
+After left optimization = -12441.281935957
+After orthogonalization = -12441.2819359549
+Iteration 16
+penalized log-likelihood = -12441.2819359549
+After dispersion optimization = -12441.2360373382
+   user  system elapsed 
+  7.419   0.000   7.442 
+After right optimization = -12435.1812182106
+After orthogonalization = -12435.1812175313
+   user  system elapsed 
+  0.894   0.000   0.897 
+After left optimization = -12434.030730808
+After orthogonalization = -12434.0307308081
+Iteration 17
+penalized log-likelihood = -12434.0307308081
+After dispersion optimization = -12434.0151055252
+   user  system elapsed 
+  4.483   0.000   4.494 
+After right optimization = -12432.7653873905
+After orthogonalization = -12432.7653873708
+   user  system elapsed 
+  0.644   0.000   0.646 
+After left optimization = -12432.4226005373
+After orthogonalization = -12432.4226005373
+Iteration 18
+penalized log-likelihood = -12432.4226005373
+After dispersion optimization = -12432.4206475855
+   user  system elapsed 
+  3.317   0.030   3.356 
+After right optimization = -12432.1038785527
+After orthogonalization = -12432.1038785532
+   user  system elapsed 
+  0.504   0.000   0.505 
+After left optimization = -12432.1038769427
+After orthogonalization = -12432.1038769427
+Iteration 19
+penalized log-likelihood = -12432.1038769427
+ok
+Warning message:
+In simpute.als(x, J, thresh, lambda, maxit, trace.it, warm.start,  :
+  Convergence not achieved by 100 iterations
+Simulating counts from fitted ZINB model …
+Warning message:
+In rnbinom(length(i), mu = mu[i], size = theta[ceiling(i/n)]) :
+  NAs produced
+Saved simulated totals to results/sim_runs/zinb_totals_hvg/Smooth_Muscle/F1_Aged_totals.rds
+
+======================================================================================
+                  Resource Usage on 2025-11-25 18:40:30:
+   Job Id:             155362608[19].gadi-pbs
+   Project:            zk16
+   Exit Status:        0
+   Service Units:      7.76
+   NCPUs Requested:    1                      NCPUs Used: 1               
+                                           CPU Time Used: 00:04:50        
+   Memory Requested:   190.0GB               Memory Used: 2.44GB          
+   Walltime requested: 06:00:00            Walltime Used: 00:04:54        
+   JobFS requested:    100.0MB                JobFS used: 0B              
+======================================================================================
