@@ -70,6 +70,7 @@ input_rds <- args[1]
 output_dir <- args[2]
 n_cores <- if (length(args) >= 3) as.integer(args[3]) else 8
 filter_mode <- if (length(args) >= 4) args[4] else "strict"
+run_scdali <- if (length(args) >= 5) as.logical(args[5]) else TRUE
 
 message("Filter mode: ", filter_mode)
 
@@ -114,7 +115,7 @@ aspen_dir <- file.path(output_dir, "aspen_allcells_withsex_noimp")
 dir.create(aspen_dir, recursive = TRUE, showWarnings = FALSE)
 
 # Estimate params
-est <- estim_params_multicore(a1, tot, min_counts = 0, min_cells = 5, cores = n_cores)
+est <- estim_params_multicore(a1, tot, min_counts = 1, min_cells = 5, cores = n_cores)
 saveRDS(est, file.path(aspen_dir, "estimates_global.rds"))
 
 # Shrinkage
@@ -176,7 +177,7 @@ if (!"bb_mu" %in% names(est_norm_shrunk)) est_norm_shrunk$bb_mu <- est_norm$mean
 if (!"bb_theta" %in% names(est_norm_shrunk)) est_norm_shrunk$bb_theta <- est_norm$theta_reestim
 
 # CRITICAL: Round normalized counts before bb_mean to avoid lchoose() fractional input bug
-bm_norm <- bb_mean(round(a1_norm), round(tot_norm), est_norm_shrunk, glob_params = glob_params, min_cells = 5, min_counts = 0)
+bm_norm <- bb_mean(round(a1_norm), round(tot_norm), est_norm_shrunk, glob_params = glob_params, min_cells = 5, min_counts = 1)
 if (!is.null(bm_norm)) bm_norm$padj_mean <- p.adjust(bm_norm$pval_mean, method = "BH")
 write.csv(bm_norm, file.path(aspen_dir, "bb_mean_results_norm.csv"))
 write.csv(est_norm_shrunk, file.path(aspen_dir, "estimates_global_shrunk_norm.csv"))
@@ -204,6 +205,7 @@ glm_phi_tests_simple <- function(genes, a1, tot, sex, ncores) {
     # Filter
     keep <- n > 0
     if (sum(keep) < 5) return(NULL)
+    if (sum(keep) < 5) return(data.frame(gene=g, p_intercept=NA, p_sex=NA))
     df <- df[keep, ]
     
     fit <- tryCatch({
@@ -215,8 +217,15 @@ glm_phi_tests_simple <- function(genes, a1, tot, sex, ncores) {
       NULL
     })
     
-    if (is.null(fit)) return(NULL)
-    sm <- summary(fit)
+    if (is.null(fit)) {
+       return(data.frame(gene=g, p_intercept=NA, p_sex=NA))
+    }
+    
+    sm <- tryCatch(summary(fit), error=function(e) NULL)
+    if (is.null(sm)) {
+       return(data.frame(gene=g, p_intercept=NA, p_sex=NA))
+    }
+    
     coefs <- sm$coefficients$cond
     p_int <- if ("(Intercept)" %in% rownames(coefs)) coefs["(Intercept)", "Pr(>|z|)"] else NA
     p_sex <- if ("sex" %in% rownames(coefs)) coefs["sex", "Pr(>|z|)"] else NA
@@ -224,6 +233,8 @@ glm_phi_tests_simple <- function(genes, a1, tot, sex, ncores) {
     data.frame(gene=g, p_intercept=p_int, p_sex=p_sex)
   }, mc.cores = ncores)
   
+  # Filter out NULLs just in case, though we return data.frames now
+  res <- res[!sapply(res, is.null)]
   do.call(rbind, res)
 }
 
@@ -318,7 +329,12 @@ glm_wald_tests_simple <- function(genes, a1, tot, sex, ncores, dispersion_vals =
     n <- as.numeric(tot[g, ])
     
     keep <- is.finite(y) & is.finite(n) & (n > 0)
-    if (sum(keep) < 5) return(NULL)
+    if (sum(keep) < 5) return(data.frame(
+        gene         = g,
+        p_intercept  = NA,
+        p_sex        = NA,
+        stringsAsFactors = FALSE
+      ))
     
     df <- data.frame(
       y = y[keep],
@@ -331,45 +347,66 @@ glm_wald_tests_simple <- function(genes, a1, tot, sex, ncores, dispersion_vals =
       glm(cbind(y, n - y) ~ sex_centered, family = quasibinomial(), data = df)
     }, error = function(e) NULL)
     
-    if (is.null(fit)) return(NULL)
-    
-    coefs <- coef(fit)
-    # Get unscaled covariance (dispersion = 1)
-    vcov_unscaled <- summary(fit, dispersion = 1)$cov.unscaled
-    
-    # Determine dispersion to use
-    if (!is.null(dispersion_vals) && g %in% names(dispersion_vals)) {
-      phi <- dispersion_vals[[g]]
-    } else {
-      phi <- summary(fit)$dispersion
+    if (is.null(fit)) {
+      return(data.frame(
+        gene         = g,
+        p_intercept  = NA,
+        p_sex        = NA,
+        stringsAsFactors = FALSE
+      ))
     }
     
-    # Scaled covariance
-    vcov_scaled <- vcov_unscaled * phi
+    # Wrap summary and extraction in tryCatch to catch vcov errors
+    out <- tryCatch({
+      coefs <- coef(fit)
+      # Get unscaled covariance (dispersion = 1)
+      vcov_unscaled <- summary(fit, dispersion = 1)$cov.unscaled
+      
+      # Determine dispersion to use
+      if (!is.null(dispersion_vals) && g %in% names(dispersion_vals)) {
+        phi <- dispersion_vals[[g]]
+      } else {
+        phi <- summary(fit)$dispersion
+      }
+      
+      # Scaled covariance
+      vcov_scaled <- vcov_unscaled * phi
+      
+      # Intercept test
+      intercept <- coefs[1]
+      se_int <- sqrt(vcov_scaled[1,1])
+      z_int <- intercept / se_int
+      p_int <- 2 * pnorm(abs(z_int), lower.tail = FALSE)
+      
+      # Sex test
+      p_sex <- NA_real_
+      if (length(coefs) >= 2) {
+        sex_coef <- coefs[2]
+        se_sex <- sqrt(vcov_scaled[2,2])
+        z_sex <- sex_coef / se_sex
+        p_sex <- 2 * pnorm(abs(z_sex), lower.tail = FALSE)
+      }
+      
+      data.frame(
+        gene         = g,
+        p_intercept  = p_int,
+        p_sex        = p_sex,
+        stringsAsFactors = FALSE
+      )
+    }, error = function(e) {
+      return(data.frame(
+        gene         = g,
+        p_intercept  = NA,
+        p_sex        = NA,
+        stringsAsFactors = FALSE
+      ))
+    })
     
-    # Intercept test
-    intercept <- coefs[1]
-    se_int <- sqrt(vcov_scaled[1,1])
-    z_int <- intercept / se_int
-    p_int <- 2 * pnorm(abs(z_int), lower.tail = FALSE)
-    
-    # Sex test
-    p_sex <- NA_real_
-    if (length(coefs) >= 2) {
-      sex_coef <- coefs[2]
-      se_sex <- sqrt(vcov_scaled[2,2])
-      z_sex <- sex_coef / se_sex
-      p_sex <- 2 * pnorm(abs(z_sex), lower.tail = FALSE)
-    }
-    
-    data.frame(
-      gene         = g,
-      p_intercept  = p_int,
-      p_sex        = p_sex,
-      stringsAsFactors = FALSE
-    )
+    return(out)
   }, mc.cores = ncores)
   
+  # Filter out NULLs
+  res <- res[!sapply(res, is.null)]
   do.call(rbind, res)
 }
 
@@ -430,19 +467,6 @@ write.csv(est_glm_shrunk, file.path(glm_shrink_dir, "estimates_global_shrunk.csv
 # correct_theta updates 'bb_theta', 'thetaCorrected'.
 # We need to calculate phi_shrunk corresponding to theta_shrunk?
 # phi = theta * (m_eff - 1) + 1
-# Let's use the 'phi' column if it's updated, or recalculate.
-# ASPEN's correct_theta updates 'bb_theta'.
-# We need to update 'phi' based on 'thetaCorrected'.
-# But wait, GLM Shrink usually uses the shrunk dispersion directly.
-# Let's assume we can calculate phi from thetaCorrected.
-# Or better, let's check if correct_theta updates phi. It usually doesn't.
-# We need to calculate phi_shrunk for the test.
-# phi_shrunk = thetaCorrected * (m_eff - 1) + 1.
-# We need m_eff. estim_glmparams doesn't return m_eff directly in the summary, but it uses it to get theta.
-# However, we can approximate or just use the theta directly if we had a test that uses theta.
-# But glm_wald_tests_simple uses phi.
-# Let's recalculate phi from thetaCorrected.
-# m_eff approx mean(n)?
 # Let's use the 'phi' from est_raw and 'bb_theta' from est_raw to estimate m_eff per gene?
 # m_eff = (phi - 1)/theta + 1
 # Then phi_shrunk = theta_shrunk * (m_eff - 1) + 1
@@ -542,7 +566,8 @@ if (!is.null(bm_map_norm)) {
 }
 
 message("\n--- Running scDALI (Python) ---")
-scdali_dir <- file.path(output_dir, "scdali")
+if (run_scdali) {
+  scdali_dir <- file.path(output_dir, "scdali")
 dir.create(scdali_dir, recursive = TRUE, showWarnings = FALSE)
 
 # Export CSVs for scDALI
@@ -570,8 +595,12 @@ if (file.exists(py_script)) {
   cmd <- sprintf("python3 %s %s %s %s", py_script, a1_csv, tot_csv, res_csv)
   message("Running: ", cmd)
   system(cmd)
+  message("scDALI completed.")
 } else {
-  message("Warning: scDALI script not found at ", py_script)
+  message("scDALI script not found: ", py_script)
+}
+} else {
+  message("Skipping scDALI (run_scdali = FALSE)")
 }
 
 message("\nAll pipelines completed.")

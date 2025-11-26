@@ -62,7 +62,7 @@ estim_params_multicore <- function(a1_counts, tot_counts, min_counts = 0, min_ce
             
             if (dim(df)[1] >= min_cells){
               
-              N[k] = dim(df[df$n >= 5,])[1]
+              N[k] = dim(df[df$n >= min_counts,])[1]
               AR[k] <- mean(y / n, na.rm = TRUE)
               tot_gene_mean[k] = mean(df$n)
               tot_gene_variance[k] = var(df$n)
@@ -1419,7 +1419,7 @@ beta_binom_test_varupd <- function(a1_counts, tot_counts, estimates = NULL, esti
       #    N[k] = dim(df[df$n >= min_counts,])[1]
       #}
       #N[k] = estimates[k, "N"]
-        N[k] = dim(df[df$n >= 5,])[1]
+        N[k] = dim(df[df$n >= min_counts,])[1]
       
         if (N[k] >= min_cells){
 

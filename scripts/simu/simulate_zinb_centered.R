@@ -131,11 +131,33 @@ eta_M <- eta_base + 0.5 * beta_sex
 p_F <- invlogit(eta_F)
 p_M <- invlogit(eta_M)
 
-theta_vec <- theta_lookup[match(genes_tot, names(theta_lookup))]
-missing_theta <- which(!is.finite(theta_vec))
-if (length(missing_theta)) {
-  theta_vec[missing_theta] <- sample(theta_lookup, length(missing_theta), replace = TRUE)
+# Filter to only genes with known theta values
+genes_with_theta <- genes_tot[genes_tot %in% names(theta_lookup)]
+if (length(genes_with_theta) == 0) {
+  stop("No genes from totals file found in theta lookup table!")
 }
+
+# Report filtering
+n_filtered <- length(genes_tot) - length(genes_with_theta)
+if (n_filtered > 0) {
+  message(sprintf("Filtered out %d genes (%.1f%%) without theta values in reference", 
+                  n_filtered, 100 * n_filtered / length(genes_tot)))
+  message(sprintf("Using %d genes with known theta values", length(genes_with_theta)))
+  
+  # Update gene lists and subset data
+  genes_tot <- genes_with_theta
+  n_genes <- length(genes_tot)
+  a1_mat <- a1_mat[genes_tot, , drop = FALSE]
+  counts <- counts[genes_tot, , drop = FALSE]
+  
+  # Re-subset other vectors
+  baseline_mu <- baseline_mu[1:n_genes]
+  is_sig_sex <- is_sig_sex[1:n_genes]
+  beta_sex <- beta_sex[1:n_genes]
+}
+
+# Now all genes have known theta
+theta_vec <- theta_lookup[genes_tot]
 theta_vec <- pmax(theta_vec, 1e-6)
 
 a1_mat <- matrix(0L, nrow = n_genes, ncol = length(sex_vec),
