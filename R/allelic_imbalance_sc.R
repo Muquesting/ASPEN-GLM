@@ -345,13 +345,28 @@ correct_theta_sc_mod_old <- function(estimates, delta_set = NULL, N_set = NULL, 
       paramsInit = c(a0, sigma0)
       
       # Dispatch arguments to optim.
-      paramsMLE = optim(
-        par=paramsInit, fn=gammaLL, method="BFGS", control=list(fnscale=-1)
-      )
+      paramsMLE = tryCatch(optim(
+        par=paramsInit, fn=gammaLL, method="L-BFGS-B", lower=c(1e-4, 1e-4), control=list(fnscale=-1)
+      ), error = function(e) { return(NULL) })
       
-      rateGamma = paramsMLE$par[2]
-      N = round(((rateGamma/mean(theta))/2)^(-1))
-      delta = round(2 * mean(betaSmoothed) / (N * mean(theta_smoothed)))
+      if(is.null(paramsMLE)) {
+          N = 30 # Fallback
+          delta = 50 # Fallback
+      } else {
+          rateGamma = paramsMLE$par[2]
+          N = round(((rateGamma/mean(theta, na.rm=TRUE))/2)^(-1))
+          
+          # Clamp N to be at least K+1 (where K=1) to prevent division by zero or negative weights
+          if (is.na(N) || N < 2) {
+             N = 30 # Fallback to default if estimation fails/diverges
+          }
+          
+          delta = round(2 * mean(betaSmoothed, na.rm=TRUE) / (N * mean(theta_smoothed, na.rm=TRUE)))
+          
+          if (is.na(delta) || !is.finite(delta)) {
+             delta = 50 
+          }
+      }
       
       
       N = N
@@ -1873,6 +1888,8 @@ correct_theta <- function(estimates, delta_set = 50, N_set = 30, thetaFilter = N
 
 
 bb_mean <- function(a1_counts, tot_counts, estimates, estimates_group = NULL, glob_params, min_cells = 5, min_counts = 0, batch = NULL, metadata = NULL){
+    cat("HELLO FROM BB_MEAN FUNCTION\n", file=stderr())
+
 
 
     assert_that(are_equal(dim(a1_counts), dim(tot_counts)),
@@ -1899,8 +1916,10 @@ bb_mean <- function(a1_counts, tot_counts, estimates, estimates_group = NULL, gl
     #loglik0_mean <- loglik1_mean <- llr_mean <- pval_mean <- AR <- log2FC <- N <- numeric(len)
     #loglik0_disp <- loglik1_disp <- llr_disp <- pval_disp <- numeric(len)
 
-    loglik0_mean <- loglik1_mean <- llr_mean <- pval_mean <- AR <- log2FC <- N <- numeric(len)
-    loglik0_disp <- loglik1_disp <- llr_disp <- pval_disp <- numeric(len)
+    loglik0_mean <- loglik1_mean <- llr_mean <- AR <- log2FC <- N <- numeric(len)
+    pval_mean <- rep(NA, len)
+    loglik0_disp <- loglik1_disp <- llr_disp <- numeric(len)
+    pval_disp <- rep(NA, len)
 
     a1_counts <- as.matrix(a1_counts)
     tot_counts <- as.matrix(tot_counts)
@@ -1936,15 +1955,20 @@ bb_mean <- function(a1_counts, tot_counts, estimates, estimates_group = NULL, gl
 
       AR[k] = mean(y/n, na.rm = T)
       log2FC[k] = log2(mean(y)) - log2(mean(a2))
-      if(!is.null(estimates)){
+      if(!is.null(estimates) && "N" %in% colnames(estimates) && !is.na(estimates[k, "N"])){
           N[k] = estimates[k, "N"]
       } else {
           N[k] = dim(df[df$n >= min_counts,])[1]
       }
       #N[k] = dim(df[df$n >= min_counts,])[1]  
+      
+      # OUTER DEBUG
+      if(k <= 5 && !is.na(N[k])) cat(sprintf("OUTER k=%d N=%s min=%s\n", k, N[k], min_cells), file=stderr())
         
-      if (N[k] >= min_cells){
-
+      if (!is.na(N[k]) && N[k] >= min_cells){
+        
+        # DEBUG
+        if(k <= 5) cat(sprintf("INNER k=%d N=%s min=%s mu=%s theta=%s\n", k, N[k], min_cells, estimates[k, "bb_mu"], estimates[k, "bb_theta"]), file=stderr())
         mu_null <- glob_params[1]
         mu <- estimates[k, "bb_mu"]
         theta <- estimates[k, "bb_theta"]

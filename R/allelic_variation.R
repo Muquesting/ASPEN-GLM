@@ -232,6 +232,8 @@ lbb_mat <- function(tot, sim_mat, mu, theta) {
   # Vectorized computation of the log-likelihood matrix
   ll_mat <- lchoose(tot, sim_mat) - lgamma(tot + alpha + beta) +
     lgamma(sim_mat + alpha) + lgamma(tot - sim_mat + beta) + const
+  
+  if (is.null(dim(ll_mat))) dim(ll_mat) <- dim(sim_mat)
   ll_mat
 }
 

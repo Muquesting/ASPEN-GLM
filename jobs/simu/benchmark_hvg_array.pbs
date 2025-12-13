@@ -54,4 +54,4 @@ fi
 
 # 2. Run Benchmark
 echo "  Running Benchmark Methods..."
-Rscript scripts/simu/run_simple_simulation_methods.R "${SCE_RDS}" "${OUT_DIR}" 8 "strict"
+Rscript scripts/simu/run_simple_simulation_methods.R "${SCE_RDS}" "${OUT_DIR}" 8 "strict" FALSE
