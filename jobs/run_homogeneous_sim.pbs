@@ -1,0 +1,79 @@
+#!/bin/bash
+#PBS -P zk16
+#PBS -q normal
+#PBS -l walltime=04:00:00,mem=128GB
+#PBS -l ncpus=12
+#PBS -l storage=gdata/zk16+scratch/zk16
+#PBS -l wd
+#PBS -N Homogeneous_Sim_Mu
+
+set -euo pipefail
+
+module purge
+module load gcc/14.2.0
+module load R/4.4.2
+
+# Ensure we are in the correct directory
+cd /g/data/zk16/muqing/repos/ASPEN-GLM
+
+# Define Paths to Totals and GLM Results
+# These paths must exist on Gadi.
+TOTALS_DIR="results/sim_runs/zinb_totals/Cardiomyocyte"
+GLM_DIR="results/GLM_aspen_phi_sex_noimp_allcells_withsex_noimp/Cardiomyocyte"
+OUT_ROOT="results/sim_runs/homogeneous_mu/Cardiomyocyte"
+
+mkdir -p "$OUT_ROOT"
+
+# Seeds
+SEEDS_AGED=(7001 7002 7003)
+SEEDS_YOUNG=(7011 7012 7013)
+
+# Mu Values (Grid)
+MUS=(0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9)
+
+echo "[`date`] Starting Homogeneous Mu Simulation..."
+
+# Function to run simulation
+run_sim() {
+    local TOTALS=$1
+    local GLM=$2
+    local SEED=$3
+    local MU=$4
+    local OUT=$5
+    
+    echo "  [Start] Seed $SEED Mu $MU -> $OUT"
+    mkdir -p "$(dirname "$OUT")"
+    
+    Rscript scripts/simu/simulate_homogeneous_mu.R "$TOTALS" "$GLM" "$MU" "$OUT" "$SEED" "0.05"
+    
+    if [ $? -eq 0 ]; then
+        echo "  [Done] Seed $SEED Mu $MU"
+    else
+        echo "  [Fail] Seed $SEED Mu $MU"
+    fi
+}
+export -f run_sim
+
+# Loop Aged
+for SEED in "${SEEDS_AGED[@]}"; do
+    TOTALS="${TOTALS_DIR}/F1_Aged_totals.rds"
+    GLM="${GLM_DIR}/F1_Aged/phi_glm_results.csv"
+    
+    for MU in "${MUS[@]}"; do
+         OUT="${OUT_ROOT}/F1_Aged_seed${SEED}/mu_${MU}/simulation_sce.rds"
+         run_sim "$TOTALS" "$GLM" "$SEED" "$MU" "$OUT"
+    done
+done
+
+# Loop Young
+for SEED in "${SEEDS_YOUNG[@]}"; do
+    TOTALS="${TOTALS_DIR}/F1_Young_totals.rds"
+    GLM="${GLM_DIR}/F1_Young/phi_glm_results.csv"
+    
+     for MU in "${MUS[@]}"; do
+         OUT="${OUT_ROOT}/F1_Young_seed${SEED}/mu_${MU}/simulation_sce.rds"
+         run_sim "$TOTALS" "$GLM" "$SEED" "$MU" "$OUT"
+    done
+done
+
+echo "[`date`] All simulations completed."
